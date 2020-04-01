@@ -1,0 +1,1 @@
+json.extract! meetup, :id, :location, :date, :time, :openings, :host_id, :topic
