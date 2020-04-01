@@ -11,10 +11,8 @@ Future upgrades could include:
 Git process, subject to change
 (Make sure you're on your branch)
 
-git add .
-git commit -m "***"
 git checkout master 
-git pull master
+git pull origin master
 git checkout ______ <-- your branch's name
 Make changes
 git add -A
