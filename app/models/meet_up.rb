@@ -39,7 +39,7 @@ class Meetup < ApplicationRecord
     # end
 
 
-    # Photo Ensured
+    # Ensure photo
     # validate :ensure_photo
     # has_one_attached :photo
   

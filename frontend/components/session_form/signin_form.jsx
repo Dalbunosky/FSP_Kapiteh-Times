@@ -6,12 +6,15 @@ class SignInForm extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+
+      pwDisplay: "Show"
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoUser = this.demoUser.bind(this);
     this.demoHost = this.demoHost.bind(this);
     this.demoAdmin = this.demoAdmin.bind(this);
+    this.pwShowHide = this.pwShowHide.bind(this);
   }
 
   componentDidMount(){
@@ -30,7 +33,8 @@ class SignInForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
+    const credentials = {email: this.state.email, password: this.state.password};
+    const user = Object.assign({}, credentials);
     this.props.processForm(user);
   }
 
@@ -65,8 +69,17 @@ class SignInForm extends React.Component {
       password: "`1234567"
     })
   };
+
+  pwShowHide(e){
+    e.preventDefault();
+    this.setState({
+      pwDisplay: ( this.state.pwDisplay === "Show" ? "Hide" : "Show")
+    })
+  };
   
   render() {
+    const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
+
     return (
       <div className="signinup-form-container">
         <form onSubmit={this.handleSubmit} className="signinup-form-box">
@@ -90,11 +103,12 @@ class SignInForm extends React.Component {
             <br/>
             <label>
               <p className="signinup-title">Password:</p>
-              <input type="password"
+              <input type={toggleInputType(this.state.pwDisplay)}
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="signinup-input"
-            />
+              />
+              <button className="togglePW" onClick={this.pwShowHide}>{this.state.pwDisplay}</button>
             </label>
             <br/>
             <div className="demo-signins">

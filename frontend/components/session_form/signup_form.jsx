@@ -14,9 +14,12 @@ class SignUpForm extends React.Component {
       phone: '',
       password: '',
       home_city: '',
-      story: ''
+      story: '',
+
+      pwDisplay: "Show"
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.pwShowHide = this.pwShowHide.bind(this);
   }
 
   componentDidMount(){
@@ -39,7 +42,6 @@ class SignUpForm extends React.Component {
     this.props.processForm(user);
   }
 
-
   renderErrors() {return(
     <ul>
       {this.props.errors.map((error, i) => (
@@ -48,7 +50,15 @@ class SignUpForm extends React.Component {
     </ul>
   )}
 
+  pwShowHide(e){
+    e.preventDefault();
+    this.setState({
+      pwDisplay: ( this.state.pwDisplay === "Show" ? "Hide" : "Show")
+    })
+  };
+
   render() {
+    const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     return (
       <div className="signinup-form-container">
         <form onSubmit={this.handleSubmit} className="signinup-form-box">
@@ -94,12 +104,13 @@ class SignUpForm extends React.Component {
             <br/>
             <label>
               <p className="signinup-title">Password:*</p>
-              <input type="password"
+              <input type={toggleInputType(this.state.pwDisplay)}
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="signinup-input"
                 required
               />
+              <button className="togglePW" onClick={this.pwShowHide}>{this.state.pwDisplay}</button>
             </label>
 
             <br/>
