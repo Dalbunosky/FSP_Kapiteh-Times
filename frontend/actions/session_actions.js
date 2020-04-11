@@ -6,6 +6,7 @@ export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 export const CLOSE_USER_ACCOUNT = "CLOSE_USER_ACCOUNT";
 
+
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
@@ -48,6 +49,7 @@ export const getUser = () => dispatch => (
 // )
 
 
+
 // Sign Up, Sign In, Sign out
 export const signup = user => dispatch => (
   APIUtil.signup(user).then(user => (
@@ -70,7 +72,6 @@ export const signout = () => dispatch => (
     dispatch(signoutCurrentUser())
   ))
 );
-
 
 // Edit Profile, Close Account
 export const editUser = user => dispatch => (

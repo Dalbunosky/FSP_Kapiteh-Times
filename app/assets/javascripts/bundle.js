@@ -7375,8 +7375,6 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       topic: "",
       guests: [],
       capacity: 0,
-      testDate: [null, null, null, null, null, null],
-      testTime: [null, null, null, null, null, null],
       host: props.host.name,
       // currentUser.name
       hostId: props.host.id // photoFile: null,
@@ -7551,9 +7549,14 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var meetup = Object.assign({}, this.state);
-      this.props.processForm(meetup); // If this.props.errors.length = 0, meetup was successfully made
+      this.props.processForm(meetup); // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
       // redirect to profile for now, redirect to meetup in future
-      // Use history push? <Redirect to="/profile" />
+      // this.props.processForm(meetup).then(
+      //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      //   event => this.props.history.push(`/profile`), 
+      //   event => this.props.history.push(`/profile`)).catch() 
+      //   () => {}
+      // );
     } // For date to string
 
   }, {
@@ -7561,7 +7564,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function onDateChange(field) {
       var _this3 = this;
 
-      var timern = this.state.testDate;
+      var timern = this.state.time;
       return function (e) {
         var date = e.toDateString().split(" ");
         var DOW = date[0];
@@ -7572,10 +7575,10 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var minute = timern[1];
 
         _this3.setState({
-          testDate: [DOW, month, day, year, hour, minute]
+          time: [DOW, month, day, year, hour, minute]
         });
 
-        console.log([DOW, month, day, year, hour, minute]); // this.setState({ testDate: e.toDateString() })
+        console.log([DOW, month, day, year, hour, minute]); // this.setState({ time: e.toDateString() })
       };
     } // For time only handling
 
@@ -7584,7 +7587,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function onTimeChange(field) {
       var _this4 = this;
 
-      var date = this.state.testDate;
+      var date = this.state.time;
       return function (e) {
         var timestring = e.target.value.split(":");
         var DOW = date[0];
@@ -7595,27 +7598,10 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var minute = timestring[1];
 
         _this4.setState({
-          testDate: [DOW, month, day, year, hour, minute]
+          time: [DOW, month, day, year, hour, minute]
         });
 
-        console.log([DOW, month, day, year, hour, minute]); //     let timeSplit = e.target.value.split(':');
-        //     let hours;
-        //     let minutes;
-        //     let meridian;
-        //     hours = timeSplit[0];
-        //     minutes = timeSplit[1];
-        //     if (hours > 12) {
-        //       meridian = 'PM';
-        //       hours -= 12;
-        //     } else if (hours < 12) {
-        //       meridian = 'AM';
-        //       if (hours == 0) {
-        //         hours = 12;
-        //       }
-        //     } else {
-        //       meridian = 'PM';
-        //     }
-        //     this.setState({[field]: hours + ':' + minutes + ' ' + meridian});
+        console.log([DOW, month, day, year, hour, minute]); // For meridian (AM/PM) processing, go check FWF
       };
     } // AWS
     // handleAWSSubmit(e) {
@@ -7644,6 +7630,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       var _this5 = this;
 
       var file = e.currentTarget.files[0];
+      console.log(e.currentTarget.files);
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
@@ -7656,15 +7643,20 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       if (file) {
         fileReader.readAsDataURL(file);
       }
-    } // RENDER
+    } // In handleSubmit
+    // if (this.state.photoFile) {
+    //   formData.append('bench[photo]', this.state.photoFile);
+    // }
+    // RENDER
 
   }, {
     key: "render",
     value: function render() {
       var preview = this.state.photoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        height: "200px",
+        width: "200px",
         src: this.state.photoUrl
       }) : null;
-      var showPreviewText = this.state.photoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Image Preview") : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New Meetup!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -7725,11 +7717,19 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
         onChange: this.onTimeChange('time')
-      })), console.log(this.state.testDate)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "picture"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), console.log(this.state.time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "picture"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-holder"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Image preview "), preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "button-holder"
+      }, "Add a Picture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        className: "new-bench-button",
+        onChange: this.handleFile.bind(this)
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "What topics do you want to talk about?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "4",
@@ -8818,12 +8818,14 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SignInForm).call(this, props));
     _this.state = {
       email: '',
-      password: ''
+      password: '',
+      pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.demoUser = _this.demoUser.bind(_assertThisInitialized(_this));
     _this.demoHost = _this.demoHost.bind(_assertThisInitialized(_this));
     _this.demoAdmin = _this.demoAdmin.bind(_assertThisInitialized(_this));
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -8850,7 +8852,11 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var user = Object.assign({}, this.state);
+      var credentials = {
+        email: this.state.email,
+        password: this.state.password
+      };
+      var user = Object.assign({}, credentials);
       this.props.processForm(user);
     }
   }, {
@@ -8890,8 +8896,20 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "pwShowHide",
+    value: function pwShowHide(e) {
+      e.preventDefault();
+      this.setState({
+        pwDisplay: this.state.pwDisplay === "Show" ? "Hide" : "Show"
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var toggleInputType = function toggleInputType(toggleText) {
+        return toggleText === "Show" ? "password" : "text";
+      };
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signinup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -8911,11 +8929,14 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
+        type: toggleInputType(this.state.pwDisplay),
         value: this.state.password,
         onChange: this.update('password'),
         className: "signinup-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "togglePW",
+        onClick: this.pwShowHide
+      }, this.state.pwDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "demo-signins"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "nav-link-item",
@@ -9037,9 +9058,11 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       phone: '',
       password: '',
       home_city: '',
-      story: ''
+      story: '',
+      pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -9079,8 +9102,20 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
+    key: "pwShowHide",
+    value: function pwShowHide(e) {
+      e.preventDefault();
+      this.setState({
+        pwDisplay: this.state.pwDisplay === "Show" ? "Hide" : "Show"
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var toggleInputType = function toggleInputType(toggleText) {
+        return toggleText === "Show" ? "password" : "text";
+      };
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signinup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -9118,12 +9153,15 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Password:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
+        type: toggleInputType(this.state.pwDisplay),
         value: this.state.password,
         onChange: this.update('password'),
         className: "signinup-input",
         required: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "togglePW",
+        onClick: this.pwShowHide
+      }, this.state.pwDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Where are you now? Which city*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
