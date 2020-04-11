@@ -1,3 +1,6 @@
+// const express = require("express");
+// import express from 'express';
+// const app = express();
 import React from 'react';
 import { Provider } from 'react-redux';
 import {
@@ -36,6 +39,17 @@ import Hosting from './non_changing/hosting';
 import Terms from './non_changing/terms';
 import Privacy from './non_changing/privacy';
 import BadPage from './non_changing/oops';
+
+// app.use(passport.initialize());
+// require("./config/passport")(passport);
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+
+// app.use("/users", users);
+// app.use("/rooms", rooms);
+
+// const users = require("./routes/api/users");
+// const rooms = require("./routes/api/rooms");
 
 const App = () => (
   <div>

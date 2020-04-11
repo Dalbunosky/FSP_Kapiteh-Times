@@ -11,17 +11,20 @@ Future upgrades could include:
 Git process, subject to change
 (Make sure you're on your branch)
 
-Make sure you are on your own branch.
-Make changes
+(Make sure you're on your branch)
 
 git add .
+
 git commit -m "***"
+
 git checkout master 
-git pull master
+
+git pull https://github.com/Dalbunosky/FSP_Kapiteh-Times.git
+
 git checkout ______ <-- your branch's name
-<!-- Make changes
-git add -A
-git commit -m "<message>" -->
+
 git rebase master
+
 git push origin ______  <-- your branch's name
-on github page Create pull request
+
+on github page Create pull request ADD REVIEWER on top right
