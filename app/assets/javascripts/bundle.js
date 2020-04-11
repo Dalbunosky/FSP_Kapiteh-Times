@@ -8818,12 +8818,14 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SignInForm).call(this, props));
     _this.state = {
       email: '',
-      password: ''
+      password: '',
+      pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.demoUser = _this.demoUser.bind(_assertThisInitialized(_this));
     _this.demoHost = _this.demoHost.bind(_assertThisInitialized(_this));
     _this.demoAdmin = _this.demoAdmin.bind(_assertThisInitialized(_this));
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -8850,7 +8852,11 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var user = Object.assign({}, this.state);
+      var credentials = {
+        email: this.state.email,
+        password: this.state.password
+      };
+      var user = Object.assign({}, credentials);
       this.props.processForm(user);
     }
   }, {
@@ -8890,8 +8896,20 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "pwShowHide",
+    value: function pwShowHide(e) {
+      e.preventDefault();
+      this.setState({
+        pwDisplay: this.state.pwDisplay === "Show" ? "Hide" : "Show"
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var toggleInputType = function toggleInputType(toggleText) {
+        return toggleText === "Show" ? "password" : "text";
+      };
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signinup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -8911,11 +8929,14 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
+        type: toggleInputType(this.state.pwDisplay),
         value: this.state.password,
         onChange: this.update('password'),
         className: "signinup-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "togglePW",
+        onClick: this.pwShowHide
+      }, this.state.pwDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "demo-signins"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "nav-link-item",
@@ -9037,9 +9058,11 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       phone: '',
       password: '',
       home_city: '',
-      story: ''
+      story: '',
+      pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -9079,8 +9102,20 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
+    key: "pwShowHide",
+    value: function pwShowHide(e) {
+      e.preventDefault();
+      this.setState({
+        pwDisplay: this.state.pwDisplay === "Show" ? "Hide" : "Show"
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var toggleInputType = function toggleInputType(toggleText) {
+        return toggleText === "Show" ? "password" : "text";
+      };
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signinup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -9118,12 +9153,15 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Password:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
+        type: toggleInputType(this.state.pwDisplay),
         value: this.state.password,
         onChange: this.update('password'),
         className: "signinup-input",
         required: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "togglePW",
+        onClick: this.pwShowHide
+      }, this.state.pwDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Where are you now? Which city*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
