@@ -11,7 +11,7 @@ const ProfileBar = props =>{
 
     const contractStory = story => {
 
-        if(story.length == 0){return "Yeah, what is it?"}
+        if((story === null) || (story.length === 0)){return "Yeah, what is it?"}
         else if (story.length > 18){return`${story.slice(0,15)}...`}
         else {return story}
     }

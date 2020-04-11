@@ -6871,6 +6871,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _non_changing_terms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./non_changing/terms */ "./frontend/components/non_changing/terms.jsx");
 /* harmony import */ var _non_changing_privacy__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./non_changing/privacy */ "./frontend/components/non_changing/privacy.jsx");
 /* harmony import */ var _non_changing_oops__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./non_changing/oops */ "./frontend/components/non_changing/oops.jsx");
+// const express = require("express");
+// import express from 'express';
+// const app = express();
 
 
  // SignIn, SignUp pages
@@ -6898,7 +6901,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // app.use(passport.initialize());
+// require("./config/passport")(passport);
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use("/users", users);
+// app.use("/rooms", rooms);
+// const users = require("./routes/api/users");
+// const rooms = require("./routes/api/rooms");
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_molding_jsx__WEBPACK_IMPORTED_MODULE_13__["Header"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -7323,7 +7333,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-calendar */ "./node_modules/react-calendar/dist/esm/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "../../../node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -7346,8 +7355,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
  // import Calendar from 'react-calendar/dist/entry.nostyle';
-
-
+// import { Link } from 'react-router-dom';
 
 var NewMeetup = /*#__PURE__*/function (_React$Component) {
   _inherits(NewMeetup, _React$Component);
@@ -7543,7 +7551,9 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var meetup = Object.assign({}, this.state);
-      this.props.processForm(meetup);
+      this.props.processForm(meetup); // If this.props.errors.length = 0, meetup was successfully made
+      // redirect to profile for now, redirect to meetup in future
+      // Use history push? <Redirect to="/profile" />
     } // For date to string
 
   }, {
@@ -7655,7 +7665,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         src: this.state.photoUrl
       }) : null;
       var showPreviewText = this.state.photoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Image Preview") : null;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New Meetup!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
@@ -7737,43 +7747,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         className: "session-submit",
         type: "submit",
         value: "Create Meetup!"
-      }))), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "meetup-index-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "show-header-one"
-      }, "HOSTING"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "show-header-two"
-      }, "Make your own meetup!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "hosting-background"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "final-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "right-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "final-form-header"
-      }, "Fill in the fields and submit!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name of Meetup"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        onChange: this.update('name')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Summary of what your meetup will be like."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "4",
-        cols: "50",
-        onChange: this.update('summary')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Any topics to spark a conversation on??"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "4",
-        cols: "50",
-        onChange: this.update('topic')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Some topics that might be discussed."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "4",
-        cols: "50",
-        onChange: this.update('discussion')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pick a quote that means something to you."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        onChange: this.update('quote')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "host-meetup-button",
-        onSubmit: this.handleSubmit
-      }, "Host meetup!"))));
+      })));
     }
   }]);
 
@@ -8562,7 +8536,7 @@ var ProfileBar = function ProfileBar(props) {
   };
 
   var contractStory = function contractStory(story) {
-    if (story.length == 0) {
+    if (story === null || story.length === 0) {
       return "Yeah, what is it?";
     } else if (story.length > 18) {
       return "".concat(story.slice(0, 15), "...");

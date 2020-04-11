@@ -1,7 +1,7 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 // import Calendar from 'react-calendar/dist/entry.nostyle';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 class NewMeetup extends React.Component {
@@ -14,8 +14,6 @@ class NewMeetup extends React.Component {
       topic: "",
       guests: [],
       capacity: 0,
-      testDate: [null, null, null, null, null, null],
-      testTime: [null, null, null, null, null, null],
       
       host: props.host.name,     // currentUser.name
       hostId: props.host.id
@@ -203,13 +201,20 @@ class NewMeetup extends React.Component {
     e.preventDefault();
     const meetup = Object.assign({}, this.state);
     this.props.processForm(meetup);
-
+    // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
+    // redirect to profile for now, redirect to meetup in future
+    // this.props.processForm(meetup).then(
+    //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+    //   event => this.props.history.push(`/profile`), 
+    //   event => this.props.history.push(`/profile`)).catch() 
+    //   () => {}
+    // );
   }
   
   // For date to string
 
   onDateChange(field) {
-    let timern = this.state.testDate;
+    let timern = this.state.time;
     return e => {
       let date = e.toDateString().split(" ");
       let DOW = date[0];
@@ -218,16 +223,16 @@ class NewMeetup extends React.Component {
       let year = date[3];
       let hour = timern[0];
       let minute = timern[1];
-      this.setState({ testDate: [DOW, month, day, year, hour, minute] })
+      this.setState({ time: [DOW, month, day, year, hour, minute] })
       console.log([DOW, month, day, year, hour, minute])
-      // this.setState({ testDate: e.toDateString() })
+      // this.setState({ time: e.toDateString() })
     }
   }
 
 
   // For time only handling
   onTimeChange(field) {
-    let date = this.state.testDate;
+    let date = this.state.time;
     return e => {
       let timestring = e.target.value.split(":");
       let DOW = date[0];
@@ -236,26 +241,9 @@ class NewMeetup extends React.Component {
       let year = date[3];
       let hour = timestring[0];
       let minute = timestring[1];
-      this.setState({ testDate: [DOW, month, day, year, hour, minute] })
+      this.setState({ time: [DOW, month, day, year, hour, minute] })
       console.log([DOW, month, day, year, hour, minute])
-  //     let timeSplit = e.target.value.split(':');
-  //     let hours;
-  //     let minutes;
-  //     let meridian;
-  //     hours = timeSplit[0];
-  //     minutes = timeSplit[1];
-  //     if (hours > 12) {
-  //       meridian = 'PM';
-  //       hours -= 12;
-  //     } else if (hours < 12) {
-  //       meridian = 'AM';
-  //       if (hours == 0) {
-  //         hours = 12;
-  //       }
-  //     } else {
-  //       meridian = 'PM';
-  //     }
-  //     this.setState({[field]: hours + ':' + minutes + ' ' + meridian});
+      // For meridian (AM/PM) processing, go check FWF
     }
   }
 
@@ -278,12 +266,12 @@ class NewMeetup extends React.Component {
   //   formData.append('meetup[lat]', this.state.lat);
   //   formData.append('meetup[lng]', this.state.lng);
   //   this.props.createMeetup(formData).then(meetup => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), () => {
-
   //   });
   // }
 
   handlePhoto(e) {
     const file = e.currentTarget.files[0];
+    console.log(e.currentTarget.files);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({photoFile: file, photoUrl: fileReader.result});
@@ -293,14 +281,17 @@ class NewMeetup extends React.Component {
     }
   }
 
+  // In handleSubmit
+  // if (this.state.photoFile) {
+  //   formData.append('bench[photo]', this.state.photoFile);
+  // }
+
   // RENDER
 
   render() {
-    const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null
-    const showPreviewText = this.state.photoUrl ? <h3>Image Preview</h3> : null
+    const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
 
     return (
-      <>
       <div className="new-meetup">
         <h3>New Meetup!</h3>
         <form onSubmit={this.handleSubmit} className="new-meetup-details">
@@ -375,25 +366,31 @@ class NewMeetup extends React.Component {
               <label>
                 <input type="time" onChange={this.onTimeChange('time')} />
               </label>
-              {console.log(this.state.testDate)}
-              {/* {console.log(typeof this.state.testDate)} */}
-              {/* {console.log(this.state.testTime)} */}
-              {/* {console.log(typeof this.state.testTime)} */}
-            </div>
-            <div className="picture">
-            {/* EDIT PROFILE PICTURE. NULL FALSE */}
-              {/* <label className="fancy">
-                Choose a file
-                <input type="file" className="inputfile" onChange={handlePhoto} />
-              </label>
-              {showPreviewText}
-              <hr></hr>
-              <div className="preview">{preview}</div> */}
+              {console.log(this.state.time)}
             </div>
           </div>
 
 
           <div className="new-meetup-right">
+            <div className="picture">
+
+            <div className="button-holder">
+              <h3>Image preview </h3>
+              {preview}
+              <h3 className="button-holder">Add a Picture</h3>
+              <input type="file" className="new-bench-button"
+                onChange={this.handleFile.bind(this)}/>
+            </div>
+
+            {/* EDIT PROFILE PICTURE. NULL FALSE */}
+              {/* <label className="fancy">
+                Choose a file
+                <input type="file" className="inputfile" onChange={handlePhoto} />
+              </label>
+              <h3>Image Preview</h3>
+              <hr></hr>
+              <div className="preview">{preview}</div> */}
+            </div>
             <label>
               <p className="signinup-title">What topics do you want to talk about?</p>
               <textarea rows="4" cols="50" 
@@ -414,58 +411,6 @@ class NewMeetup extends React.Component {
           <input className="session-submit" type="submit" value="Create Meetup!" />
         </form>
       </div>
-
-
-
-
-
-        {this.renderErrors()}
-        <div className="meetup-index-header">
-          <p className="show-header-one">HOSTING</p>
-          <p className="show-header-two">Make your own meetup!</p>
-        </div>
-        <div className="hosting-background">
-        </div>
-
-        {/* Shows the four cities to pick from */}
-        {/* <span className="meetup-create-decoration">
-          <p className="select-location">Pick a city, type in a location, and click on that marker!</p>
-          <span className="meetup-create-sub-decoration">
-          <button onClick={() => this.changeLocation("New York")}>New York</button>
-          <button onClick={() => this.changeLocation("Boston")}>Boston</button>
-          <button onClick={() => this.changeLocation("San Francisco")}>San Francisco</button>
-          <button onClick={() => this.changeLocation("Dallas")}>Dallas</button>
-          </span>
-        </span> */}
-
-        {/* <div className="dumbmap">
-          <input type="text" id="searchTextField" placeholder="Create your meetup" />
-          <div id='map-container2' ref={map => this.mapNode = map}></div> 
-        </div> */}
-
-      <form onSubmit={this.handleSubmit} className="final-form">
-
-
-          <div className="right-form">
-            <p className="final-form-header">Fill in the fields and submit!</p>
-            <hr></hr>
-            <p>Name of Meetup</p>
-          <input type="text" onChange={this.update('name')}/>
-            <p>Summary of what your meetup will be like.</p>
-          <textarea rows="4" cols="50" onChange={this.update('summary')}/>
-            <p>Any topics to spark a conversation on??</p>
-          <textarea rows="4" cols="50" onChange={this.update('topic')}/>
-        
-        
-            <p>Some topics that might be discussed.</p>
-            <textarea rows="4" cols="50" onChange={this.update('discussion')}/>
-        
-            <p>Pick a quote that means something to you.</p>
-            <input type="text" onChange={this.update('quote')}/>
-            <button className="host-meetup-button" onSubmit={this.handleSubmit}>Host meetup!</button>
-          </div>
-      </form>
-      </>
     )
   }
 }
