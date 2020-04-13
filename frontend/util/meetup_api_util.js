@@ -18,8 +18,8 @@ export const createMeetup = meetupForm => ( //For creating new meetups
     method: 'POST',
     url: 'api/meetups',
     data: meetupForm,
-    contentType: false, //Shit, what is this?
-    processData: false  //Shit, what is this?
+    // contentType: false, //Shit, what is this?
+    // processData: false  //Shit, what is this?
   })
 );
 

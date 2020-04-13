@@ -8,8 +8,18 @@ class User < ApplicationRecord
     validate :host_requirements
     after_initialize :ensure_session_token
   
-    has_many :meetups   # This is for hosts, shows that they are hosting meetups
-    has_many :tickets   # This is for showing guests
+    has_many :hosted_meetups,   # This is for hosts, shows that they are hosting meetups
+    foreign_key: :host_id,
+    class_name: :Meetup
+
+    has_many :tickets,   # This is for showing guests
+    foreign_key: :user_id,
+    class_name: :Ticket
+
+    has_many :joined_meetups,
+    through: :tickets,
+    source: :meetup
+
 
     def host_requirements
       # user = User.find_by(email: email)

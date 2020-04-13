@@ -7356,6 +7356,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
  // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
+// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", time: ["Sun", 4,12, 2020, 19, 0] )
 
 var NewMeetup = /*#__PURE__*/function (_React$Component) {
   _inherits(NewMeetup, _React$Component);
@@ -7368,7 +7369,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewMeetup).call(this, props));
     console.log(props);
     _this.state = {
-      location: [null, null, null, null, null, null, null, null],
+      location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
       time: [null, null, null, null, null, null],
       // [DOW, month, day,  year, hour, minute]
@@ -7547,22 +7548,43 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      var meetup = Object.assign({}, this.state);
-      this.props.processForm(meetup); // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
+      var meetup = Object.assign({}, this.state); // this.props.processForm(meetup);
+      // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
       // redirect to profile for now, redirect to meetup in future
-      // this.props.processForm(meetup).then(
-      //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      //   event => this.props.history.push(`/profile`), 
-      //   event => this.props.history.push(`/profile`)).catch() 
-      //   () => {}
-      // );
+
+      this.props.processForm(meetup).then( //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      function (meetup) {
+        return _this3.props.history.push("/profile");
+      }, //   event => this.props.history.push(`/profile`)).catch() 
+      function () {});
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this4 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this4.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
     } // For date to string
 
   }, {
     key: "onDateChange",
     value: function onDateChange(field) {
-      var _this3 = this;
+      var _this5 = this;
 
       var timern = this.state.time;
       return function (e) {
@@ -7574,7 +7596,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var hour = timern[0];
         var minute = timern[1];
 
-        _this3.setState({
+        _this5.setState({
           time: [DOW, month, day, year, hour, minute]
         });
 
@@ -7585,7 +7607,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onTimeChange",
     value: function onTimeChange(field) {
-      var _this4 = this;
+      var _this6 = this;
 
       var date = this.state.time;
       return function (e) {
@@ -7597,7 +7619,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var hour = timestring[0];
         var minute = timestring[1];
 
-        _this4.setState({
+        _this6.setState({
           time: [DOW, month, day, year, hour, minute]
         });
 
@@ -7627,14 +7649,14 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handlePhoto",
     value: function handlePhoto(e) {
-      var _this5 = this;
+      var _this7 = this;
 
       var file = e.currentTarget.files[0];
       console.log(e.currentTarget.files);
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this5.setState({
+        _this7.setState({
           photoFile: file,
           photoUrl: fileReader.result
         });
@@ -7721,15 +7743,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         className: "new-meetup-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-holder"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Image preview "), preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "button-holder"
-      }, "Add a Picture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file",
-        className: "new-bench-button",
-        onChange: this.handleFile.bind(this)
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "What topics do you want to talk about?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "4",
@@ -7791,8 +7805,8 @@ var mapSTP = function mapSTP(state) {
 var mapDTP = function mapDTP(dispatch) {
   return {
     // functions needed:
-    processForm: function processForm(Meetup) {
-      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["createMeetup"])(Meetup));
+    processForm: function processForm(meetup) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["createMeetup"])(meetup));
     },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["clearSessionErrors"])());
@@ -9565,10 +9579,8 @@ var createMeetup = function createMeetup(meetupForm) {
     $.ajax({
       method: 'POST',
       url: 'api/meetups',
-      data: meetupForm,
-      contentType: false,
-      //Shit, what is this?
-      processData: false //Shit, what is this?
+      data: meetupForm // contentType: false, //Shit, what is this?
+      // processData: false  //Shit, what is this?
 
     })
   );
