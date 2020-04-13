@@ -15,7 +15,7 @@ const mapSTP = (state) => {
 
 const mapDTP = dispatch => ({
   // functions needed:
-  processForm: Meetup => dispatch(createMeetup(Meetup)),
+  processForm: meetup => dispatch(createMeetup(meetup)),
   clearErrors: () => dispatch(clearSessionErrors())
 })
 

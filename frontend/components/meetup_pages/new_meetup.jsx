@@ -3,13 +3,13 @@ import Calendar from 'react-calendar';
 // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
 
-
+// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", time: ["Sun", 4,12, 2020, 19, 0] )
 class NewMeetup extends React.Component {
   constructor(props){
     super(props)
     console.log(props);
     this.state = {
-      location: [null, null, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
+      location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
       time: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
       topic: "",
       guests: [],
@@ -200,15 +200,26 @@ class NewMeetup extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const meetup = Object.assign({}, this.state);
-    this.props.processForm(meetup);
+    // this.props.processForm(meetup);
     // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
     // redirect to profile for now, redirect to meetup in future
-    // this.props.processForm(meetup).then(
+    this.props.processForm(meetup).then(
     //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-    //   event => this.props.history.push(`/profile`), 
+      meetup => this.props.history.push(`/profile`), 
     //   event => this.props.history.push(`/profile`)).catch() 
-    //   () => {}
-    // );
+      () => {}
+    );
+  }
+
+  handleFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({photoFile: file, photoUrl: fileReader.result});
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
   
   // For date to string
@@ -217,7 +228,7 @@ class NewMeetup extends React.Component {
     let timern = this.state.time;
     return e => {
       let date = e.toDateString().split(" ");
-      let DOW = date[0];
+      let DOW = convertDOWtoInt(date[0]);
       let month = date[1];
       let day = date[2];
       let year = date[3];
@@ -229,6 +240,24 @@ class NewMeetup extends React.Component {
     }
   }
 
+  convertDOWtoInt(dow){
+    switch(dow){
+      case "Sun":
+        return 0;
+      case "Mon":
+        return 1;
+      case "Tue":
+        return 2;
+      case "Wed":
+        return 3;
+      case "Thu":
+        return 4;
+      case "Fri":
+        return 5;
+      default:
+        return 6;
+    }
+  }
 
   // For time only handling
   onTimeChange(field) {
@@ -374,13 +403,13 @@ class NewMeetup extends React.Component {
           <div className="new-meetup-right">
             <div className="picture">
 
-            <div className="button-holder">
+            {/* <div className="button-holder">
               <h3>Image preview </h3>
               {preview}
               <h3 className="button-holder">Add a Picture</h3>
               <input type="file" className="new-bench-button"
                 onChange={this.handleFile.bind(this)}/>
-            </div>
+            </div> */}
 
             {/* EDIT PROFILE PICTURE. NULL FALSE */}
               {/* <label className="fancy">
@@ -406,6 +435,14 @@ class NewMeetup extends React.Component {
                 className="signinup-input"
               />
             </label>
+
+            {/* datetime-local is not widely used and isn't supported in Firefox */}
+            {/* <input
+              className="create-meetup-form-input-field"
+              onChange={this.update('time')}
+              type="datetime-local"
+              value={this.state.time}
+            /> */}
 
           </div>
           <input className="session-submit" type="submit" value="Create Meetup!" />
