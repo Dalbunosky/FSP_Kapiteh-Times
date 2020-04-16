@@ -3,14 +3,14 @@ import Calendar from 'react-calendar';
 // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
 
-// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", time: ["Sun", 4,12, 2020, 19, 0] )
+// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", starttime: ["Sun", 4,12, 2020, 19, 0] )
 class NewMeetup extends React.Component {
   constructor(props){
     super(props)
     console.log(props);
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      time: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
+      starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
       topic: "",
       guests: [],
       capacity: 0,
@@ -225,7 +225,7 @@ class NewMeetup extends React.Component {
   // For date to string
 
   onDateChange(field) {
-    let timern = this.state.time;
+    let timern = this.state.starttime;
     return e => {
       let date = e.toDateString().split(" ");
       let DOW = convertDOWtoInt(date[0]);
@@ -234,9 +234,9 @@ class NewMeetup extends React.Component {
       let year = date[3];
       let hour = timern[0];
       let minute = timern[1];
-      this.setState({ time: [DOW, month, day, year, hour, minute] })
+      this.setState({ starttime: [DOW, month, day, year, hour, minute] })
       console.log([DOW, month, day, year, hour, minute])
-      // this.setState({ time: e.toDateString() })
+      // this.setState({ starttime: e.toDateString() })
     }
   }
 
@@ -287,7 +287,7 @@ class NewMeetup extends React.Component {
   //   formData.append('meetup[openings]', this.state.openings);
   //   formData.append('meetup[name]', this.state.name);
   //   formData.append('meetup[date]', this.state.date);
-  //   formData.append('meetup[time]', this.state.time);
+  //   formData.append('meetup[starttime]', this.state.starttime);
   //   formData.append('meetup[summary]', this.state.summary);
   //   formData.append('meetup[story]', this.state.story);
   //   formData.append('meetup[discussion]', this.state.discussion);
@@ -393,9 +393,9 @@ class NewMeetup extends React.Component {
               <Calendar onChange={this.onDateChange('date')} />
 
               <label>
-                <input type="time" onChange={this.onTimeChange('time')} />
+                <input type="time" onChange={this.onTimeChange('starttime')} />
               </label>
-              {console.log(this.state.time)}
+              {console.log(this.state.starttime)}
             </div>
           </div>
 
@@ -439,9 +439,9 @@ class NewMeetup extends React.Component {
             {/* datetime-local is not widely used and isn't supported in Firefox */}
             {/* <input
               className="create-meetup-form-input-field"
-              onChange={this.update('time')}
+              onChange={this.update('starttime')}
               type="datetime-local"
-              value={this.state.time}
+              value={this.state.starttime}
             /> */}
 
           </div>

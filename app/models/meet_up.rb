@@ -32,19 +32,30 @@ class Meetup < ApplicationRecord
     # Ensure meetup is in the future
     # validate :date_must_be_in_the_future
 
-    # def date_must_be_in_the_future
+    def date_must_be_in_the_future
     #   if date.present? && date < Date.today
     #     errors.add(:date, "cannot be in the past")
     #   end
-    # end
+    end
   
     def all_time_details_filled
     end
 
     def meetup_ends_after_start
+      #   if start_date > end_date
+      #     errors.add("Your start-time is after the end-time")
+      #   end
     end
 
     def all_location_details_filled
+    end
+
+    def no_conflicting_meetups
+      # CHECK ONLY IN FUTURE MEETUPS. HOPEFULLY THEY ARE SORTED BY STARTTIME
+      # AGAINST ANOTHER MEETUP, FLAG IF:
+      #   YOUR START AND/OR END IS AFTER THEIR START BUT BEFORE THEIR END
+      #   THEIR START AND/OR END IS AFTER YOUR START BUT BEFORE YOUR END
+      #     errors.add("You already have another meetup at that time")
     end
 
 
