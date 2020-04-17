@@ -21,9 +21,9 @@ export const Header = () => (
             <GreetingContainer />
             {/* </nav> */}
         </div>
-        <div className="msg-bar">
+        {/* <div className="msg-bar">
             <MessagesContainer />
-        </div>
+        </div> */}
     </header>
 );
 
