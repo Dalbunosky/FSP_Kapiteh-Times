@@ -7356,7 +7356,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
  // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
-// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", time: ["Sun", 4,12, 2020, 19, 0] )
+// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", starttime: ["Sun", 4,12, 2020, 19, 0] )
 
 var NewMeetup = /*#__PURE__*/function (_React$Component) {
   _inherits(NewMeetup, _React$Component);
@@ -7371,20 +7371,16 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
-      time: [null, null, null, null, null, null],
+      starttime: [null, null, null, null, null, null],
       // [DOW, month, day,  year, hour, minute]
       topic: "",
       guests: [],
       capacity: 0,
-      host: props.host.name,
-      // currentUser.name
-      hostId: props.host.id // photoFile: null,
+      host: props.host.id // currentUser.name
+      // photoFile: null,
       // photoUrl: null,
 
     };
-    console.log(_this.state.host); //Need to do object.values
-
-    console.log(_this.state.hostId);
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
     // this.handlePhoto = this.handlePhoto.bind(this);
 
@@ -7414,6 +7410,124 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
+    } // ERRORS
+
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    } // INPUT/SUBMIT
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var meetup = Object.assign({}, this.state); // this.props.processForm(meetup);
+      // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
+      // redirect to profile for now, redirect to meetup in future
+
+      this.props.processForm(meetup).then( //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      function (meetup) {
+        return _this3.props.history.push("/profile");
+      }, //   event => this.props.history.push(`/profile`)).catch() 
+      function () {});
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this4 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this4.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    } // For date to string
+
+  }, {
+    key: "onDateChange",
+    value: function onDateChange(field) {
+      var _this5 = this;
+
+      var timern = this.state.starttime;
+      return function (e) {
+        var date = e.toDateString().split(" ");
+        var DOW = convertDOWtoInt(date[0]);
+        var month = date[1];
+        var day = date[2];
+        var year = date[3];
+        var hour = timern[0];
+        var minute = timern[1];
+
+        _this5.setState({
+          starttime: [DOW, month, day, year, hour, minute]
+        });
+
+        console.log([DOW, month, day, year, hour, minute]); // this.setState({ starttime: e.toDateString() })
+      };
+    }
+  }, {
+    key: "convertDOWtoInt",
+    value: function convertDOWtoInt(dow) {
+      switch (dow) {
+        case "Sun":
+          return 0;
+
+        case "Mon":
+          return 1;
+
+        case "Tue":
+          return 2;
+
+        case "Wed":
+          return 3;
+
+        case "Thu":
+          return 4;
+
+        case "Fri":
+          return 5;
+
+        default:
+          return 6;
+      }
+    } // For time only handling
+
+  }, {
+    key: "onTimeChange",
+    value: function onTimeChange(field) {
+      var _this6 = this;
+
+      var date = this.state.time;
+      return function (e) {
+        var timestring = e.target.value.split(":");
+        var DOW = date[0];
+        var month = date[1];
+        var day = date[2];
+        var year = date[3];
+        var hour = timestring[0];
+        var minute = timestring[1];
+
+        _this6.setState({
+          time: [DOW, month, day, year, hour, minute]
+        });
+
+        console.log([DOW, month, day, year, hour, minute]); // For meridian (AM/PM) processing, go check FWF
+      };
     } // changeLocation(val) {
     //   if (val === "New York") {
     //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
@@ -7429,17 +7543,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     //     this.setState({ city: "Dallas" });
     //   }
     // }
-    // ERRORS
-
-  }, {
-    key: "renderErrors",
-    value: function renderErrors() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "error-".concat(i)
-        }, error);
-      }));
-    } // For adjusting map when selecting cities on map
+    // For adjusting map when selecting cities on map
     // autocomplete() {
     //   //setting the bounds, have strictBounds to true, TODO: set bounds based on city
     //   let center;
@@ -7543,89 +7647,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     //   });
     //   return searchBox;
     // }
-    // INPUT/SUBMIT
-
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      var _this3 = this;
-
-      e.preventDefault();
-      var meetup = Object.assign({}, this.state); // this.props.processForm(meetup);
-      // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
-      // redirect to profile for now, redirect to meetup in future
-
-      this.props.processForm(meetup).then( //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      function (meetup) {
-        return _this3.props.history.push("/profile");
-      }, //   event => this.props.history.push(`/profile`)).catch() 
-      function () {});
-    }
-  }, {
-    key: "handleFile",
-    value: function handleFile(e) {
-      var _this4 = this;
-
-      var file = e.currentTarget.files[0];
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        _this4.setState({
-          photoFile: file,
-          photoUrl: fileReader.result
-        });
-      };
-
-      if (file) {
-        fileReader.readAsDataURL(file);
-      }
-    } // For date to string
-
-  }, {
-    key: "onDateChange",
-    value: function onDateChange(field) {
-      var _this5 = this;
-
-      var timern = this.state.time;
-      return function (e) {
-        var date = e.toDateString().split(" ");
-        var DOW = date[0];
-        var month = date[1];
-        var day = date[2];
-        var year = date[3];
-        var hour = timern[0];
-        var minute = timern[1];
-
-        _this5.setState({
-          time: [DOW, month, day, year, hour, minute]
-        });
-
-        console.log([DOW, month, day, year, hour, minute]); // this.setState({ time: e.toDateString() })
-      };
-    } // For time only handling
-
-  }, {
-    key: "onTimeChange",
-    value: function onTimeChange(field) {
-      var _this6 = this;
-
-      var date = this.state.time;
-      return function (e) {
-        var timestring = e.target.value.split(":");
-        var DOW = date[0];
-        var month = date[1];
-        var day = date[2];
-        var year = date[3];
-        var hour = timestring[0];
-        var minute = timestring[1];
-
-        _this6.setState({
-          time: [DOW, month, day, year, hour, minute]
-        });
-
-        console.log([DOW, month, day, year, hour, minute]); // For meridian (AM/PM) processing, go check FWF
-      };
-    } // AWS
+    // AWS
     // handleAWSSubmit(e) {
     //   e.preventDefault();
     //   const formData = new FormData();
@@ -7635,7 +7657,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     //   formData.append('meetup[openings]', this.state.openings);
     //   formData.append('meetup[name]', this.state.name);
     //   formData.append('meetup[date]', this.state.date);
-    //   formData.append('meetup[time]', this.state.time);
+    //   formData.append('meetup[starttime]', this.state.starttime);
     //   formData.append('meetup[summary]', this.state.summary);
     //   formData.append('meetup[story]', this.state.story);
     //   formData.append('meetup[discussion]', this.state.discussion);
@@ -7738,8 +7760,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         onChange: this.onDateChange('date')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
-        onChange: this.onTimeChange('time')
-      })), console.log(this.state.time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.onTimeChange('starttime')
+      })), console.log(this.state.starttime))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture"
@@ -7842,9 +7864,7 @@ var Header = function Header() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/",
     className: "header-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Kapiteh Times")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "msg-bar"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_messages_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Kapiteh Times")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 var Footer = function Footer() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -9071,14 +9091,23 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       email: '',
       phone: '',
       password: '',
+      password2: '',
       home_city: '',
       story: '',
+      // errors: this.setErrors(this.props.errors),
       pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this)); // this.setErrors = this.setErrors.bind(this);
+
     return _this;
-  }
+  } // setErrors(errors){
+  //   let allErrors = [];
+  //   // errors.forEach((error) => allErrors.push(error));
+  //   errors.forEach((error) => allErrors.push(error));
+  //   return allErrors;
+  // }
+
 
   _createClass(SignUpForm, [{
     key: "componentDidMount",
@@ -9102,9 +9131,29 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.processForm(user);
+      e.preventDefault(); // if(this.state.password === this.state.password2){
+
+      var user = {
+        name: this.state.name,
+        email: this.state.email,
+        phone: this.state.phone,
+        password: this.state.password,
+        home_city: this.state.home_city,
+        story: this.state.story
+      };
+      this.props.processForm(user); // } else{
+      //   if(this.state.errors.includes("Your passwords still don't match!")){}
+      //   else{
+      //     let matchErrorAlready = this.state.errors.indexOf("Your passwords don't match!")
+      //     let addError = this.state.errors;
+      //     if (matchErrorAlready === -1){
+      //       addError.push("Your passwords don't match!");
+      //     } else{
+      //       addError[matchErrorAlready] = "Your passwords still don't match!"
+      //     }
+      //     this.setState({errors: addError})
+      //   }
+      // }
     }
   }, {
     key: "renderErrors",
@@ -9130,6 +9179,28 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         return toggleText === "Show" ? "password" : "text";
       };
 
+      var confirmPasswordWarning = function confirmPasswordWarning(pw1, pw2) {
+        return pw1 != pw2 ? "Password must match!" : "";
+      };
+
+      var confirmPasswordButton = function confirmPasswordButton(pw1, pw2) {
+        console.log(pw1);
+
+        if (pw1 === pw2 && pw1 != "") {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            className: "session-submit",
+            type: "submit",
+            value: "Sign Up!"
+          });
+        } else {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+            className: "signinup-form-container"
+          }, "You can't submit unless your passwords match!");
+        }
+      };
+
+      console.log(this.state.errors);
+      console.log(this.props.errors);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signinup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -9177,6 +9248,14 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         onClick: this.pwShowHide
       }, this.state.pwDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
+      }, "Confirm Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "password",
+        value: this.state.password2,
+        onChange: this.update('password2'),
+        className: "signinup-input",
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, confirmPasswordWarning(this.state.password, this.state.password2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "signinup-title"
       }, "Where are you now? Which city*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.home_city,
@@ -9190,11 +9269,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         cols: "50",
         value: this.state.story,
         onChange: this.update('story')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-submit",
-        type: "submit",
-        value: "Sign Up!"
-      }))));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), confirmPasswordButton(this.state.password, this.state.password2))));
     }
   }]);
 
