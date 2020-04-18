@@ -7356,7 +7356,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
  // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
-// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", time: ["Sun", 4,12, 2020, 19, 0] )
+// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", starttime: ["Sun", 4,12, 2020, 19, 0] )
 
 var NewMeetup = /*#__PURE__*/function (_React$Component) {
   _inherits(NewMeetup, _React$Component);
@@ -7371,7 +7371,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
-      time: [null, null, null, null, null, null],
+      starttime: [null, null, null, null, null, null],
       // [DOW, month, day,  year, hour, minute]
       topic: "",
       guests: [],
@@ -7586,10 +7586,10 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function onDateChange(field) {
       var _this5 = this;
 
-      var timern = this.state.time;
+      var timern = this.state.starttime;
       return function (e) {
         var date = e.toDateString().split(" ");
-        var DOW = date[0];
+        var DOW = convertDOWtoInt(date[0]);
         var month = date[1];
         var day = date[2];
         var year = date[3];
@@ -7597,11 +7597,37 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var minute = timern[1];
 
         _this5.setState({
-          time: [DOW, month, day, year, hour, minute]
+          starttime: [DOW, month, day, year, hour, minute]
         });
 
-        console.log([DOW, month, day, year, hour, minute]); // this.setState({ time: e.toDateString() })
+        console.log([DOW, month, day, year, hour, minute]); // this.setState({ starttime: e.toDateString() })
       };
+    }
+  }, {
+    key: "convertDOWtoInt",
+    value: function convertDOWtoInt(dow) {
+      switch (dow) {
+        case "Sun":
+          return 0;
+
+        case "Mon":
+          return 1;
+
+        case "Tue":
+          return 2;
+
+        case "Wed":
+          return 3;
+
+        case "Thu":
+          return 4;
+
+        case "Fri":
+          return 5;
+
+        default:
+          return 6;
+      }
     } // For time only handling
 
   }, {
@@ -7635,7 +7661,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     //   formData.append('meetup[openings]', this.state.openings);
     //   formData.append('meetup[name]', this.state.name);
     //   formData.append('meetup[date]', this.state.date);
-    //   formData.append('meetup[time]', this.state.time);
+    //   formData.append('meetup[starttime]', this.state.starttime);
     //   formData.append('meetup[summary]', this.state.summary);
     //   formData.append('meetup[story]', this.state.story);
     //   formData.append('meetup[discussion]', this.state.discussion);
@@ -7738,8 +7764,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         onChange: this.onDateChange('date')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
-        onChange: this.onTimeChange('time')
-      })), console.log(this.state.time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.onTimeChange('starttime')
+      })), console.log(this.state.starttime))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture"
