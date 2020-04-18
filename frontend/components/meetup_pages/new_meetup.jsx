@@ -7,7 +7,6 @@ import Calendar from 'react-calendar';
 class NewMeetup extends React.Component {
   constructor(props){
     super(props)
-    console.log(props);
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
@@ -15,9 +14,7 @@ class NewMeetup extends React.Component {
       guests: [],
       capacity: 0,
       
-      host: props.host.id,     // currentUser.name
-      // photoFile: null,
-      // photoUrl: null,
+      host: props.host.id,     // currentUser.id
     }
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -61,6 +58,9 @@ class NewMeetup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    // console.log(this.state)
+
     const meetup = Object.assign({}, this.state);
     // this.props.processForm(meetup);
     // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
@@ -71,6 +71,8 @@ class NewMeetup extends React.Component {
     //   event => this.props.history.push(`/profile`)).catch() 
       () => {}
     );
+
+
   }
 
   handleFile(e) {
@@ -83,22 +85,37 @@ class NewMeetup extends React.Component {
       fileReader.readAsDataURL(file);
     }
   }
-  
-  // For date to string
 
-  onDateChange(field) {
-    let timern = this.state.starttime;
+  // For time only handling
+  onTimeChange() {
+    let date = this.state.starttime;
     return e => {
-      let date = e.toDateString().split(" ");
-      let DOW = convertDOWtoInt(date[0]);
+      let timestring = e.target.value.split(":");
+      let DOW = date[0];
       let month = date[1];
       let day = date[2];
       let year = date[3];
-      let hour = timern[0];
-      let minute = timern[1];
+      let hour = timestring[0];
+      let minute = timestring[1];
       this.setState({ starttime: [DOW, month, day, year, hour, minute] })
-      console.log([DOW, month, day, year, hour, minute])
-      // this.setState({ starttime: e.toDateString() })
+      console.log(this.state.starttime)
+      // For meridian (AM/PM) processing, go check FWF
+    }
+  }
+  
+  // For date to string
+  onDateChange() {
+    let timern = this.state.starttime;
+    return e => {
+      let date = e.toDateString().split(" ");
+      let DOW = this.convertDOWtoInt(date[0]);
+      let month = this.convertMonthtoInt(date[1]);
+      let day = date[2];
+      let year = date[3];
+      let hour = timern[4];
+      let minute = timern[5];
+      this.setState({ starttime: [DOW, month, day, year, hour, minute] });
+      console.log(this.state.starttime)
     }
   }
 
@@ -121,20 +138,34 @@ class NewMeetup extends React.Component {
     }
   }
 
-  // For time only handling
-  onTimeChange(field) {
-    let date = this.state.time;
-    return e => {
-      let timestring = e.target.value.split(":");
-      let DOW = date[0];
-      let month = date[1];
-      let day = date[2];
-      let year = date[3];
-      let hour = timestring[0];
-      let minute = timestring[1];
-      this.setState({ time: [DOW, month, day, year, hour, minute] })
-      console.log([DOW, month, day, year, hour, minute])
-      // For meridian (AM/PM) processing, go check FWF
+  convertMonthtoInt(dow){
+    switch(dow){
+      case "Jan":
+        return 1;
+      case "Feb":
+        return 2;
+      case "Mar":
+        return 3;
+      case "Apr":
+        return 4;
+      case "May":
+        return 5;
+      case "Jun":
+        return 6;
+      case "Jul":
+        return 7;
+      case "Aug":
+        return 8;
+      case "Sep":
+        return 9;
+      case "Oct":
+        return 10;
+      case "Nov":
+        return 11;
+      case "Dec":
+        return 12;
+      default:
+        return 0;
     }
   }
 
@@ -385,12 +416,11 @@ class NewMeetup extends React.Component {
             {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
               <p className="final-form-header">When should we meet?</p>
               <hr></hr>
-              <Calendar onChange={this.onDateChange('date')} />
+              <Calendar onChange={this.onDateChange()} />
 
               <label>
-                <input type="time" onChange={this.onTimeChange('starttime')} />
+                <input type="time" onChange={this.onTimeChange()} />
               </label>
-              {console.log(this.state.starttime)}
             </div>
           </div>
 

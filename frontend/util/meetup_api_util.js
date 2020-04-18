@@ -1,7 +1,7 @@
 export const fetchMeetups = data => (
   $.ajax({
     method: 'GET',
-    url: 'api/meetups',
+    url: '/api/meetups',
     data // data should all meetups
   })
 );
@@ -9,19 +9,21 @@ export const fetchMeetups = data => (
 export const fetchMeetup = id => (
   $.ajax({
     method: 'GET',
-    url: `api/meetups/${id}`
+    url: `/api/meetups/${id}`
   })
 );
 
-export const createMeetup = meetupForm => ( //For creating new meetups
+export const createMeetup = newMeetup => {
+  console.log("Create MeetUp Util")
+  return( //For creating new meetups
   $.ajax({
     method: 'POST',
-    url: 'api/meetups',
-    data: meetupForm,
+    url: '/api/meetups',
+    data: {newMeetup},
     // contentType: false, //Shit, what is this?
     // processData: false  //Shit, what is this?
   })
-);
+)}
 
 export const editMeetup = meetup => (
   $.ajax({

@@ -7367,7 +7367,6 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, NewMeetup);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewMeetup).call(this, props));
-    console.log(props);
     _this.state = {
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
@@ -7376,9 +7375,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       topic: "",
       guests: [],
       capacity: 0,
-      host: props.host.id // currentUser.name
-      // photoFile: null,
-      // photoUrl: null,
+      host: props.host.id // currentUser.id
 
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
@@ -7427,7 +7424,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this3 = this;
 
-      e.preventDefault();
+      e.preventDefault(); // console.log(this.state)
+
       var meetup = Object.assign({}, this.state); // this.props.processForm(meetup);
       // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
       // redirect to profile for now, redirect to meetup in future
@@ -7456,28 +7454,54 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       if (file) {
         fileReader.readAsDataURL(file);
       }
-    } // For date to string
+    } // For time only handling
 
   }, {
-    key: "onDateChange",
-    value: function onDateChange(field) {
+    key: "onTimeChange",
+    value: function onTimeChange() {
       var _this5 = this;
 
-      var timern = this.state.starttime;
+      var date = this.state.starttime;
       return function (e) {
-        var date = e.toDateString().split(" ");
-        var DOW = convertDOWtoInt(date[0]);
+        var timestring = e.target.value.split(":");
+        var DOW = date[0];
         var month = date[1];
         var day = date[2];
         var year = date[3];
-        var hour = timern[0];
-        var minute = timern[1];
+        var hour = timestring[0];
+        var minute = timestring[1];
 
         _this5.setState({
           starttime: [DOW, month, day, year, hour, minute]
         });
 
-        console.log([DOW, month, day, year, hour, minute]); // this.setState({ starttime: e.toDateString() })
+        console.log(_this5.state.starttime); // For meridian (AM/PM) processing, go check FWF
+      };
+    } // For date to string
+
+  }, {
+    key: "onDateChange",
+    value: function onDateChange() {
+      var _this6 = this;
+
+      var timern = this.state.starttime;
+      return function (e) {
+        var date = e.toDateString().split(" ");
+
+        var DOW = _this6.convertDOWtoInt(date[0]);
+
+        var month = _this6.convertMonthtoInt(date[1]);
+
+        var day = date[2];
+        var year = date[3];
+        var hour = timern[4];
+        var minute = timern[5];
+
+        _this6.setState({
+          starttime: [DOW, month, day, year, hour, minute]
+        });
+
+        console.log(_this6.state.starttime);
       };
     }
   }, {
@@ -7505,29 +7529,50 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         default:
           return 6;
       }
-    } // For time only handling
-
+    }
   }, {
-    key: "onTimeChange",
-    value: function onTimeChange(field) {
-      var _this6 = this;
+    key: "convertMonthtoInt",
+    value: function convertMonthtoInt(dow) {
+      switch (dow) {
+        case "Jan":
+          return 1;
 
-      var date = this.state.time;
-      return function (e) {
-        var timestring = e.target.value.split(":");
-        var DOW = date[0];
-        var month = date[1];
-        var day = date[2];
-        var year = date[3];
-        var hour = timestring[0];
-        var minute = timestring[1];
+        case "Feb":
+          return 2;
 
-        _this6.setState({
-          time: [DOW, month, day, year, hour, minute]
-        });
+        case "Mar":
+          return 3;
 
-        console.log([DOW, month, day, year, hour, minute]); // For meridian (AM/PM) processing, go check FWF
-      };
+        case "Apr":
+          return 4;
+
+        case "May":
+          return 5;
+
+        case "Jun":
+          return 6;
+
+        case "Jul":
+          return 7;
+
+        case "Aug":
+          return 8;
+
+        case "Sep":
+          return 9;
+
+        case "Oct":
+          return 10;
+
+        case "Nov":
+          return 11;
+
+        case "Dec":
+          return 12;
+
+        default:
+          return 0;
+      }
     } // changeLocation(val) {
     //   if (val === "New York") {
     //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
@@ -7757,11 +7802,11 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "final-form-header"
       }, "When should we meet?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        onChange: this.onDateChange('date')
+        onChange: this.onDateChange()
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
-        onChange: this.onTimeChange('starttime')
-      })), console.log(this.state.starttime))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.onTimeChange()
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "picture"
@@ -9449,9 +9494,9 @@ var meetupsReducer = function meetupsReducer() {
       return action.meetups;
 
     case _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEETUP"]:
-      var newMeetUp = _defineProperty({}, action.meetup.id, action.meetup);
+      var newMeetup = _defineProperty({}, action.meetup.id, action.meetup);
 
-      return Object.assign({}, state, newMeetUp);
+      return Object.assign({}, state, newMeetup);
     // case MEETUP_HAS_ERRORS:
     //   return lalala;
     // case CLEAR_MEETUP_ERRORS:
@@ -9638,7 +9683,7 @@ __webpack_require__.r(__webpack_exports__);
 var fetchMeetups = function fetchMeetups(data) {
   return $.ajax({
     method: 'GET',
-    url: 'api/meetups',
+    url: '/api/meetups',
     data: data // data should all meetups
 
   });
@@ -9646,15 +9691,18 @@ var fetchMeetups = function fetchMeetups(data) {
 var fetchMeetup = function fetchMeetup(id) {
   return $.ajax({
     method: 'GET',
-    url: "api/meetups/".concat(id)
+    url: "/api/meetups/".concat(id)
   });
 };
-var createMeetup = function createMeetup(meetupForm) {
+var createMeetup = function createMeetup(newMeetup) {
+  console.log("Create MeetUp Util");
   return (//For creating new meetups
     $.ajax({
       method: 'POST',
-      url: 'api/meetups',
-      data: meetupForm // contentType: false, //Shit, what is this?
+      url: '/api/meetups',
+      data: {
+        newMeetup: newMeetup
+      } // contentType: false, //Shit, what is this?
       // processData: false  //Shit, what is this?
 
     })
