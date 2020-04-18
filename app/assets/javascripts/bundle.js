@@ -7376,15 +7376,11 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       topic: "",
       guests: [],
       capacity: 0,
-      host: props.host.name,
-      // currentUser.name
-      hostId: props.host.id // photoFile: null,
+      host: props.host.id // currentUser.name
+      // photoFile: null,
       // photoUrl: null,
 
     };
-    console.log(_this.state.host); //Need to do object.values
-
-    console.log(_this.state.hostId);
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
     // this.handlePhoto = this.handlePhoto.bind(this);
 
@@ -7414,22 +7410,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
-    } // changeLocation(val) {
-    //   if (val === "New York") {
-    //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
-    //     this.setState({ city: "New York" });
-    //   } else if (val === "Boston") {
-    //     this.setState({ center: { lat: 42.377008, lng: -71.117030 }, zoom: 12 });
-    //     this.setState({ city: "Boston" });
-    //   } else if (val === "San Francisco") {
-    //     this.setState({ center: { lat: 37.731901, lng: -122.443611 }, zoom: 12 });
-    //     this.setState({ city: "San Francisco" });
-    //   } else if (val === "Dallas") {
-    //     this.setState({ center: { lat: 32.790808, lng: -96.797194 }, zoom: 12 });
-    //     this.setState({ city: "Dallas" });
-    //   }
-    // }
-    // ERRORS
+    } // ERRORS
 
   }, {
     key: "renderErrors",
@@ -7439,111 +7420,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
           key: "error-".concat(i)
         }, error);
       }));
-    } // For adjusting map when selecting cities on map
-    // autocomplete() {
-    //   //setting the bounds, have strictBounds to true, TODO: set bounds based on city
-    //   let center;
-    //   let mapOptions;
-    //   let map;
-    //   let defaultBounds;
-    //   let city;
-    //   let swBound1;
-    //   let swBound2;
-    //   let neBound1;
-    //   let neBound2;
-    //   center = this.state.center;
-    //   city = this.state.city
-    //   if (city === "New York") {
-    //     swBound1 = 40.658480;
-    //     swBound2 = 40.827725;
-    //     neBound1 = -74.032591;
-    //     neBound2 = -73.715510;
-    //   } else if (city === "Boston") {
-    //     swBound1 = 42.227997;
-    //     swBound2 = 42.386856;
-    //     neBound1 = -71.221087;
-    //     neBound2 = -71.022309;
-    //   } else if (city === "San Francisco") {
-    //     swBound1 = 37.693417;
-    //     swBound2 = 37.809615;
-    //     neBound1 = -122.497790;
-    //     neBound2 = -122.400885;
-    //   } else if (city === "Dallas") {
-    //     swBound1 = 32.650318;
-    //     swBound2 = 32.926633;
-    //     neBound1 = -96.946336;
-    //     neBound2 = -96.681859;
-    //   }
-    //   mapOptions = { center, zoom: 12 }
-    //   map = new google.maps.Map(this.mapNode, mapOptions);
-    //   defaultBounds = new google.maps.LatLngBounds(
-    //     new google.maps.LatLng(swBound1, neBound1),
-    //     new google.maps.LatLng(swBound2, neBound2),
-    //   )
-    //   let input = document.getElementById('searchTextField');
-    //   // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    //   let options = {
-    //     bounds: defaultBounds,
-    //     types: ['establishment'],
-    //     strictBounds: true
-    //   }
-    //   let searchBox = new google.maps.places.SearchBox(input, options);
-    //   const that = this;
-    //   searchBox.addListener('places_changed', function () {
-    //     var places = searchBox.getPlaces();
-    //     // let markers = [];
-    //     if (places.length == 0) {
-    //       return;
-    //     }
-    //     var bounds = new google.maps.LatLngBounds();
-    //     places.forEach(function (place) {
-    //       if (!place.geometry) {
-    //         console.log("Returned place contains no geometry");
-    //         return;
-    //       }
-    //       var icon = {
-    //         url: place.icon,
-    //         size: new google.maps.Size(71, 71),
-    //         origin: new google.maps.Point(0, 0),
-    //         anchor: new google.maps.Point(17, 34),
-    //         scaledSize: new google.maps.Size(25, 25)
-    //       };
-    //       // Create a marker for each place.
-    //     let marker = new google.maps.Marker({
-    //         map: map,
-    //         icon: icon,
-    //         title: place.name,
-    //         position: place.geometry.location
-    //       });
-    //       let infoWindow = new google.maps.InfoWindow({
-    //         content: '<p class="selecto">Selected!</p>'
-    //       })
-    //       marker.addListener('click', toggleBounce);
-    //       marker.addListener('click', function (e) {
-    //         let lat = e.latLng.lat();
-    //         let lng = e.latLng.lng();
-    //         that.setState({ lat, lng });
-    //         infoWindow.open(map, marker)
-    //       })
-    //       marker.setMap(map)
-    //       function toggleBounce() {
-    //         if (marker.getAnimation() !== null) {
-    //           marker.setAnimation(null);
-    //         } else {
-    //           marker.setAnimation(google.maps.Animation.BOUNCE);
-    //         }
-    //       }
-    //       if (place.geometry.viewport) {
-    //         bounds.union(place.geometry.viewport);
-    //       } else {
-    //         bounds.extend(place.geometry.location);
-    //       }
-    //     });
-    //     map.fitBounds(bounds);
-    //   });
-    //   return searchBox;
-    // }
-    // INPUT/SUBMIT
+    } // INPUT/SUBMIT
 
   }, {
     key: "handleSubmit",
@@ -7651,7 +7528,126 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
 
         console.log([DOW, month, day, year, hour, minute]); // For meridian (AM/PM) processing, go check FWF
       };
-    } // AWS
+    } // changeLocation(val) {
+    //   if (val === "New York") {
+    //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
+    //     this.setState({ city: "New York" });
+    //   } else if (val === "Boston") {
+    //     this.setState({ center: { lat: 42.377008, lng: -71.117030 }, zoom: 12 });
+    //     this.setState({ city: "Boston" });
+    //   } else if (val === "San Francisco") {
+    //     this.setState({ center: { lat: 37.731901, lng: -122.443611 }, zoom: 12 });
+    //     this.setState({ city: "San Francisco" });
+    //   } else if (val === "Dallas") {
+    //     this.setState({ center: { lat: 32.790808, lng: -96.797194 }, zoom: 12 });
+    //     this.setState({ city: "Dallas" });
+    //   }
+    // }
+    // For adjusting map when selecting cities on map
+    // autocomplete() {
+    //   //setting the bounds, have strictBounds to true, TODO: set bounds based on city
+    //   let center;
+    //   let mapOptions;
+    //   let map;
+    //   let defaultBounds;
+    //   let city;
+    //   let swBound1;
+    //   let swBound2;
+    //   let neBound1;
+    //   let neBound2;
+    //   center = this.state.center;
+    //   city = this.state.city
+    //   if (city === "New York") {
+    //     swBound1 = 40.658480;
+    //     swBound2 = 40.827725;
+    //     neBound1 = -74.032591;
+    //     neBound2 = -73.715510;
+    //   } else if (city === "Boston") {
+    //     swBound1 = 42.227997;
+    //     swBound2 = 42.386856;
+    //     neBound1 = -71.221087;
+    //     neBound2 = -71.022309;
+    //   } else if (city === "San Francisco") {
+    //     swBound1 = 37.693417;
+    //     swBound2 = 37.809615;
+    //     neBound1 = -122.497790;
+    //     neBound2 = -122.400885;
+    //   } else if (city === "Dallas") {
+    //     swBound1 = 32.650318;
+    //     swBound2 = 32.926633;
+    //     neBound1 = -96.946336;
+    //     neBound2 = -96.681859;
+    //   }
+    //   mapOptions = { center, zoom: 12 }
+    //   map = new google.maps.Map(this.mapNode, mapOptions);
+    //   defaultBounds = new google.maps.LatLngBounds(
+    //     new google.maps.LatLng(swBound1, neBound1),
+    //     new google.maps.LatLng(swBound2, neBound2),
+    //   )
+    //   let input = document.getElementById('searchTextField');
+    //   // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    //   let options = {
+    //     bounds: defaultBounds,
+    //     types: ['establishment'],
+    //     strictBounds: true
+    //   }
+    //   let searchBox = new google.maps.places.SearchBox(input, options);
+    //   const that = this;
+    //   searchBox.addListener('places_changed', function () {
+    //     var places = searchBox.getPlaces();
+    //     // let markers = [];
+    //     if (places.length == 0) {
+    //       return;
+    //     }
+    //     var bounds = new google.maps.LatLngBounds();
+    //     places.forEach(function (place) {
+    //       if (!place.geometry) {
+    //         console.log("Returned place contains no geometry");
+    //         return;
+    //       }
+    //       var icon = {
+    //         url: place.icon,
+    //         size: new google.maps.Size(71, 71),
+    //         origin: new google.maps.Point(0, 0),
+    //         anchor: new google.maps.Point(17, 34),
+    //         scaledSize: new google.maps.Size(25, 25)
+    //       };
+    //       // Create a marker for each place.
+    //     let marker = new google.maps.Marker({
+    //         map: map,
+    //         icon: icon,
+    //         title: place.name,
+    //         position: place.geometry.location
+    //       });
+    //       let infoWindow = new google.maps.InfoWindow({
+    //         content: '<p class="selecto">Selected!</p>'
+    //       })
+    //       marker.addListener('click', toggleBounce);
+    //       marker.addListener('click', function (e) {
+    //         let lat = e.latLng.lat();
+    //         let lng = e.latLng.lng();
+    //         that.setState({ lat, lng });
+    //         infoWindow.open(map, marker)
+    //       })
+    //       marker.setMap(map)
+    //       function toggleBounce() {
+    //         if (marker.getAnimation() !== null) {
+    //           marker.setAnimation(null);
+    //         } else {
+    //           marker.setAnimation(google.maps.Animation.BOUNCE);
+    //         }
+    //       }
+    //       if (place.geometry.viewport) {
+    //         bounds.union(place.geometry.viewport);
+    //       } else {
+    //         bounds.extend(place.geometry.location);
+    //       }
+    //     });
+    //     map.fitBounds(bounds);
+    //   });
+    //   return searchBox;
+    // }
+    // AWS
     // handleAWSSubmit(e) {
     //   e.preventDefault();
     //   const formData = new FormData();
@@ -7868,9 +7864,7 @@ var Header = function Header() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/",
     className: "header-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Kapiteh Times")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "msg-bar"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_messages_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Kapiteh Times")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 var Footer = function Footer() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -9097,14 +9091,23 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       email: '',
       phone: '',
       password: '',
+      password2: '',
       home_city: '',
       story: '',
+      // errors: this.setErrors(this.props.errors),
       pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this)); // this.setErrors = this.setErrors.bind(this);
+
     return _this;
-  }
+  } // setErrors(errors){
+  //   let allErrors = [];
+  //   // errors.forEach((error) => allErrors.push(error));
+  //   errors.forEach((error) => allErrors.push(error));
+  //   return allErrors;
+  // }
+
 
   _createClass(SignUpForm, [{
     key: "componentDidMount",
@@ -9128,9 +9131,29 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.processForm(user);
+      e.preventDefault(); // if(this.state.password === this.state.password2){
+
+      var user = {
+        name: this.state.name,
+        email: this.state.email,
+        phone: this.state.phone,
+        password: this.state.password,
+        home_city: this.state.home_city,
+        story: this.state.story
+      };
+      this.props.processForm(user); // } else{
+      //   if(this.state.errors.includes("Your passwords still don't match!")){}
+      //   else{
+      //     let matchErrorAlready = this.state.errors.indexOf("Your passwords don't match!")
+      //     let addError = this.state.errors;
+      //     if (matchErrorAlready === -1){
+      //       addError.push("Your passwords don't match!");
+      //     } else{
+      //       addError[matchErrorAlready] = "Your passwords still don't match!"
+      //     }
+      //     this.setState({errors: addError})
+      //   }
+      // }
     }
   }, {
     key: "renderErrors",
@@ -9156,6 +9179,28 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         return toggleText === "Show" ? "password" : "text";
       };
 
+      var confirmPasswordWarning = function confirmPasswordWarning(pw1, pw2) {
+        return pw1 != pw2 ? "Password must match!" : "";
+      };
+
+      var confirmPasswordButton = function confirmPasswordButton(pw1, pw2) {
+        console.log(pw1);
+
+        if (pw1 === pw2 && pw1 != "") {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            className: "session-submit",
+            type: "submit",
+            value: "Sign Up!"
+          });
+        } else {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+            className: "signinup-form-container"
+          }, "You can't submit unless your passwords match!");
+        }
+      };
+
+      console.log(this.state.errors);
+      console.log(this.props.errors);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signinup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -9203,6 +9248,14 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         onClick: this.pwShowHide
       }, this.state.pwDisplay)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
+      }, "Confirm Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "password",
+        value: this.state.password2,
+        onChange: this.update('password2'),
+        className: "signinup-input",
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, confirmPasswordWarning(this.state.password, this.state.password2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "signinup-title"
       }, "Where are you now? Which city*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.home_city,
@@ -9216,11 +9269,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         cols: "50",
         value: this.state.story,
         onChange: this.update('story')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-submit",
-        type: "submit",
-        value: "Sign Up!"
-      }))));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), confirmPasswordButton(this.state.password, this.state.password2))));
     }
   }]);
 

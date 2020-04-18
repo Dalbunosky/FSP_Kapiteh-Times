@@ -15,13 +15,10 @@ class NewMeetup extends React.Component {
       guests: [],
       capacity: 0,
       
-      host: props.host.name,     // currentUser.name
-      hostId: props.host.id
+      host: props.host.id,     // currentUser.name
       // photoFile: null,
       // photoUrl: null,
     }
-    console.log(this.state.host); //Need to do object.values
-    console.log(this.state.hostId);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     // Bind later when function actually gets called
@@ -49,6 +46,98 @@ class NewMeetup extends React.Component {
     });
   }
 
+  // ERRORS
+  renderErrors() {return(
+    <ul>
+      {this.props.errors.map((error, i) => (
+        <li key={`error-${i}`}>{error}</li>
+      ))}
+    </ul>
+  )}
+
+
+
+  // INPUT/SUBMIT
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const meetup = Object.assign({}, this.state);
+    // this.props.processForm(meetup);
+    // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
+    // redirect to profile for now, redirect to meetup in future
+    this.props.processForm(meetup).then(
+    //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      meetup => this.props.history.push(`/profile`), 
+    //   event => this.props.history.push(`/profile`)).catch() 
+      () => {}
+    );
+  }
+
+  handleFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({photoFile: file, photoUrl: fileReader.result});
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+  
+  // For date to string
+
+  onDateChange(field) {
+    let timern = this.state.starttime;
+    return e => {
+      let date = e.toDateString().split(" ");
+      let DOW = convertDOWtoInt(date[0]);
+      let month = date[1];
+      let day = date[2];
+      let year = date[3];
+      let hour = timern[0];
+      let minute = timern[1];
+      this.setState({ starttime: [DOW, month, day, year, hour, minute] })
+      console.log([DOW, month, day, year, hour, minute])
+      // this.setState({ starttime: e.toDateString() })
+    }
+  }
+
+  convertDOWtoInt(dow){
+    switch(dow){
+      case "Sun":
+        return 0;
+      case "Mon":
+        return 1;
+      case "Tue":
+        return 2;
+      case "Wed":
+        return 3;
+      case "Thu":
+        return 4;
+      case "Fri":
+        return 5;
+      default:
+        return 6;
+    }
+  }
+
+  // For time only handling
+  onTimeChange(field) {
+    let date = this.state.time;
+    return e => {
+      let timestring = e.target.value.split(":");
+      let DOW = date[0];
+      let month = date[1];
+      let day = date[2];
+      let year = date[3];
+      let hour = timestring[0];
+      let minute = timestring[1];
+      this.setState({ time: [DOW, month, day, year, hour, minute] })
+      console.log([DOW, month, day, year, hour, minute])
+      // For meridian (AM/PM) processing, go check FWF
+    }
+  }
+
   // changeLocation(val) {
   //   if (val === "New York") {
   //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
@@ -64,16 +153,6 @@ class NewMeetup extends React.Component {
   //     this.setState({ city: "Dallas" });
   //   }
   // }
-
-    // ERRORS
-
-  renderErrors() {return(
-    <ul>
-      {this.props.errors.map((error, i) => (
-        <li key={`error-${i}`}>{error}</li>
-      ))}
-    </ul>
-  )}
 
   // For adjusting map when selecting cities on map
   // autocomplete() {
@@ -192,90 +271,6 @@ class NewMeetup extends React.Component {
 
   //   return searchBox;
   // }
-
-
-
-  // INPUT/SUBMIT
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const meetup = Object.assign({}, this.state);
-    // this.props.processForm(meetup);
-    // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
-    // redirect to profile for now, redirect to meetup in future
-    this.props.processForm(meetup).then(
-    //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      meetup => this.props.history.push(`/profile`), 
-    //   event => this.props.history.push(`/profile`)).catch() 
-      () => {}
-    );
-  }
-
-  handleFile(e) {
-    const file = e.currentTarget.files[0];
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.setState({photoFile: file, photoUrl: fileReader.result});
-    };
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  }
-  
-  // For date to string
-
-  onDateChange(field) {
-    let timern = this.state.starttime;
-    return e => {
-      let date = e.toDateString().split(" ");
-      let DOW = convertDOWtoInt(date[0]);
-      let month = date[1];
-      let day = date[2];
-      let year = date[3];
-      let hour = timern[0];
-      let minute = timern[1];
-      this.setState({ starttime: [DOW, month, day, year, hour, minute] })
-      console.log([DOW, month, day, year, hour, minute])
-      // this.setState({ starttime: e.toDateString() })
-    }
-  }
-
-  convertDOWtoInt(dow){
-    switch(dow){
-      case "Sun":
-        return 0;
-      case "Mon":
-        return 1;
-      case "Tue":
-        return 2;
-      case "Wed":
-        return 3;
-      case "Thu":
-        return 4;
-      case "Fri":
-        return 5;
-      default:
-        return 6;
-    }
-  }
-
-  // For time only handling
-  onTimeChange(field) {
-    let date = this.state.time;
-    return e => {
-      let timestring = e.target.value.split(":");
-      let DOW = date[0];
-      let month = date[1];
-      let day = date[2];
-      let year = date[3];
-      let hour = timestring[0];
-      let minute = timestring[1];
-      this.setState({ time: [DOW, month, day, year, hour, minute] })
-      console.log([DOW, month, day, year, hour, minute])
-      // For meridian (AM/PM) processing, go check FWF
-    }
-  }
-
 
   // AWS
   // handleAWSSubmit(e) {

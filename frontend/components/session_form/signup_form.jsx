@@ -13,14 +13,24 @@ class SignUpForm extends React.Component {
       email: '',
       phone: '',
       password: '',
+      password2: '',
       home_city: '',
       story: '',
 
+      // errors: this.setErrors(this.props.errors),
       pwDisplay: "Show"
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.pwShowHide = this.pwShowHide.bind(this);
+    // this.setErrors = this.setErrors.bind(this);
   }
+
+  // setErrors(errors){
+  //   let allErrors = [];
+  //   // errors.forEach((error) => allErrors.push(error));
+  //   errors.forEach((error) => allErrors.push(error));
+  //   return allErrors;
+  // }
 
   componentDidMount(){
     this.props.clearErrors();
@@ -38,11 +48,33 @@ class SignUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    // if(this.state.password === this.state.password2){
+      const user = {
+        name: this.state.name,
+        email: this.state.email,
+        phone: this.state.phone,
+        password: this.state.password,
+        home_city: this.state.home_city,
+        story: this.state.story
+      };
+      this.props.processForm(user);
+    // } else{
+    //   if(this.state.errors.includes("Your passwords still don't match!")){}
+    //   else{
+    //     let matchErrorAlready = this.state.errors.indexOf("Your passwords don't match!")
+    //     let addError = this.state.errors;
+    //     if (matchErrorAlready === -1){
+    //       addError.push("Your passwords don't match!");
+    //     } else{
+    //       addError[matchErrorAlready] = "Your passwords still don't match!"
+    //     }
+    //     this.setState({errors: addError})
+    //   }
+    // }
   }
 
-  renderErrors() {return(
+  renderErrors() {
+    return(
     <ul>
       {this.props.errors.map((error, i) => (
         <li key={`error-${i}`}>{error}</li>
@@ -59,6 +91,13 @@ class SignUpForm extends React.Component {
 
   render() {
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
+    const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
+    const confirmPasswordButton = (pw1, pw2) => {
+      console.log(pw1);
+      if(pw1 === pw2 && pw1 != ""){ return(<input className="session-submit" type="submit" value="Sign Up!" />)}
+      else { return(<h3 className="signinup-form-container">You can't submit unless your passwords match!</h3>)}};
+    console.log(this.state.errors);
+    console.log(this.props.errors);
     return (
       <div className="signinup-form-container">
         <form onSubmit={this.handleSubmit} className="signinup-form-box">
@@ -115,6 +154,18 @@ class SignUpForm extends React.Component {
 
             <br/>
             <label>
+              <p className="signinup-title">Confirm Password:</p>
+              <input type="password"
+                value={this.state.password2}
+                onChange={this.update('password2')}
+                className="signinup-input"
+                required
+              />
+            </label>
+            <p>{confirmPasswordWarning(this.state.password, this.state.password2)}</p>
+
+            <br/>
+            <label>
               <p className="signinup-title">Where are you now? Which city*</p>
               <input type="text"
                 value={this.state.home_city}
@@ -131,7 +182,8 @@ class SignUpForm extends React.Component {
               onChange={this.update('story')}/>
             </label>
             <br/>
-            <input className="session-submit" type="submit" value="Sign Up!" />
+            {confirmPasswordButton(this.state.password, this.state.password2)}
+            {/* <input className="session-submit" type="submit" value="Sign Up!" /> */}
           </div>
         </form>
       </div>
