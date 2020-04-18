@@ -13,8 +13,8 @@ import {
       case RECEIVE_MEETUPS:
         return action.meetups;
       case RECEIVE_MEETUP:
-        const newMeetUp = { [action.meetup.id]: action.meetup };
-        return Object.assign({}, state, newMeetUp);
+        const newMeetup = { [action.meetup.id]: action.meetup };
+        return Object.assign({}, state, newMeetup);
       // case MEETUP_HAS_ERRORS:
       //   return lalala;
       // case CLEAR_MEETUP_ERRORS:
