@@ -11,7 +11,8 @@
 # time: [],     // [DOW,month, day,  year, hour, minute]
 
 class Meetup < ApplicationRecord
-    validates :location, :time, :capacity, :topic, :host, presence: true
+    validates :location, :starttime, :capacity, :topic, :host_id, presence: true
+    validate :has_capacity
 
   
     belongs_to :host,
@@ -31,6 +32,14 @@ class Meetup < ApplicationRecord
 
     # Ensure meetup is in the future
     # validate :date_must_be_in_the_future
+    def has_capacity
+      self.capacity = self.capacity.to_i
+        if self.capacity <= 0
+          puts errors.class
+          puts errors
+          errors.add(:capacity, "needs to be higher")
+        end
+    end
 
     def date_must_be_in_the_future
     #   if date.present? && date < Date.today

@@ -60,6 +60,8 @@ export const fetchMeetup = id => dispatch => (
 export const createMeetup = meetup => dispatch => (
   APIUtil.createMeetup(meetup).then(meetup => (
     dispatch(receiveMeetup(meetup))
+  ), err => (
+    dispatch(receiveMeetupErrors(err.responseJSON))
   ))
 );
 

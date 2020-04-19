@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MeetUpTest < ActiveSupport::TestCase
+class MeetupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

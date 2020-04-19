@@ -48,26 +48,23 @@ class SignInForm extends React.Component {
 
 	demoUser(e) {
     e.preventDefault();
-    this.setState({
-      email: "DemoUser@fake.com",
-      password: "11111111"
-    })
+    const credentials = {email: "DemoUser@fake.com", password: "11111111"};
+    const user = Object.assign({}, credentials);
+    this.props.processForm(user);
 	};
 
 	demoHost(e) {
     e.preventDefault();
-		this.setState({
-      email: "DemoHost@fake.com",
-      password: "`1234567"
-    })
+    const credentials = {email: "DemoHost@fake.com", password: "`1234567"};
+    const user = Object.assign({}, credentials);
+    this.props.processForm(user);
   };
 
 	demoAdmin(e) {
     e.preventDefault();
-		this.setState({
-      email: "DemoAdmin@fake.com",
-      password: "`1234567"
-    })
+    const credentials = {email: "DemoAdmin@fake.com", password: "`1234567"};
+    const user = Object.assign({}, credentials);
+    this.props.processForm(user);
   };
 
   pwShowHide(e){

@@ -22,15 +22,7 @@ class SignUpForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.pwShowHide = this.pwShowHide.bind(this);
-    // this.setErrors = this.setErrors.bind(this);
   }
-
-  // setErrors(errors){
-  //   let allErrors = [];
-  //   // errors.forEach((error) => allErrors.push(error));
-  //   errors.forEach((error) => allErrors.push(error));
-  //   return allErrors;
-  // }
 
   componentDidMount(){
     this.props.clearErrors();
@@ -48,7 +40,6 @@ class SignUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // if(this.state.password === this.state.password2){
       const user = {
         name: this.state.name,
         email: this.state.email,
@@ -58,19 +49,6 @@ class SignUpForm extends React.Component {
         story: this.state.story
       };
       this.props.processForm(user);
-    // } else{
-    //   if(this.state.errors.includes("Your passwords still don't match!")){}
-    //   else{
-    //     let matchErrorAlready = this.state.errors.indexOf("Your passwords don't match!")
-    //     let addError = this.state.errors;
-    //     if (matchErrorAlready === -1){
-    //       addError.push("Your passwords don't match!");
-    //     } else{
-    //       addError[matchErrorAlready] = "Your passwords still don't match!"
-    //     }
-    //     this.setState({errors: addError})
-    //   }
-    // }
   }
 
   renderErrors() {

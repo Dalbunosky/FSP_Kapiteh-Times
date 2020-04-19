@@ -13,13 +13,12 @@ export const fetchMeetup = id => (
   })
 );
 
-export const createMeetup = newMeetup => {
-  console.log("Create MeetUp Util")
+export const createMeetup = meetup => {
   return( //For creating new meetups
   $.ajax({
     method: 'POST',
     url: '/api/meetups',
-    data: {newMeetup},
+    data: { meetup },
     // contentType: false, //Shit, what is this?
     // processData: false  //Shit, what is this?
   })

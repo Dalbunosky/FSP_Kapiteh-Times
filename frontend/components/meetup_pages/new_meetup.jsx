@@ -8,13 +8,15 @@ class NewMeetup extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      // location: [181, 181, "", "", "", "", "", ""], // [lat, lng, name of venue, address, city, state/province, zip, country]
+      // starttime: ["", "", "", "", "", ""],     // [DOW, month, day,  year, hour, minute]
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
       topic: "",
       guests: [],
       capacity: 0,
       
-      host: props.host.id,     // currentUser.id
+      // host: props.host.id,     // currentUser.id
     }
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -65,14 +67,13 @@ class NewMeetup extends React.Component {
     // this.props.processForm(meetup);
     // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
     // redirect to profile for now, redirect to meetup in future
-    this.props.processForm(meetup).then(
-    //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      meetup => this.props.history.push(`/profile`), 
-    //   event => this.props.history.push(`/profile`)).catch() 
-      () => {}
-    );
-
-
+    this.props.processForm(meetup)
+    // .then(
+    // //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+    //   meetup => this.props.history.push(`/profile`), 
+    // //   event => this.props.history.push(`/profile`)).catch() 
+    //   errors => this.renderErrors()
+    // );
   }
 
   handleFile(e) {
@@ -115,7 +116,6 @@ class NewMeetup extends React.Component {
       let hour = timern[4];
       let minute = timern[5];
       this.setState({ starttime: [DOW, month, day, year, hour, minute] });
-      console.log(this.state.starttime)
     }
   }
 
