@@ -6709,6 +6709,8 @@ var createMeetup = function createMeetup(meetup) {
   return function (dispatch) {
     return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["createMeetup"](meetup).then(function (meetup) {
       return dispatch(receiveMeetup(meetup));
+    }, function (err) {
+      return dispatch(receiveMeetupErrors(err.responseJSON));
     });
   };
 }; // export const createReview = review => dispatch => (
@@ -7368,14 +7370,15 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewMeetup).call(this, props));
     _this.state = {
+      // location: [181, 181, "", "", "", "", "", ""], // [lat, lng, name of venue, address, city, state/province, zip, country]
+      // starttime: ["", "", "", "", "", ""],     // [DOW, month, day,  year, hour, minute]
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],
       // [DOW, month, day,  year, hour, minute]
       topic: "",
       guests: [],
-      capacity: 0,
-      host: props.host.id // currentUser.id
+      capacity: 0 // host: props.host.id,     // currentUser.id
 
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
@@ -7422,30 +7425,29 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
-
       e.preventDefault(); // console.log(this.state)
 
       var meetup = Object.assign({}, this.state); // this.props.processForm(meetup);
       // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
       // redirect to profile for now, redirect to meetup in future
 
-      this.props.processForm(meetup).then( //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      function (meetup) {
-        return _this3.props.history.push("/profile");
-      }, //   event => this.props.history.push(`/profile`)).catch() 
-      function () {});
+      this.props.processForm(meetup); // .then(
+      // //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      //   meetup => this.props.history.push(`/profile`), 
+      // //   event => this.props.history.push(`/profile`)).catch() 
+      //   errors => this.renderErrors()
+      // );
     }
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      var _this4 = this;
+      var _this3 = this;
 
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this4.setState({
+        _this3.setState({
           photoFile: file,
           photoUrl: fileReader.result
         });
@@ -7459,7 +7461,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onTimeChange",
     value: function onTimeChange() {
-      var _this5 = this;
+      var _this4 = this;
 
       var date = this.state.starttime;
       return function (e) {
@@ -7471,37 +7473,35 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var hour = timestring[0];
         var minute = timestring[1];
 
-        _this5.setState({
+        _this4.setState({
           starttime: [DOW, month, day, year, hour, minute]
         });
 
-        console.log(_this5.state.starttime); // For meridian (AM/PM) processing, go check FWF
+        console.log(_this4.state.starttime); // For meridian (AM/PM) processing, go check FWF
       };
     } // For date to string
 
   }, {
     key: "onDateChange",
     value: function onDateChange() {
-      var _this6 = this;
+      var _this5 = this;
 
       var timern = this.state.starttime;
       return function (e) {
         var date = e.toDateString().split(" ");
 
-        var DOW = _this6.convertDOWtoInt(date[0]);
+        var DOW = _this5.convertDOWtoInt(date[0]);
 
-        var month = _this6.convertMonthtoInt(date[1]);
+        var month = _this5.convertMonthtoInt(date[1]);
 
         var day = date[2];
         var year = date[3];
         var hour = timern[4];
         var minute = timern[5];
 
-        _this6.setState({
+        _this5.setState({
           starttime: [DOW, month, day, year, hour, minute]
         });
-
-        console.log(_this6.state.starttime);
       };
     }
   }, {
@@ -7716,14 +7716,14 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handlePhoto",
     value: function handlePhoto(e) {
-      var _this7 = this;
+      var _this6 = this;
 
       var file = e.currentTarget.files[0];
       console.log(e.currentTarget.files);
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this7.setState({
+        _this6.setState({
           photoFile: file,
           photoUrl: fileReader.result
         });
@@ -7851,14 +7851,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _new_meetup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_meetup */ "./frontend/components/meetup_pages/new_meetup.jsx");
 /* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 
 
 
 
 
 var mapSTP = function mapSTP(state) {
-  console.log(state);
   return {
     errors: state.errors,
     meetups: state.meetups,
@@ -7876,7 +7874,7 @@ var mapDTP = function mapDTP(dispatch) {
       return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["createMeetup"])(meetup));
     },
     clearErrors: function clearErrors() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["clearSessionErrors"])());
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["clearMeetupErrors"])());
     }
   };
 };
@@ -8951,28 +8949,34 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     key: "demoUser",
     value: function demoUser(e) {
       e.preventDefault();
-      this.setState({
+      var credentials = {
         email: "DemoUser@fake.com",
         password: "11111111"
-      });
+      };
+      var user = Object.assign({}, credentials);
+      this.props.processForm(user);
     }
   }, {
     key: "demoHost",
     value: function demoHost(e) {
       e.preventDefault();
-      this.setState({
+      var credentials = {
         email: "DemoHost@fake.com",
         password: "`1234567"
-      });
+      };
+      var user = Object.assign({}, credentials);
+      this.props.processForm(user);
     }
   }, {
     key: "demoAdmin",
     value: function demoAdmin(e) {
       e.preventDefault();
-      this.setState({
+      var credentials = {
         email: "DemoAdmin@fake.com",
         password: "`1234567"
-      });
+      };
+      var user = Object.assign({}, credentials);
+      this.props.processForm(user);
     }
   }, {
     key: "pwShowHide",
@@ -9143,16 +9147,9 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       pwDisplay: "Show"
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this)); // this.setErrors = this.setErrors.bind(this);
-
+    _this.pwShowHide = _this.pwShowHide.bind(_assertThisInitialized(_this));
     return _this;
-  } // setErrors(errors){
-  //   let allErrors = [];
-  //   // errors.forEach((error) => allErrors.push(error));
-  //   errors.forEach((error) => allErrors.push(error));
-  //   return allErrors;
-  // }
-
+  }
 
   _createClass(SignUpForm, [{
     key: "componentDidMount",
@@ -9176,8 +9173,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // if(this.state.password === this.state.password2){
-
+      e.preventDefault();
       var user = {
         name: this.state.name,
         email: this.state.email,
@@ -9186,19 +9182,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         home_city: this.state.home_city,
         story: this.state.story
       };
-      this.props.processForm(user); // } else{
-      //   if(this.state.errors.includes("Your passwords still don't match!")){}
-      //   else{
-      //     let matchErrorAlready = this.state.errors.indexOf("Your passwords don't match!")
-      //     let addError = this.state.errors;
-      //     if (matchErrorAlready === -1){
-      //       addError.push("Your passwords don't match!");
-      //     } else{
-      //       addError[matchErrorAlready] = "Your passwords still don't match!"
-      //     }
-      //     this.setState({errors: addError})
-      //   }
-      // }
+      this.props.processForm(user);
     }
   }, {
     key: "renderErrors",
@@ -9694,14 +9678,13 @@ var fetchMeetup = function fetchMeetup(id) {
     url: "/api/meetups/".concat(id)
   });
 };
-var createMeetup = function createMeetup(newMeetup) {
-  console.log("Create MeetUp Util");
+var createMeetup = function createMeetup(meetup) {
   return (//For creating new meetups
     $.ajax({
       method: 'POST',
       url: '/api/meetups',
       data: {
-        newMeetup: newMeetup
+        meetup: meetup
       } // contentType: false, //Shit, what is this?
       // processData: false  //Shit, what is this?
 
