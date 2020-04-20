@@ -8,8 +8,6 @@ class NewMeetup extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      // location: [181, 181, "", "", "", "", "", ""], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      // starttime: ["", "", "", "", "", ""],     // [DOW, month, day,  year, hour, minute]
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
       topic: "",
@@ -45,6 +43,14 @@ class NewMeetup extends React.Component {
     });
   }
 
+  updateLocation(index) {
+    const currLocation = this.state.location;
+    return e => {
+      currLocation[index] = e.target.value;
+      this.setState({ location: currLocation })
+    }
+  }
+
   // ERRORS
   renderErrors() {return(
     <ul>
@@ -54,26 +60,33 @@ class NewMeetup extends React.Component {
     </ul>
   )}
 
-
-
   // INPUT/SUBMIT
 
   handleSubmit(e) {
     e.preventDefault();
-
-    // console.log(this.state)
-
     const meetup = Object.assign({}, this.state);
+    console.log(this.state);
+    console.log(meetup);
+    // const wrappedLocation = this.state.location;
+    // meetup.location = {wrappedLocation};
+    // console.log(meetup);
+    //   location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
+    //   starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
+    //   topic: "",
+    //   guests: [],
+    //   capacity: 0,
+    // };
     // this.props.processForm(meetup);
     // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
     // redirect to profile for now, redirect to meetup in future
+    
     this.props.processForm(meetup)
-    // .then(
-    // //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-    //   meetup => this.props.history.push(`/profile`), 
-    // //   event => this.props.history.push(`/profile`)).catch() 
-    //   errors => this.renderErrors()
-    // );
+    .then(
+    //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      () => this.props.history.push(`/profile`), 
+    //   event => this.props.history.push(`/profile`)).catch() 
+      // errors => this.renderErrors()
+    );
   }
 
   handleFile(e) {
@@ -357,7 +370,7 @@ class NewMeetup extends React.Component {
                 <p className="signinup-title">Name of Venue:*</p>
                 <input type="text"
                   value={this.state.location[2]}
-                  onChange={this.update('location[2]')}
+                  onChange={this.updateLocation(2)}
                   className="signinup-input"
                 />
               </label>
@@ -367,7 +380,7 @@ class NewMeetup extends React.Component {
                 <p className="signinup-title">Address:*</p>
                 <input type="text"
                   value={this.state.location[3]}
-                  onChange={this.update('location[3]')}
+                  onChange={this.updateLocation(3)}
                   className="signinup-input"
                 />
               </label>
@@ -376,8 +389,8 @@ class NewMeetup extends React.Component {
               <label>
                 <p className="signinup-title">City:*</p>
                 <input type="text"
-                  value={this.state.location[3]}
-                  onChange={this.update('location[3]')}
+                  value={this.state.location[4]}
+                  onChange={this.updateLocation(4)}
                   className="signinup-input"
                 />
               </label>
@@ -386,8 +399,8 @@ class NewMeetup extends React.Component {
               <label>
                 <p className="signinup-title">State/Province:*</p>
                 <input type="text"
-                  value={this.state.location[4]}
-                  onChange={this.update('location[4]')}
+                  value={this.state.location[5]}
+                  onChange={this.updateLocation(5)}
                   className="signinup-input"
                 />
               </label>
@@ -396,8 +409,8 @@ class NewMeetup extends React.Component {
               <label>
                 <p className="signinup-title">Zip:*</p>
                 <input type="text"
-                  value={this.state.location[5]}
-                  onChange={this.update('location[5]')}
+                  value={this.state.location[6]}
+                  onChange={this.updateLocation(6)}
                   className="signinup-input"
                 />
               </label>
@@ -406,8 +419,8 @@ class NewMeetup extends React.Component {
               <label>
                 <p className="signinup-title">Country:*</p>
                 <input type="text"
-                  value={this.state.location[6]}
-                  onChange={this.update('location[6]')}
+                  value={this.state.location[7]}
+                  onChange={this.updateLocation(7)}
                   className="signinup-input"
                 />
               </label>
