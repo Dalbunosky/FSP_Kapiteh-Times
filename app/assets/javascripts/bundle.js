@@ -6656,8 +6656,7 @@ var receiveMeetups = function receiveMeetups(meetups) {
     meetups: meetups
   };
 };
-var receiveMeetup = function receiveMeetup(_ref) {
-  var meetup = _ref.meetup;
+var receiveMeetup = function receiveMeetup(meetup) {
   return {
     type: RECEIVE_MEETUP,
     meetup: meetup
@@ -7370,8 +7369,6 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewMeetup).call(this, props));
     _this.state = {
-      // location: [181, 181, "", "", "", "", "", ""], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      // starttime: ["", "", "", "", "", ""],     // [DOW, month, day,  year, hour, minute]
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],
@@ -7410,6 +7407,20 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
+    }
+  }, {
+    key: "updateLocation",
+    value: function updateLocation(index) {
+      var _this3 = this;
+
+      var currLocation = this.state.location;
+      return function (e) {
+        currLocation[index] = e.target.value;
+
+        _this3.setState({
+          location: currLocation
+        });
+      };
     } // ERRORS
 
   }, {
@@ -7425,29 +7436,41 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // console.log(this.state)
+      var _this4 = this;
 
-      var meetup = Object.assign({}, this.state); // this.props.processForm(meetup);
+      e.preventDefault();
+      var meetup = Object.assign({}, this.state);
+      console.log(this.state);
+      console.log(meetup); // const wrappedLocation = this.state.location;
+      // meetup.location = {wrappedLocation};
+      // console.log(meetup);
+      //   location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
+      //   starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
+      //   topic: "",
+      //   guests: [],
+      //   capacity: 0,
+      // };
+      // this.props.processForm(meetup);
       // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
       // redirect to profile for now, redirect to meetup in future
 
-      this.props.processForm(meetup); // .then(
-      // //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      //   meetup => this.props.history.push(`/profile`), 
-      // //   event => this.props.history.push(`/profile`)).catch() 
-      //   errors => this.renderErrors()
-      // );
+      this.props.processForm(meetup).then( //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      function () {
+        return _this4.props.history.push("/profile");
+      } //   event => this.props.history.push(`/profile`)).catch() 
+      // errors => this.renderErrors()
+      );
     }
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      var _this3 = this;
+      var _this5 = this;
 
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this3.setState({
+        _this5.setState({
           photoFile: file,
           photoUrl: fileReader.result
         });
@@ -7461,7 +7484,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onTimeChange",
     value: function onTimeChange() {
-      var _this4 = this;
+      var _this6 = this;
 
       var date = this.state.starttime;
       return function (e) {
@@ -7473,33 +7496,33 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var hour = timestring[0];
         var minute = timestring[1];
 
-        _this4.setState({
+        _this6.setState({
           starttime: [DOW, month, day, year, hour, minute]
         });
 
-        console.log(_this4.state.starttime); // For meridian (AM/PM) processing, go check FWF
+        console.log(_this6.state.starttime); // For meridian (AM/PM) processing, go check FWF
       };
     } // For date to string
 
   }, {
     key: "onDateChange",
     value: function onDateChange() {
-      var _this5 = this;
+      var _this7 = this;
 
       var timern = this.state.starttime;
       return function (e) {
         var date = e.toDateString().split(" ");
 
-        var DOW = _this5.convertDOWtoInt(date[0]);
+        var DOW = _this7.convertDOWtoInt(date[0]);
 
-        var month = _this5.convertMonthtoInt(date[1]);
+        var month = _this7.convertMonthtoInt(date[1]);
 
         var day = date[2];
         var year = date[3];
         var hour = timern[4];
         var minute = timern[5];
 
-        _this5.setState({
+        _this7.setState({
           starttime: [DOW, month, day, year, hour, minute]
         });
       };
@@ -7716,14 +7739,14 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handlePhoto",
     value: function handlePhoto(e) {
-      var _this6 = this;
+      var _this8 = this;
 
       var file = e.currentTarget.files[0];
       console.log(e.currentTarget.files);
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this6.setState({
+        _this8.setState({
           photoFile: file,
           photoUrl: fileReader.result
         });
@@ -7760,42 +7783,42 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       }, "Name of Venue:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[2],
-        onChange: this.update('location[2]'),
+        onChange: this.updateLocation(2),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Address:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[3],
-        onChange: this.update('location[3]'),
+        onChange: this.updateLocation(3),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "City:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.state.location[3],
-        onChange: this.update('location[3]'),
+        value: this.state.location[4],
+        onChange: this.updateLocation(4),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "State/Province:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.state.location[4],
-        onChange: this.update('location[4]'),
+        value: this.state.location[5],
+        onChange: this.updateLocation(5),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Zip:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.state.location[5],
-        onChange: this.update('location[5]'),
+        value: this.state.location[6],
+        onChange: this.updateLocation(6),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Country:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.state.location[6],
-        onChange: this.update('location[6]'),
+        value: this.state.location[7],
+        onChange: this.updateLocation(7),
         className: "signinup-input"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "when"
@@ -9679,6 +9702,7 @@ var fetchMeetup = function fetchMeetup(id) {
   });
 };
 var createMeetup = function createMeetup(meetup) {
+  console.log(meetup);
   return (//For creating new meetups
     $.ajax({
       method: 'POST',

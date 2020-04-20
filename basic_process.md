@@ -7,7 +7,7 @@ Action
 - actions {type, payload} Type is capitalized text of action name
 - issued with thunk (action creators), 
     - calls util function   (sends data to backend)
-    - issues actions        (receives data from backend)
+        - (later) issues actions        (receives data from backend)
 Util
 - ajax call with Method, address, and data
 -----------------------------------
@@ -27,6 +27,8 @@ View/jbuilder
 -----------------------------------
 <!-- Store
 - Takes data from action -->
+Action
+- issues action (second part of thunk)
 Reducer
 - Takes state, filters depending on action type
 Container

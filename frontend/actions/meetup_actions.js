@@ -13,7 +13,7 @@ export const receiveMeetups = meetups => ({
   meetups,
 });
 
-export const receiveMeetup = ({ meetup }) => ({
+export const receiveMeetup = meetup => ({
   type: RECEIVE_MEETUP,
   meetup
 });
