@@ -6,3 +6,9 @@ json.array!(@meetups) do |meetup|
        json.photoUrl url_for(meetup.photo)
 end 
 
+@meetups.each do |meetup|
+    json.set! meetup.id do
+      json.partial! 'meetup', meetup: meetup
+    end
+  end
+  

@@ -1,20 +1,26 @@
-Git process, subject to change
-(Make sure you're on your branch)
+Git process
 
-(Make sure you're on your branch)
+To start work:
+    (Make sure you're on your branch)
 
-git add .
+    git pull https://github.com/Dalbunosky/FSP_Kapiteh-Times.git
 
-git commit -m "***"
 
-git checkout master 
+To submit work:
+    (Make sure you're on your branch)
 
-git pull https://github.com/Dalbunosky/FSP_Kapiteh-Times.git
+    git add .
 
-git checkout ______ <-- your branch's name
+    git commit -m "***"
 
-git rebase master
+    git checkout master 
 
-git push origin ______  <-- your branch's name
+    git pull https://github.com/Dalbunosky/FSP_Kapiteh-Times.git
 
-on github page Create pull request ADD REVIEWER on top right
+    git checkout ______ <-- your branch's name
+
+    git rebase master
+
+    git push origin ______  <-- your branch's name
+
+    on github page Create pull request ADD REVIEWER on top right

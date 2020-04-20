@@ -23,10 +23,10 @@ class Api::MeetupsController < ApplicationController
 
     def create  # Creates meetup, available to hosts only
         @meetup = Meetup.new(meetup_params)
-        @meetup.host_id = current_user
+        @meetup.host_id = current_user.id
         if @meetup.save
-            # render 'api/meetups/show'
-            render 'api/users/show'
+            render 'api/meetups/show'
+            # render 'api/users/show'
         else
             render json: @meetup.errors.full_messages, status: 422
         end
@@ -55,7 +55,8 @@ class Api::MeetupsController < ApplicationController
 
     private
     def meetup_params
-
-        params.require(:meetup).permit(:location, :guests, :starttime, :topic, :capacity) #, :photo)
+        # params.require(:meetup).permit(:topic, :capacity, location:[:lat, :lng, :venue_name, :address, :city, :state_province, :zip, :country], guests: [], starttime: [:dow, :month, :day, :year, :hour, :minute]) #, :photo)
+        params.require(:meetup).permit(:topic, :capacity, location:[], guests: [], starttime: []) #, :photo)
+        
     end
 end
