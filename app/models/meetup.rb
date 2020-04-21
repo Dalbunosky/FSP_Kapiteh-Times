@@ -8,12 +8,11 @@
 # t.index ["host"], name: "index_meetups_on_host", unique: true
   
 # location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
-# time: [],     // [DOW,month, day,  year, hour, minute]
+# time: [],     // [DOW, month, day, year, hour, minute]
 
 class Meetup < ApplicationRecord
     validates :location, :starttime, :capacity, :topic, :host_id, presence: true
-    validate :has_capacity
-
+    validate :has_capacity, :time_filled, :location_filled
   
     belongs_to :host,
       primary_key: :id,
@@ -29,34 +28,49 @@ class Meetup < ApplicationRecord
       through: :tickets,
       source: :user
 
-
-    # Ensure meetup is in the future
-    # validate :date_must_be_in_the_future
     def has_capacity
       self.capacity = self.capacity.to_i
         if self.capacity <= 0
-          puts errors.class
-          puts errors
           errors.add(:capacity, "needs to be higher")
         end
     end
 
-    def date_must_be_in_the_future
-    #   if date.present? && date < Date.today
-    #     errors.add(:date, "cannot be in the past")
-    #   end
+    def time_filled
+      filled = true
+      self.starttime.map.with_index do |date_feat, i|
+        if (date_feat == nil) || (date_feat == "")
+          errors.add(:starttime, "is not filled in")
+          filled = false
+          break
+        end
+        self.starttime[i] = date_feat.to_i
+      end
+      if filled
+        date_must_be_in_the_future(starttime)
+      end
     end
-  
-    def all_time_details_filled
+
+    def date_must_be_in_the_future(time_arr)
+      # [DOW, month, day, year, hour, minute]
+      date = DateTime.new(time_arr[3],time_arr[1],time_arr[2],time_arr[4],time_arr[5],0)
+      if date.present? && date < Date.today
+        errors.add(:starttime, "needs to be in the future")
+      end
+    end
+
+    def location_filled
+      self.location.map do |address_line|
+        if (address_line == nil) || (address_line == "")
+          errors.add(:location, "is not filled in")
+          break
+        end
+      end
     end
 
     def meetup_ends_after_start
       #   if start_date > end_date
       #     errors.add("Your start-time is after the end-time")
       #   end
-    end
-
-    def all_location_details_filled
     end
 
     def no_conflicting_meetups
