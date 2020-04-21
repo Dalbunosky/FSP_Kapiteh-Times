@@ -1,27 +1,88 @@
 import React from 'react';
+
 // /hosting
 // Hosting
 // Explain the redirect in main
 // What process you would do
 // Button: Email
-const Hosting = () => (
-    <div className="about">
-        <h1>Hosting</h1>
-        <h3>Why host?</h3>
-        <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+class Hosting extends React.Component {
+    constructor(props) {
+      super(props);
 
-        <h3>Apply to host!</h3>
-        <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+      this.becomeHost = this.becomeHost.bind(this);
+    }
 
-        <h3>The Application Process</h3>
-        <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+    componentDidMount(){
+        this.props.clearErrors();
+    }
+    
+    componentWillUnmount() {
+        this.props.clearErrors();
+    }
 
-        <h3>The Responsibilities</h3>
-        <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+    becomeHost(e) {
+        e.preventDefault();
+        this.setState({ host_status: !this.state.host_status});
+        const user = {host_status: true};
+        this.props.processForm(user);
+    };
 
-        <h3>Start Here</h3>
-        <p>Look up hosting button process</p>
-    </div>
-);
+    renderErrors() {return(
+        <ul>
+            {this.props.errors.map((error, i) => (
+                <li key={`error-${i}`}>{error}</li>
+            ))}
+        </ul>
+    )}
+
+// const Hosting = props => (
+    render(){
+        const applyOrSignUp = (id) =>{
+            if(id === null){
+                return(
+                    <p>
+                        <a href="#/signin">Sign In</a> or <a href="#/signup">Sign Up</a>, then come back here.
+                    </p>
+                )
+            }
+            else{ // logged in, but may or may not be a host already
+                if(this.props.currentUser.host_status){
+                    return( <p><a href="#/meetups/new">Go host a meetup! You're a host already!</a></p>)
+                }
+                else{
+                    return(
+                        <p><a onClick={this.becomeHost}>Click Here!</a></p>
+                    )
+                }
+            }
+        }
+        return(
+            <div className="about">
+                <h1>Hosting</h1>
+                <h3>Why host?</h3>
+                <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+
+                <h3>Apply to host!</h3>
+                <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+
+                <h3>The Application Process</h3>
+                <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+
+                <h3>The Responsibilities</h3>
+                <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
+
+                <h3>Start Here</h3>
+                <p>Look up hosting button process</p>
+
+                <h3>So, you still want to host?</h3>
+                {console.log(this.props.currentUser)}
+                <p>Yes? Well, then, {applyOrSignUp(this.props.session)}</p>
+                {this.renderErrors()}
+
+            </div>
+        )
+    }
+// );
+}
 
 export default Hosting;

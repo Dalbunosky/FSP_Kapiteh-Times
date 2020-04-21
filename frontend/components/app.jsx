@@ -35,7 +35,7 @@ import { Header, Footer } from './molding.jsx';
 // Non-changing pages
 import Home from './non_changing/home';
 import About from './non_changing/about';
-import Hosting from './non_changing/hosting';
+import HostingContainer from './non_changing/hosting_container';
 import Terms from './non_changing/terms';
 import Privacy from './non_changing/privacy';
 import BadPage from './non_changing/oops';
@@ -58,7 +58,7 @@ const App = () => (
     <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/hosting" component={Hosting} />
+        <Route exact path="/hosting" component={HostingContainer} />
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/privacy" component={Privacy} />
 
