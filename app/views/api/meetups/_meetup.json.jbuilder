@@ -1,4 +1,3 @@
-puts "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
 json.extract! meetup, :id, :location, :starttime, :capacity, :host_id, :topic, :guests
 
 

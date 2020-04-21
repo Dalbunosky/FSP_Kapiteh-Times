@@ -1,5 +1,4 @@
 # Details to show at each meetup's individual page
-puts "LLLLLLLLLLLLLLLLLLLLLLLLL"
 json.partial! '/api/meetups/meetup', meetup: @meetup
 
 # # json.partial! 'api/meetups/meetup', meetup: @meetup
