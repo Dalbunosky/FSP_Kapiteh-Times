@@ -33,12 +33,12 @@ import { AuthRoute, ProtectedRoute, HostRoute, AdminRoute } from '../util/route_
 import { Header, Footer } from './molding.jsx';
 
 // Non-changing pages
-import Home from './non_changing/home';
-import About from './non_changing/about';
-import HostingContainer from './non_changing/hosting_container';
-import Terms from './non_changing/terms';
-import Privacy from './non_changing/privacy';
-import BadPage from './non_changing/oops';
+import Home from './basic/home';
+import About from './basic/about';
+import HostingContainer from './basic/hosting_container';
+import Terms from './basic/terms';
+import Privacy from './basic/privacy';
+import BadPage from './basic/oops';
 
 // app.use(passport.initialize());
 // require("./config/passport")(passport);
@@ -69,7 +69,7 @@ const App = () => (
         <ProtectedRoute path="/profile/history" component={HistoryContainer} />
         <ProtectedRoute path="/profile" component={ProfileContainer} />
 
-        {/* <Route exact path="/meetups" component={MeetUpIndexContainer} /> */}
+        <Route exact path="/meetups" component={MeetUpIndexContainer} />
         {/* <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} /> */}
 
 

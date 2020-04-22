@@ -22,8 +22,9 @@ class Hosting extends React.Component {
 
     becomeHost(e) {
         e.preventDefault();
-        this.setState({ host_status: !this.state.host_status});
-        const user = {host_status: true};
+        const user = Object.assign({}, this.props.currentUser);
+        user.host_status = true;
+        console.log(user);
         this.props.processForm(user);
     };
 
@@ -40,9 +41,7 @@ class Hosting extends React.Component {
         const applyOrSignUp = (id) =>{
             if(id === null){
                 return(
-                    <p>
-                        <a href="#/signin">Sign In</a> or <a href="#/signup">Sign Up</a>, then come back here.
-                    </p>
+                    <p><a href="#/signin">Sign In</a> or <a href="#/signup">Sign Up</a>, then come back here.</p>
                 )
             }
             else{ // logged in, but may or may not be a host already
@@ -51,7 +50,7 @@ class Hosting extends React.Component {
                 }
                 else{
                     return(
-                        <p><a onClick={this.becomeHost}>Click Here!</a></p>
+                        <p><a onClick={this.becomeHost}>Make Me A Host!</a></p>
                     )
                 }
             }

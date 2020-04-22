@@ -1,4 +1,5 @@
 import React from 'react';
+import MeetupCityRowContainer from './part/meetup_city_row_container';
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
 // time: [],     // [DOW, month, day,  year, hour, minute]
@@ -35,20 +36,25 @@ class AllMeetups extends React.Component {
                 </div>
             )
         })
-    }
+        }
     }
 
     render() {
         // debugger;
         return (
-            <>
-            <div className="meetup-index-header">
-                <p className="show-header-one">SOLID FRIENDSHIPS</p>
-                <p className="show-header-two">They're here to stay.</p>
-            </div>
-                <div className="zero-index"></div>
+            <div>
+                <div className="meetup-index-header">
+                    <p className="show-header-one">SOLID FRIENDSHIPS</p>
+                    <p className="show-header-two">They're here to stay.</p>
+                </div>
+                <div className="meetups">
+                    <h3>Meetups at your city</h3>
+                    {/* Meetups */}
+                    <h3>Meetups everywhere else</h3>
+                    {/* Meetups */}
+                </div>
             {/* <div className="event-index-one">{this.renderEvents()}</div> */}
-            </>
+            </div>
         )
     }  
 }
