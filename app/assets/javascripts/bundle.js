@@ -6866,12 +6866,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _molding_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./molding.jsx */ "./frontend/components/molding.jsx");
-/* harmony import */ var _non_changing_home__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./non_changing/home */ "./frontend/components/non_changing/home.jsx");
-/* harmony import */ var _non_changing_about__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./non_changing/about */ "./frontend/components/non_changing/about.jsx");
-/* harmony import */ var _non_changing_hosting_container__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./non_changing/hosting_container */ "./frontend/components/non_changing/hosting_container.js");
-/* harmony import */ var _non_changing_terms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./non_changing/terms */ "./frontend/components/non_changing/terms.jsx");
-/* harmony import */ var _non_changing_privacy__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./non_changing/privacy */ "./frontend/components/non_changing/privacy.jsx");
-/* harmony import */ var _non_changing_oops__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./non_changing/oops */ "./frontend/components/non_changing/oops.jsx");
+/* harmony import */ var _basic_home__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./basic/home */ "./frontend/components/basic/home.jsx");
+/* harmony import */ var _basic_about__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./basic/about */ "./frontend/components/basic/about.jsx");
+/* harmony import */ var _basic_hosting_container__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./basic/hosting_container */ "./frontend/components/basic/hosting_container.js");
+/* harmony import */ var _basic_terms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./basic/terms */ "./frontend/components/basic/terms.jsx");
+/* harmony import */ var _basic_privacy__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./basic/privacy */ "./frontend/components/basic/privacy.jsx");
+/* harmony import */ var _basic_oops__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./basic/oops */ "./frontend/components/basic/oops.jsx");
 // const express = require("express");
 // import express from 'express';
 // const app = express();
@@ -6915,23 +6915,23 @@ var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_molding_jsx__WEBPACK_IMPORTED_MODULE_13__["Header"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
-    component: _non_changing_home__WEBPACK_IMPORTED_MODULE_14__["default"]
+    component: _basic_home__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/about",
-    component: _non_changing_about__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _basic_about__WEBPACK_IMPORTED_MODULE_15__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/hosting",
-    component: _non_changing_hosting_container__WEBPACK_IMPORTED_MODULE_16__["default"]
+    component: _basic_hosting_container__WEBPACK_IMPORTED_MODULE_16__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/terms",
-    component: _non_changing_terms__WEBPACK_IMPORTED_MODULE_17__["default"]
+    component: _basic_terms__WEBPACK_IMPORTED_MODULE_17__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/privacy",
-    component: _non_changing_privacy__WEBPACK_IMPORTED_MODULE_18__["default"]
+    component: _basic_privacy__WEBPACK_IMPORTED_MODULE_18__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["AuthRoute"], {
     exact: true,
     path: "/signin",
@@ -6949,6 +6949,10 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["ProtectedRoute"], {
     path: "/profile",
     component: _profile_pages_profile_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    exact: true,
+    path: "/meetups",
+    component: _meetup_pages_all_meetups_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["HostRoute"], {
     exact: true,
     path: "/meetups/new",
@@ -6959,11 +6963,317 @@ var App = function App() {
     component: _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11___default.a
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     to: "/oops",
-    component: _non_changing_oops__WEBPACK_IMPORTED_MODULE_19__["default"]
+    component: _basic_oops__WEBPACK_IMPORTED_MODULE_19__["default"]
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_molding_jsx__WEBPACK_IMPORTED_MODULE_13__["Footer"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/basic/about.jsx":
+/*!*********************************************!*\
+  !*** ./frontend/components/basic/about.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // /about
+// About
+// Intro Diagram
+// Paragraphs, history
+
+var About = function About() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "about"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Question"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Question"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (About); // /hosting
+// Hosting
+// Explain the redirect in main
+// What process you would do
+// Button: Email
+// /terms
+// Plain Text terms of service
+// /privacy
+// Plain text privacy information
+
+/***/ }),
+
+/***/ "./frontend/components/basic/home.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/basic/home.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // /hosting
+// Hosting
+// Explain the redirect in main
+// What process you would do
+// Button: Email
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "home"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "welcome"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME!!!!!!!!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "process"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Who"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Where"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "reasons"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason3"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "commit"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
+});
+
+/***/ }),
+
+/***/ "./frontend/components/basic/hosting.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/basic/hosting.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+ // /hosting
+// Hosting
+// Explain the redirect in main
+// What process you would do
+// Button: Email
+
+var Hosting = /*#__PURE__*/function (_React$Component) {
+  _inherits(Hosting, _React$Component);
+
+  function Hosting(props) {
+    var _this;
+
+    _classCallCheck(this, Hosting);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Hosting).call(this, props));
+    _this.becomeHost = _this.becomeHost.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Hosting, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearErrors();
+    }
+  }, {
+    key: "becomeHost",
+    value: function becomeHost(e) {
+      e.preventDefault();
+      var user = Object.assign({}, this.props.currentUser);
+      user.host_status = true;
+      console.log(user);
+      this.props.processForm(user);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    } // const Hosting = props => (
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var applyOrSignUp = function applyOrSignUp(id) {
+        if (id === null) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            href: "#/signin"
+          }, "Sign In"), " or ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            href: "#/signup"
+          }, "Sign Up"), ", then come back here.");
+        } else {
+          // logged in, but may or may not be a host already
+          if (_this2.props.currentUser.host_status) {
+            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+              href: "#/meetups/new"
+            }, "Go host a meetup! You're a host already!"));
+          } else {
+            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+              onClick: _this2.becomeHost
+            }, "Make Me A Host!"));
+          }
+        }
+      };
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hosting"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Why host?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Apply to host!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Application Process"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Responsibilities"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start Here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Look up hosting button process"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "So, you still want to host?"), console.log(this.props.currentUser), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Yes? Well, then, ", applyOrSignUp(this.props.session)), this.renderErrors());
+    } // );
+
+  }]);
+
+  return Hosting;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Hosting);
+
+/***/ }),
+
+/***/ "./frontend/components/basic/hosting_container.js":
+/*!********************************************************!*\
+  !*** ./frontend/components/basic/hosting_container.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _hosting__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hosting */ "./frontend/components/basic/hosting.jsx");
+
+ // import { Link } from 'react-router-dom';
+// import sessionReducer from '../../reducers/session_reducer'
+
+
+
+
+var mapSTP = function mapSTP(state) {
+  // console.log(state);
+  return {
+    session: state.session.id,
+    currentUser: state.users[state.session.id],
+    errors: state.errors
+  };
+};
+
+var mapDTP = function mapDTP(dispatch) {
+  return {
+    receiveCurrentUser: function receiveCurrentUser() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentUser"])());
+    },
+    processForm: function processForm(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["editUser"])(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_hosting__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/basic/oops.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/basic/oops.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // /terms
+// Plain Text terms of service
+
+var BadPage = function BadPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bad-page"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Oh boy....."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This doesn't look good. Looks like you found a bug in my website... Tell me, how did you get here? You can do so here", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/"
+  }, "Let's take you back home")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (BadPage);
+
+/***/ }),
+
+/***/ "./frontend/components/basic/privacy.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/basic/privacy.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // /privacy
+// Plain text privacy information
+
+var Privacy = function Privacy() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "privacy"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Privacy"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Privacy Policy lhdgsfdcsvghfgsfdbncghdstafdbvnchytrfdbnvhjhtgrdfcv bmjgygtdfcbn"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Privacy);
+
+/***/ }),
+
+/***/ "./frontend/components/basic/terms.jsx":
+/*!*********************************************!*\
+  !*** ./frontend/components/basic/terms.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // /terms
+// Plain Text terms of service
+
+var Terms = function Terms() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "terms"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Terms"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Terms of Use lhdgsfdcsvghfgsfdbncghdstafdbvnchytrfdbnvhjhtgrdfcv bmjgygtdfcbn"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Terms);
 
 /***/ }),
 
@@ -7138,6 +7448,7 @@ var mapDTP = function mapDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module './part/meetup_city_row_container'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7155,6 +7466,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
  // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
 // time: [],     // [DOW, month, day,  year, hour, minute]
@@ -7197,15 +7509,15 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "show-header-one"
       }, "SOLID FRIENDSHIPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "show-header-two"
       }, "They're here to stay.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "zero-index"
-      }));
+        className: "meetups"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups at your city"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups everywhere else")));
     }
   }]);
 
@@ -7961,313 +8273,6 @@ var Footer = function Footer() {
     className: ""
   }, "We're not doing anything groundbreaking. We're creating something that would've been incredibly unnecessary 20 years ago. But while we get busier, it's easy to forget the value of a conversation for no reason. A conversation that's intentionally unintentional.")));
 };
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/about.jsx":
-/*!****************************************************!*\
-  !*** ./frontend/components/non_changing/about.jsx ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // /about
-// About
-// Intro Diagram
-// Paragraphs, history
-
-var About = function About() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "about"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Question"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Question"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (About); // /hosting
-// Hosting
-// Explain the redirect in main
-// What process you would do
-// Button: Email
-// /terms
-// Plain Text terms of service
-// /privacy
-// Plain text privacy information
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/home.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/non_changing/home.jsx ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // /hosting
-// Hosting
-// Explain the redirect in main
-// What process you would do
-// Button: Email
-
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "home"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "welcome"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME!!!!!!!!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "process"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Who"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Where"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "reasons"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason3"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "commit"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
-});
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/hosting.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/non_changing/hosting.jsx ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
- // /hosting
-// Hosting
-// Explain the redirect in main
-// What process you would do
-// Button: Email
-
-var Hosting = /*#__PURE__*/function (_React$Component) {
-  _inherits(Hosting, _React$Component);
-
-  function Hosting(props) {
-    var _this;
-
-    _classCallCheck(this, Hosting);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Hosting).call(this, props));
-    _this.becomeHost = _this.becomeHost.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(Hosting, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.clearErrors();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.clearErrors();
-    }
-  }, {
-    key: "becomeHost",
-    value: function becomeHost(e) {
-      e.preventDefault();
-      this.setState({
-        host_status: !this.state.host_status
-      });
-      var user = {
-        host_status: true
-      };
-      this.props.processForm(user);
-    }
-  }, {
-    key: "renderErrors",
-    value: function renderErrors() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "error-".concat(i)
-        }, error);
-      }));
-    } // const Hosting = props => (
-
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var applyOrSignUp = function applyOrSignUp(id) {
-        if (id === null) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            href: "#/signin"
-          }, "Sign In"), " or ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            href: "#/signup"
-          }, "Sign Up"), ", then come back here.");
-        } else {
-          // logged in, but may or may not be a host already
-          if (_this2.props.currentUser.host_status) {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-              href: "#/meetups/new"
-            }, "Go host a meetup! You're a host already!"));
-          } else {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-              onClick: _this2.becomeHost
-            }, "Click Here!"));
-          }
-        }
-      };
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "about"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hosting"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Why host?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Apply to host!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Application Process"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Responsibilities"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start Here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Look up hosting button process"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "So, you still want to host?"), console.log(this.props.currentUser), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Yes? Well, then, ", applyOrSignUp(this.props.session)), this.renderErrors());
-    } // );
-
-  }]);
-
-  return Hosting;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (Hosting);
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/hosting_container.js":
-/*!***************************************************************!*\
-  !*** ./frontend/components/non_changing/hosting_container.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _hosting__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hosting */ "./frontend/components/non_changing/hosting.jsx");
-
- // import { Link } from 'react-router-dom';
-// import sessionReducer from '../../reducers/session_reducer'
-
-
-
-
-var mapSTP = function mapSTP(state) {
-  console.log(state);
-  return {
-    session: state.session.id,
-    currentUser: state.users[state.session.id],
-    errors: state.errors
-  };
-};
-
-var mapDTP = function mapDTP(dispatch) {
-  return {
-    receiveCurrentUser: function receiveCurrentUser() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentUser"])());
-    },
-    // processForm: (user) => dispatch(signin(user)),
-    clearErrors: function clearErrors() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_hosting__WEBPACK_IMPORTED_MODULE_3__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/oops.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/non_changing/oops.jsx ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // /terms
-// Plain Text terms of service
-
-var BadPage = function BadPage() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bad-page"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Oh boy....."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This doesn't look good. Looks like you found a bug in my website... Tell me, how did you get here? You can do so here", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/"
-  }, "Let's take you back home")));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (BadPage);
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/privacy.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/non_changing/privacy.jsx ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // /privacy
-// Plain text privacy information
-
-var Privacy = function Privacy() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "privacy"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Privacy"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Privacy Policy lhdgsfdcsvghfgsfdbncghdstafdbvnchytrfdbnvhjhtgrdfcv bmjgygtdfcbn"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Privacy);
-
-/***/ }),
-
-/***/ "./frontend/components/non_changing/terms.jsx":
-/*!****************************************************!*\
-  !*** ./frontend/components/non_changing/terms.jsx ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // /terms
-// Plain Text terms of service
-
-var Terms = function Terms() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "terms"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Terms"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Terms of Use lhdgsfdcsvghfgsfdbncghdstafdbvnchytrfdbnvhjhtgrdfcv bmjgygtdfcbn"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Terms);
 
 /***/ }),
 
@@ -10011,6 +10016,7 @@ var signup = function signup(user) {
   });
 };
 var editUser = function editUser(user) {
+  console.log(user);
   return $.ajax({
     method: 'PATCH',
     url: "/api/users/".concat(user.id),

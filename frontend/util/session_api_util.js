@@ -6,13 +6,16 @@ export const signup = user => (
   })
 );
 
-export const editUser = user => (
+export const editUser = user => {
+  
+  console.log(user);
+  return(
   $.ajax({
     method: 'PATCH',
     url: `/api/users/${user.id}`, 
     data: { user }
   })
-);
+);}
 
 export const closeAcct = userid => (
   $.ajax({
