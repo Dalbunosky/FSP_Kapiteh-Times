@@ -387,7 +387,7 @@ class NewMeetup extends React.Component {
 
               <br/>
               <label>
-                <p className="signinup-title">City:*</p>
+                <p className="signinup-title">Nearest Cross street/Bus stop/Subway exit:*</p>
                 <input type="text"
                   value={this.state.location[4]}
                   onChange={this.updateLocation(4)}
@@ -397,7 +397,7 @@ class NewMeetup extends React.Component {
 
               <br/>
               <label>
-                <p className="signinup-title">State/Province:*</p>
+                <p className="signinup-title">Metropolitan area:*</p>
                 <input type="text"
                   value={this.state.location[5]}
                   onChange={this.updateLocation(5)}
@@ -407,7 +407,7 @@ class NewMeetup extends React.Component {
 
               <br/>
               <label>
-                <p className="signinup-title">Zip:*</p>
+                <p className="signinup-title">State/Province:*</p>
                 <input type="text"
                   value={this.state.location[6]}
                   onChange={this.updateLocation(6)}
