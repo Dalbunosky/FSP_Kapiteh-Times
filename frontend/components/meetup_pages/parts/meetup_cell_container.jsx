@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import MeetupIndexItem from './meetup_index_item';
-import { attendMeetup, unattendMeetup, requestSingleMeetup } from '../../actions/meetup_actions';
+import SingleMeetup from './meetup_cell';
+import { attendMeetup, unattendMeetup, requestSingleMeetup } from '../../../actions/meetup_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -18,4 +18,4 @@ const mapDispatchToProps = dispatch => (
 )
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MeetupIndexItem));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SingleMeetup));

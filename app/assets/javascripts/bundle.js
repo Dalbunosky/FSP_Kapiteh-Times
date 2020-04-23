@@ -7448,7 +7448,6 @@ var mapDTP = function mapDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module './part/meetup_city_row_container'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7467,8 +7466,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-
- // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
+ // import MeetupCityRow from './parts/meetup_city_row';
+// location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
 // time: [],     // [DOW, month, day,  year, hour, minute]
 //Something is coming off wrong for React, 
 // says this is an object instead of the function 
@@ -7485,30 +7484,41 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
   //     // debugger;
   //     // this.props.meetups.fetchEvents();
   //     }
+  // // rendering of individual meetups, from FWF
+  // renderEvents() {
+  //     console.log(this.props);
+  //     if (this.props.meetups.meetups.length > 0) {
+  //         return this.props.meetups.meetups.map((meetup, idx) => {
+  //             const theday = meetup.date.split(" ")[0];
+  //         const thedate = meetup.date.split(" ")[1].concat(" " + meetup.date.split(" ")[2])
+  //         return (
+  //             <div className="single-meetup" key={`meetupid-${idx}`}>
+  //                 <p>{meetup.name}</p>
+  //                 <p>{theday}</p>
+  //                 <p>{thedate}</p>
+  //                 <p>{meetup.openings}</p>
+  //                 <p>{meetup.username}</p>
+  //                 <img src={meetup.photoUrl} />
+  //             </div>
+  //         )
+  //     })
+  //     }
+  // }
 
 
   _createClass(AllMeetups, [{
-    key: "renderEvents",
-    value: function renderEvents() {
-      console.log(this.props);
-
-      if (this.props.meetups.meetups.length > 0) {
-        return this.props.meetups.meetups.map(function (meetup, idx) {
-          var theday = meetup.date.split(" ")[0];
-          var thedate = meetup.date.split(" ")[1].concat(" " + meetup.date.split(" ")[2]);
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "single-meetup",
-            key: "meetupid-".concat(idx)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, meetup.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, theday), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, thedate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, meetup.openings), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, meetup.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            src: meetup.photoUrl
-          }));
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      // debugger;
+      console.log(props); // // sort meetups by city
+      // let cities = {}; //Set.new
+      // this.props.meetups.map
+      // if (cities.includes(meetup.city)){
+      //     cities[meetup.city].push(meetup)
+      // }
+      // else {
+      //     cities[meetup.city] = [meetup]
+      // }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -7545,7 +7555,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapSTP = function mapSTP(state) {
+  console.log(state);
   return {
+    // meetups: state.meetups
     meetups: state.meetups
   };
 };
@@ -8106,21 +8118,21 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "City:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Nearest Cross street/Bus stop/Subway exit:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[4],
         onChange: this.updateLocation(4),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "State/Province:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Metropolitan area:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[5],
         onChange: this.updateLocation(5),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "Zip:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "State/Province:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[6],
         onChange: this.updateLocation(6),
