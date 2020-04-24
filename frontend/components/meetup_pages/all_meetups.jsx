@@ -2,7 +2,7 @@ import React from 'react';
 // import MeetupCityRow from './parts/meetup_city_row';
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
-// time: [],     // [DOW, month, day,  year, hour, minute]
+// time: [],     // [DOW, year, month, day, hour, minute]
 
 //Something is coming off wrong for React, 
 // says this is an object instead of the function 
@@ -12,12 +12,15 @@ import React from 'react';
 class AllMeetups extends React.Component { 
     constructor(props){
         super(props)
+
     }
 
-    // componentDidMount() {
-    //     // debugger;
-    //     // this.props.meetups.fetchEvents();
-    //     }
+// Probably need this because otherwise meetups prop is null
+// With user, once you're logged in, state will always have your info on hand until logout
+// With meetups, not so much.
+    componentDidMount() {   
+        this.props.meetups.fetchEvents();
+    }
 
     // // rendering of individual meetups, from FWF
     // renderEvents() {
