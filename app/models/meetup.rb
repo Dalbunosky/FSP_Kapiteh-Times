@@ -11,7 +11,7 @@
 # time: [],     // [DOW, month, day, year, hour, minute]
 
 class Meetup < ApplicationRecord
-    validates :location, :starttime, :capacity, :topic, :host_id, presence: true
+    validates :location, :starttime, :capacity, :topic, :host_id, :metro_area, presence: true
     validate :has_capacity, :time_filled, :location_filled
   
     belongs_to :host,
@@ -51,8 +51,8 @@ class Meetup < ApplicationRecord
     end
 
     def date_must_be_in_the_future(time_arr)
-      # [DOW, month, day, year, hour, minute]
-      date = DateTime.new(time_arr[3],time_arr[1],time_arr[2],time_arr[4],time_arr[5],0)
+      # [DOW, year, month, day, hour, minute]
+      date = DateTime.new(time_arr[1],time_arr[2],time_arr[3],time_arr[4],time_arr[5],0)
       if date.present? && date < Date.today
         errors.add(:starttime, "needs to be in the future")
       end

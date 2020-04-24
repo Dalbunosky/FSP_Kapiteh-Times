@@ -1,8 +1,9 @@
-export const fetchMeetups = data => (
+export const fetchMeetups = keyword => (
   $.ajax({
     method: 'GET',
     url: '/api/meetups',
-    data // data should all meetups
+    key: keyword
+    // data // data should all meetups
   })
 );
 
@@ -36,6 +37,22 @@ export const editMeetup = meetup => (
 export const cancelMeetup = meetupId => (
   $.ajax({
     method: 'DELETE',
+    url: `/api/meetups/${meetupId}`
+  })
+);
+
+// Reference others if need be
+export const joinMeetup = meetup => ( 
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/meetups/${meetupId}`
+  })
+);
+
+// Reference others if need be
+export const leaveMeetup = meetup => (
+  $.ajax({
+    method: 'PATCH',
     url: `/api/meetups/${meetupId}`
   })
 );

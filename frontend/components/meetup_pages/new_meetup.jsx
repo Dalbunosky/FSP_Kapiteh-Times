@@ -9,7 +9,8 @@ class NewMeetup extends React.Component {
     super(props)
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
+      starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
+      metro_area: "",
       topic: "",
       guests: [],
       capacity: 0,
@@ -71,7 +72,7 @@ class NewMeetup extends React.Component {
     // meetup.location = {wrappedLocation};
     // console.log(meetup);
     //   location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-    //   starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
+    //   starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
     //   topic: "",
     //   guests: [],
     //   capacity: 0,
@@ -106,12 +107,12 @@ class NewMeetup extends React.Component {
     return e => {
       let timestring = e.target.value.split(":");
       let DOW = date[0];
-      let month = date[1];
-      let day = date[2];
-      let year = date[3];
+      let year = date[1];
+      let month = date[2];
+      let day = date[3];
       let hour = timestring[0];
       let minute = timestring[1];
-      this.setState({ starttime: [DOW, month, day, year, hour, minute] })
+      this.setState({ starttime: [DOW, year, month, day, hour, minute] })
       console.log(this.state.starttime)
       // For meridian (AM/PM) processing, go check FWF
     }
@@ -128,7 +129,7 @@ class NewMeetup extends React.Component {
       let year = date[3];
       let hour = timern[4];
       let minute = timern[5];
-      this.setState({ starttime: [DOW, month, day, year, hour, minute] });
+      this.setState({ starttime: [DOW, year, month, day, hour, minute] });
     }
   }
 
@@ -374,6 +375,14 @@ class NewMeetup extends React.Component {
                   className="signinup-input"
                 />
               </label>
+              <label>
+                <p className="signinup-title">Metropolitan Area <br/> (Not the exact city/suburb where the venue is, <br/> but the name of the greater area):*<br/> Example: Pasadena vs Los Angeles</p>
+                <input type="text"
+                  value={this.state.metro_area}
+                  onChange={this.update("metro_area")}
+                  className="signinup-input"
+                />
+              </label>
 
               <br/>
               <label>
@@ -387,7 +396,7 @@ class NewMeetup extends React.Component {
 
               <br/>
               <label>
-                <p className="signinup-title">Nearest Cross street/Bus stop/Subway exit:*</p>
+                <p className="signinup-title">City:*</p>
                 <input type="text"
                   value={this.state.location[4]}
                   onChange={this.updateLocation(4)}
@@ -397,7 +406,7 @@ class NewMeetup extends React.Component {
 
               <br/>
               <label>
-                <p className="signinup-title">Metropolitan area:*</p>
+                <p className="signinup-title">Zip Code:*</p>
                 <input type="text"
                   value={this.state.location[5]}
                   onChange={this.updateLocation(5)}
