@@ -1,10 +1,20 @@
 class Api::MeetupsController < ApplicationController
 
     # location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
-    # time: [],     // [DOW,month, day,  year, hour, minute]
+    # time: [],     // [DOW, year,month, day, hour, minute]
 
     def index   # Show all meetups
         @meetups = Meetup.all.includes(:host)
+
+        # advanced: sort by date: past or present
+            # present: all or just those under current_user
+            # past: just under current_user or all, if admin
+
+        # if params[:city_id]
+        #     @meetups = Meetup.where(city_id: params[:city_id])
+        # else
+        #     @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("tickets.ticket_id = #{current_user.id} or host_id = #{current_user.id}")
+        # end
         render 'api/meetups/index'
     end
 
@@ -56,7 +66,7 @@ class Api::MeetupsController < ApplicationController
     private
     def meetup_params
         # params.require(:meetup).permit(:topic, :capacity, location:[:lat, :lng, :venue_name, :address, :city, :state_province, :zip, :country], guests: [], starttime: [:dow, :month, :day, :year, :hour, :minute]) #, :photo)
-        params.require(:meetup).permit(:topic, :capacity, location:[], guests: [], starttime: []) #, :photo)
+        params.require(:meetup).permit(:topic, :capacity, location:[], :metro_area, guests: [], starttime: []) #, :photo)
         
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_040301) do
+ActiveRecord::Schema.define(version: 2020_04_24_084142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_04_19_040301) do
     t.integer "starttime", default: [], null: false, array: true
     t.integer "guests", default: [], null: false, array: true
     t.integer "endtime", default: [], array: true
+    t.text "metro_area", null: false
   end
 
   create_table "tickets", force: :cascade do |t|
