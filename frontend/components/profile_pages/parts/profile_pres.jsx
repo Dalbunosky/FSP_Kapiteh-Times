@@ -27,7 +27,7 @@ const ProfileBar = props =>{
             <p className="detail">{currentUserStat.email}</p>
             <p className="title">Phone</p>
             <p className="detail">{currentUserStat.phone}</p>
-            <p className="title">Home City</p>
+            <p className="title">Current Metro Area</p>
             <p className="detail">{currentUserStat.home_city}</p>
             <p className="title">My story</p>
             <p className="detail">{contractStory(currentUserStat.story)}</p>

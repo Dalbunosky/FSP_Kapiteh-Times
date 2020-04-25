@@ -124,7 +124,7 @@ class EditProfile extends React.Component {
 
             <br/>
             <label>
-              <p className="signinup-title">Current City:*</p>
+              <p className="signinup-title">Current Metro Area:*</p>
               <input type="text"
                   value={this.state.home_city}
                   onChange={this.update('home_city')}
