@@ -6,6 +6,7 @@ import { JoinedMeetups, HostedMeetups } from './parts/meetup_pres';
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     // this.state = {
     //   email: '',
     //   password: '',

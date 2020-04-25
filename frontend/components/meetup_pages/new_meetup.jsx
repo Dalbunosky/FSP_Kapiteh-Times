@@ -10,7 +10,7 @@ class NewMeetup extends React.Component {
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
-      metro_area: "",
+      metro_area: this.props.host.home_city,
       topic: "",
       guests: [],
       capacity: 0,
@@ -359,7 +359,7 @@ class NewMeetup extends React.Component {
 
   render() {
     const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
-
+    console.log(this.props);
     return (
       <div className="new-meetup">
         <h3>New Meetup!</h3>

@@ -18,8 +18,12 @@ class AllMeetups extends React.Component {
 // Probably need this because otherwise meetups prop is null
 // With user, once you're logged in, state will always have your info on hand until logout
 // With meetups, not so much.
+
     componentDidMount() {   
-        this.props.meetups.fetchEvents();
+        const user = this.props.currentUser.id;
+        // const listOfMeetups = this.props.getMeetups(user);
+        this.props.getMeetups(user);
+        // console.log(listOfMeetups)
     }
 
     // // rendering of individual meetups, from FWF
@@ -43,8 +47,33 @@ class AllMeetups extends React.Component {
     //     }
     // }
 
+    meetupsNearUser(){
+        if(this.props.currentUser != null){
+            return(
+                <div className="nearby_meetups">
+                    <h3>Upcoming meetups at your city</h3>
+                    {/* Meetups */}
+                    {/* <MeetupCityRow city={city} meetups={meetups}> */}
+                </div>
+            )
+        }
+    }
+
+    meetupLabel(){
+        if(this.props.currentUser != null){
+            return(
+                <h3>Upcoming meetups everywhere else</h3>
+            )
+        } else {
+            return(
+                <h3>All upcoming meetups</h3>
+            )
+        }
+
+    }
+
     render() {
-        console.log(props)
+        console.log(this.props)
         // // sort meetups by city
 
         // let cities = {}; //Set.new
@@ -56,20 +85,26 @@ class AllMeetups extends React.Component {
         //     cities[meetup.city] = [meetup]
         // }
 
+        const { meetups } = this.props.meetups;
+
         return (
+
             <div>
                 <div className="meetup-index-header">
                     <p className="show-header-one">SOLID FRIENDSHIPS</p>
                     <p className="show-header-two">They're here to stay.</p>
                 </div>
                 <div className="meetups">
-                    <h3>Meetups at your city</h3>
-                    {/* Meetups */}
-                    {/* <MeetupCityRow city={city} meetups={meetups}> */}
-                    <h3>Meetups everywhere else</h3>
-                    {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
-                    {/* Meetups */}
-                    {/* <MeetupCityRow city={city} meetups={meetups}> */}
+                    {this.meetupsNearUser()}
+                    <div className="all_other_meetups">
+                        {this.meetupLabel()}
+                        {meetups.map (meetup => (
+                            <MeetupCellContainer key={meetup.id} meetup={meetup} />
+                        ))}
+                        {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
+                        {/* Meetups */}
+                        {/* <MeetupCityRow city={city} meetups={meetups}> */}
+                    </div>
                 </div>
             {/* <div className="event-index-one">{this.renderEvents()}</div> */}
             </div>
