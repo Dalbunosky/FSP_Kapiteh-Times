@@ -6624,7 +6624,7 @@ module.exports = warning;
 /*!********************************************!*\
   !*** ./frontend/actions/meetup_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_MEETUPS, RECEIVE_MEETUP, MEETUP_HAS_ERRORS, CLEAR_MEETUP_ERRORS, CANCEL_MEETUP, receiveMeetups, receiveMeetup, receiveMeetupErrors, clearMeetupErrors, cancelMeetup, fetchMeetups, fetchMeetup, createMeetup */
+/*! exports provided: RECEIVE_MEETUPS, RECEIVE_MEETUP, MEETUP_HAS_ERRORS, CLEAR_MEETUP_ERRORS, CANCEL_MEETUP, receiveMeetups, receiveMeetup, receiveMeetupErrors, clearMeetupErrors, meetupCanceled, fetchMeetups, fetchMeetup, createMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6638,10 +6638,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMeetup", function() { return receiveMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMeetupErrors", function() { return receiveMeetupErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearMeetupErrors", function() { return clearMeetupErrors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelMeetup", function() { return cancelMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "meetupCanceled", function() { return meetupCanceled; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetups", function() { return fetchMeetups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetup", function() { return fetchMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMeetup", function() { return createMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editMeetup", function() { return editMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelMeetup", function() { return cancelMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinMeetup", function() { return joinMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveMeetup", function() { return leaveMeetup; });
 /* harmony import */ var _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/meetup_api_util */ "./frontend/util/meetup_api_util.js");
 
 var RECEIVE_MEETUPS = 'RECEIVE_MEETUPS';
@@ -6651,6 +6655,7 @@ var CLEAR_MEETUP_ERRORS = 'CLEAR_MEETUP_ERRORS';
 var CANCEL_MEETUP = 'CANCEL_MEETUP'; // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 var receiveMeetups = function receiveMeetups(meetups) {
+  console.log(meetups);
   return {
     type: RECEIVE_MEETUPS,
     meetups: meetups
@@ -6679,7 +6684,7 @@ var clearMeetupErrors = function clearMeetupErrors() {
     type: CLEAR_MEETUP_ERRORS
   };
 };
-var cancelMeetup = function cancelMeetup() {
+var meetupCanceled = function meetupCanceled() {
   return {
     type: CANCEL_MEETUP
   };
@@ -6689,24 +6694,67 @@ var cancelMeetup = function cancelMeetup() {
 //   average_rating,
 //   host
 // });
+// Thunk actions
+// Fetch all meetups, for index, 
+// MAY SPLIT IN TWO FOR PROFILE, MEETUPS PAGE
 
-var fetchMeetups = function fetchMeetups(filters) {
+var fetchMeetups = function fetchMeetups(keyword) {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetups"](filters).then(function (meetups) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetups"](keyword).then(function (meetups) {
       return dispatch(receiveMeetups(meetups));
     });
   };
-};
+}; // Fetch meetup in question, for show
+
 var fetchMeetup = function fetchMeetup(id) {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetup"](id).then(function (payload) {
-      return dispatch(receiveMeetup(payload));
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetup"](id).then(function (meetup) {
+      return dispatch(receiveMeetup(meetup));
     });
   };
-};
+}; // Creates meetup
+
 var createMeetup = function createMeetup(meetup) {
   return function (dispatch) {
     return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["createMeetup"](meetup).then(function (meetup) {
+      return dispatch(receiveMeetup(meetup));
+    }, function (err) {
+      return dispatch(receiveMeetupErrors(err.responseJSON));
+    });
+  };
+}; // Edits meetup
+
+var editMeetup = function editMeetup(meetup) {
+  return function (dispatch) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["editMeetup"](meetup).then(function (meetup) {
+      return dispatch(receiveMeetup(meetup));
+    }, function (err) {
+      return dispatch(receiveMeetupErrors(err.responseJSON));
+    });
+  };
+}; // Cancels meetup
+
+var cancelMeetup = function cancelMeetup(meetup) {
+  return function (dispatch) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["cancelMeetup"](meetup).then(function (meetup) {
+      return dispatch(meetupCanceled());
+    });
+  };
+}; // Join meetup
+
+var joinMeetup = function joinMeetup(meetup) {
+  return function (dispatch) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["joinMeetup"](meetup).then(function (meetup) {
+      return dispatch(receiveMeetup(meetup));
+    }, function (err) {
+      return dispatch(receiveMeetupErrors(err.responseJSON));
+    });
+  };
+}; // Leave meetup
+
+var leaveMeetup = function leaveMeetup(meetup) {
+  return function (dispatch) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["leaveMeetup"](meetup).then(function (meetup) {
       return dispatch(receiveMeetup(meetup));
     }, function (err) {
       return dispatch(receiveMeetupErrors(err.responseJSON));
@@ -6863,7 +6911,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meetup_pages_meetup_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./meetup_pages/meetup_container */ "./frontend/components/meetup_pages/meetup_container.js");
 /* harmony import */ var _meetup_pages_new_meetup_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./meetup_pages/new_meetup_container */ "./frontend/components/meetup_pages/new_meetup_container.js");
 /* harmony import */ var _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./meetup_pages/edit_meetup_container */ "./frontend/components/meetup_pages/edit_meetup_container.js");
-/* harmony import */ var _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _molding_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./molding.jsx */ "./frontend/components/molding.jsx");
 /* harmony import */ var _basic_home__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./basic/home */ "./frontend/components/basic/home.jsx");
@@ -6960,7 +7007,7 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["HostRoute"], {
     exact: true,
     path: "/meetups/edit",
-    component: _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11___default.a
+    component: _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     to: "/oops",
     component: _basic_oops__WEBPACK_IMPORTED_MODULE_19__["default"]
@@ -7468,7 +7515,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
  // import MeetupCityRow from './parts/meetup_city_row';
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
-// time: [],     // [DOW, month, day,  year, hour, minute]
+// time: [],     // [DOW, year, month, day, hour, minute]
 //Something is coming off wrong for React, 
 // says this is an object instead of the function 
 // that react wants.
@@ -7480,36 +7527,60 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, AllMeetups);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(AllMeetups).call(this, props));
-  } // componentDidMount() {
-  //     // debugger;
-  //     // this.props.meetups.fetchEvents();
-  //     }
-  // // rendering of individual meetups, from FWF
-  // renderEvents() {
-  //     console.log(this.props);
-  //     if (this.props.meetups.meetups.length > 0) {
-  //         return this.props.meetups.meetups.map((meetup, idx) => {
-  //             const theday = meetup.date.split(" ")[0];
-  //         const thedate = meetup.date.split(" ")[1].concat(" " + meetup.date.split(" ")[2])
-  //         return (
-  //             <div className="single-meetup" key={`meetupid-${idx}`}>
-  //                 <p>{meetup.name}</p>
-  //                 <p>{theday}</p>
-  //                 <p>{thedate}</p>
-  //                 <p>{meetup.openings}</p>
-  //                 <p>{meetup.username}</p>
-  //                 <img src={meetup.photoUrl} />
-  //             </div>
-  //         )
-  //     })
-  //     }
-  // }
+  } // Probably need this because otherwise meetups prop is null
+  // With user, once you're logged in, state will always have your info on hand until logout
+  // With meetups, not so much.
 
 
   _createClass(AllMeetups, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var user = this.props.currentUser.id; // const listOfMeetups = this.props.getMeetups(user);
+
+      this.props.getMeetups(user); // console.log(listOfMeetups)
+    } // // rendering of individual meetups, from FWF
+    // renderEvents() {
+    //     console.log(this.props);
+    //     if (this.props.meetups.meetups.length > 0) {
+    //         return this.props.meetups.meetups.map((meetup, idx) => {
+    //             const theday = meetup.date.split(" ")[0];
+    //         const thedate = meetup.date.split(" ")[1].concat(" " + meetup.date.split(" ")[2])
+    //         return (
+    //             <div className="single-meetup" key={`meetupid-${idx}`}>
+    //                 <p>{meetup.name}</p>
+    //                 <p>{theday}</p>
+    //                 <p>{thedate}</p>
+    //                 <p>{meetup.openings}</p>
+    //                 <p>{meetup.username}</p>
+    //                 <img src={meetup.photoUrl} />
+    //             </div>
+    //         )
+    //     })
+    //     }
+    // }
+
+  }, {
+    key: "meetupsNearUser",
+    value: function meetupsNearUser() {
+      if (this.props.currentUser != null) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "nearby_meetups"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups at your city"));
+      }
+    }
+  }, {
+    key: "meetupLabel",
+    value: function meetupLabel() {
+      if (this.props.currentUser != null) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups everywhere else");
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All upcoming meetups");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log(props); // // sort meetups by city
+      console.log(this.props); // // sort meetups by city
       // let cities = {}; //Set.new
       // this.props.meetups.map
       // if (cities.includes(meetup.city)){
@@ -7519,6 +7590,7 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
       //     cities[meetup.city] = [meetup]
       // }
 
+      var meetups = this.props.meetups.meetups;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -7527,7 +7599,14 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
         className: "show-header-two"
       }, "They're here to stay.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetups"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups at your city"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups everywhere else")));
+      }, this.meetupsNearUser(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "all_other_meetups"
+      }, this.meetupLabel(), meetups.map(function (meetup) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MeetupCellContainer, {
+          key: meetup.id,
+          meetup: meetup
+        });
+      }))));
     }
   }]);
 
@@ -7557,15 +7636,16 @@ __webpack_require__.r(__webpack_exports__);
 var mapSTP = function mapSTP(state) {
   console.log(state);
   return {
-    // meetups: state.meetups
-    meetups: state.meetups
+    meetups: state.meetups,
+    currentUser: state.session.id,
+    currentUserCity: state.users[state.session.id].home_city
   };
 };
 
 var mapDTP = function mapDTP(dispatch) {
   return {
-    receiveMeetups: function receiveMeetups() {
-      return dispatch(fetchMeetups());
+    getMeetups: function getMeetups(user) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_1__["fetchMeetups"])(user));
     }
   };
 };
@@ -7578,10 +7658,41 @@ var mapDTP = function mapDTP(dispatch) {
 /*!*******************************************************************!*\
   !*** ./frontend/components/meetup_pages/edit_meetup_container.js ***!
   \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _new_meetup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_meetup */ "./frontend/components/meetup_pages/new_meetup.jsx");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
 
 
+
+
+
+var mapSTP = function mapSTP(state) {
+  return {
+    errors: state.errors,
+    meetups: state.meetups,
+    // Doubt I need this here
+    host: state.users[state.session.id]
+  };
+};
+
+var mapDTP = function mapDTP(dispatch) {
+  return {
+    // functions needed:
+    processForm: function processForm(meetup) {
+      return dispatch(editMeetup(meetup));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["clearMeetupErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_new_meetup__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -7593,7 +7704,7 @@ var mapDTP = function mapDTP(dispatch) {
 /***/ (function(module, exports) {
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
-// time: [],     // [DOW,month, day,  year, hour, minute]
+// time: [],     // [DOW, year, month, day, hour, minute]
 
 /***/ }),
 
@@ -7696,7 +7807,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: [null, null, null, null, null, null],
-      // [DOW, month, day,  year, hour, minute]
+      // [DOW, year, month, day, hour, minute]
+      metro_area: _this.props.host.home_city,
       topic: "",
       guests: [],
       capacity: 0 // host: props.host.id,     // currentUser.id
@@ -7769,7 +7881,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       // meetup.location = {wrappedLocation};
       // console.log(meetup);
       //   location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      //   starttime: [null, null, null, null, null, null],     // [DOW, month, day,  year, hour, minute]
+      //   starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
       //   topic: "",
       //   guests: [],
       //   capacity: 0,
@@ -7814,14 +7926,14 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         var timestring = e.target.value.split(":");
         var DOW = date[0];
-        var month = date[1];
-        var day = date[2];
-        var year = date[3];
+        var year = date[1];
+        var month = date[2];
+        var day = date[3];
         var hour = timestring[0];
         var minute = timestring[1];
 
         _this6.setState({
-          starttime: [DOW, month, day, year, hour, minute]
+          starttime: [DOW, year, month, day, hour, minute]
         });
 
         console.log(_this6.state.starttime); // For meridian (AM/PM) processing, go check FWF
@@ -7847,7 +7959,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         var minute = timern[5];
 
         _this7.setState({
-          starttime: [DOW, month, day, year, hour, minute]
+          starttime: [DOW, year, month, day, hour, minute]
         });
       };
     }
@@ -8093,6 +8205,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         width: "200px",
         src: this.state.photoUrl
       }) : null;
+      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New Meetup!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -8109,6 +8222,13 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         value: this.state.location[2],
         onChange: this.updateLocation(2),
         className: "signinup-input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "signinup-title"
+      }, "Metropolitan Area ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " (Not the exact city/suburb where the venue is, ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " but the name of the greater area):*", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " Example: Pasadena vs Los Angeles"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.metro_area,
+        onChange: this.update("metro_area"),
+        className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Address:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -8118,14 +8238,14 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "Nearest Cross street/Bus stop/Subway exit:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "City:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[4],
         onChange: this.updateLocation(4),
         className: "signinup-input"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "Metropolitan area:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Zip Code:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.location[5],
         onChange: this.updateLocation(5),
@@ -8466,7 +8586,7 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
 
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "Current City:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Current Metro Area:*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.home_city,
         onChange: this.update('home_city'),
@@ -8817,7 +8937,7 @@ var ProfileBar = function ProfileBar(props) {
     className: "detail"
   }, currentUserStat.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "title"
-  }, "Home City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, "Current Metro Area"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "detail"
   }, currentUserStat.home_city), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "title"
@@ -8882,7 +9002,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Profile);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Profile).call(this, props)); // this.state = {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Profile).call(this, props));
+    console.log(props); // this.state = {
     //   email: '',
     //   password: '',
     //   host_status: false
@@ -8974,23 +9095,10 @@ var mapSTP = function mapSTP(state) {
 };
 
 var mapDTP = function mapDTP(dispatch) {
-  return {
-    getUser: function (_getUser) {
-      function getUser() {
-        return _getUser.apply(this, arguments);
-      }
-
-      getUser.toString = function () {
-        return _getUser.toString();
-      };
-
-      return getUser;
-    }(function () {
-      return dispatch(getUser());
-    }) // removeGuest: id => dispatch(removeGuest(id)),
+  return {// getUser: () => dispatch(getUser()),
+    // removeGuest: id => dispatch(removeGuest(id)),
     // removeMeetup: id => dispatch(removeMeetup(id))
     // processForm: (user) => dispatch(signin(user)),
-
   };
 };
 
@@ -9464,7 +9572,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, confirmPasswordWarning(this.state.password, this.state.password2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
-      }, "Where are you now? Which city*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Where are you now? Which metropolitan area? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " Not the exact suburb, but the greater *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.home_city,
         onChange: this.update('home_city'),
@@ -9833,7 +9941,7 @@ var configureStore = function configureStore() {
 /*!******************************************!*\
   !*** ./frontend/util/meetup_api_util.js ***!
   \******************************************/
-/*! exports provided: fetchMeetups, fetchMeetup, createMeetup, editMeetup, cancelMeetup */
+/*! exports provided: fetchMeetups, fetchMeetup, createMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9843,11 +9951,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMeetup", function() { return createMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editMeetup", function() { return editMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelMeetup", function() { return cancelMeetup; });
-var fetchMeetups = function fetchMeetups(data) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinMeetup", function() { return joinMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveMeetup", function() { return leaveMeetup; });
+var fetchMeetups = function fetchMeetups(keyword) {
   return $.ajax({
     method: 'GET',
     url: '/api/meetups',
-    data: data // data should all meetups
+    key: keyword // data // data should all meetups
 
   });
 };
@@ -9883,6 +9993,20 @@ var editMeetup = function editMeetup(meetup) {
 var cancelMeetup = function cancelMeetup(meetupId) {
   return $.ajax({
     method: 'DELETE',
+    url: "/api/meetups/".concat(meetupId)
+  });
+}; // Reference others if need be
+
+var joinMeetup = function joinMeetup(meetup) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/meetups/".concat(meetupId)
+  });
+}; // Reference others if need be
+
+var leaveMeetup = function leaveMeetup(meetup) {
+  return $.ajax({
+    method: 'PATCH',
     url: "/api/meetups/".concat(meetupId)
   });
 }; //Leave for later

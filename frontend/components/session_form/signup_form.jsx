@@ -144,7 +144,7 @@ class SignUpForm extends React.Component {
 
             <br/>
             <label>
-              <p className="signinup-title">Where are you now? Which city*</p>
+              <p className="signinup-title">Where are you now? Which metropolitan area? <br/> Not the exact suburb, but the greater *</p>
               <input type="text"
                 value={this.state.home_city}
                 onChange={this.update('home_city')}

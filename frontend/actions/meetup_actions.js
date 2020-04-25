@@ -36,7 +36,7 @@ export const clearMeetupErrors = () => ({
   type: CLEAR_MEETUP_ERRORS,
 })
 
-export const cancelMeetup = () => ({
+export const meetupCanceled = () => ({
   type: CANCEL_MEETUP,
 });
 
@@ -86,7 +86,7 @@ export const editMeetup = meetup => dispatch => (
 // Cancels meetup
 export const cancelMeetup = meetup => dispatch => (
   APIUtil.cancelMeetup(meetup).then(meetup => (
-    dispatch(cancelMeetup(meetup))
+    dispatch(meetupCanceled())
   ))
 );
 
