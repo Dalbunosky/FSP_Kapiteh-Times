@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
-import { receiveMeetups } from '../../actions/meetup_actions';
+import { fetchMeetups } from '../../actions/meetup_actions';
 import AllMeetups from './all_meetups';
 
 const mapSTP = (state) => {
     console.log(state)
     return({
-    // meetups: state.meetups
-    meetups: state.meetups
+    meetups: state.meetups,
+    currentUser: state.session.id,
+    currentUserCity: state.users[state.session.id].home_city
 })}
 
 const mapDTP = dispatch => ({
-    receiveMeetups: () => dispatch(fetchMeetups())
+    getMeetups: user => dispatch(fetchMeetups(user))
 })
 
 export default connect(mapSTP, mapDTP)(AllMeetups);

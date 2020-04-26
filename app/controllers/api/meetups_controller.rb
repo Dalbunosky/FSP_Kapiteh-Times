@@ -66,7 +66,7 @@ class Api::MeetupsController < ApplicationController
     private
     def meetup_params
         # params.require(:meetup).permit(:topic, :capacity, location:[:lat, :lng, :venue_name, :address, :city, :state_province, :zip, :country], guests: [], starttime: [:dow, :month, :day, :year, :hour, :minute]) #, :photo)
-        params.require(:meetup).permit(:topic, :capacity, location:[], :metro_area, guests: [], starttime: []) #, :photo)
+        params.require(:meetup).permit(:topic, :capacity, :metro_area, location:[], guests: [], starttime: []) #, :photo)
         
     end
 end
