@@ -4,8 +4,10 @@ import { attendMeetup, unattendMeetup, requestSingleMeetup } from '../../../acti
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
+    console.log(state)
     return {    // That's it? For joining?
-        currentUser: state.session.currentUser
+        state
+        // currentUser: state.session.currentUser
     };
 };
 

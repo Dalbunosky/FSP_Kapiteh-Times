@@ -6655,7 +6655,7 @@ var CLEAR_MEETUP_ERRORS = 'CLEAR_MEETUP_ERRORS';
 var CANCEL_MEETUP = 'CANCEL_MEETUP'; // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 var receiveMeetups = function receiveMeetups(meetups) {
-  console.log(meetups);
+  // console.log(meetups)
   return {
     type: RECEIVE_MEETUPS,
     meetups: meetups
@@ -6996,7 +6996,7 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["ProtectedRoute"], {
     path: "/profile",
     component: _profile_pages_profile_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["ProtectedRoute"], {
     exact: true,
     path: "/meetups",
     component: _meetup_pages_all_meetups_container__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -7495,6 +7495,7 @@ var mapDTP = function mapDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7512,6 +7513,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
  // import MeetupCityRow from './parts/meetup_city_row';
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
@@ -7590,7 +7592,7 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
       //     cities[meetup.city] = [meetup]
       // }
 
-      var meetups = this.props.meetups.meetups;
+      var meetups = Array.from(this.props.meetups);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -7601,12 +7603,14 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
         className: "meetups"
       }, this.meetupsNearUser(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all_other_meetups"
-      }, this.meetupLabel(), meetups.map(function (meetup) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MeetupCellContainer, {
-          key: meetup.id,
-          meetup: meetup
-        });
-      }))));
+      }, this.meetupLabel(), console.log(meetups), meetups.map(function (meetup) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-index-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "meetup-details"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", meetup.starttime[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity)));
+      } // <MeetupCellContainer key={meetup.id} meetup={meetup} />
+      ))));
     }
   }]);
 
@@ -7634,7 +7638,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapSTP = function mapSTP(state) {
-  console.log(state);
+  // console.log(state)
   return {
     meetups: state.meetups,
     currentUser: state.session.id,
@@ -9934,6 +9938,169 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/convertor_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/convertor_util.js ***!
+  \*****************************************/
+/*! exports provided: onTimeChange, onDateChange, convertDOWtoInt, convertMonthtoInt, convertIntoMonth, convertIntoDOW, arrayToDateTime, convertoAMPM, formatDate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onTimeChange", function() { return onTimeChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onDateChange", function() { return onDateChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDOWtoInt", function() { return convertDOWtoInt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertMonthtoInt", function() { return convertMonthtoInt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertIntoMonth", function() { return convertIntoMonth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertIntoDOW", function() { return convertIntoDOW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayToDateTime", function() { return arrayToDateTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertoAMPM", function() { return convertoAMPM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDate", function() { return formatDate; });
+var _this = undefined;
+
+var onTimeChange = function onTimeChange() {
+  var date = _this.state.starttime;
+  return function (e) {
+    var timestring = e.target.value.split(":");
+    var DOW = date[0];
+    var year = date[1];
+    var month = date[2];
+    var day = date[3];
+    var hour = timestring[0];
+    var minute = timestring[1];
+
+    _this.setState({
+      starttime: [DOW, year, month, day, hour, minute]
+    });
+
+    console.log(_this.state.starttime); // For meridian (AM/PM) processing, go check FWF
+  };
+};
+var onDateChange = function onDateChange() {
+  var timern = _this.state.starttime;
+  return function (e) {
+    var date = e.toDateString().split(" ");
+
+    var DOW = _this.convertDOWtoInt(date[0]);
+
+    var month = _this.convertMonthtoInt(date[1]);
+
+    var day = date[2];
+    var year = date[3];
+    var hour = timern[4];
+    var minute = timern[5];
+
+    _this.setState({
+      starttime: [DOW, year, month, day, hour, minute]
+    });
+  };
+};
+var convertDOWtoInt = function convertDOWtoInt(dow) {
+  switch (dow) {
+    case "Sun":
+      return 0;
+
+    case "Mon":
+      return 1;
+
+    case "Tue":
+      return 2;
+
+    case "Wed":
+      return 3;
+
+    case "Thu":
+      return 4;
+
+    case "Fri":
+      return 5;
+
+    default:
+      return 6;
+  }
+};
+var convertMonthtoInt = function convertMonthtoInt(dow) {
+  switch (dow) {
+    case "Jan":
+      return 1;
+
+    case "Feb":
+      return 2;
+
+    case "Mar":
+      return 3;
+
+    case "Apr":
+      return 4;
+
+    case "May":
+      return 5;
+
+    case "Jun":
+      return 6;
+
+    case "Jul":
+      return 7;
+
+    case "Aug":
+      return 8;
+
+    case "Sep":
+      return 9;
+
+    case "Oct":
+      return 10;
+
+    case "Nov":
+      return 11;
+
+    case "Dec":
+      return 12;
+
+    default:
+      return 0;
+  }
+};
+var convertIntoMonth = function convertIntoMonth(_int) {
+  var months = ["N/A", "January", "Feburary", "March", "April", "May", "June", "July", "August", "Septemmber", "October", "November", "December"];
+  return months[_int];
+};
+var convertIntoDOW = function convertIntoDOW(_int2) {
+  var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  return weekday[_int2];
+};
+var arrayToDateTime = function arrayToDateTime(timeArr) {
+  // [DOW, yr, month, day, hr, min]
+  var day = "".concat(convertIntoDOW(timeArr[0]), ", ").concat(convertIntoMonth(timeArr[2]), " ").concat(timeArr[3], ", ").concat(timeArr[1]);
+  var determAMPM = convertoAMPM(timeArr[4]);
+  var time = "".concat(determAMPM[0], ":").concat(timeArr[5], " ").concat(determAMPM[1]);
+};
+var convertoAMPM = function convertoAMPM(hour) {
+  if (hour === 0) {
+    return [12, "AM"];
+  } else if (hour < 12) {
+    return [hour, "AM"];
+  } else if (hour === 12) {
+    return [12, "PM"];
+  } else {
+    return [hour, "PM"];
+  }
+}; // export const toggle12N24Hour = (currForm, hour, minute)(
+//     currForm === "12Hr" ? 
+// )
+
+var formatDate = function formatDate(format, year, month, day) {
+  if (format === "yyyy/mm/dd") {
+    return "".concat(year, "/").concat(month, "/").concat(day);
+  } else if (format === "mm/dd/yyyy") {
+    return "".concat(month, "/").concat(day, "/").concat(year);
+  } else if (format === "mm/dd/yyyy") {
+    return "".concat(day, "/").concat(month, "/").concat(year);
+  }
+};
 
 /***/ }),
 

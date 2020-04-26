@@ -1,4 +1,5 @@
 import React from 'react';
+import * as convertFunctions from '../../util/convertor_util';
 // import MeetupCityRow from './parts/meetup_city_row';
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
@@ -85,7 +86,7 @@ class AllMeetups extends React.Component {
         //     cities[meetup.city] = [meetup]
         // }
 
-        const { meetups } = this.props.meetups;
+        const meetups = Array.from(this.props.meetups);
 
         return (
 
@@ -98,9 +99,21 @@ class AllMeetups extends React.Component {
                     {this.meetupsNearUser()}
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
-                        {meetups.map (meetup => (
-                            <MeetupCellContainer key={meetup.id} meetup={meetup} />
-                        ))}
+                        {console.log(meetups)}
+
+                        {meetups.map (meetup => 
+                            <div className="meetup-index-item">
+                                <ul className="meetup-details">
+                                    <li>Venue:   {meetup.location[2]}</li>
+                                    <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+                                    <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
+                                    <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
+                                    {/* <li>End:    </li> */}
+                                    <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
+                                </ul>
+                            </div>
+                            // <MeetupCellContainer key={meetup.id} meetup={meetup} />
+                        )}
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
                         {/* Meetups */}
                         {/* <MeetupCityRow city={city} meetups={meetups}> */}

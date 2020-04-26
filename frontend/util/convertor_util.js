@@ -91,14 +91,24 @@ export const convertIntoDOW = int =>{
 
 export const arrayToDateTime = timeArr =>{ // [DOW, yr, month, day, hr, min]
     const day = `${convertIntoDOW(timeArr[0])}, ${convertIntoMonth(timeArr[2])} ${timeArr[3]}, ${timeArr[1]}`
-    const determAMPM = convertotAMPM(timeArr[4])
+    const determAMPM = convertoAMPM(timeArr[4])
     const time = `${determAMPM[0]}:${timeArr[5]} ${determAMPM[1]}`
 
 }
 
-export const convertotAMPM = hour =>{
+export const convertoAMPM = hour =>{
     if(hour === 0){return [12, "AM"]}
     else if(hour < 12){return [hour, "AM"]}
     else if(hour === 12){return [12, "PM"]}
     else {return [hour, "PM"]}
+}
+
+// export const toggle12N24Hour = (currForm, hour, minute)(
+//     currForm === "12Hr" ? 
+// )
+
+export const formatDate = (format, year, month, day) =>{
+    if (format === "yyyy/mm/dd"){return(`${year}/${month}/${day}`)}
+    else if (format === "mm/dd/yyyy"){return(`${month}/${day}/${year}`)}
+    else if (format === "mm/dd/yyyy"){return(`${day}/${month}/${year}`)}
 }

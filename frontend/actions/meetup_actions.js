@@ -9,7 +9,7 @@ export const CANCEL_MEETUP = 'CANCEL_MEETUP';
 // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 export const receiveMeetups = meetups => {
-  console.log(meetups)
+  // console.log(meetups)
   return({
   type: RECEIVE_MEETUPS,
   meetups,
