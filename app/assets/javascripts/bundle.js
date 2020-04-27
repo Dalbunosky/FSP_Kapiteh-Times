@@ -6655,15 +6655,7 @@ var CLEAR_MEETUP_ERRORS = 'CLEAR_MEETUP_ERRORS';
 var CANCEL_MEETUP = 'CANCEL_MEETUP'; // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 var receiveMeetups = function receiveMeetups(meetups) {
-<<<<<<< 9bd45767cf7da11cc947d7014e96074f91aeab6c
-<<<<<<< HEAD
   // console.log(meetups)
-=======
-  console.log(meetups);
->>>>>>> 428c6f6098608ea1b71de27c54680af1a13ea7fa
-=======
-  // console.log(meetups)
->>>>>>> Finally got to display meetups properly, brute force instead of using containers. Not sorted into city rows yet. Added to convertor util
   return {
     type: RECEIVE_MEETUPS,
     meetups: meetups
@@ -7004,7 +6996,7 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["ProtectedRoute"], {
     path: "/profile",
     component: _profile_pages_profile_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["ProtectedRoute"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/meetups",
     component: _meetup_pages_all_meetups_container__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -7600,15 +7592,7 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
       //     cities[meetup.city] = [meetup]
       // }
 
-<<<<<<< 9bd45767cf7da11cc947d7014e96074f91aeab6c
-<<<<<<< HEAD
       var meetups = Array.from(this.props.meetups);
-=======
-      var meetups = this.props.meetups.meetups;
->>>>>>> 428c6f6098608ea1b71de27c54680af1a13ea7fa
-=======
-      var meetups = Array.from(this.props.meetups);
->>>>>>> Finally got to display meetups properly, brute force instead of using containers. Not sorted into city rows yet. Added to convertor util
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -7619,10 +7603,6 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
         className: "meetups"
       }, this.meetupsNearUser(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all_other_meetups"
-<<<<<<< 9bd45767cf7da11cc947d7014e96074f91aeab6c
-<<<<<<< HEAD
-=======
->>>>>>> Finally got to display meetups properly, brute force instead of using containers. Not sorted into city rows yet. Added to convertor util
       }, this.meetupLabel(), console.log(meetups), meetups.map(function (meetup) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "meetup-index-item"
@@ -7631,17 +7611,6 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", meetup.starttime[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity)));
       } // <MeetupCellContainer key={meetup.id} meetup={meetup} />
       ))));
-<<<<<<< 9bd45767cf7da11cc947d7014e96074f91aeab6c
-=======
-      }, this.meetupLabel(), meetups.map(function (meetup) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MeetupCellContainer, {
-          key: meetup.id,
-          meetup: meetup
-        });
-      }))));
->>>>>>> 428c6f6098608ea1b71de27c54680af1a13ea7fa
-=======
->>>>>>> Finally got to display meetups properly, brute force instead of using containers. Not sorted into city rows yet. Added to convertor util
     }
   }]);
 
@@ -7671,9 +7640,9 @@ __webpack_require__.r(__webpack_exports__);
 var mapSTP = function mapSTP(state) {
   // console.log(state)
   return {
-    meetups: state.meetups,
-    currentUser: state.session.id,
-    currentUserCity: state.users[state.session.id].home_city
+    meetups: state.meetups // currentUser: state.session.id,
+    // currentUserCity: state.users[state.session.id].home_city
+
   };
 };
 
@@ -7695,16 +7664,6 @@ var mapDTP = function mapDTP(dispatch) {
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
-<<<<<<< HEAD
-=======
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _new_meetup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_meetup */ "./frontend/components/meetup_pages/new_meetup.jsx");
-/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
-
->>>>>>> 428c6f6098608ea1b71de27c54680af1a13ea7fa
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -7714,11 +7673,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 428c6f6098608ea1b71de27c54680af1a13ea7fa
 var mapSTP = function mapSTP(state) {
   return {
     errors: state.errors,
@@ -8884,57 +8840,121 @@ var mapDTP = function mapDTP(dispatch) {
 /*!*****************************************************************!*\
   !*** ./frontend/components/profile_pages/parts/meetup_pres.jsx ***!
   \*****************************************************************/
-/*! exports provided: JoinedMeetups, HostedMeetups */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JoinedMeetups", function() { return JoinedMeetups; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HostedMeetups", function() { return HostedMeetups; });
-var _this = undefined;
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/convertor_util */ "./frontend/util/convertor_util.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var JoinedMeetups = function JoinedMeetups(props) {
-  return React.createElement("div", {
-    className: "my-meetup"
-  }, React.createElement("p", {
-    className: "meetup-spec"
-  }, "Location:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, _this.props.meetup.location), React.createElement("p", {
-    className: "meetup-spec"
-  }, "Date:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, _this.props.meetup.date), React.createElement("p", {
-    className: "meetup-spec"
-  }, "Time:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, _this.props.meetup.time), React.createElement("p", {
-    className: "meetup-spec"
-  }, "Host:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, "Host details"));
-};
-var HostedMeetups = function HostedMeetups(props) {
-  return React.createElement("div", {
-    className: "my-meetup"
-  }, React.createElement("p", {
-    className: "meetup-spec"
-  }, "Location:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, _this.props.meetup.location), React.createElement("p", {
-    className: "meetup-spec"
-  }, "Date:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, _this.props.meetup.date), React.createElement("p", {
-    className: "meetup-spec"
-  }, "Time:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, _this.props.meetup.time), React.createElement("p", {
-    className: "meetup-spec"
-  }, "Guests:"), React.createElement("p", {
-    className: "meetup-detail"
-  }, meetup.location));
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var MeetUpCell = /*#__PURE__*/function (_React$Component) {
+  _inherits(MeetUpCell, _React$Component);
+
+  function MeetUpCell(props) {
+    _classCallCheck(this, MeetUpCell);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(MeetUpCell).call(this, props)); // this.state = {
+    //   email: '',
+    //   password: '',
+    //   host_status: false
+    // };
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  } // const MeetUpCell = props =>{
+
+
+  _createClass(MeetUpCell, [{
+    key: "uniqueOps",
+    value: function uniqueOps(type) {
+      if (type === "join") {
+        // If you are joining a meetup, you want to see the host's contacts and (eventually) face
+        // You want to be able to leave the meetup
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "host name, contact, story, face, city, email leave");
+      } else {
+        // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
+        // You want to be able to edit/cancel the meetup
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "guests names, contact, remove guests edit, cancel");
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var meetup = this.props.meetup;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup-index-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "meetup-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", meetup.starttime[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", meetup.topic)), this.uniqueOps(this.props.type));
+    }
+  }]);
+
+  return MeetUpCell;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // export const JoinedMeetups = props =>(
+//     // <div className="my-meetup">
+//     //     <p className="meetup-spec">Location:</p>
+//     //     <p className="meetup-detail">{this.props.meetup.location}</p>
+//     //     <p className="meetup-spec">Date:</p>
+//     //     <p className="meetup-detail">{this.props.meetup.date}</p>
+//     //     <p className="meetup-spec">Time:</p>
+//     //     <p className="meetup-detail">{this.props.meetup.time}</p>
+//     //     <p className="meetup-spec">Host:</p>
+//     //     {/* <p className="meetup-detail">{meetup.location}</p> */}
+//     //     {/* Host name, photo, button to host */}
+//     //     <p className="meetup-detail">Host details</p>
+//     //     {/* <button></button> Button to cancel meetup */}
+//     //     {/* If in the future, cancel button */}
+//     // </div>
+//     <div className="meetup-index-item">
+//     <ul className="meetup-details">
+//       <li>Venue:   {meetup.location[2]}</li>
+//       <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+//       <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
+//       <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
+//       {/* <li>End:    </li> */}
+//       <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
+//       <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
+//     </ul>
+//   </div>
+// )
+// export const HostedMeetups = props =>(
+//     <div className="my-meetup">
+//         <p className="meetup-spec">Location:</p>
+//         <p className="meetup-detail">{this.props.meetup.location}</p>
+//         <p className="meetup-spec">Date:</p>
+//         <p className="meetup-detail">{this.props.meetup.date}</p>
+//         <p className="meetup-spec">Time:</p>
+//         <p className="meetup-detail">{this.props.meetup.time}</p>
+//         <p className="meetup-spec">Guests:</p>
+//         <p className="meetup-detail">{meetup.location}</p>
+//         {/* Guest names */}
+//         {/* Guest contacts */}
+//         {/* If in the future, cancel button */}
+//     </div>
+// )
+
+
+/* harmony default export */ __webpack_exports__["default"] = (MeetUpCell);
 
 /***/ }),
 
@@ -9019,6 +9039,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _parts_profile_pres__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/profile_pres */ "./frontend/components/profile_pages/parts/profile_pres.jsx");
 /* harmony import */ var _parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/meetup_pres */ "./frontend/components/profile_pages/parts/meetup_pres.jsx");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9042,6 +9063,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var Profile = /*#__PURE__*/function (_React$Component) {
   _inherits(Profile, _React$Component);
 
@@ -9050,8 +9073,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Profile);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Profile).call(this, props));
-    console.log(props); // this.state = {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Profile).call(this, props)); // this.state = {
     //   email: '',
     //   password: '',
     //   host_status: false
@@ -9063,19 +9085,90 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Profile, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var user = this.props.currentUser.id; // const listOfMeetups = this.props.getMeetups(user);
+
+      this.props.getMeetups(user); // console.log(listOfMeetups)
+    }
+  }, {
     key: "hostOnlyMeetups",
-    value: function hostOnlyMeetups() {
+    value: function hostOnlyMeetups(hosting) {
       if (this.props.currentUser.host_status) {
+        if (hosting.length > 0) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            id: "upcoming-hosting-meetups",
+            className: "profile-meetup-box"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), hosting.map(function (meetup) {
+            return (// <div className="meetup-index-item">
+              //   <ul className="meetup-details">
+              //     <li>Venue:   {meetup.location[2]}</li>
+              //     <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+              //     <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
+              //     <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
+              //     {/* <li>End:    </li> */}
+              //     <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
+              //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
+              //   </ul>
+              // </div>
+              react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                key: meetup.id,
+                meetup: meetup,
+                type: "host"
+              })
+            );
+          }));
+        } else {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            id: "upcoming-hosting-meetups",
+            className: "profile-meetup-box"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Wait... You don't have any upcoming MeetUps to host... yet!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            href: "#/meetups/new"
+          }, "Create New Meetup"));
+        }
+      }
+    }
+  }, {
+    key: "joinedMeetups",
+    value: function joinedMeetups(joined) {
+      if (joined.length > 0) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "upcoming-hosting-meetups",
           className: "profile-meetup-box"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), "If upcoming meetups: HostededMeetups Box else \"You don't have any MeetUps to host... yet!\"");
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), joined.map(function (meetup) {
+          return (// <div className="meetup-index-item">
+            //   <ul className="meetup-details">
+            //     <li>Venue:   {meetup.location[2]}</li>
+            //     <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+            //     <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
+            //     <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
+            //     {/* <li>End:    </li> */}
+            //     <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
+            //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
+            //   </ul>
+            // </div>
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              key: meetup.id,
+              meetup: meetup,
+              host: "",
+              type: "host"
+            })
+          );
+        }));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "upcoming-hosting-meetups",
+          className: "profile-meetup-box"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Wait... You don't have any MeetUps coming up... yet!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#/meetups"
+        }, "Join a Meetup!"));
       }
     }
   }, {
     key: "render",
     value: function render() {
-      // console.log(this.props);
+      var _this2 = this;
+
       var hostOnlyLink = function hostOnlyLink(bool) {
         if (bool) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -9084,6 +9177,16 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         }
       };
 
+      var meetups = Array.from(this.props.meetups);
+      var joined = [];
+      var hosting = [];
+      meetups.forEach(function (meetup) {
+        if (meetup.host_id === _this2.props.currentUser.id) {
+          hosting.push(meetup);
+        } else {
+          joined.push(meetup);
+        }
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -9098,10 +9201,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming meetups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/profile/history"
-      }, "Your past meetups"), hostOnlyLink(this.props.currentUser.host_status)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "upcoming-joining-meetups",
-        className: "profile-meetup-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you Signed Up for"), "If upcoming meetups: JoinedMeetups Box else \"You don't have any MeetUps coming up... yet!\""), this.hostOnlyMeetups(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Sign Up for future MeetUps!")));
+      }, "Your past meetups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/meetups"
+      }, "Sign Up for future MeetUps!"), hostOnlyLink(this.props.currentUser.host_status)), this.joinedMeetups(joined), this.hostOnlyMeetups(hosting)));
     }
   }]);
 
@@ -9124,7 +9226,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile_pages/profile.jsx");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile_pages/profile.jsx");
+
 
  // import { Link } from 'react-router-dom';
 // import sessionReducer from '../../reducers/session_reducer'
@@ -9136,21 +9240,26 @@ var mapSTP = function mapSTP(state) {
   // console.log(state.users);
   // console.log(state.session);
   return {
-    currentUser: state.users[state.session.id] // joinedMeetups:  // Future meetups you are joining
+    currentUser: state.users[state.session.id],
+    meetups: state.meetups // joinedMeetups:  // Future meetups you are joining
     // hostedMeetups:  // Future meetups you are hosting
 
   };
 };
 
 var mapDTP = function mapDTP(dispatch) {
-  return {// getUser: () => dispatch(getUser()),
+  return {
+    getMeetups: function getMeetups(user) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetups"])(user));
+    } // getUser: () => dispatch(getUser()),
     // removeGuest: id => dispatch(removeGuest(id)),
     // removeMeetup: id => dispatch(removeMeetup(id))
     // processForm: (user) => dispatch(signin(user)),
+
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_profile__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -9990,11 +10099,6 @@ var configureStore = function configureStore() {
   !*** ./frontend/util/convertor_util.js ***!
   \*****************************************/
 /*! exports provided: onTimeChange, onDateChange, convertDOWtoInt, convertMonthtoInt, convertIntoMonth, convertIntoDOW, arrayToDateTime, convertoAMPM, formatDate */
-<<<<<<< 9bd45767cf7da11cc947d7014e96074f91aeab6c
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/home/dalbunosky/Desktop/Full-Stack-Project/kapiteh_times/frontend/util/convertor_util.js'");
-=======
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10150,7 +10254,6 @@ var formatDate = function formatDate(format, year, month, day) {
     return "".concat(day, "/").concat(month, "/").concat(year);
   }
 };
->>>>>>> Finally got to display meetups properly, brute force instead of using containers. Not sorted into city rows yet. Added to convertor util
 
 /***/ }),
 
