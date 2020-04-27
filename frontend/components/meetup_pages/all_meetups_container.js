@@ -6,8 +6,8 @@ const mapSTP = (state) => {
     // console.log(state)
     return({
     meetups: state.meetups,
-    currentUser: state.session.id,
-    currentUserCity: state.users[state.session.id].home_city
+    // currentUser: state.session.id,
+    // currentUserCity: state.users[state.session.id].home_city
 })}
 
 const mapDTP = dispatch => ({

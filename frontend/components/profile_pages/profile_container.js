@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import { fetchMeetups } from '../../actions/meetup_actions';
 // import { Link } from 'react-router-dom';
 
 // import sessionReducer from '../../reducers/session_reducer'
@@ -12,6 +13,7 @@ const mapSTP = (state) => {
     // console.log(state.session);
     return {
         currentUser: state.users[state.session.id],
+        meetups: state.meetups,
         // joinedMeetups:  // Future meetups you are joining
         // hostedMeetups:  // Future meetups you are hosting
     };
@@ -19,6 +21,7 @@ const mapSTP = (state) => {
 
 const mapDTP = dispatch => {
     return {
+        getMeetups: user => dispatch(fetchMeetups(user))
         // getUser: () => dispatch(getUser()),
         // removeGuest: id => dispatch(removeGuest(id)),
         // removeMeetup: id => dispatch(removeMeetup(id))
