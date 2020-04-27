@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // import DUMMY_CITIES from '../dummy_cities';
 
 const SingleMeetup = (props) => {
-
+  console.log(props)
   const handleClick = () => {
     return(e) => {
       e.preventDefault();
@@ -47,10 +47,10 @@ const SingleMeetup = (props) => {
   const meetupDate = Date()
 
 //   const meetupDate = new Date(props.meetup.date);
-  const weekDayNumber = meetupDate.getDay();
-  const weekDayName = DAYS[weekDayNumber];
-  const monthNumber = meetupDate.getMonth();
-  const monthName = MONTHS[monthNumber];
+  // const weekDayNumber = meetupDate.getDay();
+  // const weekDayName = DAYS[weekDayNumber];
+  // const monthNumber = meetupDate.getMonth();
+  // const monthName = MONTHS[monthNumber];
 
   let meetupJoinButton;
   let meetupCancelButton;
@@ -130,6 +130,7 @@ const SingleMeetup = (props) => {
       }
       
   }
+
   const meetupRightItem = (user) =>{
     if(user.id && user.host_status){
       {guests.map(guest => <div><p className="meetup-details-right">guest.name</p><p>guest.phone</p></div>)}

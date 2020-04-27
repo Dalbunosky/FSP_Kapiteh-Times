@@ -69,7 +69,7 @@ const App = () => (
         <ProtectedRoute path="/profile/history" component={HistoryContainer} />
         <ProtectedRoute path="/profile" component={ProfileContainer} />
 
-        <Route exact path="/meetups" component={MeetUpIndexContainer} />
+        <ProtectedRoute exact path="/meetups" component={MeetUpIndexContainer} />
         {/* <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} /> */}
 
 
