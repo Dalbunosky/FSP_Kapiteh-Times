@@ -1,5 +1,6 @@
 import React from 'react';
 import * as convertFunctions from '../../../util/convertor_util';
+// import { fetchUser } from '../../../';
 
 class MeetUpCell extends React.Component {
     constructor(props) {
@@ -18,19 +19,34 @@ class MeetUpCell extends React.Component {
         if(type === "join"){
             // If you are joining a meetup, you want to see the host's contacts and (eventually) face
             // You want to be able to leave the meetup
+
+            //const meetupHost = fetchUser()
             return(
-                <div>
-                    host name, contact, story, face, city, email
-                    leave
+                <div className="meetup-right">
+                    <div>Host picture</div>
+                    {/* <ul className="host-details">
+                        <li>Host:   {meetup.location[2]}</li>
+                        <li>City: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+                        <li>Phone:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
+                        <li>Story:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
+                    </ul> */}
+                    <button>Leave Meetup</button>
                 </div>
             )
         } else{
             // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
             // You want to be able to edit/cancel the meetup
             return(
-                <div>
-                    guests names, contact, remove guests
-                    edit, cancel
+                <div className="meetup-right">
+                    {this.props.meetup.guests.map(guest =>(
+                        <div className="guest-details">
+                            <p>Guest name</p>
+                            <p>Contact number</p>
+                            <button>Remove Guest</button>
+                        </div>
+                    ))}
+                    <button>Edit Meetup</button>
+                    <button>Cancel Meetup</button>
                 </div>
             )
         }
@@ -38,17 +54,20 @@ class MeetUpCell extends React.Component {
 
     render(){
         const meetup = this.props.meetup
+        console.log(this.props.meetup.host_id)
         return(
             <div className="meetup-index-item">
-                <ul className="meetup-details">
-                    <li>Venue:   {meetup.location[2]}</li>
-                    <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
-                    <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
-                    <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
-                    {/* <li>End:    </li> */}
-                    <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                    <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
-                </ul>
+                <div className="meetup-left">
+                    <ul className="meetup-details">
+                        <li>Venue:   {meetup.location[2]}</li>
+                        <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+                        <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
+                        <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
+                        {/* <li>End:    </li> */}
+                        <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
+                        <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
+                    </ul>
+                </div>
                 {this.uniqueOps(this.props.type)}
             </div>
         )

@@ -6734,17 +6734,17 @@ var editMeetup = function editMeetup(meetup) {
   };
 }; // Cancels meetup
 
-var cancelMeetup = function cancelMeetup(meetup) {
+var cancelMeetup = function cancelMeetup(meetupId) {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["cancelMeetup"](meetup).then(function (meetup) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["cancelMeetup"](meetupId).then(function (meetup) {
       return dispatch(meetupCanceled());
     });
   };
 }; // Join meetup
 
-var joinMeetup = function joinMeetup(meetup) {
+var joinMeetup = function joinMeetup(meetupId) {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["joinMeetup"](meetup).then(function (meetup) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["joinMeetup"](meetupId).then(function (meetup) {
       return dispatch(receiveMeetup(meetup));
     }, function (err) {
       return dispatch(receiveMeetupErrors(err.responseJSON));
@@ -6752,9 +6752,9 @@ var joinMeetup = function joinMeetup(meetup) {
   };
 }; // Leave meetup
 
-var leaveMeetup = function leaveMeetup(meetup) {
+var leaveMeetup = function leaveMeetup(meetupId) {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["leaveMeetup"](meetup).then(function (meetup) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["leaveMeetup"](meetupId).then(function (meetup) {
       return dispatch(receiveMeetup(meetup));
     }, function (err) {
       return dispatch(receiveMeetupErrors(err.responseJSON));
@@ -6886,6 +6886,66 @@ var closeAcct = function closeAcct() {
     });
   };
 };
+
+/***/ }),
+
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_CURRENT_USER, SIGNOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, CLEAR_SESSION_ERRORS, CLOSE_USER_ACCOUNT, receiveUser, receiveUserErrors, clearSessionErrors, fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNOUT_CURRENT_USER", function() { return SIGNOUT_CURRENT_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_SESSION_ERRORS", function() { return CLEAR_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLOSE_USER_ACCOUNT", function() { return CLOSE_USER_ACCOUNT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUserErrors", function() { return receiveUserErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearSessionErrors", function() { return clearSessionErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
+
+var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+var SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER';
+var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+var CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
+var CLOSE_USER_ACCOUNT = "CLOSE_USER_ACCOUNT";
+var receiveUser = function receiveUser(currentUser) {
+  return {
+    type: RECEIVE_CURRENT_USER,
+    currentUser: currentUser
+  };
+};
+var receiveUserErrors = function receiveUserErrors(errors) {
+  return {
+    type: RECEIVE_SESSION_ERRORS,
+    errors: errors
+  };
+};
+var clearSessionErrors = function clearSessionErrors() {
+  return {
+    type: CLEAR_SESSION_ERRORS
+  };
+}; // grab current user
+
+var fetchUser = function fetchUser(userid) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userid).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+}; // export const removeGuest = id => dispatch => (
+//   ApiUtil.deleteGuest(id)
+//     .then((guest) => dispatch(deleteGuest(guest)))
+// )
+// export const removeMeetup = id => dispatch => (
+//   ApiUtil.deleteMeetup(id)
+//     .then((meetup) => dispatch(deleteMeetup(meetup)))
+// )
 
 /***/ }),
 
@@ -8666,19 +8726,7 @@ var mapDTP = function mapDTP(dispatch) {
     processForm: function processForm(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["editUser"])(user));
     },
-    getUser: function (_getUser) {
-      function getUser() {
-        return _getUser.apply(this, arguments);
-      }
-
-      getUser.toString = function () {
-        return _getUser.toString();
-      };
-
-      return getUser;
-    }(function () {
-      return dispatch(getUser());
-    }),
+    // getUser: () => dispatch(getUser()),
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])());
     },
@@ -8812,23 +8860,10 @@ var mapSTP = function mapSTP(state) {
 };
 
 var mapDTP = function mapDTP(dispatch) {
-  return {
-    getUser: function (_getUser) {
-      function getUser() {
-        return _getUser.apply(this, arguments);
-      }
-
-      getUser.toString = function () {
-        return _getUser.toString();
-      };
-
-      return getUser;
-    }(function () {
-      return dispatch(getUser());
-    }) // removeGuest: id => dispatch(removeGuest(id)),
+  return {// getUser: () => dispatch(getUser()),
+    // removeGuest: id => dispatch(removeGuest(id)),
     // removeMeetup: id => dispatch(removeMeetup(id))
     // processForm: (user) => dispatch(signin(user)),
-
   };
 };
 
@@ -8867,7 +8902,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-
+ // import { fetchUser } from '../../../';
 
 var MeetUpCell = /*#__PURE__*/function (_React$Component) {
   _inherits(MeetUpCell, _React$Component);
@@ -8890,22 +8925,34 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
       if (type === "join") {
         // If you are joining a meetup, you want to see the host's contacts and (eventually) face
         // You want to be able to leave the meetup
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "host name, contact, story, face, city, email leave");
+        //const meetupHost = fetchUser()
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-right"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Host picture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Leave Meetup"));
       } else {
         // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
         // You want to be able to edit/cancel the meetup
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "guests names, contact, remove guests edit, cancel");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-right"
+        }, this.props.meetup.guests.map(function (guest) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "guest-details"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Guest name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Contact number"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Remove Guest"));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit Meetup"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Cancel Meetup"));
       }
     }
   }, {
     key: "render",
     value: function render() {
       var meetup = this.props.meetup;
+      console.log(this.props.meetup.host_id);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "meetup-details"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", meetup.starttime[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", meetup.topic)), this.uniqueOps(this.props.type));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", meetup.starttime[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", meetup.topic))), this.uniqueOps(this.props.type));
     }
   }]);
 
@@ -8955,6 +9002,82 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (MeetUpCell);
+
+/***/ }),
+
+/***/ "./frontend/components/profile_pages/parts/meetup_pres_container.js":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/profile_pages/parts/meetup_pres_container.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _meetup_pres__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./meetup_pres */ "./frontend/components/profile_pages/parts/meetup_pres.jsx");
+
+ // import SingleMeetup from './meetup_cell';
+
+
+
+
+
+var mapSTP = function mapSTP(state) {
+  console.log(state);
+  return {
+    // That's it? For joining?
+    state: state // currentUser: state.session.currentUser
+
+  };
+};
+
+var mapDTP = function mapDTP(dispatch) {
+  return {
+    // fetch User (hosts and guests), remove guest/Edit/Cancel meetup (hosts), join/leave(guests) meetup
+    fetchUser: function fetchUser(userId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(userId));
+    },
+    editMeetup: function (_editMeetup) {
+      function editMeetup(_x) {
+        return _editMeetup.apply(this, arguments);
+      }
+
+      editMeetup.toString = function () {
+        return _editMeetup.toString();
+      };
+
+      return editMeetup;
+    }(function (meetup) {
+      return dispatch(editMeetup(meetup));
+    }),
+    cancelMeetup: function (_cancelMeetup) {
+      function cancelMeetup(_x2) {
+        return _cancelMeetup.apply(this, arguments);
+      }
+
+      cancelMeetup.toString = function () {
+        return _cancelMeetup.toString();
+      };
+
+      return cancelMeetup;
+    }(function (meetupId) {
+      return dispatch(cancelMeetup(meetupId));
+    }),
+    attendMeetup: function attendMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["joinMeetup"])(meetupId));
+    },
+    unattendMeetup: function unattendMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["leaveMeetup"])(meetupId));
+    } // requestSingleMeetup: (meetupId) => dispatch(requestSingleMeetup(meetupId))
+
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_meetup_pres__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 
@@ -9040,6 +9163,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_profile_pres__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/profile_pres */ "./frontend/components/profile_pages/parts/profile_pres.jsx");
 /* harmony import */ var _parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/meetup_pres */ "./frontend/components/profile_pages/parts/meetup_pres.jsx");
 /* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/meetup_pres_container */ "./frontend/components/profile_pages/parts/meetup_pres_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9059,6 +9183,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // This pages shows all accepted upcoming meetups and your profile details
+
 
 
 
@@ -9111,7 +9236,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
               //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
               //   </ul>
               // </div>
-              react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
                 key: meetup.id,
                 meetup: meetup,
                 type: "host"
@@ -9147,7 +9272,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
             //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
             //   </ul>
             // </div>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
               key: meetup.id,
               meetup: meetup,
               host: "",
@@ -10501,6 +10626,35 @@ var signout = function signout() {
     method: 'DELETE',
     url: '/api/session'
   });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/user_api_util.js ***!
+  \****************************************/
+/*! exports provided: fetchUser, fetchUsers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
+var fetchUser = function fetchUser(userid) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/users/".concat(userid),
+    data: userid
+  });
+};
+var fetchUsers = function fetchUsers() {
+  return (// Doubt I'd need this, except for maybe admin
+    $.ajax({
+      method: 'GET',
+      url: "/api/users/"
+    })
+  );
 };
 
 /***/ }),

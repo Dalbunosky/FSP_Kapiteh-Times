@@ -4,6 +4,7 @@ import ProfileBar from './parts/profile_pres';
 import { JoinedMeetups, HostedMeetups } from './parts/meetup_pres';
 import * as convertFunctions from '../../util/convertor_util';
 import MeetupCell from './parts/meetup_pres';
+import MeetupCellContainer from './parts/meetup_pres_container';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Profile extends React.Component {
                 //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
                 //   </ul>
                 // </div>
-                <MeetupCell key={meetup.id} meetup={meetup} type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} type="host"/>
               )}
           </div>
         )
@@ -76,7 +77,7 @@ class Profile extends React.Component {
               //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
               //   </ul>
               // </div>
-              <MeetupCell key={meetup.id} meetup={meetup} host="" type="host"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host="" type="host"/>
             )}
         </div>
       )
