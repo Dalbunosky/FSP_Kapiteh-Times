@@ -17,7 +17,7 @@ const mapSTP = (state) => ({
 const mapDTP = dispatch => {
     return {
         processForm: (user) => dispatch(editUser(user)),
-        getUser: () => dispatch(getUser()),
+        // getUser: () => dispatch(getUser()),
         clearErrors: () => dispatch(clearSessionErrors()),
         closeAccount: () => dispatch(closeAcct())
     };

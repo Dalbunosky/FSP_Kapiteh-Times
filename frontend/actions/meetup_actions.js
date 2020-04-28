@@ -84,15 +84,15 @@ export const editMeetup = meetup => dispatch => (
 );
 
 // Cancels meetup
-export const cancelMeetup = meetup => dispatch => (
-  APIUtil.cancelMeetup(meetup).then(meetup => (
+export const cancelMeetup = meetupId => dispatch => (
+  APIUtil.cancelMeetup(meetupId).then(meetup => (
     dispatch(meetupCanceled())
   ))
 );
 
 // Join meetup
-export const joinMeetup = meetup => dispatch => (
-  APIUtil.joinMeetup(meetup).then(meetup => (
+export const joinMeetup = meetupId => dispatch => (
+  APIUtil.joinMeetup(meetupId).then(meetup => (
     dispatch(receiveMeetup(meetup))
   ), err => (
     dispatch(receiveMeetupErrors(err.responseJSON))
@@ -100,8 +100,8 @@ export const joinMeetup = meetup => dispatch => (
 );
 
 // Leave meetup
-export const leaveMeetup = meetup => dispatch => (
-  APIUtil.leaveMeetup(meetup).then(meetup => (
+export const leaveMeetup = meetupId => dispatch => (
+  APIUtil.leaveMeetup(meetupId).then(meetup => (
     dispatch(receiveMeetup(meetup))
   ), err => (
     dispatch(receiveMeetupErrors(err.responseJSON))
