@@ -112,3 +112,5 @@ export const formatDate = (format, year, month, day) =>{
     else if (format === "mm/dd/yyyy"){return(`${month}/${day}/${year}`)}
     else if (format === "mm/dd/yyyy"){return(`${day}/${month}/${year}`)}
 }
+
+export const formatMinute = minute =>(minute < 10 ? `0${minute}` : minute)

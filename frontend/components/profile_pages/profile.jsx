@@ -45,7 +45,7 @@ class Profile extends React.Component {
                 //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
                 //   </ul>
                 // </div>
-                <MeetupCellContainer key={meetup.id} meetup={meetup} type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="host"/>
               )}
           </div>
         )
@@ -64,7 +64,7 @@ class Profile extends React.Component {
     if(joined.length > 0){
       return(
         <div id="upcoming-hosting-meetups" className="profile-meetup-box">
-          <h3>Meetups you are going to Host</h3>
+          <h3>Meetups you are attending</h3>
             {joined.map (meetup => 
               // <div className="meetup-index-item">
               //   <ul className="meetup-details">
@@ -77,7 +77,7 @@ class Profile extends React.Component {
               //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
               //   </ul>
               // </div>
-              <MeetupCellContainer key={meetup.id} meetup={meetup} host="" type="host"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="join"/>
             )}
         </div>
       )

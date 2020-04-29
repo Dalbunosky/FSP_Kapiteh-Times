@@ -3,10 +3,10 @@ import { fetchMeetups } from '../../actions/meetup_actions';
 import AllMeetups from './all_meetups';
 
 const mapSTP = (state) => {
-    // console.log(state)
+    console.log(state)
     return({
     meetups: state.meetups,
-    // currentUser: state.session.id,
+    currentUser: state.session,
     // currentUserCity: state.users[state.session.id].home_city
 })}
 

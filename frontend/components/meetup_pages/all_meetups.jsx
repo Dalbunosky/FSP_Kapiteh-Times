@@ -49,7 +49,7 @@ class AllMeetups extends React.Component {
     // }
 
     meetupsNearUser(){
-        if(this.props.currentUser != null){
+        if(this.props.currentUser){
             return(
                 <div className="nearby_meetups">
                     <h3>Upcoming meetups at your city</h3>
@@ -61,7 +61,7 @@ class AllMeetups extends React.Component {
     }
 
     meetupLabel(){
-        if(this.props.currentUser != null){
+        if(this.props.currentUser){
             return(
                 <h3>Upcoming meetups everywhere else</h3>
             )
