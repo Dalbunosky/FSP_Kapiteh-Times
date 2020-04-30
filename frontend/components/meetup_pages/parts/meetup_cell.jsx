@@ -78,7 +78,7 @@ const SingleMeetup = (props) => {
       // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
     } 
     // You've joined
-    else if (props.meetup.guest_ids.includes(props.currentUser.id)) {
+    else if (props.meetup.user_ids.includes(props.currentUser.id)) {
       meetupJoinButton =
       <button className="meetup-button green">
         YOU JOINED THIS MEETUP

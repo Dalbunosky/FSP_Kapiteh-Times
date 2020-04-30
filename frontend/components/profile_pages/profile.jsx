@@ -45,7 +45,7 @@ class Profile extends React.Component {
                 //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
                 //   </ul>
                 // </div>
-                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="host" setting="future" />
               )}
           </div>
         )
@@ -77,7 +77,7 @@ class Profile extends React.Component {
               //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
               //   </ul>
               // </div>
-              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="join"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="join" setting="future"/>
             )}
         </div>
       )

@@ -63,6 +63,28 @@ class Api::MeetupsController < ApplicationController
         render 'api/users/index'
     end
 
+
+    def join
+      @ticket = Ticket.new(meetup_id: params[:id], user_id: current_user.id)
+      if @ticket.save
+        @meetup = @ticket.meetup
+        render "/api/meetups/show"
+      else
+        render json: @ticket.errors.full_messages, status: 422
+      end
+    end
+  
+    def leave
+      @ticket = Ticket.find_by(meetup_id: params[:id], user_id: current_user.id)
+      if @ticket
+        Ticket.destroy(@ticket.id)
+        @meetup = @ticket.meetup    # Why need this?
+        render "api/meetups/show"
+      else
+        render json: @ticket.errors.full_messages, status: 422
+      end
+    end
+
     private
     def meetup_params
         # params.require(:meetup).permit(:topic, :capacity, location:[:lat, :lng, :venue_name, :address, :city, :state_province, :zip, :country], guests: [], starttime: [:dow, :month, :day, :year, :hour, :minute]) #, :photo)

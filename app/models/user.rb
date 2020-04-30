@@ -7,6 +7,9 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 8 }, allow_nil: true
     validate :host_requirements
     after_initialize :ensure_session_token
+
+    # has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "blank-user.png"
+    # validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   
     has_many :hosted_meetups,   # This is for hosts, shows that they are hosting meetups
     foreign_key: :host_id,
