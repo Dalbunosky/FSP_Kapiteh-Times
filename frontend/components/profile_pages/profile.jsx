@@ -21,9 +21,9 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {   
-    const user = this.props.currentUser.id;
+    const keyword = ["future",this.props.currentUser.id];
     // const listOfMeetups = this.props.getMeetups(user);
-    this.props.getMeetups(user);
+    this.props.getMeetups(keyword);
     // console.log(listOfMeetups)
   }
 
@@ -45,7 +45,7 @@ class Profile extends React.Component {
                 //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
                 //   </ul>
                 // </div>
-                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="host" setting="future" />
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="host"/>
               )}
           </div>
         )
@@ -77,7 +77,7 @@ class Profile extends React.Component {
               //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
               //   </ul>
               // </div>
-              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="join" setting="future"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="join"/>
             )}
         </div>
       )

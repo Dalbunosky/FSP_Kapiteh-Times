@@ -5,6 +5,11 @@ class Api::MeetupsController < ApplicationController
 
     def index   # Show all meetups
         @meetups = Meetup.all.includes(:host)
+# Profile, 2: fetch meetups you're hosting and joining keyword: [future, id]
+# History, 2: fetch meetups you've hosted and joined keyword: [history, id]
+# meetups page, 3: fetch meetups you're hosting, joining, all other future meetups keyword: [future, 0]
+# Admin, EVERYTHING keyword: [admin, 0]
+
 
         # advanced: sort by date: past or present
             # present: all or just those under current_user

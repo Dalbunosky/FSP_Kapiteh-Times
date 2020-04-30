@@ -52,11 +52,11 @@ class MeetUpCell extends React.Component {
                         //fetch each guest
                         return(
                         <div className="guest-details">
-                            <p>Guest name</p>
-                            <p>Contact number</p>
+                            <p>{guest.name}</p>
+                            <p>{guest.phone}</p>
                             <button>Remove Guest</button>
                         </div>
-                    )
+                        )
                     })}
                     <button>Edit Meetup</button>
                     <button>Cancel Meetup</button>
