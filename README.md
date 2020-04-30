@@ -7,4 +7,5 @@ Future upgrades could include:
 - Wait List
 - Google Map API for meetups
 - Meetup duration/end time
-- Messaging system
+- Messaging system so that guests and hosts can contact each other
+- User preferences for things like 12/24 or mm/dd/yyyy display

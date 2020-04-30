@@ -21,9 +21,9 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {   
-    const user = this.props.currentUser.id;
+    const keyword = ["future",this.props.currentUser.id];
     // const listOfMeetups = this.props.getMeetups(user);
-    this.props.getMeetups(user);
+    this.props.getMeetups(keyword);
     // console.log(listOfMeetups)
   }
 

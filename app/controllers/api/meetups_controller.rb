@@ -5,6 +5,11 @@ class Api::MeetupsController < ApplicationController
 
     def index   # Show all meetups
         @meetups = Meetup.all.includes(:host)
+# Profile, 2: fetch meetups you're hosting and joining keyword: [future, id]
+# History, 2: fetch meetups you've hosted and joined keyword: [history, id]
+# meetups page, 3: fetch meetups you're hosting, joining, all other future meetups keyword: [future, 0]
+# Admin, EVERYTHING keyword: [admin, 0]
+
 
         # advanced: sort by date: past or present
             # present: all or just those under current_user
@@ -61,6 +66,28 @@ class Api::MeetupsController < ApplicationController
         @meetups = current_user.meetups
         @hosted_meetups = current_user.hosted_meetups
         render 'api/users/index'
+    end
+
+
+    def join
+      @ticket = Ticket.new(meetup_id: params[:id], user_id: current_user.id)
+      if @ticket.save
+        @meetup = @ticket.meetup
+        render "/api/meetups/show"
+      else
+        render json: @ticket.errors.full_messages, status: 422
+      end
+    end
+  
+    def leave
+      @ticket = Ticket.find_by(meetup_id: params[:id], user_id: current_user.id)
+      if @ticket
+        Ticket.destroy(@ticket.id)
+        @meetup = @ticket.meetup    # Why need this?
+        render "api/meetups/show"
+      else
+        render json: @ticket.errors.full_messages, status: 422
+      end
     end
 
     private

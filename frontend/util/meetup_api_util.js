@@ -14,6 +14,25 @@ export const fetchMeetup = id => (
   })
 );
 
+
+// Joining and leaving meetup
+export const joinMeetup = meetupId => ( 
+  $.ajax({
+    method: 'POST',
+    url: `/api/meetups/${meetupId}/join`,
+    id: meetupId
+  })
+);
+
+export const leaveMeetup = meetupId => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/meetups/${meetupId}/leave`
+  })
+);
+
+
+// Host operation: Create, Edit, Cancel Meetup
 export const createMeetup = meetup => {
   console.log(meetup)
   return( //For creating new meetups
@@ -37,22 +56,6 @@ export const editMeetup = meetup => (
 export const cancelMeetup = meetupId => (
   $.ajax({
     method: 'DELETE',
-    url: `/api/meetups/${meetupId}`
-  })
-);
-
-// Reference others if need be
-export const joinMeetup = meetup => ( 
-  $.ajax({
-    method: 'PATCH',
-    url: `/api/meetups/${meetupId}`
-  })
-);
-
-// Reference others if need be
-export const leaveMeetup = meetup => (
-  $.ajax({
-    method: 'PATCH',
     url: `/api/meetups/${meetupId}`
   })
 );
