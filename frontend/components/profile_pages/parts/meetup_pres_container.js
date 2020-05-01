@@ -22,7 +22,7 @@ const mapDTP = dispatch => (
         editMeetup: (meetup) => dispatch(editMeetup(meetup)),
         cancelMeetup: (meetupId) => dispatch(cancelMeetup(meetupId)),
     // join/leave(guests) meetup
-        attendMeetup: (meetupId) => dispatch(joinMeetup(meetupId)),
+        // attendMeetup: (meetupId) => dispatch(joinMeetup(meetupId)),
         unattendMeetup: (meetupId) => dispatch(leaveMeetup(meetupId)),
         // requestSingleMeetup: (meetupId) => dispatch(requestSingleMeetup(meetupId))
     }

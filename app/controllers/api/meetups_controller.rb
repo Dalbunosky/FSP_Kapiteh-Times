@@ -4,7 +4,21 @@ class Api::MeetupsController < ApplicationController
     # time: [],     // [DOW, year,month, day, hour, minute]
 
     def index   # Show all meetups
-        @meetups = Meetup.all.includes(:host)
+        # puts "AT INDEX"
+        # puts params[:foh]
+        # puts params
+        # puts params
+        # puts params
+        if "future" == params[:user_id] #Returns
+            puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
+            @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("tickets.user_id = #{current_user.id} or host_id = #{current_user.id}")
+            # @meetups = Meetup.all.includes(:host)
+        else
+            # Date.today > DateTime.new(time_arr[1],time_arr[2],time_arr[3],time_arr[4],time_arr[5],0)
+            # @meetups = Meetup.where(:date_must_be_in_the_future)
+            @meetups = Meetup.all
+            # @meetups = Meetup.where(:starttime => Date.today < DateTime.new(2021,2,5,5,5,0))
+        end
 # Profile, 2: fetch meetups you're hosting and joining keyword: [future, id]
 # History, 2: fetch meetups you've hosted and joined keyword: [history, id]
 # meetups page, 3: fetch meetups you're hosting, joining, all other future meetups keyword: [future, 0]

@@ -1,8 +1,11 @@
-export const fetchMeetups = keyword => (
+export const fetchMeetups = (foh, id) => (
   $.ajax({
     method: 'GET',
     url: '/api/meetups',
-    key: keyword
+    // foh: foh,
+    // user: id,
+    // keyword: [foh, id]
+    user_id: foh
     // data // data should all meetups
   })
 );
