@@ -1,5 +1,6 @@
 import React from 'react';
 import * as convertFunctions from '../../../util/convertor_util';
+import { leaveMeetup } from '../../../util/meetup_api_util';
 // import { fetchUser } from '../../../';
 
 class MeetUpCell extends React.Component {
@@ -13,6 +14,10 @@ class MeetUpCell extends React.Component {
         // this.handleSubmit = this.handleSubmit.bind(this);
         // console.log(props);
         // console.log(props.type);
+        this.leaveMeetup = this.leaveMeetup.bind(this);
+        this.editMeetup = this.editMeetup.bind(this);
+        this.cancelMeetup = this.cancelMeetup.bind(this);
+        this.removeGuest = this.removeGuest.bind(this);
     }
 // const MeetUpCell = props =>{
     componentDidMount(type){
@@ -22,6 +27,22 @@ class MeetUpCell extends React.Component {
         // else{
         //     this.props.fetchGuests(this.props.meetup.guests);
         // }
+    }
+    leaveMeetup(e){
+        e.preventDefault();
+        console.log("leaving Meetup")
+    }
+    editMeetup(e){
+        e.preventDefault();
+        console.log("editting Meetup")
+    }
+    cancelMeetup(e){
+        e.preventDefault();
+        console.log("canceling Meetup")
+    }
+    removeGuest(e){
+        e.preventDefault();
+        console.log("kicking guest off")
     }
 
     uniqueOps(type){
@@ -37,7 +58,7 @@ class MeetUpCell extends React.Component {
                     <p>Host: {host.name}</p>
                     <p>Phone: {host.phone}</p>
                     <p>Email: {host.email}</p>
-                    <button>Leave Meetup</button>
+                    <button onClick={this.leaveMeetup}>Leave Meetup</button>
                 </div>
             )}
         } else{
@@ -54,12 +75,12 @@ class MeetUpCell extends React.Component {
                         <div className="guest-details">
                             <p>{guest.name}</p>
                             <p>{guest.phone}</p>
-                            <button>Remove Guest</button>
+                            <button onClick={this.removeGuest}>Remove Guest</button>
                         </div>
                         )
                     })}
-                    <button>Edit Meetup</button>
-                    <button>Cancel Meetup</button>
+                    <button onClick={this.editMeetup}>Edit Meetup</button>
+                    <button onClick={this.cancelMeetup}>Cancel Meetup</button>
                 </div>
             )
         }
@@ -72,7 +93,7 @@ class MeetUpCell extends React.Component {
                 <div className="meetup-left">
                     <ul className="meetup-details">
                         <li>Venue:   {meetup.location[2]}</li>
-                        <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+                        <li>Address: <br/>{meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
                         <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
                         <li>Time:    {meetup.starttime[4]}:{convertFunctions.formatMinute(meetup.starttime[5])}</li>
                         {/* <li>End:    </li> */}
