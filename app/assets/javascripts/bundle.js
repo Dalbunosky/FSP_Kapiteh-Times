@@ -8963,7 +8963,7 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
           //fetch each guest
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "guest-details"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Guest name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Contact number"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Remove Guest"));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Remove Guest"));
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit Meetup"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Cancel Meetup"));
       }
     }
@@ -9179,9 +9179,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var user = this.props.currentUser.id; // const listOfMeetups = this.props.getMeetups(user);
+      var keyword = ["future", this.props.currentUser.id]; // const listOfMeetups = this.props.getMeetups(user);
 
-      this.props.getMeetups(user); // console.log(listOfMeetups)
+      this.props.getMeetups(keyword); // console.log(listOfMeetups)
     }
   }, {
     key: "hostOnlyMeetups",
@@ -10367,18 +10367,18 @@ var formatMinute = function formatMinute(minute) {
 /*!******************************************!*\
   !*** ./frontend/util/meetup_api_util.js ***!
   \******************************************/
-/*! exports provided: fetchMeetups, fetchMeetup, createMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup */
+/*! exports provided: fetchMeetups, fetchMeetup, joinMeetup, leaveMeetup, createMeetup, editMeetup, cancelMeetup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetups", function() { return fetchMeetups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetup", function() { return fetchMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinMeetup", function() { return joinMeetup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveMeetup", function() { return leaveMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMeetup", function() { return createMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editMeetup", function() { return editMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelMeetup", function() { return cancelMeetup; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinMeetup", function() { return joinMeetup; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveMeetup", function() { return leaveMeetup; });
 var fetchMeetups = function fetchMeetups(keyword) {
   return $.ajax({
     method: 'GET',
@@ -10392,7 +10392,22 @@ var fetchMeetup = function fetchMeetup(id) {
     method: 'GET',
     url: "/api/meetups/".concat(id)
   });
+}; // Joining and leaving meetup
+
+var joinMeetup = function joinMeetup(meetupId) {
+  return $.ajax({
+    method: 'POST',
+    url: "/api/meetups/".concat(meetupId, "/join"),
+    id: meetupId
+  });
 };
+var leaveMeetup = function leaveMeetup(meetupId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/meetups/".concat(meetupId, "/leave")
+  });
+}; // Host operation: Create, Edit, Cancel Meetup
+
 var createMeetup = function createMeetup(meetup) {
   console.log(meetup);
   return (//For creating new meetups
@@ -10419,20 +10434,6 @@ var editMeetup = function editMeetup(meetup) {
 var cancelMeetup = function cancelMeetup(meetupId) {
   return $.ajax({
     method: 'DELETE',
-    url: "/api/meetups/".concat(meetupId)
-  });
-}; // Reference others if need be
-
-var joinMeetup = function joinMeetup(meetup) {
-  return $.ajax({
-    method: 'PATCH',
-    url: "/api/meetups/".concat(meetupId)
-  });
-}; // Reference others if need be
-
-var leaveMeetup = function leaveMeetup(meetup) {
-  return $.ajax({
-    method: 'PATCH',
     url: "/api/meetups/".concat(meetupId)
   });
 }; //Leave for later
