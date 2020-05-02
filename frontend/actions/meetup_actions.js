@@ -52,8 +52,8 @@ export const meetupCanceled = () => ({
 // Thunk actions
 // Fetch all meetups, for index, 
 // MAY SPLIT IN TWO FOR PROFILE, MEETUPS PAGE
-export const fetchMeetups = keyword => dispatch => (
-  APIUtil.fetchMeetups(keyword).then(meetups => (
+export const fetchMeetups = (foh, id) => dispatch => (
+  APIUtil.fetchMeetups(foh, id).then(meetups => (
     dispatch(receiveMeetups(meetups))
   ))
 );

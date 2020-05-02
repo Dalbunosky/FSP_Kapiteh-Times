@@ -29,10 +29,11 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    puts "HERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
+    # puts "HERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
     if @user
-      puts "FOUND"
-      puts params
+      # puts "FOUND"
+      # puts params.class
+      # puts params.class
         render 'api/users/show'
     else
         render json: @user.errors.full_messages, status: 422

@@ -49,10 +49,12 @@ class AllMeetups extends React.Component {
     // }
 
     meetupsNearUser(){
-        if(this.props.currentUser){
+        console.log(this.props.currentUser)
+        if(this.props.currentUser == true){
             return(
                 <div className="nearby_meetups">
                     <h3>Upcoming meetups at your city</h3>
+                    {/* <p>{this.props.currentUser}</p> */}
                     {/* Meetups */}
                     {/* <MeetupCityRow city={city} meetups={meetups}> */}
                 </div>
@@ -61,7 +63,7 @@ class AllMeetups extends React.Component {
     }
 
     meetupLabel(){
-        if(this.props.currentUser){
+        if(this.props.currentUser == true){
             return(
                 <h3>Upcoming meetups everywhere else</h3>
             )

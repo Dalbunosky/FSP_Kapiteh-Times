@@ -6698,9 +6698,9 @@ var meetupCanceled = function meetupCanceled() {
 // Fetch all meetups, for index, 
 // MAY SPLIT IN TWO FOR PROFILE, MEETUPS PAGE
 
-var fetchMeetups = function fetchMeetups(keyword) {
+var fetchMeetups = function fetchMeetups(foh, id) {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetups"](keyword).then(function (meetups) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetups"](foh, id).then(function (meetups) {
       return dispatch(receiveMeetups(meetups));
     });
   };
@@ -7632,7 +7632,9 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "meetupsNearUser",
     value: function meetupsNearUser() {
-      if (this.props.currentUser) {
+      console.log(this.props.currentUser);
+
+      if (this.props.currentUser == true) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "nearby_meetups"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups at your city"));
@@ -7641,7 +7643,7 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "meetupLabel",
     value: function meetupLabel() {
-      if (this.props.currentUser) {
+      if (this.props.currentUser == true) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups everywhere else");
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All upcoming meetups");
@@ -8891,6 +8893,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/meetup_api_util */ "./frontend/util/meetup_api_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8901,13 +8904,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
  // import { fetchUser } from '../../../';
@@ -8916,9 +8920,11 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
   _inherits(MeetUpCell, _React$Component);
 
   function MeetUpCell(props) {
+    var _this;
+
     _classCallCheck(this, MeetUpCell);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MeetUpCell).call(this, props)); // this.state = {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MeetUpCell).call(this, props)); // this.state = {
     //   email: '',
     //   password: '',
     //   host_status: false
@@ -8926,6 +8932,12 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
     // this.handleSubmit = this.handleSubmit.bind(this);
     // console.log(props);
     // console.log(props.type);
+
+    _this.leaveMeetup = _this.leaveMeetup.bind(_assertThisInitialized(_this));
+    _this.editMeetup = _this.editMeetup.bind(_assertThisInitialized(_this));
+    _this.cancelMeetup = _this.cancelMeetup.bind(_assertThisInitialized(_this));
+    _this.removeGuest = _this.removeGuest.bind(_assertThisInitialized(_this));
+    return _this;
   } // const MeetUpCell = props =>{
 
 
@@ -8940,8 +8952,34 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
 
     }
   }, {
+    key: "leaveMeetup",
+    value: function leaveMeetup(e) {
+      e.preventDefault();
+      console.log("leaving Meetup");
+    }
+  }, {
+    key: "editMeetup",
+    value: function editMeetup(e) {
+      e.preventDefault();
+      console.log("editting Meetup");
+    }
+  }, {
+    key: "cancelMeetup",
+    value: function cancelMeetup(e) {
+      e.preventDefault();
+      console.log("canceling Meetup");
+    }
+  }, {
+    key: "removeGuest",
+    value: function removeGuest(e) {
+      e.preventDefault();
+      console.log("kicking guest off");
+    }
+  }, {
     key: "uniqueOps",
     value: function uniqueOps(type) {
+      var _this2 = this;
+
       if (type === "join") {
         // If you are joining a meetup, you want to see the host's contacts and (eventually) face
         // You want to be able to leave the meetup
@@ -8950,7 +8988,9 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
         if (host) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "meetup-right"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Host picture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Host: ", host.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Phone: ", host.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email: ", host.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Leave Meetup"));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Host picture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Host: ", host.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Phone: ", host.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email: ", host.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.leaveMeetup
+          }, "Leave Meetup"));
         }
       } else {
         // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
@@ -8963,8 +9003,14 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
           //fetch each guest
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "guest-details"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Remove Guest"));
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit Meetup"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Cancel Meetup"));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: _this2.removeGuest
+          }, "Remove Guest"));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.editMeetup
+        }, "Edit Meetup"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.cancelMeetup
+        }, "Cancel Meetup"));
       }
     }
   }, {
@@ -8977,7 +9023,7 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
         className: "meetup-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "meetup-details"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["formatMinute"](meetup.starttime[5])), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", meetup.topic))), this.uniqueOps(this.props.type));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](meetup.starttime[0]), ", ", meetup.starttime[2], "/", meetup.starttime[3], "/", meetup.starttime[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", meetup.starttime[4], ":", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["formatMinute"](meetup.starttime[5])), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", meetup.topic))), this.uniqueOps(this.props.type));
     }
   }]);
 
@@ -9034,9 +9080,7 @@ var mapDTP = function mapDTP(dispatch) {
       return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["cancelMeetup"])(meetupId));
     },
     // join/leave(guests) meetup
-    attendMeetup: function attendMeetup(meetupId) {
-      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["joinMeetup"])(meetupId));
-    },
+    // attendMeetup: (meetupId) => dispatch(joinMeetup(meetupId)),
     unattendMeetup: function unattendMeetup(meetupId) {
       return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["leaveMeetup"])(meetupId));
     } // requestSingleMeetup: (meetupId) => dispatch(requestSingleMeetup(meetupId))
@@ -9179,9 +9223,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var keyword = ["future", this.props.currentUser.id]; // const listOfMeetups = this.props.getMeetups(user);
-
-      this.props.getMeetups(keyword); // console.log(listOfMeetups)
+      // const keyword = ["future",this.props.currentUser.id];
+      // const listOfMeetups = this.props.getMeetups(user);
+      this.props.getMeetups("future", this.props.currentUser.id); // console.log(listOfMeetups)
     }
   }, {
     key: "hostOnlyMeetups",
@@ -9342,8 +9386,8 @@ var mapSTP = function mapSTP(state) {
 
 var mapDTP = function mapDTP(dispatch) {
   return {
-    getMeetups: function getMeetups(user) {
-      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetups"])(user));
+    getMeetups: function getMeetups(foh, id) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetups"])(foh, id));
     } // getUser: () => dispatch(getUser()),
     // removeGuest: id => dispatch(removeGuest(id)),
     // removeMeetup: id => dispatch(removeMeetup(id))
@@ -10379,11 +10423,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMeetup", function() { return createMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editMeetup", function() { return editMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelMeetup", function() { return cancelMeetup; });
-var fetchMeetups = function fetchMeetups(keyword) {
+var fetchMeetups = function fetchMeetups(foh, id) {
   return $.ajax({
     method: 'GET',
     url: '/api/meetups',
-    key: keyword // data // data should all meetups
+    // foh: foh,
+    // user: id,
+    // keyword: [foh, id]
+    user_id: foh // data // data should all meetups
 
   });
 };
