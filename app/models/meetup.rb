@@ -52,7 +52,8 @@ class Meetup < ApplicationRecord
 
     def date_must_be_in_the_future(time_arr)
       # [DOW, year, month, day, hour, minute]
-      date = DateTime.new(time_arr[1],time_arr[2],time_arr[3],time_arr[4],time_arr[5],0)
+        # Remove when switching to DateTime format
+        date = DateTime.new(time_arr[1],time_arr[2],time_arr[3],time_arr[4],time_arr[5],0) 
       if date.present? && date < Date.today
         errors.add(:starttime, "needs to be in the future")
       end

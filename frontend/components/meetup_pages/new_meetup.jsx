@@ -65,6 +65,7 @@ class NewMeetup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    // 2020-05-01T12:30:00.000Z
     const meetup = Object.assign({}, this.state);
     console.log(this.state);
     console.log(meetup);
@@ -106,6 +107,7 @@ class NewMeetup extends React.Component {
     let date = this.state.starttime;
     return e => {
       let timestring = e.target.value.split(":");
+      // console.log(e.target.value)
       let DOW = date[0];
       let year = date[1];
       let month = date[2];
@@ -123,6 +125,7 @@ class NewMeetup extends React.Component {
     let timern = this.state.starttime;
     return e => {
       let date = e.toDateString().split(" ");
+      // console.log(e.toDateString())
       let DOW = this.convertDOWtoInt(date[0]);
       let month = this.convertMonthtoInt(date[1]);
       let day = date[2];
@@ -359,7 +362,7 @@ class NewMeetup extends React.Component {
 
   render() {
     const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="new-meetup">
         <h3>New Meetup!</h3>

@@ -6655,7 +6655,10 @@ var CLEAR_MEETUP_ERRORS = 'CLEAR_MEETUP_ERRORS';
 var CANCEL_MEETUP = 'CANCEL_MEETUP'; // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 var receiveMeetups = function receiveMeetups(meetups) {
-  // console.log(meetups)
+  console.log("JUST RECEIVED");
+  console.log(meetups); // console.log(meetups[8].date);
+  // console.log(typeof meetups[8].date);
+
   return {
     type: RECEIVE_MEETUPS,
     meetups: meetups
@@ -7948,7 +7951,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this4 = this;
 
-      e.preventDefault();
+      e.preventDefault(); // 2020-05-01T12:30:00.000Z
+
       var meetup = Object.assign({}, this.state);
       console.log(this.state);
       console.log(meetup); // const wrappedLocation = this.state.location;
@@ -7998,7 +8002,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
 
       var date = this.state.starttime;
       return function (e) {
-        var timestring = e.target.value.split(":");
+        var timestring = e.target.value.split(":"); // console.log(e.target.value)
+
         var DOW = date[0];
         var year = date[1];
         var month = date[2];
@@ -8021,7 +8026,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
 
       var timern = this.state.starttime;
       return function (e) {
-        var date = e.toDateString().split(" ");
+        var date = e.toDateString().split(" "); // console.log(e.toDateString())
 
         var DOW = _this7.convertDOWtoInt(date[0]);
 
@@ -8278,8 +8283,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         height: "200px",
         width: "200px",
         src: this.state.photoUrl
-      }) : null;
-      console.log(this.props);
+      }) : null; // console.log(this.props);
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New Meetup!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -10411,26 +10416,45 @@ var formatMinute = function formatMinute(minute) {
 /*!******************************************!*\
   !*** ./frontend/util/meetup_api_util.js ***!
   \******************************************/
-/*! exports provided: fetchMeetups, fetchMeetup, joinMeetup, leaveMeetup, createMeetup, editMeetup, cancelMeetup */
+/*! exports provided: fetchIndexMeetups, fetchAdminMeetups, fetchProfileMeetups, fetchHistoryMeetups, fetchMeetup, joinMeetup, leaveMeetup, createMeetup, editMeetup, cancelMeetup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetups", function() { return fetchMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchIndexMeetups", function() { return fetchIndexMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAdminMeetups", function() { return fetchAdminMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProfileMeetups", function() { return fetchProfileMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchHistoryMeetups", function() { return fetchHistoryMeetups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetup", function() { return fetchMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinMeetup", function() { return joinMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveMeetup", function() { return leaveMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMeetup", function() { return createMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editMeetup", function() { return editMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelMeetup", function() { return cancelMeetup; });
-var fetchMeetups = function fetchMeetups(foh, id) {
+var fetchIndexMeetups = function fetchIndexMeetups() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/meetups'
+  });
+};
+var fetchAdminMeetups = function fetchAdminMeetups(userId) {
   return $.ajax({
     method: 'GET',
     url: '/api/meetups',
-    // foh: foh,
-    // user: id,
-    // keyword: [foh, id]
-    user_id: foh // data // data should all meetups
+    user_id: userId
+  });
+};
+var fetchProfileMeetups = function fetchProfileMeetups(userId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/meetups/".concat(userId, "/future") // user_id: userId
+
+  });
+};
+var fetchHistoryMeetups = function fetchHistoryMeetups(userId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/meetups/".concat(userId, "/history") // user_id: userId
 
   });
 };
