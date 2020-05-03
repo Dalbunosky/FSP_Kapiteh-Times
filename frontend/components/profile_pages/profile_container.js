@@ -21,7 +21,7 @@ const mapSTP = (state) => {
 
 const mapDTP = dispatch => {
     return {
-        getMeetups: (foh, id) => dispatch(fetchMeetups(foh, id))
+        fetchMeetups: id => dispatch(fetchFutureMeetups(id))
         // getUser: () => dispatch(getUser()),
         // removeGuest: id => dispatch(removeGuest(id)),
         // removeMeetup: id => dispatch(removeMeetup(id))

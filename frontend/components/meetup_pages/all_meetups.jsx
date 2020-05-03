@@ -21,9 +21,9 @@ class AllMeetups extends React.Component {
 // With meetups, not so much.
 
     componentDidMount() {   
-        const user = this.props.currentUser.id;
+        // const user = this.props.currentUser.id;
         // const listOfMeetups = this.props.getMeetups(user);
-        this.props.getMeetups(user);
+        this.props.fetchMeetups();
         // console.log(listOfMeetups)
     }
 

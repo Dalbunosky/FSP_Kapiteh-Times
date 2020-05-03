@@ -3,13 +3,12 @@ export const fetchIndexMeetups = () => (
     method: 'GET',
     url: '/api/meetups'
   })
-
 );
 
 export const fetchAdminMeetups = userId => (
   $.ajax({
     method: 'GET',
-    url: '/api/meetups',
+    url: `/api/meetups/${userId}/meetups`,
     user_id: userId
   })
 );

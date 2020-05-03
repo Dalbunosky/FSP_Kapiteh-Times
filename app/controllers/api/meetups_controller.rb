@@ -10,6 +10,7 @@ class Api::MeetupsController < ApplicationController
         else
             puts "ALL FUTURE MEETUPS, FOR MEETUPS PAGE"
             @meetups = Meetup.all
+            # puts Date.today
             # @meetups = Meetup.where("starttime > #{Date.today}")
         end
         render 'api/meetups/index'

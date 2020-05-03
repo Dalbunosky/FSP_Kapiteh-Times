@@ -6624,7 +6624,7 @@ module.exports = warning;
 /*!********************************************!*\
   !*** ./frontend/actions/meetup_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_MEETUPS, RECEIVE_MEETUP, MEETUP_HAS_ERRORS, CLEAR_MEETUP_ERRORS, CANCEL_MEETUP, receiveMeetups, receiveMeetup, receiveMeetupErrors, clearMeetupErrors, meetupCanceled, fetchMeetups, fetchMeetup, createMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup */
+/*! exports provided: RECEIVE_MEETUPS, RECEIVE_MEETUP, MEETUP_HAS_ERRORS, CLEAR_MEETUP_ERRORS, CANCEL_MEETUP, receiveMeetups, receiveMeetup, receiveMeetupErrors, clearMeetupErrors, meetupCanceled, fetchIndexMeetups, fetchHistoryMeetups, fetchProfileMeetups, fetchMeetup, createMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6639,7 +6639,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMeetupErrors", function() { return receiveMeetupErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearMeetupErrors", function() { return clearMeetupErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "meetupCanceled", function() { return meetupCanceled; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetups", function() { return fetchMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchIndexMeetups", function() { return fetchIndexMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchHistoryMeetups", function() { return fetchHistoryMeetups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProfileMeetups", function() { return fetchProfileMeetups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMeetup", function() { return fetchMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMeetup", function() { return createMeetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editMeetup", function() { return editMeetup; });
@@ -6698,12 +6700,27 @@ var meetupCanceled = function meetupCanceled() {
 //   host
 // });
 // Thunk actions
-// Fetch all meetups, for index, 
-// MAY SPLIT IN TWO FOR PROFILE, MEETUPS PAGE
+//Fetch meetups for meetup index
 
-var fetchMeetups = function fetchMeetups(foh, id) {
+var fetchIndexMeetups = function fetchIndexMeetups() {
   return function (dispatch) {
-    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMeetups"](foh, id).then(function (meetups) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchIndexMeetups"]().then(function (meetups) {
+      return dispatch(receiveMeetups(meetups));
+    });
+  };
+}; //Fetch meetups for history page
+
+var fetchHistoryMeetups = function fetchHistoryMeetups(userId) {
+  return function (dispatch) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchHistoryMeetups"](userId).then(function (meetups) {
+      return dispatch(receiveMeetups(meetups));
+    });
+  };
+}; //Fetch meetups for profile page
+
+var fetchProfileMeetups = function fetchProfileMeetups(userId) {
+  return function (dispatch) {
+    return _util_meetup_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProfileMeetups"](userId).then(function (meetups) {
       return dispatch(receiveMeetups(meetups));
     });
   };
@@ -7608,9 +7625,9 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
   _createClass(AllMeetups, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var user = this.props.currentUser.id; // const listOfMeetups = this.props.getMeetups(user);
-
-      this.props.getMeetups(user); // console.log(listOfMeetups)
+      // const user = this.props.currentUser.id;
+      // const listOfMeetups = this.props.getMeetups(user);
+      this.props.fetchMeetups(); // console.log(listOfMeetups)
     } // // rendering of individual meetups, from FWF
     // renderEvents() {
     //     console.log(this.props);
@@ -7721,8 +7738,8 @@ var mapSTP = function mapSTP(state) {
 
 var mapDTP = function mapDTP(dispatch) {
   return {
-    getMeetups: function getMeetups(user) {
-      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_1__["fetchMeetups"])(user));
+    fetchMeetups: function fetchMeetups(user) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_1__["fetchIndexMeetups"])(user));
     }
   };
 };
@@ -8875,10 +8892,10 @@ var mapSTP = function mapSTP(state) {
 };
 
 var mapDTP = function mapDTP(dispatch) {
-  return {// getUser: () => dispatch(getUser()),
-    // removeGuest: id => dispatch(removeGuest(id)),
-    // removeMeetup: id => dispatch(removeMeetup(id))
-    // processForm: (user) => dispatch(signin(user)),
+  return {
+    fetchMeetups: function fetchMeetups(id) {
+      return dispatch(fetchHistoryMeetups(id));
+    }
   };
 };
 
@@ -9086,7 +9103,7 @@ var mapDTP = function mapDTP(dispatch) {
     },
     // join/leave(guests) meetup
     // attendMeetup: (meetupId) => dispatch(joinMeetup(meetupId)),
-    unattendMeetup: function unattendMeetup(meetupId) {
+    leaveMeetup: function leaveMeetup(meetupId) {
       return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["leaveMeetup"])(meetupId));
     } // requestSingleMeetup: (meetupId) => dispatch(requestSingleMeetup(meetupId))
 
@@ -9391,8 +9408,8 @@ var mapSTP = function mapSTP(state) {
 
 var mapDTP = function mapDTP(dispatch) {
   return {
-    getMeetups: function getMeetups(foh, id) {
-      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetups"])(foh, id));
+    fetchMeetups: function fetchMeetups(id) {
+      return dispatch(fetchFutureMeetups(id));
     } // getUser: () => dispatch(getUser()),
     // removeGuest: id => dispatch(removeGuest(id)),
     // removeMeetup: id => dispatch(removeMeetup(id))
@@ -10440,7 +10457,7 @@ var fetchIndexMeetups = function fetchIndexMeetups() {
 var fetchAdminMeetups = function fetchAdminMeetups(userId) {
   return $.ajax({
     method: 'GET',
-    url: '/api/meetups',
+    url: "/api/meetups/".concat(userId, "/meetups"),
     user_id: userId
   });
 };
