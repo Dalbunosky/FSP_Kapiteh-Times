@@ -16,7 +16,7 @@ export const fetchAdminMeetups = userId => (
 export const fetchProfileMeetups = userId => (
   $.ajax({
     method: 'GET',
-    url: `/api/meetups/${userId}/future`,
+    url: `/api/meetups/${userId}/profile`,
     // user_id: userId
   })
 );

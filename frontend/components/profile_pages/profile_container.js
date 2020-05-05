@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { fetchMeetups } from '../../actions/meetup_actions';
+import { fetchProfileMeetups } from '../../actions/meetup_actions';
 // import { Link } from 'react-router-dom';
 
 // import sessionReducer from '../../reducers/session_reducer'
@@ -21,7 +21,7 @@ const mapSTP = (state) => {
 
 const mapDTP = dispatch => {
     return {
-        fetchMeetups: id => dispatch(fetchFutureMeetups(id))
+        fetchMeetups: id => dispatch(fetchProfileMeetups(id))
         // getUser: () => dispatch(getUser()),
         // removeGuest: id => dispatch(removeGuest(id)),
         // removeMeetup: id => dispatch(removeMeetup(id))

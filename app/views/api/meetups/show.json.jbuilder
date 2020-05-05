@@ -1,5 +1,6 @@
 # Details to show at each meetup's individual page
 json.partial! '/api/meetups/meetup', meetup: @meetup
+# json.timeSortValue Time.at(meetup.starttime)
 
 # # json.partial! 'api/meetups/meetup', meetup: @meetup
 # # json.photoUrl url_for(@meetup.photo)

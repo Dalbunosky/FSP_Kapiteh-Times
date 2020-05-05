@@ -9,20 +9,26 @@ class Api::MeetupsController < ApplicationController
             @meetups = Meetup.all
         else
             puts "ALL FUTURE MEETUPS, FOR MEETUPS PAGE"
-            @meetups = Meetup.all
+            # @meetups = Meetup.all
             # puts Date.today
-            # @meetups = Meetup.where("starttime > #{Date.today}")
+            @meetups = Meetup.where("starttime > #{Time.now.to_i}")
+            # @meetups = Meetup.where("starttime > 0")
+            # puts @meetups[0].starttime
+            # puts Time.now.to_i
+            # puts Time.now
         end
         render 'api/meetups/index'
     end
 
-    def future # fetch upcoming meetups you're involved in
-        @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("starttime > #{Date.today} and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
+    def profile # fetch upcoming meetups you're involved in
+        puts "PROFILEEEEEEEEEEEEEEEEEE"
+        @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("(starttime > #{Time.now.to_i}) and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
         render 'api/meetups/index'
     end
 
     def history # fetch past meetups you were involved in
-        @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("starttime < #{Date.today} and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
+        puts "HISTORYYYYYYYYYYYYYYY"
+        @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("starttime < #{Time.now.to_i} and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
         render 'api/meetups/index'
     end
 

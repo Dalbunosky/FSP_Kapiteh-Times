@@ -1,6 +1,8 @@
 import React from 'react';
 import * as convertFunctions from '../../../util/convertor_util';
-import { leaveMeetup } from '../../../util/meetup_api_util';
+// import { leaveMeetup } from '../../../util/meetup_api_util';
+// import { joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
+// import { fetchHost, fetchGuests } from '../../../actions/user_actions';
 // import { fetchUser } from '../../../';
 
 class MeetUpCell extends React.Component {
@@ -18,6 +20,7 @@ class MeetUpCell extends React.Component {
         this.editMeetup = this.editMeetup.bind(this);
         this.cancelMeetup = this.cancelMeetup.bind(this);
         this.removeGuest = this.removeGuest.bind(this);
+        this.meetupActionChoices = this.meetupActionChoices.bind(this);
     }
 // const MeetUpCell = props =>{
     componentDidMount(type){
@@ -58,7 +61,11 @@ class MeetUpCell extends React.Component {
                     <p>Host: {host.name}</p>
                     <p>Phone: {host.phone}</p>
                     <p>Email: {host.email}</p>
-                    <button onClick={this.leaveMeetup}>Leave Meetup</button>
+                    {/* {(timing == "future" ?
+                        <div className="meetup_options">
+                            <button onClick={this.leaveMeetup}>Leave Meetup</button>
+                        </div> : ""
+                    )} */}
                 </div>
             )}
         } else{
@@ -75,33 +82,56 @@ class MeetUpCell extends React.Component {
                         <div className="guest-details">
                             <p>{guest.name}</p>
                             <p>{guest.phone}</p>
-                            <button onClick={this.removeGuest}>Remove Guest</button>
+                            {/* <button onClick={this.removeGuest}>Remove Guest</button> */}
                         </div>
                         )
                     })}
-                    <button onClick={this.editMeetup}>Edit Meetup</button>
-                    <button onClick={this.cancelMeetup}>Cancel Meetup</button>
+                    {/* {(timing == "future" ?
+                    <div className="meetup_options">
+                        <button onClick={this.editMeetup}>Edit Meetup</button>
+                        <button onClick={this.cancelMeetup}>Cancel Meetup</button>
+                    </div> : ""
+                    ) */}
                 </div>
             )
         }
     }
+    meetupActionChoices(timing, type){
+        if(timing === "future"){
+            if(type === "join"){return(
+                <div className="meetup_options">
+                    <button onClick={this.leaveMeetup}>Leave Meetup</button>
+                </div>
+            )} else{return(
+                <div className="meetup_options">
+                    <button onClick={this.editMeetup}>Edit Meetup</button>
+                    <button onClick={this.cancelMeetup}>Cancel Meetup</button>
+                </div>
+            )}
+        }
+    }
 
     render(){
-        const meetup = this.props.meetup
+        const meetup = this.props.meetup;
+        const starttime = new Date(meetup.starttime*1000);
+        const dayOfWeek = convertFunctions.convertIntoDOW(starttime.getDay());
+        const month = convertFunctions.convertIntoMonth(starttime.getMonth());
+        const hour = convertFunctions.convertIntoAMPM(starttime.getHours());
         return(
             <div className="meetup-index-item">
                 <div className="meetup-left">
                     <ul className="meetup-details">
                         <li>Venue:   {meetup.location[2]}</li>
                         <li>Address: <br/>{meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
-                        <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
-                        <li>Time:    {meetup.starttime[4]}:{convertFunctions.formatMinute(meetup.starttime[5])}</li>
+                        <li>Date:    {dayOfWeek}, {month} {starttime.getDate()}, {starttime.getFullYear()}</li>
+                        <li>Time:    {hour[0]}:{convertFunctions.formatMinute(starttime.getMinutes())} {hour[1]}</li>
                         {/* <li>End:    </li> */}
                         <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
                         <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
                     </ul>
                 </div>
                 {this.uniqueOps(this.props.type)}
+                {this.meetupActionChoices(this.props.timing, this.props.type)}
             </div>
         )
     }

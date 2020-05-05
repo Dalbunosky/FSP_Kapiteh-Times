@@ -65,7 +65,10 @@ class NewMeetup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // 2020-05-01T12:30:00.000Z
+    // 2021-05-02 15:00
+    const starttime = this.state.starttime;
+    const formattedTime = new Date(`${starttime[1]}-${starttime[2]}-${starttime[3]} ${starttime[4]}:${starttime[5]}`).valueOf()/1000;
+    this.setState({ starttime: formattedTime })
     const meetup = Object.assign({}, this.state);
     console.log(this.state);
     console.log(meetup);

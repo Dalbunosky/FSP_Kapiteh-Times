@@ -9,10 +9,8 @@ export const CANCEL_MEETUP = 'CANCEL_MEETUP';
 // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 export const receiveMeetups = meetups => {
-  console.log("JUST RECEIVED");
-  console.log(meetups);
-  // console.log(meetups[8].date);
-  // console.log(typeof meetups[8].date);
+  // console.log("JUST RECEIVED");
+  // console.log(meetups);
   return({
   type: RECEIVE_MEETUPS,
   meetups,

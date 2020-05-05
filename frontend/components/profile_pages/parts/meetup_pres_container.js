@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // import SingleMeetup from './meetup_cell';
-import { fetchMeetup, joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
-import { fetchUser, fetchHost, fetchGuests } from '../../../actions/user_actions';
+import { joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
+import { fetchHost, fetchGuests } from '../../../actions/user_actions';
 import MeetupCell from './meetup_pres';
 
 const mapSTP = state => {
