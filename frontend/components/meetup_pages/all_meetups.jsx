@@ -21,9 +21,9 @@ class AllMeetups extends React.Component {
 // With meetups, not so much.
 
     componentDidMount() {   
-        const user = this.props.currentUser.id;
+        // const user = this.props.currentUser.id;
         // const listOfMeetups = this.props.getMeetups(user);
-        this.props.getMeetups(user);
+        this.props.fetchMeetups();
         // console.log(listOfMeetups)
     }
 
@@ -89,9 +89,13 @@ class AllMeetups extends React.Component {
         // }
 
         const meetups = Array.from(this.props.meetups);
+        let cities = Set();
+
+        // meetups.forEach( meetup =>{
+        //     if(meetup.metro_area)
+        // })
 
         return (
-
             <div>
                 <div className="meetup-index-header">
                     <p className="show-header-one">SOLID FRIENDSHIPS</p>
@@ -108,6 +112,7 @@ class AllMeetups extends React.Component {
                                 <ul className="meetup-details">
                                     <li>Venue:   {meetup.location[2]}</li>
                                     <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+                                    <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
                                     <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
                                     <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
                                     {/* <li>End:    </li> */}

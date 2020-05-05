@@ -79,7 +79,7 @@ export const convertMonthtoInt = dow => {
 }
 
 export const convertIntoMonth = int =>{
-    const months = ["N/A", "January", "Feburary", "March", "April", "May", "June", "July", "August", "Septemmber", "October", "November", "December"];
+    const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "Septemmber", "October", "November", "December"];
     return months[int]
 }
 
@@ -93,10 +93,9 @@ export const arrayToDateTime = timeArr =>{ // [DOW, yr, month, day, hr, min]
     const day = `${convertIntoDOW(timeArr[0])}, ${convertIntoMonth(timeArr[2])} ${timeArr[3]}, ${timeArr[1]}`
     const determAMPM = convertoAMPM(timeArr[4])
     const time = `${determAMPM[0]}:${timeArr[5]} ${determAMPM[1]}`
-
 }
 
-export const convertoAMPM = hour =>{
+export const convertIntoAMPM = hour =>{
     if(hour === 0){return [12, "AM"]}
     else if(hour < 12){return [hour, "AM"]}
     else if(hour === 12){return [12, "PM"]}
@@ -114,3 +113,41 @@ export const formatDate = (format, year, month, day) =>{
 }
 
 export const formatMinute = minute =>(minute < 10 ? `0${minute}` : minute)
+
+export const quickSortMeetups = meetupArr =>{
+    if(meetupArr.length < 2) return meetupArr;
+
+    let pivot = meetupArr.shift();
+    let left = [];
+    let right = [];
+    while(meetupArr.length > 0){
+        if(meetupArr[0].starttime > pivot.starttime){ right.push(meetupArr.shift()) }
+        else{ left.push(meetupArr.shift()) }
+    }
+    // meetupArr.forEach( meetup => {
+    //     if(meetup.starttime > pivot.starttime){ right.push(meetup) }
+    //     else{ left.push(meetup) }
+    // })
+    // console.log([...quickSortMeetups(left), pivot, ...quickSortMeetups(right)]);
+    // console.log(quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+
+    // return ([...quickSortMeetups(left), pivot, ...quickSortMeetups(right)]);
+    return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+  
+}
+
+
+export const quickSortCities = cityArr =>{
+    let alphabet = [A,a,B,b,C,c,D,d,E,e,F,f,G,g,H,h,I,i,J,j,K,k,L,l,M,m,N,n,O,o,P,p,Q,q,R,r,S,s,T,t,U,u,V,v,W,w,X,x,Y,y,Z,z];
+    
+    if(cityArr.length < 2) return cityArr;
+
+    let pivot = cityArr.shift();
+    let left = [];
+    let right = [];
+    while(cityArr.length > 0){
+        if(cityArr[0].starttime > pivot.starttime){ right.push(cityArr.shift()) }
+        else{ left.push(cityArr.shift()) }
+    }
+    return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+}

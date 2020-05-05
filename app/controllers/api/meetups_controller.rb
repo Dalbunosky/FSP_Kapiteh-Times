@@ -3,37 +3,32 @@ class Api::MeetupsController < ApplicationController
     # location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
     # time: [],     // [DOW, year,month, day, hour, minute]
 
-    def index   # Show all meetups
-        # puts "AT INDEX"
-        # puts params[:foh]
-        # puts params
-        # puts params
-        # puts params
-        if "future" == params[:user_id] #Returns
-            puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
-            @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("tickets.user_id = #{current_user.id} or host_id = #{current_user.id}")
-            # @meetups = Meetup.all.includes(:host)
-        else
-            # Date.today > DateTime.new(time_arr[1],time_arr[2],time_arr[3],time_arr[4],time_arr[5],0)
-            # @meetups = Meetup.where(:date_must_be_in_the_future)
+    def index 
+        if params[:user_id]
+            puts "ADMIN ONLY"
             @meetups = Meetup.all
-            # @meetups = Meetup.where(:starttime => Date.today < DateTime.new(2021,2,5,5,5,0))
+        else
+            puts "ALL FUTURE MEETUPS, FOR MEETUPS PAGE"
+            # @meetups = Meetup.all
+            # puts Date.today
+            @meetups = Meetup.where("starttime > #{Time.now.to_i}")
+            # @meetups = Meetup.where("starttime > 0")
+            # puts @meetups[0].starttime
+            # puts Time.now.to_i
+            # puts Time.now
         end
-# Profile, 2: fetch meetups you're hosting and joining keyword: [future, id]
-# History, 2: fetch meetups you've hosted and joined keyword: [history, id]
-# meetups page, 3: fetch meetups you're hosting, joining, all other future meetups keyword: [future, 0]
-# Admin, EVERYTHING keyword: [admin, 0]
+        render 'api/meetups/index'
+    end
 
+    def profile # fetch upcoming meetups you're involved in
+        puts "PROFILEEEEEEEEEEEEEEEEEE"
+        @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("(starttime > #{Time.now.to_i}) and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
+        render 'api/meetups/index'
+    end
 
-        # advanced: sort by date: past or present
-            # present: all or just those under current_user
-            # past: just under current_user or all, if admin
-
-        # if params[:city_id]
-        #     @meetups = Meetup.where(city_id: params[:city_id])
-        # else
-        #     @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("tickets.ticket_id = #{current_user.id} or host_id = #{current_user.id}")
-        # end
+    def history # fetch past meetups you were involved in
+        puts "HISTORYYYYYYYYYYYYYYY"
+        @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("starttime < #{Time.now.to_i} and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
         render 'api/meetups/index'
     end
 
@@ -52,7 +47,15 @@ class Api::MeetupsController < ApplicationController
 
     def create  # Creates meetup, available to hosts only
         @meetup = Meetup.new(meetup_params)
+        puts "HEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
+        test = meetup_params.values
+        time = test[1]
+        puts test.length
+        puts test[1]
+        puts time.class
+        # puts time.class
         @meetup.host_id = current_user.id
+        # @meetup.starttime = DateTime.parse("#{starttime[1]}-#{starttime[2]}-#{starttime[3]} #{starttime[4]}:#{starttime[5]}")
         if @meetup.save
             render 'api/meetups/show'
             # render 'api/users/show'

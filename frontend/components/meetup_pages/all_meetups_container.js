@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { fetchMeetups } from '../../actions/meetup_actions';
+import { fetchIndexMeetups } from '../../actions/meetup_actions';
 import AllMeetups from './all_meetups';
 
 const mapSTP = (state) => {
-    console.log(state)
+    console.log(state);
     return({
     meetups: state.meetups,
     currentUser: state.session,
@@ -11,7 +11,7 @@ const mapSTP = (state) => {
 })}
 
 const mapDTP = dispatch => ({
-    getMeetups: user => dispatch(fetchMeetups(user))
+    fetchMeetups: user => dispatch(fetchIndexMeetups(user))
 })
 
 export default connect(mapSTP, mapDTP)(AllMeetups);

@@ -12,7 +12,7 @@
 
 class Meetup < ApplicationRecord
     validates :location, :starttime, :capacity, :topic, :host_id, :metro_area, presence: true
-    validate :has_capacity, :time_filled, :location_filled
+    validate :has_capacity, :location_filled, :date_must_be_in_the_future
   
     belongs_to :host,
       primary_key: :id,
@@ -35,25 +35,25 @@ class Meetup < ApplicationRecord
         end
     end
 
-    def time_filled
-      filled = true
-      self.starttime.map.with_index do |date_feat, i|
-        if (date_feat == nil) || (date_feat == "")
-          errors.add(:starttime, "is not filled in")
-          filled = false
-          break
-        end
-        self.starttime[i] = date_feat.to_i
-      end
-      if filled
-        date_must_be_in_the_future(starttime)
-      end
-    end
-
-    def date_must_be_in_the_future(time_arr)
-      # [DOW, year, month, day, hour, minute]
-      date = DateTime.new(time_arr[1],time_arr[2],time_arr[3],time_arr[4],time_arr[5],0)
-      if date.present? && date < Date.today
+    # def time_filled
+    #   filled = true
+    #   self.time.map.with_index do |date_feat, i|
+    #   # self.starttime.map.with_index do |date_feat, i|
+    #     if (date_feat == nil) || (date_feat == "")
+    #       errors.add(:starttime, "is not filled in")
+    #       filled = false
+    #       break
+    #     end
+    #     self.time[i] = date_feat.to_i
+    #     # self.starttime[i] = date_feat.to_i
+    #   end
+    #   # if filled
+    #   #   date_must_be_in_the_future(starttime)
+    #   # end
+    # end
+    
+    def date_must_be_in_the_future
+      if self.starttime <= Time.now.to_i
         errors.add(:starttime, "needs to be in the future")
       end
     end

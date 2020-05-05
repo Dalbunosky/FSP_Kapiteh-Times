@@ -23,29 +23,22 @@ class Profile extends React.Component {
   componentDidMount() {   
     // const keyword = ["future",this.props.currentUser.id];
     // const listOfMeetups = this.props.getMeetups(user);
-    this.props.getMeetups("future",this.props.currentUser.id);
+    this.props.fetchMeetups(this.props.currentUser.id);
     // console.log(listOfMeetups)
   }
 
   hostOnlyMeetups(hosting){
     if (this.props.currentUser.host_status){
       if(hosting.length > 0){
+        // Quicksort by starttime, which at this point is an integer
+        hosting = convertFunctions.quickSortMeetups(hosting);
+
         return(
           <div id="upcoming-hosting-meetups" className="profile-meetup-box">
             <h3>Meetups you are going to Host</h3>
               {hosting.map (meetup => 
-                // <div className="meetup-index-item">
-                //   <ul className="meetup-details">
-                //     <li>Venue:   {meetup.location[2]}</li>
-                //     <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
-                //     <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
-                //     <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
-                //     {/* <li>End:    </li> */}
-                //     <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
-                //   </ul>
-                // </div>
-                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="host"/>
+                // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
               )}
           </div>
         )
@@ -62,34 +55,28 @@ class Profile extends React.Component {
 
   joinedMeetups(joined){
     if(joined.length > 0){
+      // Quicksort by starttime, which at this point is an integer
+      joined = convertFunctions.quickSortMeetups(joined);
+
       return(
         <div id="upcoming-hosting-meetups" className="profile-meetup-box">
           <h3>Meetups you are attending</h3>
             {joined.map (meetup => 
-              // <div className="meetup-index-item">
-              //   <ul className="meetup-details">
-              //     <li>Venue:   {meetup.location[2]}</li>
-              //     <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
-              //     <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
-              //     <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
-              //     {/* <li>End:    </li> */}
-              //     <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-              //     <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
-              //   </ul>
-              // </div>
-              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} type="join"/>
+              // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
             )}
         </div>
       )
     } else {
       return(
         <div id="upcoming-hosting-meetups" className="profile-meetup-box">
-          <h3>Meetups you are going to Host</h3>
+          <h3>Meetups you are attending</h3>
           <p>Wait... You don't have any MeetUps coming up... yet!</p>
           <a href="#/meetups">Join a Meetup!</a>
         </div>
-    )
-  }}
+      )
+    }
+  }
 
   render() {
     const hostOnlyLink = bool => {
@@ -107,6 +94,7 @@ class Profile extends React.Component {
         joined.push(meetup);
       }
     })
+
     return (
       <div className="profile-main">
 
@@ -114,7 +102,6 @@ class Profile extends React.Component {
             <ProfileBar props={this.props.currentUser} />
             <a href="#/profile/edit">Edit Profile</a>
         </div>
-
         <div className="profile-right">
           <div className="profile-title">
             <h1>Upcoming meetups</h1>
@@ -125,7 +112,6 @@ class Profile extends React.Component {
 
           {this.joinedMeetups(joined)}
           {this.hostOnlyMeetups(hosting)}
-
         </div>
       </div>
     );

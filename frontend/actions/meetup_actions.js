@@ -9,7 +9,8 @@ export const CANCEL_MEETUP = 'CANCEL_MEETUP';
 // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 export const receiveMeetups = meetups => {
-  // console.log(meetups)
+  // console.log("JUST RECEIVED");
+  // console.log(meetups);
   return({
   type: RECEIVE_MEETUPS,
   meetups,
@@ -50,10 +51,23 @@ export const meetupCanceled = () => ({
 
 
 // Thunk actions
-// Fetch all meetups, for index, 
-// MAY SPLIT IN TWO FOR PROFILE, MEETUPS PAGE
-export const fetchMeetups = (foh, id) => dispatch => (
-  APIUtil.fetchMeetups(foh, id).then(meetups => (
+//Fetch meetups for meetup index
+export const fetchIndexMeetups = () => dispatch => (
+  APIUtil.fetchIndexMeetups().then(meetups => (
+    dispatch(receiveMeetups(meetups))
+  ))
+);
+
+//Fetch meetups for history page
+export const fetchHistoryMeetups = (userId) => dispatch => (
+  APIUtil.fetchHistoryMeetups(userId).then(meetups => (
+    dispatch(receiveMeetups(meetups))
+  ))
+);
+
+//Fetch meetups for profile page
+export const fetchProfileMeetups = (userId) => dispatch => (
+  APIUtil.fetchProfileMeetups(userId).then(meetups => (
     dispatch(receiveMeetups(meetups))
   ))
 );

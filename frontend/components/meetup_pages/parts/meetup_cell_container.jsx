@@ -13,9 +13,9 @@ const mapSTP = state => {
 
 const mapDTP = dispatch => (
     { // fetch, join, cancel meetup
-        attendMeetup: (meetupId) => dispatch(attendMeetup(meetupId)),
-        unattendMeetup: (meetupId) => dispatch(unattendMeetup(meetupId)),
-        requestSingleMeetup: (meetupId) => dispatch(requestSingleMeetup(meetupId))
+        joinMeetup: (meetupId) => dispatch(joinMeetup(meetupId)),
+        leaveMeetup: (meetupId) => dispatch(leaveMeetup(meetupId)),
+        fetchMeetup: (meetupId) => dispatch(fetchMeetup(meetupId))
     }
 )
 

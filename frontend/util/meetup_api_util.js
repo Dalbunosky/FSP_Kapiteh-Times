@@ -1,14 +1,35 @@
-export const fetchMeetups = (foh, id) => (
+export const fetchIndexMeetups = () => (
   $.ajax({
     method: 'GET',
-    url: '/api/meetups',
-    // foh: foh,
-    // user: id,
-    // keyword: [foh, id]
-    user_id: foh
-    // data // data should all meetups
+    url: '/api/meetups'
   })
 );
+
+export const fetchAdminMeetups = userId => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/meetups/${userId}/meetups`,
+    user_id: userId
+  })
+);
+
+export const fetchProfileMeetups = userId => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/meetups/${userId}/profile`,
+    // user_id: userId
+  })
+);
+
+export const fetchHistoryMeetups = userId => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/meetups/${userId}/history`,
+    // user_id: userId
+  })
+);
+
+
 
 export const fetchMeetup = id => (
   $.ajax({
