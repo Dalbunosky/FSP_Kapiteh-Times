@@ -7588,6 +7588,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _parts_meetup_city_row__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/meetup_city_row */ "./frontend/components/meetup_pages/parts/meetup_city_row.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7611,8 +7612,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
- // import MeetupCityRow from './parts/meetup_city_row';
-// location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
+
+ // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
 //Something is coming off wrong for React, 
 // says this is an object instead of the function 
 // that react wants.
@@ -7660,7 +7661,8 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var meetups = Array.from(this.props.meetups);
-      var metroArr = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["orgMeetupsIntoMetroes"](Array.from(this.props.meetups));
+      var metroArr = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["quickSortCities"](_util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["orgMeetupsIntoMetroes"](Array.from(this.props.meetups)));
+      console.log(metroArr);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup-index-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -7671,7 +7673,13 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
         className: "meetups"
       }, this.meetupsNearUser(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all_other_meetups"
-      }, this.meetupLabel(), meetups.map(function (meetup) {
+      }, this.meetupLabel(), metroArr.map(function (metro) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_city_row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          metro: metro,
+          keycheck: metroArr.indexOf(metro),
+          key: metroArr.indexOf(metro)
+        });
+      }), meetups.map(function (meetup) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "meetup-index-item"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -7840,6 +7848,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-calendar */ "./node_modules/react-calendar/dist/esm/index.js");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -7865,6 +7874,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+
  // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
 // test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", starttime: ["Sun", 4,12, 2020, 19, 0] )
@@ -7883,8 +7893,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       location: [181, 181, null, null, null, null, null, null],
       // [lat, lng, name of venue, address, city, state/province, zip, country]
-      starttime: [null, null, null, null, null, null],
-      // [DOW, year, month, day, hour, minute]
+      starttime: "yyyy-mm-dd hh:mm",
+      // starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
       metro_area: _this.props.host.home_city,
       topic: "",
       guests: [],
@@ -7952,31 +7962,22 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       e.preventDefault(); // 2021-05-02 15:00
+      // const starttime = this.state.starttime;
+      // const formattedTime = new Date(`${starttime[1]}-${starttime[2]}-${starttime[3]} ${starttime[4]}:${starttime[5]}`).valueOf()/1000;
+      // const formattedTime = `${starttime[1]}-${starttime[2]}-${starttime[3]} ${starttime[4]}:${starttime[5]}`;
+      // console.log(formattedTime);
+      // this.setState({ starttime: formattedTime })
+      // return e =>{
+      //   this.setState({ starttime: new Date(this.props.starttime).valueOf()/1000})
+      // }
 
-      var starttime = this.state.starttime;
-      var formattedTime = new Date("".concat(starttime[1], "-").concat(starttime[2], "-").concat(starttime[3], " ").concat(starttime[4], ":").concat(starttime[5])).valueOf() / 1000;
-      this.setState({
-        starttime: formattedTime
-      });
       var meetup = Object.assign({}, this.state);
-      console.log(this.state);
-      console.log(meetup); // const wrappedLocation = this.state.location;
-      // meetup.location = {wrappedLocation};
-      // console.log(meetup);
-      //   location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      //   starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
-      //   topic: "",
-      //   guests: [],
-      //   capacity: 0,
-      // };
-      // this.props.processForm(meetup);
-      // If(this.props.errors.length === 0)(<Redirect to="/profile" />)
-      // redirect to profile for now, redirect to meetup in future
-
-      this.props.processForm(meetup).then( //   // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
+      meetup.starttime = new Date(this.state.starttime).valueOf() / 1000;
+      console.log(meetup);
+      this.props.processForm(meetup).then( // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
       function () {
         return _this4.props.history.push("/profile");
-      } //   event => this.props.history.push(`/profile`)).catch() 
+      } // event => this.props.history.push(`/profile`)).catch() 
       // errors => this.renderErrors()
       );
     }
@@ -8005,22 +8006,16 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function onTimeChange() {
       var _this6 = this;
 
-      var date = this.state.starttime;
+      var date = this.state.starttime.split(" ");
       return function (e) {
-        var timestring = e.target.value.split(":"); // console.log(e.target.value)
-
-        var DOW = date[0];
-        var year = date[1];
-        var month = date[2];
-        var day = date[3];
-        var hour = timestring[0];
-        var minute = timestring[1];
+        var timestring = e.target.value.split(":");
+        var time = "".concat(timestring[0], ":").concat(timestring[1]);
 
         _this6.setState({
-          starttime: [DOW, year, month, day, hour, minute]
+          starttime: [date[0], time].join(" ")
         });
 
-        console.log(_this6.state.starttime); // For meridian (AM/PM) processing, go check FWF
+        console.log(_this6.state.starttime);
       };
     } // For date to string
 
@@ -8029,93 +8024,15 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
     value: function onDateChange() {
       var _this7 = this;
 
-      var timern = this.state.starttime;
+      var time = this.state.starttime.split(" ");
       return function (e) {
-        var date = e.toDateString().split(" "); // console.log(e.toDateString())
-
-        var DOW = _this7.convertDOWtoInt(date[0]);
-
-        var month = _this7.convertMonthtoInt(date[1]);
-
-        var day = date[2];
-        var year = date[3];
-        var hour = timern[4];
-        var minute = timern[5];
+        var timestring = e.toDateString().split(" ");
+        var date = "".concat(timestring[3], "-").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertMonthtoInt"](timestring[1]), "-").concat(timestring[2]);
 
         _this7.setState({
-          starttime: [DOW, year, month, day, hour, minute]
+          starttime: [date, time[1]].join(" ")
         });
       };
-    }
-  }, {
-    key: "convertDOWtoInt",
-    value: function convertDOWtoInt(dow) {
-      switch (dow) {
-        case "Sun":
-          return 0;
-
-        case "Mon":
-          return 1;
-
-        case "Tue":
-          return 2;
-
-        case "Wed":
-          return 3;
-
-        case "Thu":
-          return 4;
-
-        case "Fri":
-          return 5;
-
-        default:
-          return 6;
-      }
-    }
-  }, {
-    key: "convertMonthtoInt",
-    value: function convertMonthtoInt(dow) {
-      switch (dow) {
-        case "Jan":
-          return 1;
-
-        case "Feb":
-          return 2;
-
-        case "Mar":
-          return 3;
-
-        case "Apr":
-          return 4;
-
-        case "May":
-          return 5;
-
-        case "Jun":
-          return 6;
-
-        case "Jul":
-          return 7;
-
-        case "Aug":
-          return 8;
-
-        case "Sep":
-          return 9;
-
-        case "Oct":
-          return 10;
-
-        case "Nov":
-          return 11;
-
-        case "Dec":
-          return 12;
-
-        default:
-          return 0;
-      }
     } // changeLocation(val) {
     //   if (val === "New York") {
     //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
@@ -8431,6 +8348,292 @@ var mapDTP = function mapDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_new_meetup__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/meetup_pages/parts/meetup_cell.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/meetup_pages/parts/meetup_cell.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/convertor_util */ "./frontend/util/convertor_util.js");
+
+
+ // import { DAYS, MONTHS, formatAMPM } from '../../../util/meetups_util';
+// import DUMMY_CITIES from '../dummy_cities';
+
+var SingleMeetup = function SingleMeetup(props) {
+  console.log(props);
+
+  var handleClick = function handleClick() {
+    return function (e) {
+      e.preventDefault();
+      props.history.push("/users/".concat(props.meetup.host_id));
+    };
+  };
+
+  var handleEdit = function handleEdit(meetupId) {
+    return function (e) {
+      e.preventDefault();
+      props.requestSingleMeetup(props.meetup.id).then(function () {
+        return props.history.push("/hosting/".concat(props.meetup.id));
+      });
+    };
+  };
+
+  var handleAttend = function handleAttend(meetupId) {
+    return function (e) {
+      e.preventDefault();
+      props.attendMeetup(meetupId).then(function () {
+        return props.history.push('/profile');
+      });
+    };
+  };
+
+  var handleUnattend = function handleUnattend(meetupId) {
+    return function (e) {
+      e.preventDefault();
+      props.unattendMeetup(meetupId).then(function () {
+        return props.history.push('/profile');
+      });
+    };
+  };
+
+  var handleCancelMeetup = function handleCancelMeetup(meetupId) {
+    return function (e) {
+      e.preventDefault();
+      props.cancelMeetup(meetupId).then(function () {
+        return props.history.push('/profile');
+      });
+    };
+  };
+
+  var meetupDate = Date(); //   const meetupDate = new Date(props.meetup.date);
+  // const weekDayNumber = meetupDate.getDay();
+  // const weekDayName = DAYS[weekDayNumber];
+  // const monthNumber = meetupDate.getMonth();
+  // const monthName = MONTHS[monthNumber];
+
+  var meetupJoinButton;
+  var meetupCancelButton;
+  var meetupEditButton = null; // Logged In
+
+  if (props.currentUser) {
+    // You are the host
+    if (props.meetup.host_id === props.currentUser.id) {
+      meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "meetup-button blue"
+      }, "YOU'RE HOSTING THIS MEETUP");
+      meetupEditButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "meetup-edit-button meetup-button orange",
+        onClick: handleEdit(props.meetup.id)
+      }, "EDIT MEETUP");
+      meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "meetup-button red",
+        onClick: handleCancelMeetup(props.meetup.id)
+      }, "CANCEL THIS MEETUP"); // meetupEditButton =
+      // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
+    } // You've joined
+    else if (props.meetup.user_ids.includes(props.currentUser.id)) {
+        meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "meetup-button green"
+        }, "YOU JOINED THIS MEETUP");
+        meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "meetup-button red",
+          onClick: handleUnattend(props.meetup.id)
+        }, "CANCEL YOUR SPOT");
+      } // Meetup full, you haven't joined
+      else if (props.meetup.guests.length >= props.meetup.capacity) {
+          meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "meetup-button green"
+          }, "MEETUP IS FULL"); // // FUTURE UPGRADE TO WAITLIST
+          // <button className="meetup-button green">
+          //   YOU JOINED THIS MEETUP
+          // </button>;
+        } // You haven't joined, there's space
+        else {
+            meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "meetup-button orange",
+              onClick: handleAttend(props.meetup.id)
+            }, "ATTEND THIS MEETUP");
+          }
+  } // Not logged in
+  else {
+      // There is space
+      if (guests.length < capacity) {
+        meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "meetup-button sign-in-to-schedule",
+          to: "/signin"
+        }, "Sign in to join");
+        meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "meetup-button sign-in-to-schedule",
+          to: "/signup"
+        }, "Sign up to join");
+      } // Meetup is full
+      else {
+          meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "meetup-button orange"
+          }, "Meetup is full");
+        }
+    }
+
+  var meetupRightItem = function meetupRightItem(user) {
+    if (user.id && user.host_status) {
+      {
+        guests.map(function (guest) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "meetup-details-right"
+          }, "guest.name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "guest.phone"));
+        });
+      }
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup-details-right"
+      });
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "meetup-index-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "meetup-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:   "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:   "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", "/")), meetupRightItem(currentUser), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "meetup-details-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:   "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:   "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", "/")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "meetup-details-bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Icebreaker. Possible topics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, meetup.topic)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "meetup-actions"
+  }, meetupJoinButton, meetupCancelButton, meetupEditButton));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SingleMeetup);
+
+/***/ }),
+
+/***/ "./frontend/components/meetup_pages/parts/meetup_cell_container.jsx":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/meetup_pages/parts/meetup_cell_container.jsx ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _meetup_cell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meetup_cell */ "./frontend/components/meetup_pages/parts/meetup_cell.jsx");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "../../../node_modules/react-router-dom/es/index.js");
+
+
+
+
+
+var mapSTP = function mapSTP(state) {
+  console.log(state);
+  return {
+    // That's it? For joining?
+    state: state // currentUser: state.session.currentUser
+
+  };
+};
+
+var mapDTP = function mapDTP(dispatch) {
+  return {
+    // fetch, join, cancel meetup
+    joinMeetup: function (_joinMeetup) {
+      function joinMeetup(_x) {
+        return _joinMeetup.apply(this, arguments);
+      }
+
+      joinMeetup.toString = function () {
+        return _joinMeetup.toString();
+      };
+
+      return joinMeetup;
+    }(function (meetupId) {
+      return dispatch(joinMeetup(meetupId));
+    }),
+    leaveMeetup: function (_leaveMeetup) {
+      function leaveMeetup(_x2) {
+        return _leaveMeetup.apply(this, arguments);
+      }
+
+      leaveMeetup.toString = function () {
+        return _leaveMeetup.toString();
+      };
+
+      return leaveMeetup;
+    }(function (meetupId) {
+      return dispatch(leaveMeetup(meetupId));
+    }),
+    fetchMeetup: function (_fetchMeetup) {
+      function fetchMeetup(_x3) {
+        return _fetchMeetup.apply(this, arguments);
+      }
+
+      fetchMeetup.toString = function () {
+        return _fetchMeetup.toString();
+      };
+
+      return fetchMeetup;
+    }(function (meetupId) {
+      return dispatch(fetchMeetup(meetupId));
+    })
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_meetup_cell__WEBPACK_IMPORTED_MODULE_1__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/meetup_pages/parts/meetup_city_row.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/meetup_pages/parts/meetup_city_row.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _meetup_cell_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meetup_cell_container */ "./frontend/components/meetup_pages/parts/meetup_cell_container.jsx");
+/* harmony import */ var _meetup_cell__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./meetup_cell */ "./frontend/components/meetup_pages/parts/meetup_cell.jsx");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/convertor_util */ "./frontend/util/convertor_util.js");
+
+
+
+
+
+var CityRow = function CityRow(props) {
+  var metro = props.metro; // componentDidMount() {
+  //     this.props.requestAllCityMeetups(this.props.city);
+  // };
+  // componentWillReceiveProps(nextProps) {
+  //     if (this.props.city !== nextProps.city) {
+  //         this.props.requestAllCityMeetups(nextProps.city);
+  //     }
+  // };
+  // render(){
+
+  console.log(metro);
+  var meetups = _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__["quickSortMeetups"](metro.meetups);
+  console.log(meetups);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cityRow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, metro.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.keycheck), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "meetup"
+  })); // }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CityRow);
 
 /***/ }),
 
@@ -10507,7 +10710,7 @@ var quickSortCities = function quickSortCities(cityArr) {
   var shifted;
 
   while (cityArr.length > 0) {
-    comparedMetro = metroes[0].name.toUpperCase();
+    comparedMetro = cityArr[0].name.toUpperCase();
     compareLength = Math.min(comparedMetro.length, pivotMetro.length);
     shifted = false; // Now comparing city names
 
@@ -10534,15 +10737,11 @@ var quickSortCities = function quickSortCities(cityArr) {
   }
 
   return [].concat(_toConsumableArray(quickSortCities(left)), [pivot], _toConsumableArray(quickSortCities(right))); // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
-}; // meetups []
-// metroes []
-// metroes: array of objects
-// metro: name: <city>
-//         meetups: [meetup1, 2, 3...]
+}; // Puts meetups under metroes
 
 var orgMeetupsIntoMetroes = function orgMeetupsIntoMetroes(meetups) {
   var found;
-  var metroes = []; // let meetupInQ;
+  var metroes = [];
 
   while (meetups.length > 0) {
     found = false;
@@ -10557,12 +10756,9 @@ var orgMeetupsIntoMetroes = function orgMeetupsIntoMetroes(meetups) {
 
 
     if (found === false) {
-      // console.log("HERRRRRE")
-      // meetupInQ = meetups.shift()
       metroes.push({
         name: meetups[0].metro_area,
-        meetups: [meetups.shift()] // meetups: [meetupInQ]
-
+        meetups: [meetups.shift()]
       });
     }
   }

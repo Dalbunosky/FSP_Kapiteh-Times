@@ -1,7 +1,10 @@
+import React from 'react';
 import MeetupCellContainer from './meetup_cell_container';
+import MeetupCell from './meetup_cell';
+import * as convertFunctions from '../../../util/convertor_util'
 
 const CityRow = (props) =>{
-
+    const metro = props.metro;
     // componentDidMount() {
     //     this.props.requestAllCityMeetups(this.props.city);
     // };
@@ -13,11 +16,17 @@ const CityRow = (props) =>{
     // };
 
     // render(){
-        console.log(props);
-        const { meetups } = props;
+        console.log(metro);
+        const meetups = convertFunctions.quickSortMeetups(metro.meetups);
+        console.log(meetups);
+
         return(
             <div className="cityRow">
-                { meetups.map(meetup => <MeetupCellContainer key={meetup.id} meetup={meetup} />)}
+                <h3>{metro.name}</h3>
+                <p>{props.keycheck}</p>
+                <div className="meetup">
+                    {/* { meetups.map(meetup => <MeetupCell key={meetups.indexOf(meetup)} meetup={meetup} />)} */}
+                </div>
             </div>
         )
     // }

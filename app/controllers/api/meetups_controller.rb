@@ -47,13 +47,17 @@ class Api::MeetupsController < ApplicationController
 
     def create  # Creates meetup, available to hosts only
         @meetup = Meetup.new(meetup_params)
-        puts "HEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
-        test = meetup_params.values
-        time = test[1]
-        puts test.length
-        puts test[1]
-        puts time.class
+        # puts "HEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
+        # test = meetup_params.values
+        # time = test[1]
+        # puts test.length
+        # puts test[1]
         # puts time.class
+        # puts time
+        puts @meetup.location
+        puts @meetup.starttime
+        puts @meetup.capacity
+        puts @meetup.topic
         @meetup.host_id = current_user.id
         # @meetup.starttime = DateTime.parse("#{starttime[1]}-#{starttime[2]}-#{starttime[3]} #{starttime[4]}:#{starttime[5]}")
         if @meetup.save
@@ -110,7 +114,7 @@ class Api::MeetupsController < ApplicationController
     private
     def meetup_params
         # params.require(:meetup).permit(:topic, :capacity, location:[:lat, :lng, :venue_name, :address, :city, :state_province, :zip, :country], guests: [], starttime: [:dow, :month, :day, :year, :hour, :minute]) #, :photo)
-        params.require(:meetup).permit(:topic, :capacity, :metro_area, location:[], guests: [], starttime: []) #, :photo)
+        params.require(:meetup).permit(:topic, :capacity, :metro_area, :starttime, location:[], guests: []) #, :photo)
         
     end
 end

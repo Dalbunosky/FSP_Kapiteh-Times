@@ -1,6 +1,6 @@
 import React from 'react';
 import * as convertFunctions from '../../util/convertor_util';
-// import MeetupCityRow from './parts/meetup_city_row';
+import MeetupCityRow from './parts/meetup_city_row';
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
 
@@ -54,8 +54,8 @@ class AllMeetups extends React.Component {
 
     render() {
         const meetups = Array.from(this.props.meetups);
-        const metroArr = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
-
+        const metroArr = convertFunctions.quickSortCities(convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups)));
+        console.log(metroArr);
         return (
             <div>
                 <div className="meetup-index-header">
@@ -66,6 +66,9 @@ class AllMeetups extends React.Component {
                     {this.meetupsNearUser()}
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
+                        {metroArr.map (metro =>
+                            <MeetupCityRow metro={metro} keycheck={metroArr.indexOf(metro)} key={metroArr.indexOf(metro)}/>
+                        )}
 
                         {meetups.map (meetup => 
                             <div className="meetup-index-item">
@@ -82,6 +85,8 @@ class AllMeetups extends React.Component {
                             </div>
                             // <MeetupCellContainer key={meetup.id} meetup={meetup} />
                         )}
+
+
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
                         {/* Meetups */}
                         {/* <MeetupCityRow city={city} meetups={meetups}> */}

@@ -151,7 +151,7 @@ export const quickSortCities = cityArr =>{
     let right = [];
     let shifted;
     while(cityArr.length > 0){
-        comparedMetro = metroes[0].name.toUpperCase();
+        comparedMetro = cityArr[0].name.toUpperCase();
         compareLength = Math.min(comparedMetro.length, pivotMetro.length);
         shifted = false;
 
@@ -178,16 +178,10 @@ export const quickSortCities = cityArr =>{
     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 }
 
-
-// meetups []
-// metroes []
-// metroes: array of objects
-// metro: name: <city>
-//         meetups: [meetup1, 2, 3...]
+// Puts meetups under metroes
 export const orgMeetupsIntoMetroes = meetups => {
     let found;
     let metroes = [];
-    // let meetupInQ;
     while(meetups.length > 0){
         found = false
         for(let i = 0; i < metroes.length; i++){
@@ -199,12 +193,9 @@ export const orgMeetupsIntoMetroes = meetups => {
         }
         // metro not in list
         if (found === false){
-            // console.log("HERRRRRE")
-            // meetupInQ = meetups.shift()
             metroes.push({
                 name: meetups[0].metro_area,
                 meetups: [meetups.shift()]
-                // meetups: [meetupInQ]
             })
         }
     }
