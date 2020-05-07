@@ -3,14 +3,13 @@ import Calendar from 'react-calendar';
 // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
 
-// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", starttime: ["Sun", 4,12, 2020, 19, 0] )
 class EditMeetup extends React.Component {
   constructor(props){
     super(props)
     console.log(props);
     this.state = {
       location: this.props.location, // [lat, lng, name of venue, address, city, state/province, zip, country]
-      starttime: this.props.starttime,     // [DOW, year, month, day, hour, minute]
+      starttime: this.props.starttime,
       metro_area: this.props.metro_area,
       topic: this.props.topic,
       guests: this.props.guests,

@@ -3,7 +3,6 @@ import * as convertFunctions from '../../util/convertor_util';
 // import MeetupCityRow from './parts/meetup_city_row';
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
-// time: [],     // [DOW, year, month, day, hour, minute]
 
 //Something is coming off wrong for React, 
 // says this is an object instead of the function 
@@ -27,30 +26,8 @@ class AllMeetups extends React.Component {
         // console.log(listOfMeetups)
     }
 
-    // // rendering of individual meetups, from FWF
-    // renderEvents() {
-    //     console.log(this.props);
-    //     if (this.props.meetups.meetups.length > 0) {
-    //         return this.props.meetups.meetups.map((meetup, idx) => {
-    //             const theday = meetup.date.split(" ")[0];
-    //         const thedate = meetup.date.split(" ")[1].concat(" " + meetup.date.split(" ")[2])
-    //         return (
-    //             <div className="single-meetup" key={`meetupid-${idx}`}>
-    //                 <p>{meetup.name}</p>
-    //                 <p>{theday}</p>
-    //                 <p>{thedate}</p>
-    //                 <p>{meetup.openings}</p>
-    //                 <p>{meetup.username}</p>
-    //                 <img src={meetup.photoUrl} />
-    //             </div>
-    //         )
-    //     })
-    //     }
-    // }
-
     meetupsNearUser(){
-        console.log(this.props.currentUser)
-        if(this.props.currentUser == true){
+        if(this.props.currentUser){
             return(
                 <div className="nearby_meetups">
                     <h3>Upcoming meetups at your city</h3>
@@ -63,7 +40,7 @@ class AllMeetups extends React.Component {
     }
 
     meetupLabel(){
-        if(this.props.currentUser == true){
+        if(this.props.currentUser){
             return(
                 <h3>Upcoming meetups everywhere else</h3>
             )
@@ -76,24 +53,8 @@ class AllMeetups extends React.Component {
     }
 
     render() {
-        console.log(this.props)
-        // // sort meetups by city
-
-        // let cities = {}; //Set.new
-        // this.props.meetups.map
-        // if (cities.includes(meetup.city)){
-        //     cities[meetup.city].push(meetup)
-        // }
-        // else {
-        //     cities[meetup.city] = [meetup]
-        // }
-
         const meetups = Array.from(this.props.meetups);
-        let cities = Set();
-
-        // meetups.forEach( meetup =>{
-        //     if(meetup.metro_area)
-        // })
+        const metroArr = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
 
         return (
             <div>
@@ -105,11 +66,11 @@ class AllMeetups extends React.Component {
                     {this.meetupsNearUser()}
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
-                        {console.log(meetups)}
 
                         {meetups.map (meetup => 
                             <div className="meetup-index-item">
                                 <ul className="meetup-details">
+                                    {}
                                     <li>Venue:   {meetup.location[2]}</li>
                                     <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
                                     <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
