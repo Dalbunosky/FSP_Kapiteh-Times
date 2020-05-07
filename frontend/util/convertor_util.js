@@ -114,6 +114,8 @@ export const formatDate = (format, year, month, day) =>{
 
 export const formatMinute = minute =>(minute < 10 ? `0${minute}` : minute)
 
+
+
 export const quickSortMeetups = meetupArr =>{
     if(meetupArr.length < 2) return meetupArr;
 
@@ -131,23 +133,71 @@ export const quickSortMeetups = meetupArr =>{
     // console.log([...quickSortMeetups(left), pivot, ...quickSortMeetups(right)]);
     // console.log(quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 
-    // return ([...quickSortMeetups(left), pivot, ...quickSortMeetups(right)]);
     return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
-  
 }
 
 
 export const quickSortCities = cityArr =>{
-    let alphabet = [A,a,B,b,C,c,D,d,E,e,F,f,G,g,H,h,I,i,J,j,K,k,L,l,M,m,N,n,O,o,P,p,Q,q,R,r,S,s,T,t,U,u,V,v,W,w,X,x,Y,y,Z,z];
+    let alphabet = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     
     if(cityArr.length < 2) return cityArr;
 
     let pivot = cityArr.shift();
+    // if (currentUser && pivot.name === currentUser.home_city){return [pivot,...metroSort(metroes)]};
+    const pivotMetro = pivot.name.toUpperCase()
+    let comparedMetro;
+    let compareLength;
     let left = [];
     let right = [];
+    let shifted;
     while(cityArr.length > 0){
-        if(cityArr[0].starttime > pivot.starttime){ right.push(cityArr.shift()) }
-        else{ left.push(cityArr.shift()) }
+        comparedMetro = cityArr[0].name.toUpperCase();
+        compareLength = Math.min(comparedMetro.length, pivotMetro.length);
+        shifted = false;
+
+        // Now comparing city names
+        for(let i=0; i< compareLength; i++){
+            if(alphabet.indexOf(comparedMetro[i]) < alphabet.indexOf(pivotMetro[i])){
+                left.push(cityArr.shift());
+                shifted = true;
+                break;
+            }
+            else if(alphabet.indexOf(comparedMetro[i]) > alphabet.indexOf(pivotMetro[i])){
+                right.push(cityArr.shift());
+                shifted = true;
+                break;
+            }
+        }
+        // One city has the entire name of another city. Compare by length of name.
+        if(shifted === false){
+            if(comparedMetro.length < pivotMetro.length){left.push(cityArr.shift())}
+            else{right.push(cityArr.shift())}
+        }
     }
-    return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+    return([...quickSortCities(left), pivot, ...quickSortCities(right)]);
+    // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+}
+
+// Puts meetups under metroes
+export const orgMeetupsIntoMetroes = meetups => {
+    let found;
+    let metroes = [];
+    while(meetups.length > 0){
+        found = false
+        for(let i = 0; i < metroes.length; i++){
+            if (metroes[i].name === meetups[0].metro_area){
+                metroes[i].meetups.push(meetups.shift());
+                found = true;
+                break;
+            }
+        }
+        // metro not in list
+        if (found === false){
+            metroes.push({
+                name: meetups[0].metro_area,
+                meetups: [meetups.shift()]
+            })
+        }
+    }
+    return metroes;
 }
