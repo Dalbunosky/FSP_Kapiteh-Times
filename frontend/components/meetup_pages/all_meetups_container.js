@@ -7,6 +7,7 @@ const mapSTP = (state) => {
     return({
     meetups: state.meetups,
     currentUser: state.session.id,
+    home_city: state.users[state.session.id].home_city
     // currentUserCity: state.users[state.session.id].home_city
 })}
 
