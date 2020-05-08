@@ -5,7 +5,21 @@ import * as convertFunctions from '../../../util/convertor_util';
 // import DUMMY_CITIES from '../dummy_cities';
 
 const SingleMeetup = (props) => {
-  console.log(props)
+  // console.log("meetup cell");
+  // console.log(props);
+  const currentUser = props.currentUser;
+  const meetup = props.meetup;
+  const guests = meetup.guest_ids;
+  const host = meetup.hostName;
+  const venue = meetup.location[2];
+  const address = `${meetup.location[3]} ${meetup.location[4]} ${meetup.location[5]},${meetup.location[6]}`;
+  const topic = meetup.topic;
+  const starttime = new Date(meetup.starttime*1000);
+    // const dayOfWeek = convertFunctions.convertIntoDOW(starttime.getDay());
+    // const month = convertFunctions.convertIntoMonth(starttime.getMonth());
+    const hour = convertFunctions.convertIntoAMPM(starttime.getHours());
+    const date = `${convertFunctions.convertIntoDOW(starttime.getDay())}, ${convertFunctions.convertIntoMonth(starttime.getMonth())} ${starttime.getDate()}, ${starttime.getFullYear()}`;
+    const time = `${hour[0]}:${convertFunctions.formatMinute(starttime.getMinutes())} ${hour[1]}`;
   
   const handleClick = () => {
     return(e) => {
@@ -46,7 +60,7 @@ const SingleMeetup = (props) => {
     };
   };
 
-  const meetupDate = Date()
+  // const meetupDate = Date()
 
 //   const meetupDate = new Date(props.meetup.date);
   // const weekDayNumber = meetupDate.getDay();
@@ -54,14 +68,15 @@ const SingleMeetup = (props) => {
   // const monthNumber = meetupDate.getMonth();
   // const monthName = MONTHS[monthNumber];
 
+
   let meetupJoinButton;
   let meetupCancelButton;
   let meetupEditButton = null;
 
   // Logged In
-  if (props.currentUser) {  
+  if (currentUser) {  
     // You are the host
-    if (props.meetup.host_id === props.currentUser.id) {
+    if (props.meetup.host_id === currentUser) {
       meetupJoinButton =
       <button className="meetup-button blue">
           YOU'RE HOSTING THIS MEETUP
@@ -80,7 +95,7 @@ const SingleMeetup = (props) => {
       // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
     } 
     // You've joined
-    else if (props.meetup.user_ids.includes(props.currentUser.id)) {
+    else if (guests.includes(currentUser)) {
       meetupJoinButton =
       <button className="meetup-button green">
         YOU JOINED THIS MEETUP
@@ -114,7 +129,7 @@ const SingleMeetup = (props) => {
   // Not logged in
   else {
       // There is space
-      if(guests.length < capacity){
+      if(guests.length < meetup.capacity){
         meetupJoinButton =
         <Link className="meetup-button sign-in-to-schedule" to="/signin">
         Sign in to join
@@ -134,7 +149,7 @@ const SingleMeetup = (props) => {
   }
 
   const meetupRightItem = (user) =>{
-    if(user.id && user.host_status){
+    if(user.id && user.host_status){  // Logged in and is a host
       {guests.map(guest => <div><p className="meetup-details-right">guest.name</p><p>guest.phone</p></div>)}
     }
     else{
@@ -148,23 +163,24 @@ const SingleMeetup = (props) => {
   }
 
   return (
+    // host, topic
     <div className="meetup-index-item">
       <ul className="meetup-details">
-        <li>Venue:  </li>
-        <li>Address:</li>
-        <li>Date:   </li>
-        <li>Time:   </li>
+        <li>Venue:  {venue}</li>
+        <li>Address:{address}</li>
+        <li>Date:   {date}</li>
+        <li>Time:   {time}</li>
         {/* <li>End:    </li> */}
-        <li>Space:  {}/{}</li>
+        <li>Space:  {guests.length}/{meetup.capacity}</li>
       </ul>
       {meetupRightItem(currentUser)}
-      <ul className="meetup-details-right">
+      {/* <ul className="meetup-details-right">
         <li>Venue:  </li>
         <li>Address:</li>
         <li>Date:   </li>
         <li>Time:   </li>
         <li>Space:  {}/{}</li>
-      </ul>
+      </ul> */}
       <div className="meetup-details-bottom">
         <h3>Icebreaker. Possible topics</h3>
         <p>{meetup.topic}</p>

@@ -27,10 +27,12 @@ class AllMeetups extends React.Component {
     }
 
     meetupsNearUser(){
+        {console.log("MEETUP INDEX")}
+        {console.log(this.props)}
         if(this.props.currentUser){
             return(
                 <div className="nearby_meetups">
-                    <h3>Upcoming meetups at your city</h3>
+                    <h3>Upcoming meetups in and around {this.props.home_city}</h3>
                     {/* <p>{this.props.currentUser}</p> */}
                     {/* Meetups */}
                     {/* <MeetupCityRow city={city} meetups={meetups}> */}
@@ -53,9 +55,9 @@ class AllMeetups extends React.Component {
     }
 
     render() {
-        const meetups = Array.from(this.props.meetups);
         const metroArr = convertFunctions.quickSortCities(convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups)));
-        console.log(metroArr);
+        // console.log("MEETUP INDEX PROPS");
+        // console.log(this.props);
         return (
             <div>
                 <div className="meetup-index-header">
@@ -67,25 +69,8 @@ class AllMeetups extends React.Component {
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
                         {metroArr.map (metro =>
-                            <MeetupCityRow metro={metro} keycheck={metroArr.indexOf(metro)} key={metroArr.indexOf(metro)}/>
+                            <MeetupCityRow metro={metro} keycheck={metroArr.indexOf(metro)} key={metroArr.indexOf(metro)} currentUser={this.props.currentUser}/>
                         )}
-
-                        {meetups.map (meetup => 
-                            <div className="meetup-index-item">
-                                <ul className="meetup-details">
-                                    {}
-                                    <li>Venue:   {meetup.location[2]}</li>
-                                    <li>Address: {meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
-                                    <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
-                                    <li>Date:    {convertFunctions.convertIntoDOW(meetup.starttime[0])}, {meetup.starttime[2]}/{meetup.starttime[3]}/{meetup.starttime[1]}</li>
-                                    <li>Time:    {meetup.starttime[4]}:{meetup.starttime[5]}</li>
-                                    {/* <li>End:    </li> */}
-                                    <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                                </ul>
-                            </div>
-                            // <MeetupCellContainer key={meetup.id} meetup={meetup} />
-                        )}
-
 
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
                         {/* Meetups */}
