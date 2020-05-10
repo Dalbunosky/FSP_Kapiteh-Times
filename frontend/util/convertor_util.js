@@ -126,31 +126,71 @@ export const quickSortMeetups = meetupArr =>{
         if(meetupArr[0].starttime > pivot.starttime){ right.push(meetupArr.shift()) }
         else{ left.push(meetupArr.shift()) }
     }
-    // meetupArr.forEach( meetup => {
-    //     if(meetup.starttime > pivot.starttime){ right.push(meetup) }
-    //     else{ left.push(meetup) }
-    // })
-    // console.log([...quickSortMeetups(left), pivot, ...quickSortMeetups(right)]);
-    // console.log(quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
-
     return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 }
 
 
-export const quickSortCities = cityArr =>{
-    let alphabet = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+// export const quickSortCities = cityArr =>{
+//     let alphabet = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     
-    if(cityArr.length < 2) return cityArr;
+//     if(cityArr.length < 2) return cityArr;
 
-    let pivot = cityArr.shift();
-    // if (currentUser && pivot.name === currentUser.home_city){return [pivot,...metroSort(metroes)]};
-    const pivotMetro = pivot.name.toUpperCase()
+//     let pivot = cityArr.shift();
+//     // if (currentUser && pivot.name === currentUser.home_city){return [pivot,...metroSort(metroes)]};
+//     const pivotMetro = pivot.name.toUpperCase()
+//     let comparedMetro;
+//     let compareLength;
+//     let left = [];
+//     let right = [];
+//     let shifted;
+//     while(cityArr.length > 0){
+//         comparedMetro = cityArr[0].name.toUpperCase();
+//         compareLength = Math.min(comparedMetro.length, pivotMetro.length);
+//         shifted = false;
+
+//         // Now comparing city names
+//         for(let i=0; i< compareLength; i++){
+//             if(alphabet.indexOf(comparedMetro[i]) < alphabet.indexOf(pivotMetro[i])){
+//                 left.push(cityArr.shift());
+//                 shifted = true;
+//                 break;
+//             }
+//             else if(alphabet.indexOf(comparedMetro[i]) > alphabet.indexOf(pivotMetro[i])){
+//                 right.push(cityArr.shift());
+//                 shifted = true;
+//                 break;
+//             }
+//         }
+//         // One city has the entire name of another city. Compare by length of name.
+//         if(shifted === false){
+//             if(comparedMetro.length < pivotMetro.length){left.push(cityArr.shift())}
+//             else{right.push(cityArr.shift())}
+//         }
+//     }
+//     return([...quickSortCities(left), pivot, ...quickSortCities(right)]);
+//     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+// }
+
+
+export const quickSortCities = (cityArr, home = null) =>{
+    const alphabet = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    let foundHome = [];
     let comparedMetro;
     let compareLength;
     let left = [];
     let right = [];
     let shifted;
+    if(cityArr.length < 2) return cityArr;
+
+    if (cityArr[0].name === home){ foundHome = cityArr.shift() }
+    let pivot = cityArr.shift();
+
+    const pivotMetro = pivot.name.toUpperCase()
     while(cityArr.length > 0){
+        if (cityArr[0].name === home){ 
+            foundHome = cityArr.shift();
+            continue;
+        }
         comparedMetro = cityArr[0].name.toUpperCase();
         compareLength = Math.min(comparedMetro.length, pivotMetro.length);
         shifted = false;
@@ -174,7 +214,7 @@ export const quickSortCities = cityArr =>{
             else{right.push(cityArr.shift())}
         }
     }
-    return([...quickSortCities(left), pivot, ...quickSortCities(right)]);
+    return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 }
 
