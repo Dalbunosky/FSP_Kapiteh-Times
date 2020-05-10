@@ -31,10 +31,14 @@ class MeetUpCell extends React.Component {
         //     this.props.fetchGuests(this.props.meetup.guests);
         // }
     }
+    
     leaveMeetup(e){
         e.preventDefault();
         console.log("leaving Meetup")
     }
+
+
+
     editMeetup(e){
         e.preventDefault();
         console.log("editting Meetup")

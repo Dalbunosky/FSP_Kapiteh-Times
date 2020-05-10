@@ -22,7 +22,7 @@ const mapSTP = (state) => {
 const mapDTP = dispatch => {
     return {
         fetchMeetups: id => dispatch(fetchProfileMeetups(id))
-        // getUser: () => dispatch(getUser()),
+        // fetchUser: () => dispatch(fetchUser()),
         // removeGuest: id => dispatch(removeGuest(id)),
         // removeMeetup: id => dispatch(removeMeetup(id))
 

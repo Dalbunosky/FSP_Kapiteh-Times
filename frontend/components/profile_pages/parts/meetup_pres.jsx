@@ -127,7 +127,7 @@ class MeetUpCell extends React.Component {
                         <li>Time:    {hour[0]}:{convertFunctions.formatMinute(starttime.getMinutes())} {hour[1]}</li>
                         {/* <li>End:    </li> */}
                         <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                        <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
+                        {/* <li>Topics and Icebreakers: <br/> {meetup.topic}</li> */}
                     </ul>
                 </div>
                 {this.uniqueOps(this.props.type)}

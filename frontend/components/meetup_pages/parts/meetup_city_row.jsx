@@ -18,6 +18,8 @@ const CityRow = (props) =>{
     // };
 
     // render(){
+        // console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+        // console.log(props);
         // console.log(metro);
         const meetups = convertFunctions.quickSortMeetups(metro.meetups);
         // console.log(meetups);
@@ -25,7 +27,7 @@ const CityRow = (props) =>{
         return(
             <div className="cityRow">
                 <h3>{metro.name}</h3>
-                <p>{props.keycheck}</p>
+                {/* <p>{props.keycheck}</p> */}
                 <div className="meetup">
                     { meetups.map(meetup => <MeetupCell key={meetups.indexOf(meetup)} meetup={meetup} currentUser={props.currentUser}/>)}
                 </div>

@@ -1,4 +1,5 @@
-import * as APIUtil from '../util/session_api_util';
+import * as SessAPIUtil from '../util/session_api_util';
+import * as UserAPIUtil from '../util/user_api_util';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER';
@@ -33,26 +34,14 @@ export const closeUserAccount = () => ({
 
 
 // grab current user
-export const getUser = () => dispatch => (
-  ApiUtil.receiveUser()
+export const fetchUser = id => dispatch => (
+  UserAPIUtil.fetchUser(id)
     .then(user => dispatch(receiveCurrentUser(user)))
 )
 
-// export const removeGuest = id => dispatch => (
-//   ApiUtil.deleteGuest(id)
-//     .then((guest) => dispatch(deleteGuest(guest)))
-// )
-
-// export const removeMeetup = id => dispatch => (
-//   ApiUtil.deleteMeetup(id)
-//     .then((meetup) => dispatch(deleteMeetup(meetup)))
-// )
-
-
-
 // Sign Up, Sign In, Sign out
 export const signup = user => dispatch => (
-  APIUtil.signup(user).then(user => (
+  SessAPIUtil.signup(user).then(user => (
     dispatch(receiveCurrentUser(user))
   ), err => (
     dispatch(receiveUserErrors(err.responseJSON))
@@ -60,7 +49,7 @@ export const signup = user => dispatch => (
 );
 
 export const signin = user => dispatch => (
-  APIUtil.signin(user).then(user => (
+  SessAPIUtil.signin(user).then(user => (
     dispatch(receiveCurrentUser(user))
   ), err => (
     dispatch(receiveUserErrors(err.responseJSON))
@@ -68,14 +57,14 @@ export const signin = user => dispatch => (
 );
 
 export const signout = () => dispatch => (
-  APIUtil.signout().then(user => (
+  SessAPIUtil.signout().then(user => (
     dispatch(signoutCurrentUser())
   ))
 );
 
 // Edit Profile, Close Account
 export const editUser = user => dispatch => (
-  APIUtil.editUser(user).then(user => (
+  SessAPIUtil.editUser(user).then(user => (
     dispatch(receiveCurrentUser(user))
   ), err => (
     dispatch(receiveUserErrors(err.responseJSON))
@@ -83,7 +72,7 @@ export const editUser = user => dispatch => (
 );
 
 export const closeAcct = () => dispatch => (
-  APIUtil.closeAcct().then(user => (
+  SessAPIUtil.closeAcct().then(user => (
     dispatch(closeUserAccount())
   ))
 );

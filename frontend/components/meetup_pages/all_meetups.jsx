@@ -19,25 +19,31 @@ class AllMeetups extends React.Component {
 // With user, once you're logged in, state will always have your info on hand until logout
 // With meetups, not so much.
 
-    componentDidMount() {   
-        // const user = this.props.currentUser.id;
-        // const listOfMeetups = this.props.getMeetups(user);
+    componentDidMount() {
         this.props.fetchMeetups();
-        // console.log(listOfMeetups)
+        if(this.props.currentUser){
+            this.props.fetchUser(this.props.currentUser);
+        }
     }
 
-    meetupsNearUser(){
-        {console.log("MEETUP INDEX")}
-        {console.log(this.props)}
+    meetupsNearUser(homeCityCell){
         if(this.props.currentUser){
-            return(
-                <div className="nearby_meetups">
-                    <h3>Upcoming meetups in and around {this.props.home_city}</h3>
-                    {/* <p>{this.props.currentUser}</p> */}
-                    {/* Meetups */}
-                    {/* <MeetupCityRow city={city} meetups={meetups}> */}
-                </div>
-            )
+            if(homeCityCell){
+                return(
+                    <div className="nearby_meetups">
+                        <h3>Upcoming meetups in and around {this.props.currentUserCity}</h3>
+                        <MeetupCityRow metro={homeCityCell} key="0" currentUser={this.props.currentUser}/>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <div className="nearby_meetups">
+                        <h3>Upcoming meetups in and around {this.props.currentUserCity}</h3>
+                        <p>Looks like no one is hosting in your area.¯\_(ツ)_/¯ <br/> You could host one!</p>
+                    </div>
+                )
+            }
         }
     }
 
@@ -55,9 +61,16 @@ class AllMeetups extends React.Component {
     }
 
     render() {
-        const metroArr = convertFunctions.quickSortCities(convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups)));
-        // console.log("MEETUP INDEX PROPS");
-        // console.log(this.props);
+        const metroArr0 = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
+
+        let currentUserCity;
+        let homeCityMeetups = "";
+        if(this.props.currentUser){currentUserCity = this.props.currentUserCity;}
+        else{currentUserCity = null;}
+        const metroArr = convertFunctions.quickSortCities(metroArr0, currentUserCity);
+
+        if((metroArr.length > 0) && (currentUserCity === metroArr[0].name)){homeCityMeetups = metroArr.shift()}
+
         return (
             <div>
                 <div className="meetup-index-header">
@@ -65,11 +78,11 @@ class AllMeetups extends React.Component {
                     <p className="show-header-two">They're here to stay.</p>
                 </div>
                 <div className="meetups">
-                    {this.meetupsNearUser()}
+                    {this.meetupsNearUser(homeCityMeetups)}
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
                         {metroArr.map (metro =>
-                            <MeetupCityRow metro={metro} keycheck={metroArr.indexOf(metro)} key={metroArr.indexOf(metro)} currentUser={this.props.currentUser}/>
+                            <MeetupCityRow metro={metro} key={metroArr.indexOf(metro)} currentUser={this.props.currentUser}/>
                         )}
 
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
