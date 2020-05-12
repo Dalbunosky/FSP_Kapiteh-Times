@@ -6944,10 +6944,10 @@ var receiveGuests = function receiveGuests(guests) {
 // })
 // grab host
 
-var fetchHost = function fetchHost(userid) {
+var fetchHost = function fetchHost(hostId) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userid).then(function (user) {
-      return dispatch(receiveHost(user));
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](hostId).then(function (host) {
+      return dispatch(receiveHost(host));
     });
   };
 }; // grab guests
@@ -7080,6 +7080,10 @@ var App = function App() {
     exact: true,
     path: "/meetups",
     component: _meetup_pages_all_meetups_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    exact: true,
+    path: "/meetups/:meetupId",
+    component: _meetup_pages_meetup_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["HostRoute"], {
     exact: true,
     path: "/meetups/new",
@@ -7631,33 +7635,34 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchMeetups();
 
-      if (this.props.currentUser) {
-        this.props.fetchUser(this.props.currentUser);
+      if (this.props.signedIn) {
+        // console.log("TRIGGGGGGGGGGGGGGGGGGGGGGGGGERED")
+        this.props.fetchUser(this.props.signedIn);
       }
     }
   }, {
     key: "meetupsNearUser",
-    value: function meetupsNearUser(homeCityCell) {
-      if (this.props.currentUser) {
+    value: function meetupsNearUser(homeCityCell, homebase) {
+      if (this.props.signedIn) {
         if (homeCityCell) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "nearby_meetups"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups in and around ", this.props.currentUserCity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_city_row__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_city_row__WEBPACK_IMPORTED_MODULE_2__["default"], {
             metro: homeCityCell,
             key: "0",
-            currentUser: this.props.currentUser
+            currentUser: this.props.signedIn
           }));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "nearby_meetups"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups in and around ", this.props.currentUserCity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Looks like no one is hosting in your area.\xAF\\_(\u30C4)_/\xAF ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " You could host one!"));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Looks like no one is hosting in your area.\xAF\\_(\u30C4)_/\xAF ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " You could host one!"));
         }
       }
     }
   }, {
     key: "meetupLabel",
     value: function meetupLabel() {
-      if (this.props.currentUser) {
+      if (this.props.signedIn) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Upcoming meetups everywhere else");
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All upcoming meetups");
@@ -7668,19 +7673,21 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      // console.log(this.props.signedIn);
+      // console.log(this.props.currentUser);
+      // debugger;
       var metroArr0 = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["orgMeetupsIntoMetroes"](Array.from(this.props.meetups));
-      var currentUserCity;
+      var homebase = "";
       var homeCityMeetups = "";
 
-      if (this.props.currentUser) {
-        currentUserCity = this.props.currentUserCity;
-      } else {
-        currentUserCity = null;
-      }
+      if (this.props.signedIn) {
+        homebase = this.props.currentUser[this.props.signedIn].home_city;
+      } // else{homebase = null;}
 
-      var metroArr = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["quickSortCities"](metroArr0, currentUserCity);
 
-      if (metroArr.length > 0 && currentUserCity === metroArr[0].name) {
+      var metroArr = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["quickSortCities"](metroArr0, homebase);
+
+      if (metroArr.length > 0 && homebase === metroArr[0].name) {
         homeCityMeetups = metroArr.shift();
       }
 
@@ -7692,13 +7699,13 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
         className: "show-header-two"
       }, "They're here to stay.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetups"
-      }, this.meetupsNearUser(homeCityMeetups), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.meetupsNearUser(homeCityMeetups, homebase), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all_other_meetups"
       }, this.meetupLabel(), metroArr.map(function (metro) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_city_row__WEBPACK_IMPORTED_MODULE_2__["default"], {
           metro: metro,
           key: metroArr.indexOf(metro),
-          currentUser: _this.props.currentUser
+          currentUser: _this.props.signedIn
         });
       }))));
     }
@@ -7734,8 +7741,9 @@ var mapSTP = function mapSTP(state) {
   // console.log(state);
   return {
     meetups: state.meetups,
-    currentUser: state.session.id,
-    currentUserCity: state.users[state.session.id].home_city
+    signedIn: state.session.id,
+    // currentUserCity: state.users[state.session.id].home_city
+    currentUser: state.users
   };
 };
 
@@ -7800,10 +7808,272 @@ var mapDTP = function mapDTP(dispatch) {
 /*!*****************************************************!*\
   !*** ./frontend/components/meetup_pages/meetup.jsx ***!
   \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+ // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
+
+var MeetupShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(MeetupShow, _React$Component);
+
+  var _super = _createSuper(MeetupShow);
+
+  function MeetupShow(props) {
+    _classCallCheck(this, MeetupShow);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(MeetupShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // You have the meetup.
+      this.props.fetchMeetup(this.props.meetupId);
+
+      if (this.props.meetup) {
+        //     this.props.fetchUser(this.props.currentUser);
+        this.props.fetchHost(this.props.meetupId);
+      }
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {
+      var _this = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this.props.history.push("/users/".concat(props.meetup.host_id));
+      };
+    }
+  }, {
+    key: "handleAttend",
+    value: function handleAttend(meetupId) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this2.props.joinMeetup(meetupId).then(function () {
+          return props.history.push('/profile');
+        });
+      };
+    }
+  }, {
+    key: "handleUnattend",
+    value: function handleUnattend(meetupId) {
+      var _this3 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this3.props.unattendMeetup(meetupId).then(function () {
+          return props.history.push('/profile');
+        });
+      };
+    }
+  }, {
+    key: "handleEdit",
+    value: function handleEdit(meetupId) {
+      var _this4 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this4.props.requestSingleMeetup(props.meetup.id).then(function () {
+          return props.history.push("/hosting/".concat(props.meetup.id));
+        });
+      };
+    }
+  }, {
+    key: "handleCancelMeetup",
+    value: function handleCancelMeetup(meetupId) {
+      var _this5 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this5.props.cancelMeetup(meetupId).then(function () {
+          return props.history.push('/profile');
+        });
+      };
+    }
+  }, {
+    key: "fetchHostOrGuests",
+    value: function fetchHostOrGuests() {
+      // Probably not needed
+      // If logged_in
+      // If you are the host, fetch guest information
+      if (this.props.currentUser.session.id && this.props.meetup.host_id === this.props.currentUser.session.id) {} // Might need to do a fetchGuest multiple times in loop
+      // On 3rd thought, might just append all information to meetup
+      // On 4th thought, information might already be appended
+      // this.props.fetchGuests()
+      // Otherwise, fetch host information
+      else {
+          this.props.fetchHost();
+        }
+    }
+  }, {
+    key: "meetupActions",
+    value: function meetupActions() {
+      var meetupJoinLink;
+      var meetupCancelButton = null;
+      var meetupEditButton = null;
+      var meetup = this.props.meetup;
+      var currentUser = this.props.currentUser; // Logged In
+
+      if (currentUser) {
+        // You are the host
+        if (meetup.host_id === currentUser) {
+          meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "meetup-button blue"
+          }, "YOU'RE HOSTING THIS MEETUP");
+          meetupEditButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "meetup-edit-button meetup-button orange",
+            onClick: handleEdit(props.meetup.id)
+          }, "EDIT MEETUP");
+          meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "meetup-button red",
+            onClick: handleCancelMeetup(props.meetup.id)
+          }, "CANCEL THIS MEETUP"); // meetupEditButton =
+          // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
+        } // You've joined
+        else if (meetup.guests.includes(currentUser)) {
+            meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+              className: "meetup-button green"
+            }, "YOU JOINED THIS MEETUP");
+            meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "meetup-button red",
+              onClick: this.handleUnattend(meetup.id)
+            }, "CANCEL YOUR SPOT");
+          } // Meetup full, you haven't joined
+          else if (meetup.guests.length >= meetup.capacity) {
+              meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+                className: "meetup-button green"
+              }, "MEETUP IS FULL"); // // FUTURE UPGRADE TO WAITLIST
+              // <button className="meetup-button green">
+              //   YOU JOINED THIS MEETUP
+              // </button>;
+            } // You haven't joined, there's space
+            else {
+                meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+                  className: "meetup-button red",
+                  onClick: this.handleAttend(meetup.id)
+                }, "JOIN THIS MEETUP!"); // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
+                //   CHECKOUT THIS MEETUP
+                // </a>;
+              }
+      } // Not logged in
+      else {
+          // There is space
+          if (meetup.guests.length < meetup.capacity) {
+            meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
+              className: "meetup-button sign-in-to-schedule",
+              to: "/signin"
+            }, "Sign in to join");
+            meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
+              className: "meetup-button sign-in-to-schedule",
+              to: "/signup"
+            }, "Sign up to join");
+          } // Meetup is full
+          else {
+              meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+                className: "meetup-button orange"
+              }, "Meetup is full");
+            }
+        }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup-actions"
+      }, meetupJoinLink, meetupCancelButton, meetupEditButton);
+    }
+  }, {
+    key: "displayMeetup",
+    value: function displayMeetup() {
+      if (this.props.meetup) {
+        var meetup = this.props.meetup;
+        var starttime = new Date(meetup.starttime * 1000);
+        var hour = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoAMPM"](starttime.getHours());
+        var date = "".concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](starttime.getDay()), ", ").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoMonth"](starttime.getMonth()), " ").concat(starttime.getDate(), ", ").concat(starttime.getFullYear());
+        var time = "".concat(hour[0], ":").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["formatMinute"](starttime.getMinutes()), " ").concat(hour[1]);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "meetup-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:  ", meetup.location[2]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address:", meetup.location[3], " ", meetup.location[4], " ", meetup.location[5], ",", meetup.location[6]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:                        ", date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:   ", time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), meetup.topic))), this.infoHostOrGuests(), this.meetupActions());
+      }
+    }
+  }, {
+    key: "infoHostOrGuests",
+    value: function infoHostOrGuests() {
+      var meetup = this.props.meetup;
+      var currentUser = this.props.currentUser; // If you are host, show the guests
+
+      if (currentUser.id === meetup.host_id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "meetup-guests"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Guests:"), meetup.guests.map(function (guest, i) {
+          if (guest.phone) /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "guest-".concat(i)
+          }, "Guest: ", guest.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " Phone: ", guest.phone);else /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "guest-".concat(i)
+          }, "Guest: ", guest.name);
+        })));
+      } // Else, show the host
+      else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "meetup-left"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+            className: "meetup-guests"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Host:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "HOST FACE")));
+        }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(this.props); // debugger;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "nav-link-item",
+        href: "#/meetups"
+      }, "Return to MeetUps Menu"), this.displayMeetup());
+    }
+  }]);
+
+  return MeetupShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (MeetupShow);
 
 /***/ }),
 
@@ -7811,48 +8081,72 @@ var mapDTP = function mapDTP(dispatch) {
 /*!**************************************************************!*\
   !*** ./frontend/components/meetup_pages/meetup_container.js ***!
   \**************************************************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _meetup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meetup */ "./frontend/components/meetup_pages/meetup.jsx");
-/* harmony import */ var _meetup__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_meetup__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
+
 
 
  // import { createGuest } from '../../actions/guest_actions';
 
 var mapSTP = function mapSTP(state, ownprops) {
+  // Need meetup, user, session
+  // meetup host and guests come later
+  // ownprops.match.params.id
   console.log(state);
+  console.log("HERRRRRRRRRRRRRRRRRRE"); // console.log(ownprops);
+
   return {
-    meetup: state.entities.meetups[ownprops.match.params.id],
-    // What does user do?
-    user: state.entities.users[state.session.id]
+    meetup: state.meetups[ownprops.match.params.meetupId],
+    session: state.session,
+    currentUser: state.users[state.session.id],
+    meetupId: ownprops.match.params.meetupId // host: state.users[state.meetups[ownprops.match.params.meetupId].host_id]
+
   };
 };
 
 var mapDTP = function mapDTP(dispatch) {
   return {
-    fetchMeetup: function fetchMeetup(id) {
-      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetup"])(id));
+    // Fetch, join, leave, edit, cancel
+    fetchMeetup: function fetchMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetup"])(meetupId));
     },
-    createGuest: function (_createGuest) {
-      function createGuest(_x) {
-        return _createGuest.apply(this, arguments);
-      }
-
-      createGuest.toString = function () {
-        return _createGuest.toString();
-      };
-
-      return createGuest;
-    }(function (meetupId) {
-      return dispatch(createGuest(meetupId));
-    })
+    // fetch User (hosts and guests)
+    fetchHost: function fetchHost(hostId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchHost"])(hostId));
+    },
+    fetchGuests: function fetchGuests(guestIds) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchGuests"])(guestIds));
+    },
+    fetchUser: function fetchUser(userId) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUser"])(userId));
+    },
+    // remove guest/Edit/Cancel meetup (hosts)
+    editMeetup: function editMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["editMeetup"])(meetupId));
+    },
+    cancelMeetup: function cancelMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["cancelMeetup"])(meetupId));
+    },
+    // join/leave(guests) meetup
+    joinMeetup: function joinMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["joinMeetup"])(meetupId));
+    },
+    leaveMeetup: function leaveMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["leaveMeetup"])(meetupId));
+    }
   };
-}; // export default connect(mapSTP, mapDTP)(MeetupShow);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_meetup__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -8384,10 +8678,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../../node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
 
 
- // import { DAYS, MONTHS, formatAMPM } from '../../../util/meetups_util';
-// import DUMMY_CITIES from '../dummy_cities';
+
+ // import DUMMY_CITIES from '../dummy_cities';
 
 var SingleMeetup = function SingleMeetup(props) {
   // console.log("meetup cell");
@@ -8425,7 +8720,7 @@ var SingleMeetup = function SingleMeetup(props) {
   var handleAttend = function handleAttend(meetupId) {
     return function (e) {
       e.preventDefault();
-      props.attendMeetup(meetupId).then(function () {
+      Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_3__["joinMeetup"])(meetupId).then(function () {
         return props.history.push('/profile');
       });
     };
@@ -8447,22 +8742,16 @@ var SingleMeetup = function SingleMeetup(props) {
         return props.history.push('/profile');
       });
     };
-  }; // const meetupDate = Date()
-  //   const meetupDate = new Date(props.meetup.date);
-  // const weekDayNumber = meetupDate.getDay();
-  // const weekDayName = DAYS[weekDayNumber];
-  // const monthNumber = meetupDate.getMonth();
-  // const monthName = MONTHS[monthNumber];
+  };
 
-
-  var meetupJoinButton;
-  var meetupCancelButton;
+  var meetupJoinLink;
+  var meetupCancelButton = null;
   var meetupEditButton = null; // Logged In
 
   if (currentUser) {
     // You are the host
     if (props.meetup.host_id === currentUser) {
-      meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "meetup-button blue"
       }, "YOU'RE HOSTING THIS MEETUP");
       meetupEditButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -8476,7 +8765,7 @@ var SingleMeetup = function SingleMeetup(props) {
       // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
     } // You've joined
     else if (guests.includes(currentUser)) {
-        meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "meetup-button green"
         }, "YOU JOINED THIS MEETUP");
         meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -8485,7 +8774,7 @@ var SingleMeetup = function SingleMeetup(props) {
         }, "CANCEL YOUR SPOT");
       } // Meetup full, you haven't joined
       else if (props.meetup.guests.length >= props.meetup.capacity) {
-          meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "meetup-button green"
           }, "MEETUP IS FULL"); // // FUTURE UPGRADE TO WAITLIST
           // <button className="meetup-button green">
@@ -8493,16 +8782,18 @@ var SingleMeetup = function SingleMeetup(props) {
           // </button>;
         } // You haven't joined, there's space
         else {
-            meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-              className: "meetup-button orange",
-              onClick: handleAttend(props.meetup.id)
-            }, "ATTEND THIS MEETUP");
+            meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+              className: "meetup-button green",
+              to: "/meetups/".concat(meetup.id)
+            }, "CHECKOUT THIS MEETUP"); // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
+            //   CHECKOUT THIS MEETUP
+            // </a>;
           }
   } // Not logged in
   else {
       // There is space
       if (guests.length < meetup.capacity) {
-        meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "meetup-button sign-in-to-schedule",
           to: "/signin"
         }, "Sign in to join");
@@ -8512,7 +8803,7 @@ var SingleMeetup = function SingleMeetup(props) {
         }, "Sign up to join");
       } // Meetup is full
       else {
-          meetupJoinButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "meetup-button orange"
           }, "Meetup is full");
         }
@@ -8545,7 +8836,7 @@ var SingleMeetup = function SingleMeetup(props) {
       className: "meetup-details"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:  ", venue), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address:", address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:   ", date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:   ", time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", guests.length, "/", meetup.capacity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "meetup-actions"
-    }, meetupJoinButton, meetupCancelButton, meetupEditButton))
+    }, meetupJoinLink, meetupCancelButton, meetupEditButton))
   );
 };
 
@@ -9027,7 +9318,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _parts_profile_pres__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/profile_pres */ "./frontend/components/profile_pages/parts/profile_pres.jsx");
-/* harmony import */ var _parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/meetup_pres */ "./frontend/components/profile_pages/parts/meetup_pres.jsx");
+/* harmony import */ var _parts_meetup_pres2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/meetup_pres2 */ "./frontend/components/profile_pages/parts/meetup_pres2.jsx");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9050,7 +9342,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// This pages shows all accepted upcoming meetups and your profile details
+
 
 
 
@@ -9077,14 +9369,90 @@ var History = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(History, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchMeetups(this.props.currentUser.id);
+    }
+  }, {
     key: "hostOnly",
     value: function hostOnly() {
       return this.props.currentUser.host_status ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " past hosted meetups") : ""; // return(this.props.currentUser.host_status ? <HostedMeetups props={hostedMeetups} /> : "")
     }
   }, {
+    key: "joinedMeetups",
+    value: function joinedMeetups(joined) {
+      // if(joined.length > 0){
+      // Quicksort by starttime, which at this point is an integer
+      joined = _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__["quickSortMeetups"](joined);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "upcoming-hosting-meetups",
+        className: "profile-meetup-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Past meetups you joined"), joined.map(function (meetup) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres2__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: meetup.id,
+          meetup: meetup,
+          host: meetup.host_id,
+          timing: "history",
+          type: "join"
+        });
+      } // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+      )); // } else {
+      //   return(
+      //     <div id="upcoming-hosting-meetups" className="profile-meetup-box">
+      //       <h3>Meetups you are attending</h3>
+      //       <p>Wait... You don't have any MeetUps coming up... yet!</p>
+      //       <a href="#/meetups">Join a Meetup!</a>
+      //     </div>
+      //   )
+      // }
+    }
+  }, {
+    key: "hostOnlyMeetups",
+    value: function hostOnlyMeetups(hosting) {
+      // if (this.props.currentUser.host_status){
+      if (hosting.length > 0 || this.props.currentUser.host_status) {
+        // Quicksort by starttime, which at this point is an integer
+        hosting = _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__["quickSortMeetups"](hosting);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "upcoming-hosting-meetups",
+          className: "profile-meetup-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), hosting.map(function (meetup) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres2__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: meetup.id,
+            meetup: meetup,
+            host: meetup.host_id,
+            timing: "history",
+            type: "host"
+          });
+        } // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+        )); // } else {
+        //   return(
+        //     <div id="upcoming-hosting-meetups" className="profile-meetup-box">
+        //       <h3>Meetups you are going to Host</h3>
+        //       <p>Wait... You don't have any upcoming MeetUps to host... yet!</p>
+        //       <a href="#/meetups/new">Create New Meetup</a>
+        //     </div>
+        // )
+        // }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      // console.log(this.props.currentUser);
+      var _this2 = this;
+
+      console.log(this.props);
+      console.log(this.props.meetups);
+      var meetups = Array.from(this.props.meetups);
+      var joined = [];
+      var hosting = [];
+      meetups.forEach(function (meetup) {
+        if (meetup.host_id === _this2.props.currentUser.id) {
+          hosting.push(meetup);
+        } else {
+          joined.push(meetup);
+        }
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -9099,7 +9467,7 @@ var History = /*#__PURE__*/function (_React$Component) {
         className: "profile-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Past meetups"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/profile"
-      }, "Your upcoming meetups")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Past meetups you joined"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "past joined meetups"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Past meetups you hosted"), this.hostOnly()));
+      }, "Your upcoming meetups")), this.joinedMeetups(joined), this.hostOnlyMeetups(hosting)));
     }
   }]);
 
@@ -9122,11 +9490,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./history */ "./frontend/components/profile_pages/history.jsx");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./history */ "./frontend/components/profile_pages/history.jsx");
 
- // import { Link } from 'react-router-dom';
-// import sessionReducer from '../../reducers/session_reducer'
-// import { receiveCurrentUser } from '../../actions/session_actions';
+
 
 
 
@@ -9134,7 +9501,8 @@ var mapSTP = function mapSTP(state) {
   // console.log(state.users);
   // console.log(state.session);
   return {
-    currentUser: state.users[state.session.id] // joinedMeetups:  // Past meetups you joined
+    currentUser: state.users[state.session.id],
+    meetups: state.meetups // joinedMeetups:  // Past meetups you joined
     // hostedMeetups:  // Past meetups you hosted
 
   };
@@ -9143,12 +9511,12 @@ var mapSTP = function mapSTP(state) {
 var mapDTP = function mapDTP(dispatch) {
   return {
     fetchMeetups: function fetchMeetups(id) {
-      return dispatch(fetchHistoryMeetups(id));
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchHistoryMeetups"])(id));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_history__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_history__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -9187,10 +9555,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
- // import { leaveMeetup } from '../../../util/meetup_api_util';
-// import { joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
-// import { fetchHost, fetchGuests } from '../../../actions/user_actions';
-// import { fetchUser } from '../../../';
+
 
 var MeetUpCell = /*#__PURE__*/function (_React$Component) {
   _inherits(MeetUpCell, _React$Component);
@@ -9263,6 +9628,183 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
         var host = this.props.users[this.props.meetup.host_id];
 
         if (host) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "meetup-right"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Host picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Host: ", host.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Phone: ", host.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email: ", host.email));
+        }
+      } else {
+        // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
+        // You want to be able to edit/cancel the meetup
+        // this.props.fetchUser(this.props.meetup.host_id);
+        // console.log(this.props);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-right"
+        }, this.props.meetup.guests.map(function (guest) {
+          //fetch each guest
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "guest-details"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, guest.phone));
+        }));
+      }
+    }
+  }, {
+    key: "meetupActionChoices",
+    value: function meetupActionChoices(timing, type) {
+      if (timing === "future") {
+        if (type === "join") {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "meetup_options"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.leaveMeetup
+          }, "Leave Meetup"));
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "meetup_options"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.editMeetup
+          }, "Edit Meetup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.cancelMeetup
+          }, "Cancel Meetup"));
+        }
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var meetup = this.props.meetup;
+      var starttime = new Date(meetup.starttime * 1000);
+      var dayOfWeek = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoDOW"](starttime.getDay());
+      var month = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoMonth"](starttime.getMonth());
+      var hour = _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["convertIntoAMPM"](starttime.getHours());
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup-index-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "meetup-details"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:   ", meetup.location[2]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), meetup.location[3], " ", meetup.location[4], ", ", meetup.location[6], " ", meetup.location[5]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:    ", dayOfWeek, ", ", month, " ", starttime.getDate(), ", ", starttime.getFullYear()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:    ", hour[0], ":", _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__["formatMinute"](starttime.getMinutes()), " ", hour[1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", meetup.topic))), this.uniqueOps(this.props.type), this.meetupActionChoices(this.props.timing, this.props.type));
+    }
+  }]);
+
+  return MeetUpCell;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (MeetUpCell);
+
+/***/ }),
+
+/***/ "./frontend/components/profile_pages/parts/meetup_pres2.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/profile_pages/parts/meetup_pres2.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/user_actions */ "./frontend/actions/user_actions.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+ // import { leaveMeetup } from '../../../util/meetup_api_util';
+
+
+ // import { fetchUser } from '../../../';
+
+var MeetUpCell = /*#__PURE__*/function (_React$Component) {
+  _inherits(MeetUpCell, _React$Component);
+
+  var _super = _createSuper(MeetUpCell);
+
+  function MeetUpCell(props) {
+    var _this;
+
+    _classCallCheck(this, MeetUpCell);
+
+    _this = _super.call(this, props); // this.state = {
+    //   email: '',
+    //   password: '',
+    //   host_status: false
+    // };
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // console.log(props);
+    // console.log(props.type);
+
+    _this.leaveMeetup = _this.leaveMeetup.bind(_assertThisInitialized(_this));
+    _this.editMeetup = _this.editMeetup.bind(_assertThisInitialized(_this));
+    _this.cancelMeetup = _this.cancelMeetup.bind(_assertThisInitialized(_this));
+    _this.removeGuest = _this.removeGuest.bind(_assertThisInitialized(_this));
+    _this.meetupActionChoices = _this.meetupActionChoices.bind(_assertThisInitialized(_this));
+    return _this;
+  } // const MeetUpCell = props =>{
+
+
+  _createClass(MeetUpCell, [{
+    key: "componentDidMount",
+    value: function componentDidMount(type) {
+      if (this.props.type === "join") {
+        Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchHost"])(this.props.meetup.host_id);
+      } // else{
+      //     fetchGuests(this.props.meetup.guests);
+      // }
+
+    }
+  }, {
+    key: "leaveMeetup",
+    value: function leaveMeetup(e) {
+      e.preventDefault();
+      console.log("leaving Meetup");
+    }
+  }, {
+    key: "editMeetup",
+    value: function editMeetup(e) {
+      e.preventDefault();
+      console.log("editting Meetup");
+    }
+  }, {
+    key: "cancelMeetup",
+    value: function cancelMeetup(e) {
+      e.preventDefault();
+      console.log("canceling Meetup");
+    }
+  }, {
+    key: "removeGuest",
+    value: function removeGuest(e) {
+      e.preventDefault();
+      console.log("kicking guest off");
+    }
+  }, {
+    key: "uniqueOps",
+    value: function uniqueOps(type) {
+      if (type === "join") {
+        // If you are joining a meetup, you want to see the host's contacts and (eventually) face
+        // You want to be able to leave the meetup
+        if (this.props.users) {
+          var host = this.props.users[this.props.meetup.host_id];
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "meetup-right"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Host picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Host: ", host.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Phone: ", host.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email: ", host.email));
@@ -9466,8 +10008,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _parts_profile_pres__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/profile_pres */ "./frontend/components/profile_pages/parts/profile_pres.jsx");
-/* harmony import */ var _parts_meetup_pres__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/meetup_pres */ "./frontend/components/profile_pages/parts/meetup_pres.jsx");
-/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
+/* harmony import */ var _parts_meetup_pres2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parts/meetup_pres2 */ "./frontend/components/profile_pages/parts/meetup_pres2.jsx");
 /* harmony import */ var _parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/meetup_pres_container */ "./frontend/components/profile_pages/parts/meetup_pres_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -9492,7 +10034,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 // This pages shows all accepted upcoming meetups and your profile details
-
 
 
 
@@ -9533,23 +10074,20 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       if (this.props.currentUser.host_status) {
         if (hosting.length > 0) {
           // Quicksort by starttime, which at this point is an integer
-          hosting = _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__["quickSortMeetups"](hosting);
+          hosting = _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["quickSortMeetups"](hosting);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             id: "upcoming-hosting-meetups",
             className: "profile-meetup-box"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are going to Host"), hosting.map(function (meetup) {
-            return (
-              /*#__PURE__*/
-              // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
-              react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                key: meetup.id,
-                meetup: meetup,
-                host: meetup.host_id,
-                timing: "future",
-                type: "host"
-              })
-            );
-          }));
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres2__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              key: meetup.id,
+              meetup: meetup,
+              host: meetup.host_id,
+              timing: "future",
+              type: "host"
+            });
+          } // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+          ));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             id: "upcoming-hosting-meetups",
@@ -9565,23 +10103,20 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function joinedMeetups(joined) {
       if (joined.length > 0) {
         // Quicksort by starttime, which at this point is an integer
-        joined = _util_convertor_util__WEBPACK_IMPORTED_MODULE_3__["quickSortMeetups"](joined);
+        joined = _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["quickSortMeetups"](joined);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "upcoming-hosting-meetups",
           className: "profile-meetup-box"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Meetups you are attending"), joined.map(function (meetup) {
-          return (
-            /*#__PURE__*/
-            // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              key: meetup.id,
-              meetup: meetup,
-              host: meetup.host_id,
-              timing: "future",
-              type: "join"
-            })
-          );
-        }));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres2__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            key: meetup.id,
+            meetup: meetup,
+            host: meetup.host_id,
+            timing: "future",
+            type: "join"
+          });
+        } // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+        ));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "upcoming-hosting-meetups",
@@ -10721,7 +11256,8 @@ var formatDate = function formatDate(format, year, month, day) {
 var formatMinute = function formatMinute(minute) {
   return minute < 10 ? "0".concat(minute) : minute;
 };
-var quickSortMeetups = function quickSortMeetups(meetupArr) {
+var quickSortMeetups = function quickSortMeetups() {
+  var meetupArr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   if (meetupArr.length < 2) return meetupArr;
   var pivot = meetupArr.shift();
   var left = [];
@@ -10736,44 +11272,7 @@ var quickSortMeetups = function quickSortMeetups(meetupArr) {
   }
 
   return quickSortMeetups(left).concat([pivot], quickSortMeetups(right));
-}; // export const quickSortCities = cityArr =>{
-//     let alphabet = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-//     if(cityArr.length < 2) return cityArr;
-//     let pivot = cityArr.shift();
-//     // if (currentUser && pivot.name === currentUser.home_city){return [pivot,...metroSort(metroes)]};
-//     const pivotMetro = pivot.name.toUpperCase()
-//     let comparedMetro;
-//     let compareLength;
-//     let left = [];
-//     let right = [];
-//     let shifted;
-//     while(cityArr.length > 0){
-//         comparedMetro = cityArr[0].name.toUpperCase();
-//         compareLength = Math.min(comparedMetro.length, pivotMetro.length);
-//         shifted = false;
-//         // Now comparing city names
-//         for(let i=0; i< compareLength; i++){
-//             if(alphabet.indexOf(comparedMetro[i]) < alphabet.indexOf(pivotMetro[i])){
-//                 left.push(cityArr.shift());
-//                 shifted = true;
-//                 break;
-//             }
-//             else if(alphabet.indexOf(comparedMetro[i]) > alphabet.indexOf(pivotMetro[i])){
-//                 right.push(cityArr.shift());
-//                 shifted = true;
-//                 break;
-//             }
-//         }
-//         // One city has the entire name of another city. Compare by length of name.
-//         if(shifted === false){
-//             if(comparedMetro.length < pivotMetro.length){left.push(cityArr.shift())}
-//             else{right.push(cityArr.shift())}
-//         }
-//     }
-//     return([...quickSortCities(left), pivot, ...quickSortCities(right)]);
-//     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
-// }
-
+};
 var quickSortCities = function quickSortCities(cityArr) {
   var home = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   var alphabet = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
