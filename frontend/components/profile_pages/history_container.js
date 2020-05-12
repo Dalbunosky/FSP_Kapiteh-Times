@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
-// import { Link } from 'react-router-dom';
 
-// import sessionReducer from '../../reducers/session_reducer'
-// import { receiveCurrentUser } from '../../actions/session_actions';
+import { fetchHistoryMeetups } from '../../actions/meetup_actions';
 import History from './history';
 
 
@@ -13,6 +11,7 @@ const mapSTP = (state) => {
 
     return {
         currentUser: state.users[state.session.id],
+        meetups: state.meetups
         // joinedMeetups:  // Past meetups you joined
         // hostedMeetups:  // Past meetups you hosted
     };

@@ -16,10 +16,10 @@ class MeetUpCell extends React.Component {
         // this.handleSubmit = this.handleSubmit.bind(this);
         // console.log(props);
         // console.log(props.type);
-        // this.leaveMeetup = this.leaveMeetup.bind(this);
-        // this.editMeetup = this.editMeetup.bind(this);
-        // this.cancelMeetup = this.cancelMeetup.bind(this);
-        // this.removeGuest = this.removeGuest.bind(this);
+        this.leaveMeetup = this.leaveMeetup.bind(this);
+        this.editMeetup = this.editMeetup.bind(this);
+        this.cancelMeetup = this.cancelMeetup.bind(this);
+        this.removeGuest = this.removeGuest.bind(this);
         this.meetupActionChoices = this.meetupActionChoices.bind(this);
     }
 // const MeetUpCell = props =>{
@@ -28,7 +28,7 @@ class MeetUpCell extends React.Component {
             fetchHost(this.props.meetup.host_id);
         }
         // else{
-        //     this.props.fetchGuests(this.props.meetup.guests);
+        //     fetchGuests(this.props.meetup.guests);
         // }
     }
     
@@ -57,20 +57,20 @@ class MeetUpCell extends React.Component {
             // If you are joining a meetup, you want to see the host's contacts and (eventually) face
             // You want to be able to leave the meetup
 
-            const host = this.props.users[this.props.meetup.host_id];
-            if(host){
-            return(
-                <div className="meetup-right">
-                    <div>Host picture</div>
-                    <p>Host: {host.name}</p>
-                    <p>Phone: {host.phone}</p>
-                    <p>Email: {host.email}</p>
-                    {/* {(timing == "future" ?
-                        <div className="meetup_options">
-                            <button onClick={this.leaveMeetup}>Leave Meetup</button>
-                        </div> : ""
-                    )} */}
-                </div>
+            if(this.props.users){
+                const host = this.props.users[this.props.meetup.host_id]
+                return(
+                    <div className="meetup-right">
+                        <div>Host picture</div>
+                        <p>Host: {host.name}</p>
+                        <p>Phone: {host.phone}</p>
+                        <p>Email: {host.email}</p>
+                        {/* {(timing == "future" ?
+                            <div className="meetup_options">
+                                <button onClick={this.leaveMeetup}>Leave Meetup</button>
+                            </div> : ""
+                        )} */}
+                    </div>
             )}
         } else{
             // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
@@ -131,7 +131,7 @@ class MeetUpCell extends React.Component {
                         <li>Time:    {hour[0]}:{convertFunctions.formatMinute(starttime.getMinutes())} {hour[1]}</li>
                         {/* <li>End:    </li> */}
                         <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                        <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
+                        {/* <li>Topics and Icebreakers: <br/> {meetup.topic}</li> */}
                     </ul>
                 </div>
                 {this.uniqueOps(this.props.type)}

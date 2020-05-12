@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as convertFunctions from '../../../util/convertor_util';
-// import { DAYS, MONTHS, formatAMPM } from '../../../util/meetups_util';
+import {fetchMeetup, joinMeetup, leaveMeetup } from '../../../actions/meetup_actions';
 // import DUMMY_CITIES from '../dummy_cities';
 
 const SingleMeetup = (props) => {
@@ -39,7 +39,7 @@ const SingleMeetup = (props) => {
   const handleAttend = (meetupId) => {
     return(e) => {
       e.preventDefault();
-      props.attendMeetup(meetupId)
+      joinMeetup(meetupId)
       .then(() => props.history.push('/profile'));
     };
   };
@@ -60,27 +60,19 @@ const SingleMeetup = (props) => {
     };
   };
 
-  // const meetupDate = Date()
 
-//   const meetupDate = new Date(props.meetup.date);
-  // const weekDayNumber = meetupDate.getDay();
-  // const weekDayName = DAYS[weekDayNumber];
-  // const monthNumber = meetupDate.getMonth();
-  // const monthName = MONTHS[monthNumber];
-
-
-  let meetupJoinButton;
-  let meetupCancelButton;
+  let meetupJoinLink;
+  let meetupCancelButton = null;
   let meetupEditButton = null;
 
   // Logged In
   if (currentUser) {  
     // You are the host
     if (props.meetup.host_id === currentUser) {
-      meetupJoinButton =
-      <button className="meetup-button blue">
+      meetupJoinLink =
+      <p className="meetup-button blue">
           YOU'RE HOSTING THIS MEETUP
-      </button>;
+      </p>;
 
       meetupEditButton =
       <button className="meetup-edit-button meetup-button orange" onClick={handleEdit(props.meetup.id)}>
@@ -96,10 +88,10 @@ const SingleMeetup = (props) => {
     } 
     // You've joined
     else if (guests.includes(currentUser)) {
-      meetupJoinButton =
-      <button className="meetup-button green">
+      meetupJoinLink =
+      <p className="meetup-button green">
         YOU JOINED THIS MEETUP
-      </button>;
+      </p>;
 
       meetupCancelButton =
       <button className="meetup-button red" onClick={handleUnattend(props.meetup.id)}>
@@ -108,7 +100,7 @@ const SingleMeetup = (props) => {
     } 
     // Meetup full, you haven't joined
     else if (props.meetup.guests.length >= props.meetup.capacity) {
-      meetupJoinButton =
+      meetupJoinLink =
       <p className="meetup-button green">
         MEETUP IS FULL
       </p>;
@@ -120,17 +112,20 @@ const SingleMeetup = (props) => {
 
     // You haven't joined, there's space
     else {
-      meetupJoinButton =
-      <button className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
-        ATTEND THIS MEETUP
-      </button>;
+      meetupJoinLink =
+      <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>
+        CHECKOUT THIS MEETUP
+      </Link>;
+      // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
+      //   CHECKOUT THIS MEETUP
+      // </a>;
     }
   } 
   // Not logged in
   else {
       // There is space
       if(guests.length < meetup.capacity){
-        meetupJoinButton =
+        meetupJoinLink =
         <Link className="meetup-button sign-in-to-schedule" to="/signin">
         Sign in to join
         </Link>;
@@ -142,7 +137,7 @@ const SingleMeetup = (props) => {
       }
       // Meetup is full
       else{
-        meetupJoinButton =
+        meetupJoinLink =
         <p className="meetup-button orange">Meetup is full</p>
       }
       
@@ -186,7 +181,7 @@ const SingleMeetup = (props) => {
 
 
       <div className="meetup-actions">
-        {meetupJoinButton}
+        {meetupJoinLink}
         {meetupCancelButton}
         {meetupEditButton}
       </div>

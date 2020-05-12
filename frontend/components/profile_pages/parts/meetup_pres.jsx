@@ -1,9 +1,5 @@
 import React from 'react';
 import * as convertFunctions from '../../../util/convertor_util';
-// import { leaveMeetup } from '../../../util/meetup_api_util';
-// import { joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
-// import { fetchHost, fetchGuests } from '../../../actions/user_actions';
-// import { fetchUser } from '../../../';
 
 class MeetUpCell extends React.Component {
     constructor(props) {
@@ -127,7 +123,7 @@ class MeetUpCell extends React.Component {
                         <li>Time:    {hour[0]}:{convertFunctions.formatMinute(starttime.getMinutes())} {hour[1]}</li>
                         {/* <li>End:    </li> */}
                         <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                        {/* <li>Topics and Icebreakers: <br/> {meetup.topic}</li> */}
+                        <li>Topics and Icebreakers: <br/> {meetup.topic}</li>
                     </ul>
                 </div>
                 {this.uniqueOps(this.props.type)}

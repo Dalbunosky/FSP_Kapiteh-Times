@@ -32,9 +32,9 @@ export const receiveGuests = guests => {
 
 
 // grab host
-export const fetchHost = userid => dispatch => (
-  APIUtil.fetchUser(userid)
-    .then(user => dispatch(receiveHost(user)))
+export const fetchHost = hostId => dispatch => (
+  APIUtil.fetchUser(hostId)
+    .then(host => dispatch(receiveHost(host)))
 )
 
 // grab guests

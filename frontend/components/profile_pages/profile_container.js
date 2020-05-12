@@ -25,7 +25,6 @@ const mapDTP = dispatch => {
         // fetchUser: () => dispatch(fetchUser()),
         // removeGuest: id => dispatch(removeGuest(id)),
         // removeMeetup: id => dispatch(removeMeetup(id))
-
         // processForm: (user) => dispatch(signin(user)),
     };
 };

@@ -70,7 +70,7 @@ const App = () => (
         <ProtectedRoute path="/profile" component={ProfileContainer} />
 
         <Route exact path="/meetups" component={MeetUpIndexContainer} />
-        {/* <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} /> */}
+        <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} />
 
 
         {/* Host only routes, for creating meetups */}
