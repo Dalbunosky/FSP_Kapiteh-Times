@@ -67,29 +67,14 @@ class NewMeetup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    
-    // 2021-05-02 15:00
-    // const starttime = this.state.starttime;
-    // const formattedTime = new Date(`${starttime[1]}-${starttime[2]}-${starttime[3]} ${starttime[4]}:${starttime[5]}`).valueOf()/1000;
-    // const formattedTime = `${starttime[1]}-${starttime[2]}-${starttime[3]} ${starttime[4]}:${starttime[5]}`;
-    // console.log(formattedTime);
-    // this.setState({ starttime: formattedTime })
-
-
-    // return e =>{
-    //   this.setState({ starttime: new Date(this.props.starttime).valueOf()/1000})
-    // }
 
     const meetup = Object.assign({}, this.state);
     meetup.starttime = new Date(this.state.starttime).valueOf()/1000;
     console.log(meetup);
     
     this.props.processForm(meetup)
-    .then(
-      // event => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), 
-      () => this.props.history.push(`/profile`), 
-      // event => this.props.history.push(`/profile`)).catch() 
-      // errors => this.renderErrors()
+    .then( 
+      () => this.props.history.push(`/profile`)
     );
   }
 
@@ -281,17 +266,18 @@ class NewMeetup extends React.Component {
   //   });
   // }
 
-  handlePhoto(e) {
-    const file = e.currentTarget.files[0];
-    console.log(e.currentTarget.files);
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.setState({photoFile: file, photoUrl: fileReader.result});
-    };
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  }
+
+  // handlePhoto(e) {
+  //   const file = e.currentTarget.files[0];
+  //   console.log(e.currentTarget.files);
+  //   const fileReader = new FileReader();
+  //   fileReader.onloadend = () => {
+  //     this.setState({photoFile: file, photoUrl: fileReader.result});
+  //   };
+  //   if (file) {
+  //     fileReader.readAsDataURL(file);
+  //   }
+  // }
 
   // In handleSubmit
   // if (this.state.photoFile) {

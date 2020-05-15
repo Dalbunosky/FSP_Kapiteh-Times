@@ -6,17 +6,14 @@ import { fetchUser } from '../../actions/session_actions';
 // import { createGuest } from '../../actions/guest_actions';
 
 const mapSTP = (state, ownprops) => {
-  // Need meetup, user, session
-  // meetup host and guests come later
-  // ownprops.match.params.id
-  console.log(state);
-  console.log("HERRRRRRRRRRRRRRRRRRE");
+  // console.log(state);
   // console.log(ownprops);
   return({
     meetup: state.meetups[ownprops.match.params.meetupId],
     session: state.session,
-    currentUser: state.users[state.session.id],
     meetupId: ownprops.match.params.meetupId,
+    users: state.users
+    // currentUser: state.users[state.session.id],
     // host: state.users[state.meetups[ownprops.match.params.meetupId].host_id]
 })}
 
