@@ -24,7 +24,6 @@ class Hosting extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.props.currentUser);
         user.host_status = true;
-        console.log(user);
         this.props.processForm(user);
     };
 
@@ -74,7 +73,6 @@ class Hosting extends React.Component {
                 <p>Look up hosting button process</p>
 
                 <h3>So, you still want to host?</h3>
-                {console.log(this.props.currentUser)}
                 <p>Yes? Well, then, {applyOrSignUp(this.props.session)}</p>
                 {this.renderErrors()}
 

@@ -34,7 +34,7 @@ const Hosted = ({ component: Component, path, isHost, exact }) => (
      isHost ? ( // Criteria: host_status true?
       <Component {...props} />
     ) : (
-      <Redirect to="/profile" />
+      <Redirect to="/hosting" />
     )
   )} />
 );

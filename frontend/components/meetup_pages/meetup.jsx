@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import * as convertFunctions from '../../util/convertor_util';
 
 // location: [], // [lat, lng, name of venue, address, city, state/province, zip, country]
@@ -9,16 +11,16 @@ class MeetupShow extends React.Component {
         super(props)
 
     }
-
+////////////////////////////////////////////////////////////////////////
     componentDidMount() {
-        // You have the meetup.
-        this.props.fetchMeetup(this.props.meetupId);
-        if(this.props.meetup){
-        //     this.props.fetchUser(this.props.currentUser);
-            this.props.fetchHost(this.props.meetupId);
-        }
+      this.props.fetchMeetup(this.props.meetupId)
+      .then(meetup => {this.props.fetchHost(this.props.meetup.host_id)})
+    }
+    componentWillUnmount(){
+      // this.props.clearErrors();
     }
   
+////////////////////////////////////////////////////////////////////////
     handleClick(){
       return(e) => {
         e.preventDefault();
@@ -26,43 +28,44 @@ class MeetupShow extends React.Component {
       };
     };
   
-    handleAttend(meetupId){
+    handleAttend(e){
       return(e) => {
         e.preventDefault();
-        this.props.joinMeetup(meetupId)
-        .then(() => props.history.push('/profile'));
+        this.props.joinMeetup(this.props.meetupId)
+        // .then(() => this.props.history.push('/profile'));
       };
     };
   
-    handleUnattend(meetupId){
+    handleUnattend(e){
       return(e) => {
         e.preventDefault();
-        this.props.unattendMeetup(meetupId)
-        .then(() => props.history.push('/profile'));
+        this.props.unattendMeetup(this.props.meetupId)
+        // .then(() => this.props.history.push('/profile'));
       };
     };
   
-    handleEdit(meetupId){
+    handleEdit(e){
       return(e) => {
         e.preventDefault();
-        this.props.requestSingleMeetup(props.meetup.id)
-        .then(() => props.history.push(`/hosting/${props.meetup.id}`));
+        this.props.editMeetup(this.props.meetupId)
+        .then(() => this.props.history.push(`/meetups/edit/${this.props.meetupId}`));
       };
     };
   
-    handleCancelMeetup(meetupId){
+    handleCancelMeetup(e){
       return(e) => {
         e.preventDefault();
-        this.props.cancelMeetup(meetupId)
-        .then(() => props.history.push('/profile'));
+        this.props.cancelMeetup(this.props.meetupId)
+        .then(() => this.props.history.push('/meetups'));
       };
     };
 
+  ////////////////////////////////////////////////////////////////////////
     fetchHostOrGuests(){
         // Probably not needed
         // If logged_in
         // If you are the host, fetch guest information
-        if(this.props.currentUser.session.id && this.props.meetup.host_id === this.props.currentUser.session.id){
+        if(this.props.session.id && this.props.meetup.host_id === this.props.session.id){
             // Might need to do a fetchGuest multiple times in loop
             // On 3rd thought, might just append all information to meetup
             // On 4th thought, information might already be appended
@@ -75,35 +78,37 @@ class MeetupShow extends React.Component {
     }
 
     meetupActions(){
-        let meetupJoinLink;
-        let meetupCancelButton = null;
+        let meetupJoinLink = null;
         let meetupEditButton = null;
+        let meetupCancelButton = null;
         const meetup = this.props.meetup;
-        const currentUser = this.props.currentUser;
+        const currentUser = this.props.users[this.props.session.id];
+        // const host = this.props.users[meetup.host_id];
       
         // Logged In
         if (currentUser) {  
           // You are the host
-          if (meetup.host_id === currentUser) {
+          if (meetup.host_id === currentUser.id) {
             meetupJoinLink =
             <p className="meetup-button blue">
                 YOU'RE HOSTING THIS MEETUP
             </p>;
       
             meetupEditButton =
-            <button className="meetup-edit-button meetup-button orange" onClick={handleEdit(props.meetup.id)}>
+            <button className="meetup-edit-button meetup-button orange" onClick={this.handleEdit(meetup.id)}>
                 EDIT MEETUP
             </button>;
       
             meetupCancelButton =
-            <button className="meetup-button red" onClick={handleCancelMeetup(props.meetup.id)}>
+            <button className="meetup-button red" onClick={this.handleCancelMeetup(meetup.id)}>
               CANCEL THIS MEETUP
             </button>;
             // meetupEditButton =
             // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
           } 
           // You've joined
-          else if (meetup.guests.includes(currentUser)) {
+          else if (meetup.guest_ids.includes(currentUser.id)) {
+          // else if (meetup.guests.includes(currentUser)) {
             meetupJoinLink =
             <p className="meetup-button green">
               YOU JOINED THIS MEETUP
@@ -168,7 +173,8 @@ class MeetupShow extends React.Component {
     }
 
     displayMeetup(){
-        if(this.props.meetup){
+        if(this.props.meetup && this.props.users[this.props.meetup.host_id]){
+          // this.props.fetchHost(this.props.meetup.host_id);
             const meetup = this.props.meetup;
             const starttime = new Date(meetup.starttime*1000);
                 const hour = convertFunctions.convertIntoAMPM(starttime.getHours());
@@ -192,13 +198,24 @@ class MeetupShow extends React.Component {
                 </div>
             )
         }
+        else{
+          return(
+            <div>
+                <div className="meetup-left">
+                    <p>We regret to inform you that this meetup does not exist.</p>
+                    <a href="#/meetups">Go back to meetups</a>
+                </div>
+            </div>
+          )
+        }
     }
 
     infoHostOrGuests(){
         const meetup = this.props.meetup;
-        const currentUser = this.props.currentUser;
-        // If you are host, show the guests
-        if(currentUser.id === meetup.host_id){
+        const currentUser = this.props.users[this.props.session.id];
+        const host = this.props.users[meetup.host_id];
+        // If you are logged in and the host, show the guests
+        if(currentUser && currentUser.id === meetup.host_id){
             return(
                 <div className="meetup-left">
                     <ul className="meetup-guests">
@@ -219,9 +236,15 @@ class MeetupShow extends React.Component {
             return(
                 <div className="meetup-left">
                     <ul className="meetup-guests">
-                        <h3>The Host:</h3>
                         <div>HOST FACE</div>
-                        {/* meetup.host */}
+                        <h3>The Host: {host.name}</h3>
+                        <p>Home region: {host.home_city}</p>
+                        <p>Contact:</p>
+                        <ul>
+                          <p>Phone number: {host.phone}</p>
+                          <p>Email: {host.email}</p>
+                        </ul>
+                        <p>{host.name}'s Life Story: <br/>{host.story}</p>
                     </ul>
 
                 </div>      
@@ -229,11 +252,10 @@ class MeetupShow extends React.Component {
         }
     }
 
-
+////////////////////////////////////////////////////////////////////////
     render() {
-        console.log(this.props);
+        console.log(this.props.meetup);
 
-        // debugger;
         return (
             <div>
                 <a className="nav-link-item" href="#/meetups">Return to MeetUps Menu</a>

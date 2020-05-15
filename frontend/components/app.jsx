@@ -69,13 +69,14 @@ const App = () => (
         <ProtectedRoute path="/profile/history" component={HistoryContainer} />
         <ProtectedRoute path="/profile" component={ProfileContainer} />
 
-        <Route exact path="/meetups" component={MeetUpIndexContainer} />
-        <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} />
-
-
         {/* Host only routes, for creating meetups */}
         <HostRoute exact path="/meetups/new" component={NewMeetUpContainer} />
         <HostRoute exact path="/meetups/edit" component={EditMeetUpContainer} />
+
+        <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} />
+        <Route exact path="/meetups" component={MeetUpIndexContainer} />
+
+
         
         <Route to="/oops" component={BadPage} />
     </Switch>

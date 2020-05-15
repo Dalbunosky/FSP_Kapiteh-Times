@@ -61,15 +61,16 @@ const SingleMeetup = (props) => {
   };
 
 
-  let meetupJoinLink;
+  let meetupJoinLink = <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>CHECKOUT THIS MEETUP</Link>;
+  let meetupNote = null;
   let meetupCancelButton = null;
   let meetupEditButton = null;
 
   // Logged In
-  if (currentUser) {  
+  // if (currentUser) {  
     // You are the host
     if (props.meetup.host_id === currentUser) {
-      meetupJoinLink =
+      meetupNote =
       <p className="meetup-button blue">
           YOU'RE HOSTING THIS MEETUP
       </p>;
@@ -88,7 +89,7 @@ const SingleMeetup = (props) => {
     } 
     // You've joined
     else if (guests.includes(currentUser)) {
-      meetupJoinLink =
+      meetupNote =
       <p className="meetup-button green">
         YOU JOINED THIS MEETUP
       </p>;
@@ -100,7 +101,7 @@ const SingleMeetup = (props) => {
     } 
     // Meetup full, you haven't joined
     else if (props.meetup.guests.length >= props.meetup.capacity) {
-      meetupJoinLink =
+      meetupNote =
       <p className="meetup-button green">
         MEETUP IS FULL
       </p>;
@@ -110,38 +111,38 @@ const SingleMeetup = (props) => {
       // </button>;
     } 
 
-    // You haven't joined, there's space
-    else {
-      meetupJoinLink =
-      <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>
-        CHECKOUT THIS MEETUP
-      </Link>;
-      // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
-      //   CHECKOUT THIS MEETUP
-      // </a>;
-    }
-  } 
+    // // You haven't joined, there's space
+    // else {
+    //   meetupJoinLink =
+    //   <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>
+    //     CHECKOUT THIS MEETUP
+    //   </Link>;
+    //   // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
+    //   //   CHECKOUT THIS MEETUP
+    //   // </a>;
+    // }
+  // } 
   // Not logged in
-  else {
-      // There is space
-      if(guests.length < meetup.capacity){
-        meetupJoinLink =
-        <Link className="meetup-button sign-in-to-schedule" to="/signin">
-        Sign in to join
-        </Link>;
+  // else {
+  //     // There is space
+  //     if(guests.length < meetup.capacity){
+  //       meetupJoinLink =
+  //       <Link className="meetup-button sign-in-to-schedule" to="/signin">
+  //       Sign in to join
+  //       </Link>;
 
-        meetupCancelButton =
-        <Link className="meetup-button sign-in-to-schedule" to="/signup">
-        Sign up to join
-        </Link>;
-      }
-      // Meetup is full
-      else{
-        meetupJoinLink =
-        <p className="meetup-button orange">Meetup is full</p>
-      }
+  //       meetupCancelButton =
+  //       <Link className="meetup-button sign-in-to-schedule" to="/signup">
+  //       Sign up to join
+  //       </Link>;
+  //     }
+  //     // Meetup is full
+  //     else{
+  //       meetupJoinLink =
+  //       <p className="meetup-button orange">Meetup is full</p>
+  //     }
       
-  }
+  // }
 
   // We will leave these in the meetup show
   const meetupRightItem = (user) =>{
@@ -182,6 +183,7 @@ const SingleMeetup = (props) => {
 
       <div className="meetup-actions">
         {meetupJoinLink}
+        {meetupNote}
         {meetupCancelButton}
         {meetupEditButton}
       </div>

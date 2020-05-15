@@ -1,5 +1,7 @@
 import * as APIUtil from '../util/meetup_api_util';
 
+import {fetchHost, receiveHost} from './user_actions';
+
 export const RECEIVE_MEETUPS = 'RECEIVE_MEETUPS';
 export const RECEIVE_MEETUP = 'RECEIVE_MEETUP';
 export const MEETUP_HAS_ERRORS = "MEETUP_HAS_ERRORS";
@@ -78,6 +80,13 @@ export const fetchMeetup = id => dispatch => (
     dispatch(receiveMeetup(meetup))
   ))
 );
+
+// export const superFetchMeetup = 
+//   id => dispatch => (APIUtil.fetchMeetup(id)
+//     .then(meetup => (dispatch(receiveMeetup(meetup))
+//     .then(meetup => (fetchHost(meetup.host_id)
+//     .then(host => (dispatch(receiveHost(host))
+// )))))));
 
 // Creates meetup
 export const createMeetup = meetup => dispatch => (
