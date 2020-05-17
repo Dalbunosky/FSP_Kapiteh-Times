@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SingleMeetup from './meetup_cell';
-import { attendMeetup, unattendMeetup, requestSingleMeetup } from '../../../actions/meetup_actions';
+import { joinMeetup, leaveMeetup, fetchMeetup } from '../../../actions/meetup_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapSTP = state => {

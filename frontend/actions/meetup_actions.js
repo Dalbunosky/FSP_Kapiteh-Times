@@ -107,11 +107,19 @@ export const editMeetup = meetup => dispatch => (
 );
 
 // Cancels meetup
-export const cancelMeetup = meetupId => dispatch => (
-  APIUtil.cancelMeetup(meetupId).then(meetup => (
+export const cancelMeetup = meetupId => dispatch => {
+  console.log("HERE");
+  return(
+  APIUtil.cancelMeetup(meetupId).then(() => (
     dispatch(meetupCanceled())
   ))
-);
+);}
+
+// export const closeAcct = () => dispatch => (
+//   SessAPIUtil.closeAcct().then(user => (
+//     dispatch(closeUserAccount())
+//   ))
+// );
 
 // Join meetup
 export const joinMeetup = meetupId => dispatch => (
@@ -123,13 +131,15 @@ export const joinMeetup = meetupId => dispatch => (
 );
 
 // Leave meetup
-export const leaveMeetup = meetupId => dispatch => (
+export const leaveMeetup = meetupId => dispatch => {
+  console.log("HERE");
+  return(
   APIUtil.leaveMeetup(meetupId).then(meetup => (
     dispatch(receiveMeetup(meetup))
   ), err => (
     dispatch(receiveMeetupErrors(err.responseJSON))
   ))
-);
+);}
 
 
 // export const createReview = review => dispatch => (

@@ -2,7 +2,7 @@
 import React from 'react';
 import ProfileBar from './parts/profile_pres';
 import * as convertFunctions from '../../util/convertor_util';
-import MeetupCell from './parts/meetup_pres2';
+// import MeetupCell from './parts/meetup_pres';
 import MeetupCellContainer from './parts/meetup_pres_container';
 
 class Profile extends React.Component {
@@ -61,8 +61,8 @@ class Profile extends React.Component {
         <div id="upcoming-hosting-meetups" className="profile-meetup-box">
           <h3>Meetups you are attending</h3>
             {joined.map (meetup => 
-              <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
-              // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+              // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
             )}
         </div>
       )

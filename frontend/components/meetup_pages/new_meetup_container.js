@@ -3,8 +3,6 @@ import NewMeetup from "./new_meetup";
 import { createMeetup, clearMeetupErrors } from "../../actions/meetup_actions";
 
 const mapSTP = (state) => {
-  console.log(state);
-  console.log("NEW MEETUP CONTAINER")
   return({
     errors: state.errors,
     meetups: state.meetups,   // Doubt I need this here

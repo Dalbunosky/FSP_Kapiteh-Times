@@ -1,8 +1,7 @@
 import React from 'react';
-
 import ProfileBar from './parts/profile_pres';
-import MeetupCell from './parts/meetup_pres2';
 import * as convertFunctions from '../../util/convertor_util';
+import MeetupCellContainer from './parts/meetup_pres_container';
 
 class History extends React.Component {
   constructor(props) {
@@ -35,8 +34,8 @@ class History extends React.Component {
         <div id="upcoming-hosting-meetups" className="profile-meetup-box">
           <h3>Past meetups you joined</h3>
             {joined.map (meetup => 
-              <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="join"/>
-              // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+              // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="join"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
             )}
         </div>
       )
@@ -61,8 +60,8 @@ class History extends React.Component {
           <div id="upcoming-hosting-meetups" className="profile-meetup-box">
             <h3>Meetups you are going to Host</h3>
               {hosting.map (meetup => 
-                <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="host"/>
-                // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+                // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
               )}
           </div>
         )

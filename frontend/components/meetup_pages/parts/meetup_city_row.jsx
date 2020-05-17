@@ -29,7 +29,7 @@ const CityRow = (props) =>{
                 <h3>{metro.name}</h3>
                 {/* <p>{props.keycheck}</p> */}
                 <div className="meetup">
-                    { meetups.map(meetup => <MeetupCell key={meetups.indexOf(meetup)} meetup={meetup} currentUser={props.currentUser}/>)}
+                    { meetups.map(meetup => <MeetupCellContainer key={meetups.indexOf(meetup)} meetup={meetup} currentUser={props.currentUser}/>)}
                 </div>
             </div>
         )

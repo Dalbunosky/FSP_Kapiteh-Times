@@ -8,22 +8,14 @@ import { fetchHost, fetchGuests } from '../../../actions/user_actions';
 class MeetUpCell extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //   email: '',
-        //   password: '',
-        //   host_status: false
-        // };
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // console.log(props);
-        // console.log(props.type);
-        this.leaveMeetup = this.leaveMeetup.bind(this);
-        this.editMeetup = this.editMeetup.bind(this);
-        this.cancelMeetup = this.cancelMeetup.bind(this);
-        this.removeGuest = this.removeGuest.bind(this);
+        this.leaveMeetupButton = this.leaveMeetupButton.bind(this);
+        this.editMeetupButton = this.editMeetupButton.bind(this);
+        this.cancelMeetupButton = this.cancelMeetupButton.bind(this);
+        this.removeGuestButton = this.removeGuestButton.bind(this);
         this.meetupActionChoices = this.meetupActionChoices.bind(this);
     }
 // const MeetUpCell = props =>{
-    componentDidMount(type){
+    componentDidMount(){
         if(this.props.type==="join"){
             fetchHost(this.props.meetup.host_id);
         }
@@ -32,22 +24,26 @@ class MeetUpCell extends React.Component {
         // }
     }
     
-    leaveMeetup(e){
+    leaveMeetupButton(e){
         e.preventDefault();
         console.log("leaving Meetup")
+        dispatch(leaveMeetup(this.props.meetup.id));
     }
 
 
 
-    editMeetup(e){
+    editMeetupButton(e){
         e.preventDefault();
         console.log("editting Meetup")
+        // leaveMeetup(this.props.meetup.id);
+        // this.props.push()
     }
-    cancelMeetup(e){
+    cancelMeetupButton(e){
         e.preventDefault();
         console.log("canceling Meetup")
+        cancelMeetup(this.props.meetup.id);
     }
-    removeGuest(e){
+    removeGuestButton(e){
         e.preventDefault();
         console.log("kicking guest off")
     }
@@ -105,13 +101,13 @@ class MeetUpCell extends React.Component {
             if(type === "join"){return(
                 <div className="meetup_options">
                 <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
-                    <button onClick={this.leaveMeetup}>Leave Meetup</button>
+                    <button onClick={this.leaveMeetupButton}>Leave Meetup</button>
                 </div>
             )} else{return(
                 <div className="meetup_options">
                     <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
-                    <button onClick={this.editMeetup}>Edit Meetup</button>
-                    <button onClick={this.cancelMeetup}>Cancel Meetup</button>
+                    <button onClick={this.editMeetupButton}>Edit Meetup</button>
+                    <button onClick={this.cancelMeetupButton}>Cancel Meetup</button>
                 </div>
             )}
         }

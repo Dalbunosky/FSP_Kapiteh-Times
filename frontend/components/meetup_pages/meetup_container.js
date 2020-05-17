@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MeetupShow from './meetup';
 import { fetchMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup } from '../../actions/meetup_actions';
-import { fetchHost, fetchGuests } from '../../actions/user_actions';
+import { fetchHost } from '../../actions/user_actions';
 import { fetchUser } from '../../actions/session_actions';
 // import { createGuest } from '../../actions/guest_actions';
 
@@ -22,7 +22,7 @@ const mapDTP = (dispatch) => ({
     fetchMeetup: (meetupId) => dispatch(fetchMeetup(meetupId)),
   // fetch User (hosts and guests)
     fetchHost: (hostId) => dispatch(fetchHost(hostId)),
-    fetchGuests: (guestIds) => dispatch(fetchGuests(guestIds)),
+    // fetchGuests: (guestIds) => dispatch(fetchGuests(guestIds)),
     fetchUser: (userId) => dispatch(fetchUser(userId)),
 
   // remove guest/Edit/Cancel meetup (hosts)

@@ -16,7 +16,7 @@ const mapDTP = dispatch => (
     { 
     // fetch User (hosts and guests)
         fetchHost: (userId) => dispatch(fetchHost(userId)),
-        fetchGuests: (userId) => dispatch(fetchGuests(userId)),
+        // fetchGuests: (userId) => dispatch(fetchGuests(userId)),
         // fetchUser: (userId) => dispatch(fetchUser(userId)),
     // remove guest/Edit/Cancel meetup (hosts)
         editMeetup: (meetup) => dispatch(editMeetup(meetup)),

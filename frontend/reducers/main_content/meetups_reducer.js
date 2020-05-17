@@ -20,7 +20,8 @@ import {
       // case CLEAR_MEETUP_ERRORS:
       //   return [];
       case CANCEL_MEETUP:
-        return { [action.meetup.id]: null };
+        // return state;
+        return [];
 
       // case RECEIVE_REVIEW:
       //   const { review, average_rating } = action;

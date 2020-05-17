@@ -7,21 +7,16 @@ import {fetchMeetup, joinMeetup, leaveMeetup } from '../../../actions/meetup_act
 class SingleMeetup extends React.Component{
   constructor(props){
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleAttend = this.handleAttend.bind(this);
-    this.handleUnattend = this.handleUnattend.bind(this);
-    this.handleCancelMeetup = this.handleCancelMeetup.bind(this);
   }
   
-  handleClick(){
+  handleClick = () => {
     return(e) => {
       e.preventDefault();
       this.props.history.push(`/users/${this.props.meetup.host_id}`);
     };
   };
 
-  handleEdit(meetupId){
+  handleEdit = (meetupId) => {
     return(e) => {
       e.preventDefault();
       // this.props.requestSingleMeetup(this.props.meetup.id)
@@ -30,7 +25,7 @@ class SingleMeetup extends React.Component{
     };
   };
 
-  handleAttend(meetupId){
+  handleAttend = (meetupId) => {
     return(e) => {
       e.preventDefault();
       this.props.joinMeetup(meetupId)
@@ -38,16 +33,15 @@ class SingleMeetup extends React.Component{
     };
   };
 
-  handleUnattend(meetupId){
-    // console.log(this.props);
+  handleUnattend = (meetupId) => {
     return(e) => {
       e.preventDefault();
       this.props.leaveMeetup(meetupId)
-      .then(() => this.props.history.push('/meetups'));
+      .then(() => this.props.history.push('/profile'));
     };
   };
 
-  handleCancelMeetup(meetupId){
+  handleCancelMeetup = (meetupId) => {
     return(e) => {
       e.preventDefault();
       this.props.cancelMeetup(meetupId)
@@ -56,7 +50,7 @@ class SingleMeetup extends React.Component{
   };
 
   // We will leave these in the meetup show
-  meetupRightItem(user){
+  meetupRightItem = (user) =>{
     if(user && user.host_status){  // Logged in and is a host
       {guests.map(guest => <div><p className="meetup-details-right">guest.name</p><p>guest.phone</p></div>)}
     }
@@ -87,53 +81,53 @@ class SingleMeetup extends React.Component{
       const time = `${hour[0]}:${convertFunctions.formatMinute(starttime.getMinutes())} ${hour[1]}`;
 
 /////////////////////////////////////////////////////////////////
-    let meetupJoinLink = <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>CHECKOUT THIS MEETUP</Link>;
-    let meetupNote = null;
-    let meetupCancelButton = null;
-    let meetupEditButton = null;
-  
-    // You are the host
-    if (this.props.meetup.host_id === currentUser) {
-      meetupNote =
-      <p className="meetup-button blue">
-          YOU'RE HOSTING THIS MEETUP
-      </p>;
+  let meetupJoinLink = <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>CHECKOUT THIS MEETUP</Link>;
+  let meetupNote = null;
+  let meetupCancelButton = null;
+  let meetupEditButton = null;
+ 
+  // You are the host
+  if (this.props.meetup.host_id === currentUser) {
+    meetupNote =
+    <p className="meetup-button blue">
+        YOU'RE HOSTING THIS MEETUP
+    </p>;
 
-      meetupEditButton =
-      <button className="meetup-edit-button meetup-button orange" onClick={handleEdit(meetup.id)}>
-          EDIT MEETUP
-      </button>;
+    meetupEditButton =
+    <button className="meetup-edit-button meetup-button orange" onClick={handleEdit(this.props.meetup.id)}>
+        EDIT MEETUP
+    </button>;
 
-      meetupCancelButton =
-      <button className="meetup-button red" onClick={handleCancelMeetup(meetup.id)}>
-        CANCEL THIS MEETUP
-      </button>;
-      // meetupEditButton =
-      // <Link to={`/hosting/${meetup.id}`}>Edit This Meetup</Link>;
-    } 
-    // You've joined
-    else if (guests.includes(currentUser)) {
-      meetupNote =
-      <p className="meetup-button green">
-        YOU JOINED THIS MEETUP
-      </p>;
+    meetupCancelButton =
+    <button className="meetup-button red" onClick={handleCancelMeetup(this.props.meetup.id)}>
+      CANCEL THIS MEETUP
+    </button>;
+    // meetupEditButton =
+    // <Link to={`/hosting/${this.props.meetup.id}`}>Edit This Meetup</Link>;
+  } 
+  // You've joined
+  else if (guests.includes(currentUser)) {
+    meetupNote =
+    <p className="meetup-button green">
+      YOU JOINED THIS MEETUP
+    </p>;
 
-      meetupCancelButton =
-      <button className="meetup-button red" onClick={this.handleUnattend(meetup.id)}>
-        CANCEL YOUR SPOT
-      </button>;
-    } 
-    // Meetup full, you haven't joined
-    else if (this.props.meetup.guests.length >= this.props.meetup.capacity) {
-      meetupNote =
-      <p className="meetup-button green">
-        MEETUP IS FULL
-      </p>;
-      // // FUTURE UPGRADE TO WAITLIST
-      // <button className="meetup-button green">
-      //   YOU JOINED THIS MEETUP
-      // </button>;
-    } 
+    meetupCancelButton =
+    <button className="meetup-button red" onClick={handleUnattend(this.props.meetup.id)}>
+      CANCEL YOUR SPOT
+    </button>;
+  } 
+  // Meetup full, you haven't joined
+  else if (this.props.meetup.guests.length >= this.props.meetup.capacity) {
+    meetupNote =
+    <p className="meetup-button green">
+      MEETUP IS FULL
+    </p>;
+    // // FUTURE UPGRADE TO WAITLIST
+    // <button className="meetup-button green">
+    //   YOU JOINED THIS MEETUP
+    // </button>;
+  } 
 /////////////////////////////////
 
     return (
