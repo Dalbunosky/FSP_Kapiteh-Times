@@ -21,19 +21,33 @@ class AllMeetups extends React.Component {
 
     componentDidMount() {
         this.props.fetchMeetups();
-        if(this.props.signedIn){
-            // console.log("TRIGGGGGGGGGGGGGGGGGGGGGGGGGERED")
-            this.props.fetchUser(this.props.signedIn);
+        if(this.props.currentUser){
+            this.props.fetchUser(this.props.currentUser.id);
         }
     }
 
+    componentDidUpdate(prevProps){
+      if(this.props.meetups.length != prevProps.meetups.length){
+        this.props.fetchMeetups(this.props.currentUser.id);
+      }
+    }
+
+    // componentDidUpdate(prevState, nextState) {
+    //     if(prevState != nextState){
+    //         this.props.fetchMeetups();
+    //         if(this.props.currentUser){
+    //             this.props.fetchUser(this.props.currentUser.id);
+    //         }
+    //     }
+    // }
+
     meetupsNearUser(homeCityCell,homebase){
-        if(this.props.signedIn){
+        if(this.props.currentUser){
             if(homeCityCell){
                 return(
                     <div className="nearby_meetups">
 {/*                         <h3>Upcoming meetups in and around {homebase}</h3> */}
-                        <MeetupCityRow metro={homeCityCell} key="0" currentUser={this.props.signedIn}/>
+                        <MeetupCityRow metro={homeCityCell} key="0" currentUser={this.props.currentUser.id}/>
                     </div>
                 )
             }
@@ -49,7 +63,7 @@ class AllMeetups extends React.Component {
     }
 
     meetupLabel(){
-        if(this.props.signedIn){
+        if(this.props.currentUser){
             return(
                 <h3>Upcoming meetups everywhere else</h3>
             )
@@ -62,31 +76,31 @@ class AllMeetups extends React.Component {
     }
 
     render() {
-        // console.log(this.props.signedIn);
-        // console.log(this.props.currentUser);
-        // debugger;
+        const currentUser = this.props.currentUser;
+        const currentUserId = this.props.currentUserId;
         const metroArr0 = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
 
         let homebase = "";
         let homeCityMeetups = "";
-        if(this.props.signedIn){homebase = this.props.currentUser[this.props.signedIn].home_city;}
+        if(currentUser){homebase = currentUser.home_city;}
         // else{homebase = null;}
         const metroArr = convertFunctions.quickSortCities(metroArr0, homebase);
 
         if((metroArr.length > 0) && (homebase === metroArr[0].name)){homeCityMeetups = metroArr.shift()}
-
+        const hostCreateMeetup = ((currentUserId && currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
         return (
             <div>
                 <div className="meetup-index-header">
                     <p className="show-header-one">SOLID FRIENDSHIPS</p>
                     <p className="show-header-two">They're here to stay.</p>
+                    {hostCreateMeetup}
                 </div>
                 <div className="meetups">
                     {this.meetupsNearUser(homeCityMeetups, homebase)}
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
                         {metroArr.map (metro =>
-                            <MeetupCityRow metro={metro} key={metroArr.indexOf(metro)} currentUser={this.props.signedIn}/>
+                            <MeetupCityRow metro={metro} key={metroArr.indexOf(metro)} currentUser={currentUserId}/>
                         )}
 
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}

@@ -7,8 +7,7 @@ export const signup = user => (
 );
 
 export const editUser = user => {
-  
-  console.log(user);
+  // console.log(user);
   return(
   $.ajax({
     method: 'PATCH',

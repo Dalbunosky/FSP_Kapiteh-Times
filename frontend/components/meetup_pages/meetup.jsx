@@ -39,7 +39,7 @@ class MeetupShow extends React.Component {
     handleUnattend(e){
       return(e) => {
         e.preventDefault();
-        this.props.unattendMeetup(this.props.meetupId)
+        this.props.leaveMeetup(this.props.meetupId)
         // .then(() => this.props.history.push('/profile'));
       };
     };
@@ -47,8 +47,9 @@ class MeetupShow extends React.Component {
     handleEdit(e){
       return(e) => {
         e.preventDefault();
-        this.props.editMeetup(this.props.meetupId)
-        .then(() => this.props.history.push(`/meetups/edit/${this.props.meetupId}`));
+        this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);
+        // this.props.editMeetup(this.props.meetupId)
+        // .then(() => this.props.history.push(`/meetups/edit/${this.props.meetupId}`));
       };
     };
   
@@ -202,7 +203,7 @@ class MeetupShow extends React.Component {
           return(
             <div>
                 <div className="meetup-left">
-                    <p>We regret to inform you that this meetup does not exist.</p>
+                    <p>We regret to inform you that... THIS MEETUP DOES NOT EXIST!</p>
                     <a href="#/meetups">Go back to meetups</a>
                 </div>
             </div>
@@ -254,7 +255,7 @@ class MeetupShow extends React.Component {
 
 ////////////////////////////////////////////////////////////////////////
     render() {
-        console.log(this.props.meetup);
+        // console.log(this.props.meetup);
 
         return (
             <div>

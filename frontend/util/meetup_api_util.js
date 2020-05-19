@@ -58,7 +58,7 @@ export const leaveMeetup = meetupId => (
 
 // Host operation: Create, Edit, Cancel Meetup
 export const createMeetup = meetup => {
-  console.log(meetup)
+  // console.log(meetup)
   return( //For creating new meetups
   $.ajax({
     method: 'POST',

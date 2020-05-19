@@ -3,7 +3,6 @@ import React from 'react';
 const ProfileBar = props =>{
     // console.log(props)
     let currentUserStat = Object.values(props)[0]
-    // console.log(currentUserStat.host_status)
 
     const yepNope = bool => {
         return ( bool ? "Yep!" : "Nope!")
@@ -11,7 +10,7 @@ const ProfileBar = props =>{
 
     const contractStory = story => {
 
-        if((story === null) || (story.length === 0)){return "Yeah, what is it?"}
+        if((story === null) || (story.length === 0)){return <i>Yeah, what is it?</i>}
         else if (story.length > 18){return`${story.slice(0,15)}...`}
         else {return story}
     }

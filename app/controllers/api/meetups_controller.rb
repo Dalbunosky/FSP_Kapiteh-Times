@@ -83,10 +83,10 @@ class Api::MeetupsController < ApplicationController
     def destroy # Delete meetup, available to hosts only
         @meetup = Meetup.find(params[:id])
         @meetup.destroy
-        @user = current_user
-        @meetups = current_user.meetups
-        @hosted_meetups = current_user.hosted_meetups
-        render 'api/users/index'
+        # @user = current_user
+        # @meetups = current_user.meetups
+        # @hosted_meetups = current_user.hosted_meetups
+        # render 'api/users/show'
     end
 
 

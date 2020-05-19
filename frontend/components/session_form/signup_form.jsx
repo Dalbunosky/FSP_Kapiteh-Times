@@ -71,11 +71,8 @@ class SignUpForm extends React.Component {
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {
-      console.log(pw1);
       if(pw1 === pw2 && pw1 != ""){ return(<input className="session-submit" type="submit" value="Sign Up!" />)}
       else { return(<h3 className="signinup-form-container">You can't submit unless your passwords match!</h3>)}};
-    console.log(this.state.errors);
-    console.log(this.props.errors);
     return (
       <div className="signinup-form-container">
         <form onSubmit={this.handleSubmit} className="signinup-form-box">

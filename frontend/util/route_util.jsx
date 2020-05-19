@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
 // Take to profile after logging in
-const Auth = ({ component: Component, path, loggedIn, exact }) => { //(
-  // console.log();
+const Auth = ({ component: Component, path, loggedIn, exact }) => {
   return (
   <Route path={path} exact={exact} render={(props) => (
     !loggedIn ? (

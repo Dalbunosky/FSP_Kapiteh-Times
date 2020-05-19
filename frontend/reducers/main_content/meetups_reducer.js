@@ -4,7 +4,7 @@ import {
     RECEIVE_MEETUP,
     MEETUP_HAS_ERRORS,    // At errors reducer
     CLEAR_MEETUP_ERRORS,  // At errors reducer
-    CANCEL_MEETUP
+    MEETUP_CANCELLED
   } from '../../actions/meetup_actions';
   
   const meetupsReducer = (state = {}, action) => {
@@ -19,8 +19,9 @@ import {
       //   return lalala;
       // case CLEAR_MEETUP_ERRORS:
       //   return [];
-      case CANCEL_MEETUP:
-        return { [action.meetup.id]: null };
+      case MEETUP_CANCELLED:
+        // return state;
+        return [];
 
       // case RECEIVE_REVIEW:
       //   const { review, average_rating } = action;
@@ -34,4 +35,4 @@ import {
   };
   
   export default meetupsReducer;
-  
+  // Meetup.new(host_id: 16, capacity: 1, topic: "test", metro_area: "Silicon Valley", starttime: 1590319380, location: ["181", "181", "test", "test", "test", "test", "test", "test"]).save

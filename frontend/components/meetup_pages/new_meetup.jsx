@@ -70,7 +70,6 @@ class NewMeetup extends React.Component {
 
     const meetup = Object.assign({}, this.state);
     meetup.starttime = new Date(this.state.starttime).valueOf()/1000;
-    console.log(meetup);
     
     this.props.processForm(meetup)
     .then( 
@@ -97,7 +96,6 @@ class NewMeetup extends React.Component {
       const time = `${timestring[0]}:${timestring[1]}`
 
       this.setState({ starttime: [date[0], time].join(" ") })
-      console.log(this.state.starttime)
     }
   }
   
