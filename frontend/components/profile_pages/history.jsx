@@ -35,7 +35,7 @@ class History extends React.Component {
           <h3>Past meetups you joined</h3>
             {joined.map (meetup => 
               // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="join"/>
-              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="join"/>
+              <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="join"/>
             )}
         </div>
       )
@@ -61,7 +61,7 @@ class History extends React.Component {
             <h3>Meetups you are going to Host</h3>
               {hosting.map (meetup => 
                 // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="host"/>
-                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="history" type="host"/>
               )}
           </div>
         )
@@ -77,8 +77,7 @@ class History extends React.Component {
   }}
 
   render() {
-    console.log(this.props);
-    console.log(this.props.meetups);
+    // console.log(this.props);
 
     const meetups = Array.from(this.props.meetups);
     let joined = [];

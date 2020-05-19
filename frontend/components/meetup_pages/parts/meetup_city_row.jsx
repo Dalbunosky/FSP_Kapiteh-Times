@@ -4,7 +4,6 @@ import MeetupCell from './meetup_cell';
 import * as convertFunctions from '../../../util/convertor_util'
 
 const CityRow = (props) =>{
-    // console.log("city row props");
     // console.log(props);
     const metro = props.metro;
     // componentDidMount() {
@@ -18,11 +17,8 @@ const CityRow = (props) =>{
     // };
 
     // render(){
-        // console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
         // console.log(props);
-        // console.log(metro);
         const meetups = convertFunctions.quickSortMeetups(metro.meetups);
-        // console.log(meetups);
 
         return(
             <div className="cityRow">

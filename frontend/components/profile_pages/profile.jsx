@@ -19,11 +19,14 @@ class Profile extends React.Component {
     this.hostOnlyMeetups = this.hostOnlyMeetups.bind(this);
   }
 
-  componentDidMount() {   
-    // const keyword = ["future",this.props.currentUser.id];
-    // const listOfMeetups = this.props.getMeetups(user);
+  componentDidMount() {
     this.props.fetchMeetups(this.props.currentUser.id);
-    // console.log(listOfMeetups)
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.meetups.length != prevProps.meetups.length){
+      this.props.fetchMeetups(this.props.currentUser.id);
+    }
   }
 
   hostOnlyMeetups(hosting){
@@ -36,8 +39,8 @@ class Profile extends React.Component {
           <div id="upcoming-hosting-meetups" className="profile-meetup-box">
             <h3>Meetups you are going to Host</h3>
               {hosting.map (meetup => 
-                <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
-                // <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+                // <MeetupCell key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
+                <MeetupCellContainer key={meetup.id} meetup={meetup} host={meetup.host_id} timing="future" type="host"/>
               )}
           </div>
         )

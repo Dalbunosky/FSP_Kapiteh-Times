@@ -2,19 +2,22 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // import SingleMeetup from './meetup_cell';
-import { joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
+import { fetchProfileMeetups, joinMeetup, leaveMeetup, editMeetup, cancelMeetup } from '../../../actions/meetup_actions';
 import { fetchHost, fetchGuests } from '../../../actions/user_actions';
 import MeetupCell from './meetup_pres';
 
-const mapSTP = state => {
+const mapSTP = (state) => {
+    // console.log(state);
     return {    // That's it? For joining?
-        users: state.users
+        users: state.users,
+        session: state.session.id
     };
 };
 
 const mapDTP = dispatch => (
     { 
     // fetch User (hosts and guests)
+        fetchMeetups: id => dispatch(fetchProfileMeetups(id)),  // Used for cancel after action
         fetchHost: (userId) => dispatch(fetchHost(userId)),
         // fetchGuests: (userId) => dispatch(fetchGuests(userId)),
         // fetchUser: (userId) => dispatch(fetchUser(userId)),

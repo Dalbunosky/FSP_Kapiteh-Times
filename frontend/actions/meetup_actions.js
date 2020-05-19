@@ -6,7 +6,7 @@ export const RECEIVE_MEETUPS = 'RECEIVE_MEETUPS';
 export const RECEIVE_MEETUP = 'RECEIVE_MEETUP';
 export const MEETUP_HAS_ERRORS = "MEETUP_HAS_ERRORS";
 export const CLEAR_MEETUP_ERRORS = 'CLEAR_MEETUP_ERRORS';
-export const CANCEL_MEETUP = 'CANCEL_MEETUP';
+export const MEETUP_CANCELLED = 'MEETUP_CANCELLED';
 
 // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
@@ -40,7 +40,7 @@ export const clearMeetupErrors = () => ({
 })
 
 export const meetupCanceled = () => ({
-  type: CANCEL_MEETUP,
+  type: MEETUP_CANCELLED,
 });
 
 // export const receiveReview = ({ review, average_rating, host }) => ({
@@ -108,12 +108,11 @@ export const editMeetup = meetup => dispatch => (
 
 // Cancels meetup
 export const cancelMeetup = meetupId => dispatch => {
-  console.log("HERE");
   return(
   APIUtil.cancelMeetup(meetupId).then(() => (
     dispatch(meetupCanceled())
   ))
-);}
+)}
 
 // export const closeAcct = () => dispatch => (
 //   SessAPIUtil.closeAcct().then(user => (
@@ -132,7 +131,6 @@ export const joinMeetup = meetupId => dispatch => (
 
 // Leave meetup
 export const leaveMeetup = meetupId => dispatch => {
-  console.log("HERE");
   return(
   APIUtil.leaveMeetup(meetupId).then(meetup => (
     dispatch(receiveMeetup(meetup))

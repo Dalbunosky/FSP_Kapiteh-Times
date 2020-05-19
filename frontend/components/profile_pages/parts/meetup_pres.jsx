@@ -26,7 +26,7 @@ class MeetUpCell extends React.Component {
     
     leaveMeetup(e){
         e.preventDefault();
-        console.log("leaving Meetup")
+        // console.log("leaving Meetup")
         this.props.leaveMeetup(this.props.meetup.id);
     }
 
@@ -34,18 +34,19 @@ class MeetUpCell extends React.Component {
 
     editMeetup(e){
         e.preventDefault();
-        console.log("editting Meetup")
-        // leaveMeetup(this.props.meetup.id);
-        // this.props.push()
+        // console.log("editting Meetup")
+        this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);
+
     }
     cancelMeetup(e){
         e.preventDefault();
-        console.log("canceling Meetup")
-        this.props.cancelMeetup(this.props.meetup.id);
+        // console.log("canceling Meetup")
+        this.props.cancelMeetup(this.props.meetup.id)
     }
+
     removeGuest(e){
         e.preventDefault();
-        console.log("kicking guest off")
+        // console.log("kicking guest off")
     }
 
     uniqueOps(type){
@@ -58,9 +59,9 @@ class MeetUpCell extends React.Component {
                 return(
                     <div className="meetup-right">
                         <div>Host picture</div>
-                        <p>Host: {host.name}</p>
-                        <p>Phone: {host.phone}</p>
-                        <p>Email: {host.email}</p>
+                        <p><b>Host: </b>{host.name}</p>
+                        <p><b>Phone: </b>{host.phone}</p>
+                        <p><b>Email: </b>{host.email}</p>
                         {/* {(timing == "future" ?
                             <div className="meetup_options">
                                 <button onClick={this.leaveMeetup}>Leave Meetup</button>
@@ -76,16 +77,18 @@ class MeetUpCell extends React.Component {
             // console.log(this.props);
             return(
                 <div className="meetup-right">
-                    {this.props.meetup.guests.map(guest =>{
+                    <h3>Guests</h3>
+                    {this.props.meetup.guests.map(guest =>(
+                        <p>{guest.name} <b>Phone: </b>{guest.phone}</p>
                         //fetch each guest
-                        return(
-                        <div className="guest-details">
-                            <p>{guest.name}</p>
-                            <p>{guest.phone}</p>
-                            {/* <button onClick={this.removeGuest}>Remove Guest</button> */}
-                        </div>
-                        )
-                    })}
+                        // return(
+                        // <div className="guest-details">
+                        //     <p>{guest.name}</p>
+                        //     <p>{guest.phone}</p>
+                        //     {/* <button onClick={this.removeGuest}>Remove Guest</button> */}
+                        // </div>
+                        // )
+                    ))}
                     {/* {(timing == "future" ?
                     <div className="meetup_options">
                         <button onClick={this.editMeetup}>Edit Meetup</button>
@@ -123,12 +126,12 @@ class MeetUpCell extends React.Component {
             <div className="meetup-index-item">
                 <div className="meetup-left">
                     <ul className="meetup-details">
-                        <li>Venue:   {meetup.location[2]}</li>
-                        <li>Address: <br/>{meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
-                        <li>Date:    {dayOfWeek}, {month} {starttime.getDate()}, {starttime.getFullYear()}</li>
-                        <li>Time:    {hour[0]}:{convertFunctions.formatMinute(starttime.getMinutes())} {hour[1]}</li>
+                        <li><b>Venue: </b>  {meetup.location[2]}</li>
+                        <li><b>Address: </b><br/>{meetup.location[3]} {meetup.location[4]}, {meetup.location[6]} {meetup.location[5]}</li>
+                        <li><b>Date: </b>   {dayOfWeek}, {month} {starttime.getDate()}, {starttime.getFullYear()}</li>
+                        <li><b>Time: </b>   {hour[0]}:{convertFunctions.formatMinute(starttime.getMinutes())} {hour[1]}</li>
                         {/* <li>End:    </li> */}
-                        <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
+                        <li><b>Space: </b> {meetup.guests.length}/{meetup.capacity}</li>
                         {/* <li>Topics and Icebreakers: <br/> {meetup.topic}</li> */}
                     </ul>
                 </div>

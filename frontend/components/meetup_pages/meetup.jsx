@@ -47,7 +47,7 @@ class MeetupShow extends React.Component {
     handleEdit(e){
       return(e) => {
         e.preventDefault();
-        this.props.history.push(`/meetups/edit/${this.props.meetupId}`);
+        this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);
         // this.props.editMeetup(this.props.meetupId)
         // .then(() => this.props.history.push(`/meetups/edit/${this.props.meetupId}`));
       };
@@ -255,7 +255,7 @@ class MeetupShow extends React.Component {
 
 ////////////////////////////////////////////////////////////////////////
     render() {
-        console.log(this.props.meetup);
+        // console.log(this.props.meetup);
 
         return (
             <div>

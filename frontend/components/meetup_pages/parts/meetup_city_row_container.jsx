@@ -4,7 +4,7 @@ import { createMeetup } from "../../actions/meetup_actions";
 import { clearMeetupErrors } from '../../actions/meetup_actions';
 
 const mapSTP = (state) => {
-    console.log(state);
+    // console.log(state);
     return({
     // Meetups that are taking place in this CityRow's city
     errors: state.errors,

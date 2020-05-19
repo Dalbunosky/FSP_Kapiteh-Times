@@ -8,7 +8,7 @@ const mapSTP = (state) => {
     // console.log(state);
     return({
     meetups: state.meetups,
-    // signedIn: state.session.id,
+    currentUserId: state.session.id,
     // currentUserCity: state.users[state.session.id].home_city
     // currentUser: state.users[state.session.id]
     currentUser: state.users[state.session.id]

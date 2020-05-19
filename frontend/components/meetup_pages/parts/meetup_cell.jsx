@@ -26,7 +26,7 @@ class SingleMeetup extends React.Component{
       e.preventDefault();
       // this.props.requestSingleMeetup(this.props.meetup.id)
       // .then(() => this.props.history.push(`/hosting/${this.props.meetup.id}`));
-      this.props.history.push(`/hosting/${this.props.meetup.id}`);
+      this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);
     };
   };
 
@@ -39,7 +39,6 @@ class SingleMeetup extends React.Component{
   };
 
   handleUnattend(meetupId){
-    // console.log(this.props);
     return(e) => {
       e.preventDefault();
       this.props.leaveMeetup(meetupId)
@@ -51,7 +50,6 @@ class SingleMeetup extends React.Component{
     return(e) => {
       e.preventDefault();
       this.props.cancelMeetup(meetupId)
-      .then(() => this.props.history.push('/profile'));
     };
   };
 
@@ -100,12 +98,12 @@ class SingleMeetup extends React.Component{
       </p>;
 
       meetupEditButton =
-      <button className="meetup-edit-button meetup-button orange" onClick={handleEdit(meetup.id)}>
+      <button className="meetup-edit-button meetup-button orange" onClick={this.handleEdit(meetup.id)}>
           EDIT MEETUP
       </button>;
 
       meetupCancelButton =
-      <button className="meetup-button red" onClick={handleCancelMeetup(meetup.id)}>
+      <button className="meetup-button red" onClick={this.handleCancelMeetup(meetup.id)}>
         CANCEL THIS MEETUP
       </button>;
       // meetupEditButton =

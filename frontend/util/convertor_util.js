@@ -9,7 +9,6 @@ export const onTimeChange = () => {
             let hour = timestring[0];
             let minute = timestring[1];
             this.setState({ starttime: [DOW, year, month, day, hour, minute] })
-            console.log(this.state.starttime)
             // For meridian (AM/PM) processing, go check FWF
         }
     }

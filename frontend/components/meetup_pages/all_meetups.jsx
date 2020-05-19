@@ -26,6 +26,12 @@ class AllMeetups extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps){
+      if(this.props.meetups.length != prevProps.meetups.length){
+        this.props.fetchMeetups(this.props.currentUser.id);
+      }
+    }
+
     // componentDidUpdate(prevState, nextState) {
     //     if(prevState != nextState){
     //         this.props.fetchMeetups();
@@ -71,7 +77,7 @@ class AllMeetups extends React.Component {
 
     render() {
         const currentUser = this.props.currentUser;
-        console.log(currentUser);
+        const currentUserId = this.props.currentUserId;
         const metroArr0 = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
 
         let homebase = "";
@@ -81,7 +87,7 @@ class AllMeetups extends React.Component {
         const metroArr = convertFunctions.quickSortCities(metroArr0, homebase);
 
         if((metroArr.length > 0) && (homebase === metroArr[0].name)){homeCityMeetups = metroArr.shift()}
-        const hostCreateMeetup = ((currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
+        const hostCreateMeetup = ((currentUserId && currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
         return (
             <div>
                 <div className="meetup-index-header">
@@ -94,7 +100,7 @@ class AllMeetups extends React.Component {
                     <div className="all_other_meetups">
                         {this.meetupLabel()}
                         {metroArr.map (metro =>
-                            <MeetupCityRow metro={metro} key={metroArr.indexOf(metro)} currentUser={currentUser.id}/>
+                            <MeetupCityRow metro={metro} key={metroArr.indexOf(metro)} currentUser={currentUserId}/>
                         )}
 
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
