@@ -24,6 +24,7 @@ class SingleMeetup extends React.Component{
   handleEdit(meetupId){
     return(e) => {
       e.preventDefault();
+      const meetupId = this.props.meetup.id;
       // this.props.requestSingleMeetup(this.props.meetup.id)
       // .then(() => this.props.history.push(`/hosting/${this.props.meetup.id}`));
       this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);

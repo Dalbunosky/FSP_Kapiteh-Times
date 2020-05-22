@@ -33,6 +33,7 @@ class Api::MeetupsController < ApplicationController
     end
 
     def show    # Show each meetup
+        puts "QWERTYQWERTYUQWERTY"
         @meetup = Meetup.find(params[:id])
         render 'api/meetups/show'
     end
@@ -69,7 +70,7 @@ class Api::MeetupsController < ApplicationController
     end
 
     def update # Update meetup, available to hosts only
-        @meetup = current_user.meetups.find(params[:id])
+        @meetup = Meetup.find(params[:id])
         if @meetup.update_attributes(meetup_params)
 
             # redirect_to meetup_url(@meetup)

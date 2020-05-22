@@ -34,6 +34,7 @@ class MeetUpCell extends React.Component {
 
     editMeetup(e){
         e.preventDefault();
+        const meetupId = this.props.meetup.id;
         // console.log("editting Meetup")
         this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);
 

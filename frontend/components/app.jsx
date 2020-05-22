@@ -71,7 +71,7 @@ const App = () => (
 
         {/* Host only routes, for creating meetups */}
         <HostRoute exact path="/meetups/new" component={NewMeetUpContainer} />
-        <HostRoute exact path="/meetups/edit" component={EditMeetUpContainer} />
+        <HostRoute exact path="/meetups/:meetupId/edit" component={EditMeetUpContainer} />
 
         <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} />
         <Route exact path="/meetups" component={MeetUpIndexContainer} />

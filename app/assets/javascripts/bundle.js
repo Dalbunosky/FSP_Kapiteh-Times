@@ -7088,7 +7088,7 @@ var App = function App() {
     component: _meetup_pages_new_meetup_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_12__["HostRoute"], {
     exact: true,
-    path: "/meetups/edit",
+    path: "/meetups/:meetupId/edit",
     component: _meetup_pages_edit_meetup_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
@@ -7782,6 +7782,490 @@ var mapDTP = function mapDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/meetup_pages/edit_meetup.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/meetup_pages/edit_meetup.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-calendar */ "./node_modules/react-calendar/dist/esm/index.js");
+/* harmony import */ var _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/convertor_util */ "./frontend/util/convertor_util.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+ // import Calendar from 'react-calendar/dist/entry.nostyle';
+// import { Link } from 'react-router-dom';
+
+var EditMeetup = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditMeetup, _React$Component);
+
+  var _super = _createSuper(EditMeetup);
+
+  function EditMeetup(props) {
+    var _this;
+
+    _classCallCheck(this, EditMeetup);
+
+    _this = _super.call(this, props);
+    console.log(props); // if(this.props.meetup){
+    //   console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+    //   this.state = {
+    //     location: this.props.meetup.location, // [lat, lng, name of venue, address, city, state/province, zip, country]
+    //     starttime: this.props.meetup.starttime,
+    //     metro_area: this.props.meetup.metro_area,
+    //     topic: this.props.meetup.topic,
+    //     guests: this.props.meetup.guests,
+    //     capacity: this.props.meetup.capacity,
+    //   }
+    // } else{
+
+    _this.state = {
+      location: "",
+      // [lat, lng, name of venue, address, city, state/province, zip, country]
+      starttime: "",
+      metro_area: "",
+      topic: "",
+      guests: "",
+      capacity: ""
+    }; // }
+
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
+    // this.handlePhoto = this.handlePhoto.bind(this);
+
+    return _this;
+  } // componentDidMount() {
+  //   this.props.fetchMeetup(this.props.meetupId)
+  //   .then(meetup => {this.props.fetchHost(this.props.meetup.host_id)})
+  // }
+
+
+  _createClass(EditMeetup, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
+      this.props.fetchMeetup(this.props.meetupId); // this.props.clearErrors()
+      // .then(() => {this.props.fetchMeetup(this.props.meetupId)})
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.meetup != prevProps.meetup) {
+        this.setState({
+          location: this.props.meetup.location,
+          // [lat, lng, name of venue, address, city, state/province, zip, country]
+          starttime: this.changeTimetoString(this.props.meetup.starttime),
+          metro_area: this.props.meetup.metro_area,
+          topic: this.props.meetup.topic,
+          guests: this.props.meetup.guests,
+          capacity: this.props.meetup.capacity
+        });
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearErrors();
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "updateLocation",
+    value: function updateLocation(index) {
+      var _this3 = this;
+
+      var currLocation = this.state.location;
+      return function (e) {
+        currLocation[index] = e.target.value;
+
+        _this3.setState({
+          location: currLocation
+        });
+      };
+    } // ERRORS
+
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    } // INPUT/SUBMIT  
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this4 = this;
+
+      e.preventDefault();
+      var meetup = Object.assign({}, this.state);
+      meetup.starttime = new Date(this.state.starttime).valueOf() / 1000;
+      meetup.id = this.props.meetup.id;
+      this.props.processForm(meetup).then(function () {
+        return _this4.props.history.push("/meetups/".concat(meetup.id));
+      });
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this5 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this5.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    } // For time only handling
+
+  }, {
+    key: "onTimeChange",
+    value: function onTimeChange() {
+      var _this6 = this;
+
+      var date = this.state.starttime.split(" ");
+      return function (e) {
+        var timestring = e.target.value.split(":");
+        var time = "".concat(timestring[0], ":").concat(timestring[1]);
+
+        _this6.setState({
+          starttime: [date[0], time].join(" ")
+        });
+      };
+    } // For date to string
+
+  }, {
+    key: "onDateChange",
+    value: function onDateChange() {
+      var _this7 = this;
+
+      // if(this.props.meetup){
+      console.log(this.state.starttime);
+      var time = this.state.starttime.split(" ");
+      return function (e) {
+        var timestring = e.toDateString().split(" ");
+        var date = "".concat(timestring[3], "-").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertMonthtoInt"](timestring[1]), "-").concat(timestring[2]);
+
+        _this7.setState({
+          starttime: [date, time[1]].join(" ")
+        });
+      }; // }
+    }
+  }, {
+    key: "changeTimetoString",
+    value: function changeTimetoString(datetime) {
+      // 2020-5-07 01:09
+      // if(typeof datetime === "number"){
+      datetime = new Date(datetime * 1000);
+      return "".concat(datetime.getFullYear(), "-").concat(datetime.getMonth(), "-").concat(datetime.getDate(), " ").concat(datetime.getHours(), ":").concat(datetime.getMinutes()); // } else {
+      //   return datetime;
+      // }
+    }
+  }, {
+    key: "handlePhoto",
+    value: function handlePhoto(e) {
+      var _this8 = this;
+
+      var file = e.currentTarget.files[0];
+      console.log(e.currentTarget.files);
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this8.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    } // In handleSubmit
+    // if (this.state.photoFile) {
+    //   formData.append('bench[photo]', this.state.photoFile);
+    // }
+    // RENDER
+
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.props.meetup) {
+        var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          height: "200px",
+          width: "200px",
+          src: this.state.photoUrl
+        }) : null;
+        console.log(this.props);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-meetup"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Edit Meetup!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.handleSubmit,
+          className: "new-meetup-details"
+        }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-meetup-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "where"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "Name of Venue:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.location[2],
+          onChange: this.updateLocation(2),
+          className: "signinup-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "Metropolitan Area ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " (Not the exact city/suburb where the venue is, ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " but the name of the greater area):*", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " Example: Pasadena vs Los Angeles"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.metro_area,
+          onChange: this.update("metro_area"),
+          className: "signinup-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "Address:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.location[3],
+          onChange: this.updateLocation(3),
+          className: "signinup-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "City:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.location[4],
+          onChange: this.updateLocation(4),
+          className: "signinup-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "Zip Code:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.location[5],
+          onChange: this.updateLocation(5),
+          className: "signinup-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "State/Province:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.location[6],
+          onChange: this.updateLocation(6),
+          className: "signinup-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "Country:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.location[7],
+          onChange: this.updateLocation(7),
+          className: "signinup-input"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "when"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "final-form-header"
+        }, "When should we meet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          onChange: this.onDateChange()
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "time",
+          onChange: this.onTimeChange()
+        })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-meetup-right"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "picture"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "What topics do you want to talk about?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          rows: "4",
+          cols: "50",
+          value: this.state.topic,
+          onChange: this.update('topic')
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "signinup-title"
+        }, "Capacity:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "number",
+          value: this.state.capacity,
+          onChange: this.update('capacity'),
+          className: "signinup-input"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "session-submit",
+          type: "submit",
+          value: "Edit Meetup!"
+        })));
+      } else {
+        return null;
+      } // return (
+      //   <div className="new-meetup">
+      //     <h3>New Meetup!</h3>
+      //     <form onSubmit={this.handleSubmit} className="new-meetup-details">
+      //       {this.renderErrors()}
+      //       <div className="new-meetup-left">
+      //         <div className="where">
+      //           <label>
+      //             <p className="signinup-title">Name of Venue:*</p>
+      //             <input type="text"
+      //               value={this.state.location[2]}
+      //               onChange={this.updateLocation(2)}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //           <label>
+      //             <p className="signinup-title">Metropolitan Area <br/> (Not the exact city/suburb where the venue is, <br/> but the name of the greater area):*<br/> Example: Pasadena vs Los Angeles</p>
+      //             <input type="text"
+      //               value={this.state.metro_area}
+      //               onChange={this.update("metro_area")}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //           <br/>
+      //           <label>
+      //             <p className="signinup-title">Address:*</p>
+      //             <input type="text"
+      //               value={this.state.location[3]}
+      //               onChange={this.updateLocation(3)}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //           <br/>
+      //           <label>
+      //             <p className="signinup-title">City:*</p>
+      //             <input type="text"
+      //               value={this.state.location[4]}
+      //               onChange={this.updateLocation(4)}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //           <br/>
+      //           <label>
+      //             <p className="signinup-title">Zip Code:*</p>
+      //             <input type="text"
+      //               value={this.state.location[5]}
+      //               onChange={this.updateLocation(5)}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //           <br/>
+      //           <label>
+      //             <p className="signinup-title">State/Province:*</p>
+      //             <input type="text"
+      //               value={this.state.location[6]}
+      //               onChange={this.updateLocation(6)}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //           <br/>
+      //           <label>
+      //             <p className="signinup-title">Country:*</p>
+      //             <input type="text"
+      //               value={this.state.location[7]}
+      //               onChange={this.updateLocation(7)}
+      //               className="signinup-input"
+      //             />
+      //           </label>
+      //         </div>
+      //         <div className="when">
+      //         {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
+      //           <p className="final-form-header">When should we meet?</p>
+      //           <hr></hr>
+      //           <Calendar onChange={this.onDateChange()} />
+      //           <label>
+      //             <input type="time" onChange={this.onTimeChange()} />
+      //           </label>
+      //         </div>
+      //       </div>
+      //       <div className="new-meetup-right">
+      //         <div className="picture">
+      //         {/* <div className="button-holder">
+      //           <h3>Image preview </h3>
+      //           {preview}
+      //           <h3 className="button-holder">Add a Picture</h3>
+      //           <input type="file" className="new-bench-button"
+      //             onChange={this.handleFile.bind(this)}/>
+      //         </div> */}
+      //         {/* EDIT PROFILE PICTURE. NULL FALSE */}
+      //           {/* <label className="fancy">
+      //             Choose a file
+      //             <input type="file" className="inputfile" onChange={handlePhoto} />
+      //           </label>
+      //           <h3>Image Preview</h3>
+      //           <hr></hr>
+      //           <div className="preview">{preview}</div> */}
+      //         </div>
+      //         <label>
+      //           <p className="signinup-title">What topics do you want to talk about?</p>
+      //           <textarea rows="4" cols="50" 
+      //             value={this.state.topic}
+      //             onChange={this.update('topic')}/>   
+      //         </label>
+      //         <br/>
+      //         <label>
+      //           <p className="signinup-title">Capacity:*</p>
+      //           <input type="number"
+      //             value={this.state.capacity}
+      //             onChange={this.update('capacity')}
+      //             className="signinup-input"
+      //           />
+      //         </label>
+      //         {/* datetime-local is not widely used and isn't supported in Firefox */}
+      //         {/* <input
+      //           className="create-meetup-form-input-field"
+      //           onChange={this.update('starttime')}
+      //           type="datetime-local"
+      //           value={this.state.starttime}
+      //         /> */}
+      //       </div>
+      //       <input className="session-submit" type="submit" value="Create Meetup!" />
+      //     </form>
+      //   </div>
+      // )
+
+    }
+  }]);
+
+  return EditMeetup;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (EditMeetup);
+
+/***/ }),
+
 /***/ "./frontend/components/meetup_pages/edit_meetup_container.js":
 /*!*******************************************************************!*\
   !*** ./frontend/components/meetup_pages/edit_meetup_container.js ***!
@@ -7792,18 +8276,21 @@ var mapDTP = function mapDTP(dispatch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _new_meetup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_meetup */ "./frontend/components/meetup_pages/new_meetup.jsx");
+/* harmony import */ var _edit_meetup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit_meetup */ "./frontend/components/meetup_pages/edit_meetup.jsx");
 /* harmony import */ var _actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/meetup_actions */ "./frontend/actions/meetup_actions.js");
 
+ // import { fetchMeetup, editMeetup } from "../../actions/meetup_actions";
 
 
 
-
-var mapSTP = function mapSTP(state) {
+var mapSTP = function mapSTP(state, ownprops) {
+  console.log(state.meetups);
   return {
     errors: state.errors,
-    meetups: state.meetups,
-    // Doubt I need this here
+    meetup: state.meetups[ownprops.match.params.meetupId],
+    session: state.session,
+    meetupId: ownprops.match.params.meetupId,
+    // users: state.users,
     host: state.users[state.session.id]
   };
 };
@@ -7811,8 +8298,11 @@ var mapSTP = function mapSTP(state) {
 var mapDTP = function mapDTP(dispatch) {
   return {
     // functions needed:
+    fetchMeetup: function fetchMeetup(meetupId) {
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMeetup"])(meetupId));
+    },
     processForm: function processForm(meetup) {
-      return dispatch(editMeetup(meetup));
+      return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["editMeetup"])(meetup));
     },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_meetup_actions__WEBPACK_IMPORTED_MODULE_2__["clearMeetupErrors"])());
@@ -7820,7 +8310,7 @@ var mapDTP = function mapDTP(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_new_meetup__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_edit_meetup__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -7929,6 +8419,7 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
     value: function handleEdit(e) {
       var _this5 = this;
 
+      var meetupId = this.props.meetup.id;
       return function (e) {
         e.preventDefault();
 
@@ -8221,7 +8712,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
-// test_meetup = Meetup.new(location: [null, null, 'langers', '123 chi st', 'San Francisco', 'California', '94108', 'USA'], host: "DemoHost", capacity: 10, topic: "Whatever you want", starttime: ["Sun", 4,12, 2020, 19, 0] )
 
 var NewMeetup = /*#__PURE__*/function (_React$Component) {
   _inherits(NewMeetup, _React$Component);
@@ -8242,8 +8732,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       metro_area: _this.props.host.home_city,
       topic: "",
       guests: [],
-      capacity: 0 // host: props.host.id,     // currentUser.id
-
+      capacity: 0
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
     // this.handlePhoto = this.handlePhoto.bind(this);
@@ -8254,13 +8743,8 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
   _createClass(NewMeetup, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.clearErrors(); // this.autocomplete();
-    } // componentDidUpdate(prevProps, prevState){
-    //   if (prevState.center.lat !== this.state.center.lat || prevState.center.lng !== this.state.center.lng ) {
-    //   // this.autocomplete();
-    //   }
-    // }
-
+      this.props.clearErrors();
+    }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
@@ -8306,6 +8790,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       e.preventDefault();
+      console.log(this.state.starttime);
       var meetup = Object.assign({}, this.state);
       meetup.starttime = new Date(this.state.starttime).valueOf() / 1000;
       this.props.processForm(meetup).then(function () {
@@ -8362,157 +8847,27 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
           starttime: [date, time[1]].join(" ")
         });
       };
-    } // changeLocation(val) {
-    //   if (val === "New York") {
-    //     this.setState({ center: { lat: 40.757900, lng: -73.873005 }, zoom: 12 });
-    //     this.setState({ city: "New York" });
-    //   } else if (val === "Boston") {
-    //     this.setState({ center: { lat: 42.377008, lng: -71.117030 }, zoom: 12 });
-    //     this.setState({ city: "Boston" });
-    //   } else if (val === "San Francisco") {
-    //     this.setState({ center: { lat: 37.731901, lng: -122.443611 }, zoom: 12 });
-    //     this.setState({ city: "San Francisco" });
-    //   } else if (val === "Dallas") {
-    //     this.setState({ center: { lat: 32.790808, lng: -96.797194 }, zoom: 12 });
-    //     this.setState({ city: "Dallas" });
-    //   }
-    // }
-    // For adjusting map when selecting cities on map
-    // autocomplete() {
-    //   //setting the bounds, have strictBounds to true, TODO: set bounds based on city
-    //   let center;
-    //   let mapOptions;
-    //   let map;
-    //   let defaultBounds;
-    //   let city;
-    //   let swBound1;
-    //   let swBound2;
-    //   let neBound1;
-    //   let neBound2;
-    //   center = this.state.center;
-    //   city = this.state.city
-    //   if (city === "New York") {
-    //     swBound1 = 40.658480;
-    //     swBound2 = 40.827725;
-    //     neBound1 = -74.032591;
-    //     neBound2 = -73.715510;
-    //   } else if (city === "Boston") {
-    //     swBound1 = 42.227997;
-    //     swBound2 = 42.386856;
-    //     neBound1 = -71.221087;
-    //     neBound2 = -71.022309;
-    //   } else if (city === "San Francisco") {
-    //     swBound1 = 37.693417;
-    //     swBound2 = 37.809615;
-    //     neBound1 = -122.497790;
-    //     neBound2 = -122.400885;
-    //   } else if (city === "Dallas") {
-    //     swBound1 = 32.650318;
-    //     swBound2 = 32.926633;
-    //     neBound1 = -96.946336;
-    //     neBound2 = -96.681859;
-    //   }
-    //   mapOptions = { center, zoom: 12 }
-    //   map = new google.maps.Map(this.mapNode, mapOptions);
-    //   defaultBounds = new google.maps.LatLngBounds(
-    //     new google.maps.LatLng(swBound1, neBound1),
-    //     new google.maps.LatLng(swBound2, neBound2),
-    //   )
-    //   let input = document.getElementById('searchTextField');
-    //   // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    //   let options = {
-    //     bounds: defaultBounds,
-    //     types: ['establishment'],
-    //     strictBounds: true
-    //   }
-    //   let searchBox = new google.maps.places.SearchBox(input, options);
-    //   const that = this;
-    //   searchBox.addListener('places_changed', function () {
-    //     var places = searchBox.getPlaces();
-    //     // let markers = [];
-    //     if (places.length == 0) {
-    //       return;
-    //     }
-    //     var bounds = new google.maps.LatLngBounds();
-    //     places.forEach(function (place) {
-    //       if (!place.geometry) {
-    //         console.log("Returned place contains no geometry");
-    //         return;
-    //       }
-    //       var icon = {
-    //         url: place.icon,
-    //         size: new google.maps.Size(71, 71),
-    //         origin: new google.maps.Point(0, 0),
-    //         anchor: new google.maps.Point(17, 34),
-    //         scaledSize: new google.maps.Size(25, 25)
-    //       };
-    //       // Create a marker for each place.
-    //     let marker = new google.maps.Marker({
-    //         map: map,
-    //         icon: icon,
-    //         title: place.name,
-    //         position: place.geometry.location
-    //       });
-    //       let infoWindow = new google.maps.InfoWindow({
-    //         content: '<p class="selecto">Selected!</p>'
-    //       })
-    //       marker.addListener('click', toggleBounce);
-    //       marker.addListener('click', function (e) {
-    //         let lat = e.latLng.lat();
-    //         let lng = e.latLng.lng();
-    //         that.setState({ lat, lng });
-    //         infoWindow.open(map, marker)
-    //       })
-    //       marker.setMap(map)
-    //       function toggleBounce() {
-    //         if (marker.getAnimation() !== null) {
-    //           marker.setAnimation(null);
-    //         } else {
-    //           marker.setAnimation(google.maps.Animation.BOUNCE);
-    //         }
-    //       }
-    //       if (place.geometry.viewport) {
-    //         bounds.union(place.geometry.viewport);
-    //       } else {
-    //         bounds.extend(place.geometry.location);
-    //       }
-    //     });
-    //     map.fitBounds(bounds);
-    //   });
-    //   return searchBox;
-    // }
-    // AWS
-    // handleAWSSubmit(e) {
-    //   e.preventDefault();
-    //   const formData = new FormData();
-    //   if (this.state.photoFile) {
-    //     formData.append('meetup[photo]', this.state.photoFile);
-    //   }
-    //   formData.append('meetup[openings]', this.state.openings);
-    //   formData.append('meetup[name]', this.state.name);
-    //   formData.append('meetup[date]', this.state.date);
-    //   formData.append('meetup[starttime]', this.state.starttime);
-    //   formData.append('meetup[summary]', this.state.summary);
-    //   formData.append('meetup[story]', this.state.story);
-    //   formData.append('meetup[discussion]', this.state.discussion);
-    //   formData.append('meetup[quote]', this.state.quote);
-    //   formData.append('meetup[lat]', this.state.lat);
-    //   formData.append('meetup[lng]', this.state.lng);
-    //   this.props.createMeetup(formData).then(meetup => this.props.history.push(`/fraptimes/${meetup.meetup.id}`), () => {
-    //   });
-    // }
-    // handlePhoto(e) {
-    //   const file = e.currentTarget.files[0];
-    //   console.log(e.currentTarget.files);
-    //   const fileReader = new FileReader();
-    //   fileReader.onloadend = () => {
-    //     this.setState({photoFile: file, photoUrl: fileReader.result});
-    //   };
-    //   if (file) {
-    //     fileReader.readAsDataURL(file);
-    //   }
-    // }
-    // In handleSubmit
+    }
+  }, {
+    key: "handlePhoto",
+    value: function handlePhoto(e) {
+      var _this8 = this;
+
+      var file = e.currentTarget.files[0];
+      console.log(e.currentTarget.files);
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this8.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    } // In handleSubmit
     // if (this.state.photoFile) {
     //   formData.append('bench[photo]', this.state.photoFile);
     // }
@@ -8747,7 +9102,8 @@ var SingleMeetup = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       return function (e) {
-        e.preventDefault(); // this.props.requestSingleMeetup(this.props.meetup.id)
+        e.preventDefault();
+        var meetupId = _this3.props.meetup.id; // this.props.requestSingleMeetup(this.props.meetup.id)
         // .then(() => this.props.history.push(`/hosting/${this.props.meetup.id}`));
 
         _this3.props.history.push("/meetups/".concat(_this3.props.meetup.id, "/edit"));
@@ -9621,7 +9977,8 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "editMeetup",
     value: function editMeetup(e) {
-      e.preventDefault(); // console.log("editting Meetup")
+      e.preventDefault();
+      var meetupId = this.props.meetup.id; // console.log("editting Meetup")
 
       this.props.history.push("/meetups/".concat(this.props.meetup.id, "/edit"));
     }
