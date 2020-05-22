@@ -45,6 +45,7 @@ class MeetupShow extends React.Component {
     };
   
     handleEdit(e){
+      const meetupId = this.props.meetup.id;
       return(e) => {
         e.preventDefault();
         this.props.history.push(`/meetups/${this.props.meetup.id}/edit`);
