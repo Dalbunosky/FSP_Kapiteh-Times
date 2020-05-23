@@ -7877,7 +7877,7 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (this.props.meetup != prevProps.meetup) {
+      if (this.props.meetup && this.props.meetup != prevProps.meetup) {
         this.setState({
           location: this.props.meetup.location,
           // [lat, lng, name of venue, address, city, state/province, zip, country]
@@ -8032,7 +8032,8 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.meetup) {
+      if (this.props.meetup && this.props.meetup.host_id === this.props.session.id) {
+        // Allows only the actual host to edit meetup, not any hosts
         var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           height: "200px",
           width: "200px",
@@ -8106,7 +8107,7 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "time",
           onChange: this.onTimeChange()
-        })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Meetup is currently set for ", this.state.starttime))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "new-meetup-right"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "picture"
@@ -8129,8 +8130,18 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
           type: "submit",
           value: "Edit Meetup!"
         })));
+      } else if (this.props.meetup && this.props.meetup.host_id != this.props.session.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-meetup"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sorry, buddy, you can't edit a meetup that you aren't hosting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#/profile"
+        }, "Back to Profile"));
       } else {
-        return null;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-meetup"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Uh oh, the meetup you are looking for doesn't exist!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#/meetups"
+        }, "Back to Meetups"));
       } // return (
       //   <div className="new-meetup">
       //     <h3>New Meetup!</h3>

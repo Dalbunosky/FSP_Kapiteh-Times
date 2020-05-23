@@ -47,7 +47,7 @@ class EditMeetup extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.meetup != prevProps.meetup){
+    if(this.props.meetup && this.props.meetup != prevProps.meetup){
       this.setState({
         location: this.props.meetup.location, // [lat, lng, name of venue, address, city, state/province, zip, country]
         starttime: this.changeTimetoString(this.props.meetup.starttime),
@@ -164,7 +164,7 @@ class EditMeetup extends React.Component {
   // RENDER
 
   render() {
-    if(this.props.meetup){
+    if(this.props.meetup && this.props.meetup.host_id === this.props.session.id){ // Allows only the actual host to edit meetup, not any hosts
       const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
       console.log(this.props);
       return (
@@ -250,6 +250,7 @@ class EditMeetup extends React.Component {
                 <label>
                   <input type="time" onChange={this.onTimeChange()} />
                 </label>
+                <p>Meetup is currently set for {this.state.starttime}</p>
               </div>
             </div>
   
@@ -304,9 +305,23 @@ class EditMeetup extends React.Component {
         </div>
       )
     }
-    else{
-      return (null);
+    else if(this.props.meetup && this.props.meetup.host_id != this.props.session.id){
+      return(
+        <div className="new-meetup">
+          <h3>Sorry, buddy, you can't edit a meetup that you aren't hosting</h3>
+          <a href="#/profile">Back to Profile</a>
+        </div>
+      )
     }
+    else{
+      return(
+        <div className="new-meetup">
+          <h3>Uh oh, the meetup you are looking for doesn't exist!</h3>
+          <a href="#/meetups">Back to Meetups</a>
+        </div>
+      )
+    }
+
     // return (
     //   <div className="new-meetup">
     //     <h3>New Meetup!</h3>
