@@ -19,13 +19,14 @@ import SignInFormContainer from './session_form/signin_form_container';
 import ProfileContainer from './profile_pages/profile_container';
 import EditProfileContainer from './profile_pages/edit_profile_container';
 import HistoryContainer from './profile_pages/history_container';
+import HostShowContainer from './profile_pages/host_show_container';
 
 // Meetup pages
 import MeetUpIndexContainer from './meetup_pages/all_meetups_container'; // Shows index of all meetups
 import MeetUpShowContainer from './meetup_pages/meetup_container'; // Shows details of each meetup
-// import MeetUpFormContainer from './meetup_form/meetup_form_container';
 import NewMeetUpContainer from './meetup_pages/new_meetup_container';
 import EditMeetUpContainer from './meetup_pages/edit_meetup_container';
+
 
 import { AuthRoute, ProtectedRoute, HostRoute, AdminRoute } from '../util/route_util';
 
@@ -68,6 +69,8 @@ const App = () => (
         <ProtectedRoute path="/profile/edit" component={EditProfileContainer} />
         <ProtectedRoute path="/profile/history" component={HistoryContainer} />
         <ProtectedRoute path="/profile" component={ProfileContainer} />
+
+        <Route exact path="/host/:hostId" component={HostShowContainer} />
 
         {/* Host only routes, for creating meetups */}
         <HostRoute exact path="/meetups/new" component={NewMeetUpContainer} />

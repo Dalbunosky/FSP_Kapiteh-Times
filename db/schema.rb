@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_212414) do
+ActiveRecord::Schema.define(version: 2020_05_23_093310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 2020_05_04_212414) do
     t.datetime "updated_at", null: false
     t.text "topic", null: false
     t.integer "guests", default: [], null: false, array: true
-    t.integer "endtime", default: [], array: true
     t.text "metro_area", null: false
     t.integer "starttime", null: false
+    t.integer "endtime"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_212414) do
     t.string "name", null: false
     t.integer "phone"
     t.string "story"
+    t.text "img_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end

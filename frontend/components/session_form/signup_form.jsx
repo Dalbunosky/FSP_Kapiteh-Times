@@ -67,7 +67,23 @@ class SignUpForm extends React.Component {
     })
   };
 
+  updateFile(){
+    return e => {
+      const reader = new FileReader();
+      const file = e.currentTarget.files[0];
+      reader.onloadend = () =>
+        this.setState({ imageURL: reader.result, imageFile: file });
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({ imageURL: "", imageFile: null });
+      }
+    }
+  }
+
   render() {
+    console.log(this.state);
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {
@@ -137,6 +153,7 @@ class SignUpForm extends React.Component {
                 required
               />
             </label>
+
             <p>{confirmPasswordWarning(this.state.password, this.state.password2)}</p>
 
             <br/>
@@ -157,6 +174,11 @@ class SignUpForm extends React.Component {
               onChange={this.update('story')}/>
             </label>
             <br/>
+            <div className="right">
+              <p>A picture of yourself.<br/>Optional, unless you are a host.</p>
+              <input type="file" onChange={this.updateFile()} />
+              <img className="preview" src={this.state.imageURL} />
+            </div>
             {confirmPasswordButton(this.state.password, this.state.password2)}
             {/* <input className="session-submit" type="submit" value="Sign Up!" /> */}
           </div>

@@ -66,12 +66,7 @@ class MeetupShow extends React.Component {
     fetchHostOrGuests(){
         // Probably not needed
         // If logged_in
-        // If you are the host, fetch guest information
         if(this.props.session.id && this.props.meetup.host_id === this.props.session.id){
-            // Might need to do a fetchGuest multiple times in loop
-            // On 3rd thought, might just append all information to meetup
-            // On 4th thought, information might already be appended
-            // this.props.fetchGuests()
         } 
         // Otherwise, fetch host information
         else{
@@ -238,7 +233,7 @@ class MeetupShow extends React.Component {
             return(
                 <div className="meetup-left">
                     <ul className="meetup-guests">
-                        <div>HOST FACE</div>
+                      <a href={`#/host/${host.id}`}><div>HOST FACE</div></a>
                         <h3>The Host: {host.name}</h3>
                         <p>Home region: {host.home_city}</p>
                         <p>Contact:</p>

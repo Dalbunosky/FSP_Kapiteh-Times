@@ -29,6 +29,14 @@ export const fetchHistoryMeetups = userId => (
   })
 );
 
+export const fetchHostMeetups = userId => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/meetups/${userId}/meetups`,
+    // user_id: userId
+  })
+);
+
 
 
 export const fetchMeetup = id => (
