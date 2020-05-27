@@ -5,8 +5,9 @@ class Api::MeetupsController < ApplicationController
 
     def index 
         if params[:user_id]
-            puts "ADMIN ONLY"
-            @meetups = Meetup.all
+            puts "MEETUPS HOSTED BY HOST"
+            puts params.values[3]
+            @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("(starttime > #{Time.now.to_i}) and (tickets.user_id = #{params.values[3]} or host_id = #{params.values[3]})")
         else
             puts "ALL FUTURE MEETUPS, FOR MEETUPS PAGE"
             # @meetups = Meetup.all
@@ -20,20 +21,26 @@ class Api::MeetupsController < ApplicationController
         render 'api/meetups/index'
     end
 
+    def all
+        puts "ADMIN ONLY"
+        @meetups = Meetup.all
+        render 'api/meetups/index'
+    end
+
     def profile # fetch upcoming meetups you're involved in
-        puts "PROFILEEEEEEEEEEEEEEEEEE"
+        puts "PROFILE MEETUPS"
         @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("(starttime > #{Time.now.to_i}) and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
         render 'api/meetups/index'
     end
 
     def history # fetch past meetups you were involved in
-        puts "HISTORYYYYYYYYYYYYYYY"
+        puts "HISTORY MEETUPS"
         @meetups = Meetup.joins("LEFT OUTER JOIN tickets on tickets.meetup_id = meetups.id").where("starttime < #{Time.now.to_i} and (tickets.user_id = #{current_user.id} or host_id = #{current_user.id})")
         render 'api/meetups/index'
     end
 
     def show    # Show each meetup
-        puts "QWERTYQWERTYUQWERTY"
+        puts "SINGLE MEETUP"
         @meetup = Meetup.find(params[:id])
         render 'api/meetups/show'
     end
@@ -48,17 +55,6 @@ class Api::MeetupsController < ApplicationController
 
     def create  # Creates meetup, available to hosts only
         @meetup = Meetup.new(meetup_params)
-        # puts "HEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
-        # test = meetup_params.values
-        # time = test[1]
-        # puts test.length
-        # puts test[1]
-        # puts time.class
-        # puts time
-        puts @meetup.location
-        puts @meetup.starttime
-        puts @meetup.capacity
-        puts @meetup.topic
         @meetup.host_id = current_user.id
         # @meetup.starttime = DateTime.parse("#{starttime[1]}-#{starttime[2]}-#{starttime[3]} #{starttime[4]}:#{starttime[5]}")
         if @meetup.save

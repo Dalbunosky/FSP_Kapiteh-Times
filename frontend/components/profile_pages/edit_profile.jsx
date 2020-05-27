@@ -15,6 +15,7 @@ class EditProfile extends React.Component {
             home_city: this.props.currentUser.home_city,
             email_subscription: this.props.currentUser.email_subscription,
             host_status: this.props.currentUser.host_status,
+            // imageURL: ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,12 +30,6 @@ class EditProfile extends React.Component {
 
   componentWillUnmount() {
     this.props.clearErrors();
-  }
-
-  update(field) {
-    return e => this.setState({
-      [field]: e.target.value
-    });
   }
 
   toggleEmailSub(e) {
@@ -63,6 +58,27 @@ class EditProfile extends React.Component {
     this.props.closeAccount();
   }
 
+  update(field) {
+    return e => this.setState({
+      [field]: e.target.value
+    });
+  }
+
+  updateFile(){
+    return e => {
+      const reader = new FileReader();
+      const file = e.currentTarget.files[0];
+      reader.onloadend = () =>
+        this.setState({ imageURL: reader.result, imageFile: file });
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({ imageURL: "", imageFile: null });
+      }
+    }
+  }
+
 // RENDERS
 
   renderErrors() {return(
@@ -75,7 +91,7 @@ class EditProfile extends React.Component {
 
 
   render() {
-
+    console.log(this.state);
     const yepNope = bool => ( bool ? "Yep!" : "Nope!");
     const amIHost = bool => ( bool ? <a href="#/meetups/new">Yep! Let's host!</a> : <a href="#/hosting">Not Yet! But I want to be!</a>);
 
@@ -90,58 +106,61 @@ class EditProfile extends React.Component {
           <form onSubmit={this.handleSubmit} className="full-profile">
             {this.renderErrors()}
             <div className="profile-details">
-            {/* UPLOAD PICTURE, REQUIRED FOR HOSTS */}
-            <br/>
+              <div className="left">
+                <label>
+                  <p className="signinup-title">Name:*</p>
+                  <input type="text"
+                      value={this.state.name}
+                      onChange={this.update('name')}
+                      className="signinup-input"
+                  />
+                </label>
+                <label>
+                  <p className="signinup-title">Email:*</p>
+                  <input type="text"
+                      value={this.state.email}
+                      onChange={this.update('email')}
+                      className="signinup-input"
+                  />
+                </label>
 
-            <label>
-              <p className="signinup-title">Name:*</p>
-              <input type="text"
-                  value={this.state.name}
-                  onChange={this.update('name')}
-                  className="signinup-input"
-              />
-            </label>
-            <label>
-              <p className="signinup-title">Email:*</p>
-              <input type="text"
-                  value={this.state.email}
-                  onChange={this.update('email')}
-                  className="signinup-input"
-              />
-            </label>
+                <br/>
+                <label>
+                  <p className="signinup-title">Phone:</p>
+                  <input type="tel"
+                      value={this.state.phone}
+                      onChange={this.update('phone')}
+                      className="signinup-input"
+                      // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                      // required
+                  />
+                </label>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Phone:</p>
-              <input type="tel"
-                  value={this.state.phone}
-                  onChange={this.update('phone')}
-                  className="signinup-input"
-                  // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  // required
-              />
-            </label>
+                <br/>
+                <label>
+                  <p className="signinup-title">Current Metro/Region:*</p>
+                  <input type="text"
+                      value={this.state.home_city}
+                      onChange={this.update('home_city')}
+                      className="signinup-input"
+                  />
+                </label>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Current Metro/Region:*</p>
-              <input type="text"
-                  value={this.state.home_city}
-                  onChange={this.update('home_city')}
-                  className="signinup-input"
-              />
-            </label>
-
-            <br/>
-            <label>
-              <p className="signinup-title">Story</p>
-              <textarea rows="4" cols="50" 
-                  value={this.state.story}
-                  onChange={this.update('story')}
-                  // If host, required
-              />   
-            </label>
-
+                <br/>
+                <label>
+                  <p className="signinup-title">Story</p>
+                  <textarea rows="4" cols="50" 
+                      value={this.state.story}
+                      onChange={this.update('story')}
+                      // If host, required
+                  />   
+                </label>
+              </div>
+              <div className="right">
+                <p>A picture of yourself.<br/>Optional, until you become a host.</p>
+                <input type="file" onChange={this.updateFile()} />
+                <img className="preview" src={this.state.imageURL} />
+              </div>
             </div>
             <div className="change-password">
                 {/* <label>

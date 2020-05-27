@@ -59,7 +59,7 @@ class MeetUpCell extends React.Component {
                 const host = this.props.users[this.props.meetup.host_id];
                 return(
                     <div className="meetup-right">
-                        <div>Host picture</div>
+                        <a href={`#/host/${host.id}`}><div>Host picture</div></a>
                         <p><b>Host: </b>{host.name}</p>
                         <p><b>Phone: </b>{host.phone}</p>
                         <p><b>Email: </b>{host.email}</p>
@@ -70,7 +70,7 @@ class MeetUpCell extends React.Component {
                         )} */}
                     </div>
             )}
-        } else{
+        } else if(type === "host"){
             // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
             // You want to be able to edit/cancel the meetup
 
@@ -107,11 +107,15 @@ class MeetUpCell extends React.Component {
                 <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
                     <button onClick={this.leaveMeetup}>Leave Meetup</button>
                 </div>
-            )} else{return(
+            )} else if(type === "host"){return(
                 <div className="meetup_options">
                     <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
                     <button onClick={this.editMeetup}>Edit Meetup</button>
                     <button onClick={this.cancelMeetup}>Cancel Meetup</button>
+                </div>
+            )} else{return(
+                <div className="meetup_options">
+                    <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
                 </div>
             )}
         }

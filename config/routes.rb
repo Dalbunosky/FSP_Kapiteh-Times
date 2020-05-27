@@ -7,7 +7,8 @@ Rails.application.routes.draw do
       delete :leave, :on => :member
       get :profile, :on => :member   #For profile page meetups
       get :history, :on => :member  #For history page meetups
-      resources :meetups, only: :index # This would fetch all meetups, and is possible only for Admin
+      get :all, :on => :member  #Fetches all meetups. Admin only
+      resources :meetups, only: :index # This would fetch all meetups the host is hosting
     end
 
     resources :users, only: [:create, :index, :show, :update, :destroy] 

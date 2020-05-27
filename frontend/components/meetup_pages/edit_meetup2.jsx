@@ -8,14 +8,26 @@ class EditMeetup extends React.Component {
   constructor(props){
     super(props)
     console.log(props);
-    this.state = {
-      location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      starttime: "yyyy-mm-dd hh:mm",
-      metro_area: this.props.host.home_city,
-      topic: "",
-      guests: [],
-      capacity: 0,
-    }
+    // if(this.props.meetup){
+    //   console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+    //   this.state = {
+    //     location: this.props.meetup.location, // [lat, lng, name of venue, address, city, state/province, zip, country]
+    //     starttime: this.props.meetup.starttime,
+    //     metro_area: this.props.meetup.metro_area,
+    //     topic: this.props.meetup.topic,
+    //     guests: this.props.meetup.guests,
+    //     capacity: this.props.meetup.capacity,
+    //   }
+    // } else{
+      this.state = {
+        location: "", // [lat, lng, name of venue, address, city, state/province, zip, country]
+        starttime: "",
+        metro_area: "",
+        topic: "",
+        guests: "",
+        capacity: "",
+      }
+    // }
     this.handleSubmit = this.handleSubmit.bind(this);
 
     // Bind later when function actually gets called

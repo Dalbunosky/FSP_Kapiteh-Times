@@ -74,6 +74,13 @@ export const fetchProfileMeetups = (userId) => dispatch => (
   ))
 );
 
+//Fetch meetups host is hosting
+export const fetchHostMeetups = (userId) => dispatch => (
+  APIUtil.fetchHostMeetups(userId).then(meetups => (
+    dispatch(receiveMeetups(meetups))
+  ))
+);
+
 // Fetch meetup in question, for show
 export const fetchMeetup = id => dispatch => (
   APIUtil.fetchMeetup(id).then(meetup => (
@@ -81,12 +88,6 @@ export const fetchMeetup = id => dispatch => (
   ))
 );
 
-// export const superFetchMeetup = 
-//   id => dispatch => (APIUtil.fetchMeetup(id)
-//     .then(meetup => (dispatch(receiveMeetup(meetup))
-//     .then(meetup => (fetchHost(meetup.host_id)
-//     .then(host => (dispatch(receiveHost(host))
-// )))))));
 
 // Creates meetup
 export const createMeetup = meetup => dispatch => (
