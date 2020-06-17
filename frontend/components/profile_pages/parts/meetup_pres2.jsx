@@ -57,7 +57,7 @@ class MeetUpCell extends React.Component {
                 const host = this.props.users[this.props.meetup.host_id]
                 return(
                     <div className="meetup-right">
-                        <div>Host picture</div>
+                        <div className="host-pic-thumb">Host picture</div>
                         <p>Host: {host.name}</p>
                         <p>Phone: {host.phone}</p>
                         <p>Email: {host.email}</p>

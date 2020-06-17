@@ -91,11 +91,11 @@ class History extends React.Component {
     })
 
     return (
-      <div className="profile-main">
-        <div className="profile-sidebar">
-          <ProfileBar props={this.props.currentUser} />
-          <a href="#/profile/edit">Edit Profile</a>
-        </div>
+      <div className="profile-history">
+        {/* <div className="profile-sidebar"> */}
+          <ProfileBar props={this.props.currentUser}  type=""/>
+          {/* <a href="#/profile/edit">Edit Profile</a> */}
+        {/* </div> */}
 
         <div className="profile-right">
           <div className="profile-title">

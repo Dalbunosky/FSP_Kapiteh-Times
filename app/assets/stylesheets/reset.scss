@@ -1,0 +1,173 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, button, input {
+
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "canada-type-gibson", "Gibson", "Helvetica Neue", sans-serif;
+	font-size: 20px;
+	vertical-align: baseline;
+}
+
+#whole-page{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#main_content{
+	flex: 1 0 auto;
+	// min-height: auto;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+	background-color: #F3ECCE;
+}
+
+nav, div {
+	border: 1px solid black;
+}
+
+.signinup-title {
+	// border: 1px solid green;
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+.text-input{
+	font-size: 20px;
+	width: 500px;
+	padding: 3px;
+	border-radius: 2px;
+	border: 1px solid gray;
+}
+
+html{
+	box-sizing: border-box;
+	padding: 0;
+}
+
+.footer, footer, header{
+	background-color:rgba(247,191,77,0.87);
+	width: 100%
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+.black{
+	color: black;
+}
+.blue{
+	color: blue;
+}
+.white{
+	color: white;
+}
+
+.bold{
+	font-weight: bold;
+}
+h1{
+	font-size: 54px;
+	margin: 10px
+}
+h3{
+	font-size: 34px;
+	margin: 10px
+}
+
+.background-image{
+	z-index: -1
+}
+
+a{
+	text-decoration: none;
+}
+
+button, .button{
+	color: white;
+	padding: 7px;
+	margin: 7px;
+	border-radius: 5px;
+	background-color: rgb(255, 136, 0);
+	display: inline-block;
+	// background-color: blue;
+	border: none;
+}
+
+a:hover, button:hover, .button:hover{
+	cursor: pointer;
+	color: rgb(255, 51, 0);
+	background-color: rgba(255, 115, 0, 0);
+	text-decoration: underline;
+	// background-color: rgba(0, 0, 255, 0.699);
+	cursor: pointer;
+}
+.cutoff{
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.host-pic-full{
+	height: 300px;
+	width: 300px;
+}
+.host-pic-thumb{
+	height: 100px;
+	width: 100px;
+}
+
+.profile-title{
+
+}
+
+.flexbox-between{
+	display: flex;
+	justify-content: space-between;
+	margin: 10px;
+
+}
+
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}

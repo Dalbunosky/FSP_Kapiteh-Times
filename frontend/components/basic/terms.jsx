@@ -2,7 +2,7 @@ import React from 'react';
 // /terms
 // Plain Text terms of service
 const Terms = () => (
-    <div className="terms">
+    <div className="legalText">
         
         <h1>Terms</h1>
         <p>Terms of Use

@@ -98,15 +98,18 @@ class Profile extends React.Component {
     })
 
     return (
-      <div className="profile-main">
+      <div className="profile-history">
 
-        <div className="profile-sidebar">
-            <ProfileBar props={this.props.currentUser} />
-            <a href="#/profile/edit">Edit Profile</a>
-        </div>
+        {/* <div className="profile-sidebar"> */}
+            <ProfileBar props={this.props.currentUser} type=""/>
+            {/* <a href="#/profile/edit">Edit Profile</a> */}
+        {/* </div> */}
         <div className="profile-right">
           <div className="profile-title">
-            <h1>Upcoming meetups</h1>
+            <div className="flexbox-between">
+              <h1>Upcoming meetups</h1>
+              <div className="host-pic-thumb right-end">Picture</div>
+            </div>
             <a href="#/profile/history">Your past meetups</a>
             <a href="#/meetups">Sign Up for future MeetUps!</a>
             {hostOnlyLink(this.props.currentUser.host_status)}

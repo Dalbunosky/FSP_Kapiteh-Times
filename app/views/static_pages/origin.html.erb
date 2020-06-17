@@ -9,4 +9,20 @@
     ).html_safe %></script>
 <% end %>
 
+<script id="bootstrap-current-user" type="text/javascript">
+  window.staticImages = {
+    coffeeBeans: "<%= asset_path("coffee_beans.png") %>",
+    aboutBanner: "<%= asset_path("about-banner-photo.jpg") %>",
+    hostingBanner: "<%= asset_path("gourmet-coffee-franchise.jpg") %>",
+    defaultPic: "<%=asset_path("blank-user.png")  %>",
+    splashBanner: "<%= asset_path("splash-page.png") %>",
+    coffeeFaces: "<%= asset_path("coffee-faces.jpg") %>"
+  }
+
+  <% if logged_in? %>
+  	window.currentUser = <%= render("api/users/user.json.jbuilder",
+  		user: current_user).html_safe %>
+  <% end %>
+</script>
+
 <main id="origin">Kapiteh Times View</main>
