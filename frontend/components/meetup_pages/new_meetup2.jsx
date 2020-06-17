@@ -189,7 +189,7 @@ class MeetupCreate extends React.Component {
           <p className="final-form-header">Pick a date, time, and upload a photo!</p>
           <hr></hr>
           <Calendar onChange={this.onDateChange('date')} />
-          <label>
+          <label className="data-entry">
         <input type="time" onChange={this.onTimeChange('time')} />
           </label>
           <label className="fancy">

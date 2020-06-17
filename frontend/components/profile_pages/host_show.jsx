@@ -16,7 +16,6 @@ class HostShow extends React.Component {
     componentDidMount() {
         this.props.fetchHost(this.props.hostId);
         this.props.fetchMeetups(this.props.hostId);
-        // console.log("LALALALALA").then(() => {this.props.fetchMeetups(this.props.host.id)}) //Fetch all upcoming meetups involving host. Filter out joins later.
     }
     componentWillUnmount(){
       // this.props.clearErrors();
@@ -39,7 +38,7 @@ class HostShow extends React.Component {
             return(
                 <div className="hostfile">
                     <h3>{name}</h3>
-                    <div>Picture</div>
+                    <div className="host-pic-full">Picture</div>
                     <p>{name}'s story</p>
                     <p>{host.story}</p>
                     <p>Host Contact</p>

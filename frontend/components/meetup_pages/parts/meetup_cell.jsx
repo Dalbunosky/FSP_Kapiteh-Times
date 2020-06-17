@@ -76,7 +76,8 @@ class SingleMeetup extends React.Component{
     const guests = meetup.guest_ids;
     const host = meetup.hostName;
     const venue = meetup.location[2];
-    const address = `${meetup.location[3]} ${meetup.location[4]} ${meetup.location[5]},${meetup.location[6]}`;
+    const address1 = `${meetup.location[3]}`;
+    const address2 = `${meetup.location[4]} ${meetup.location[6]},${meetup.location[5]}`;
     const topic = meetup.topic;
     const starttime = new Date(meetup.starttime*1000);
       // const dayOfWeek = convertFunctions.convertIntoDOW(starttime.getDay());
@@ -86,7 +87,7 @@ class SingleMeetup extends React.Component{
       const time = `${hour[0]}:${convertFunctions.formatMinute(starttime.getMinutes())} ${hour[1]}`;
 
 /////////////////////////////////////////////////////////////////
-    let meetupJoinLink = <Link className="meetup-button green" to={`/meetups/${meetup.id}`}>CHECKOUT THIS MEETUP</Link>;
+    let meetupJoinLink = <Link className="button" to={`/meetups/${meetup.id}`}>CHECKOUT THIS MEETUP</Link>;
     let meetupNote = null;
     let meetupCancelButton = null;
     let meetupEditButton = null;
@@ -138,14 +139,14 @@ class SingleMeetup extends React.Component{
     return (
       // host, topic
       <div className="meetup-index-item">
-        <ul className="meetup-details">
-          <li>Venue:  {venue}</li>
-          <li>Address:{address}</li>
-          <li>Date:   {date}</li>
-          <li>Time:   {time}</li>
-          {/* <li>End:    </li> */}
-          <li>Space:  {guests.length}/{meetup.capacity}</li>
-        </ul>
+        <div className="meetup-details">
+          <p><b>Venue:</b>  {venue}</p>
+          <p><b>Address:</b><br/>{address1}<br/>{address2}</p>
+          <p><b>Date:</b><br/>  {date}</p>
+          <p><b>Time:</b>   {time}</p>
+          {/* <p>End:</b>    </p> */}
+          <p><b>Space:</b>  {guests.length}/{meetup.capacity}</p>
+        </div>
 
         {/* {meetupRightItem(currentUser)} */}
 
@@ -154,14 +155,13 @@ class SingleMeetup extends React.Component{
           <p>{meetup.topic}</p>
         </div> */}
 
-
-
+        <div className="host-pic-thumb">Host Picture</div>
 
         <div className="meetup-actions">
           {meetupJoinLink}
           {meetupNote}
-          {meetupCancelButton}
           {meetupEditButton}
+          {meetupCancelButton}
         </div>
       </div>
     );

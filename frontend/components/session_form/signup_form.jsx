@@ -87,97 +87,87 @@ class SignUpForm extends React.Component {
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {
-      if(pw1 === pw2 && pw1 != ""){ return(<input className="session-submit" type="submit" value="Sign Up!" />)}
+      if(pw1 === pw2 && pw1 != ""){ return(<input className="session-submit button" type="submit" value="Sign Up!" />)}
       else { return(<h3 className="signinup-form-container">You can't submit unless your passwords match!</h3>)}};
     return (
-      <div className="signinup-form-container">
-        <form onSubmit={this.handleSubmit} className="signinup-form-box">
-          <h3>Welcome to Kapiteh Times!</h3>
-          <br/>
-          Please Sign Up below or <Link to="/signin">Sign In if you have an account with us already!</Link>
-          {this.renderErrors()}
+      <div className="profile-changes">
+        <h3>Welcome to Kapiteh Times!</h3>
+        <br/>
+        Please Sign Up below or <Link to="/signin">Sign In if you have an account with us already!</Link>
+        {this.renderErrors()}
+        <form onSubmit={this.handleSubmit} className="full-profile">
+          <div className="profile-details">
+            <div className="left">
+              <label className="data-entry">
+                <p className="signinup-title">Name:* How you want to be addressed at Meetups</p>
+                <input className="text-input" type="text"
+                  value={this.state.name}
+                  onChange={this.update('name')}
+                  required/>
+              </label>
 
-          <div className="signinup-form">
+              <label className="data-entry">
+                <p className="signinup-title">Email.* This will be your login as well as method of contact.</p>
+                <input className="text-input" type="text"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  required/>
+              </label>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Name:* How you want to be addressed at Meetups</p>
-              <input type="text"
-                value={this.state.name}
-                onChange={this.update('name')}
-                className="signinup-input"
-                required/>
-            </label>
+              <label className="data-entry">
+                <p className="signinup-title">Phone:</p>
+                <input className="text-input" type="number"
+                  value={this.state.phone}
+                  onChange={this.update('phone')}
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  // required
+                />
+              </label>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Email.* This will be your login as well as method of contact.</p>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                className="signinup-input"
-                required/>
-            </label>
+              <label className="data-entry">
+                <p className="signinup-title">Password:*</p>
+                <input className="text-input" type={toggleInputType(this.state.pwDisplay)}
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  required
+                />
+                <button className="togglePW" onClick={this.pwShowHide}>{this.state.pwDisplay}</button>
+              </label>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Phone:</p>
-              <input type="number"
-                value={this.state.phone}
-                onChange={this.update('phone')}
-                className="signinup-input"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                // required
-              />
-            </label>
+              <label className="data-entry">
+                <p className="signinup-title">Confirm Password:</p>
+                <input className="text-input" type="password"
+                  value={this.state.password2}
+                  onChange={this.update('password2')}
+                  required
+                />
+              </label>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Password:*</p>
-              <input type={toggleInputType(this.state.pwDisplay)}
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="signinup-input"
-                required
-              />
-              <button className="togglePW" onClick={this.pwShowHide}>{this.state.pwDisplay}</button>
-            </label>
+              <p>{confirmPasswordWarning(this.state.password, this.state.password2)}</p>
 
-            <br/>
-            <label>
-              <p className="signinup-title">Confirm Password:</p>
-              <input type="password"
-                value={this.state.password2}
-                onChange={this.update('password2')}
-                className="signinup-input"
-                required
-              />
-            </label>
+              <label className="data-entry">
+                <p className="signinup-title">Where are you now? Which metropolitan area/region? <br/> Not the exact suburb, but the main city/region you are associated with*</p>
+                <input className="text-input" type="text"
+                  value={this.state.home_city}
+                  onChange={this.update('home_city')}
+                  required/>
+              </label>
 
-            <p>{confirmPasswordWarning(this.state.password, this.state.password2)}</p>
-
-            <br/>
-            <label>
-              <p className="signinup-title">Where are you now? Which metropolitan area/region? <br/> Not the exact suburb, but the main city/region you are associated with*</p>
-              <input type="text"
-                value={this.state.home_city}
-                onChange={this.update('home_city')}
-                className="signinup-input"
-                required/>
-            </label>
-
-            <br/>
-            <label>
-            <p className="signinup-title">What's your story? Gotta have one if you want to become a host!</p>
-            <textarea rows="4" cols="50" 
-              value={this.state.story}
-              onChange={this.update('story')}/>
-            </label>
-            <br/>
+              <label className="data-entry">
+              <p className="signinup-title">What's your story? Gotta have one if you want to become a host!</p>
+              <textarea className="text-input"
+                rows="4" cols="50" 
+                value={this.state.story}
+                onChange={this.update('story')}/>
+              </label>
+            </div>
             <div className="right">
               <p>A picture of yourself.<br/>Optional, unless you are a host.</p>
-              <input type="file" onChange={this.updateFile()} />
+              <label for="file-upload" className="button">Select File</label>
+              <input id="file-upload" type="file" onChange={this.updateFile()} />
+              <p className="cutoff">{this.state.fileName}</p>
               <img className="preview" src={this.state.imageURL} />
+              <p>Because how else would people know it's you?</p>
             </div>
             {confirmPasswordButton(this.state.password, this.state.password2)}
             {/* <input className="session-submit" type="submit" value="Sign Up!" /> */}

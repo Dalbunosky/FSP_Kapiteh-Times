@@ -2,7 +2,7 @@ import React from 'react';
 // /privacy
 // Plain text privacy information
 const Privacy = () => (
-    <div className="privacy">
+    <div className="legalText">
         
         <h1>Privacy</h1>
         <p>Privacy Policy

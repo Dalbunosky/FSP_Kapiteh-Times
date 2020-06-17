@@ -53,36 +53,37 @@ import BadPage from './basic/oops';
 // const rooms = require("./routes/api/rooms");
 
 const App = () => (
-  <div>
+  <div id="whole-page">
     <Header />
+    <div id="main_content">
+      <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/hosting" component={HostingContainer} />
+          <Route exact path="/terms" component={Terms} />
+          <Route exact path="/privacy" component={Privacy} />
 
-    <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/hosting" component={HostingContainer} />
-        <Route exact path="/terms" component={Terms} />
-        <Route exact path="/privacy" component={Privacy} />
+          <AuthRoute exact path="/signin" component={SignInFormContainer} />
+          <AuthRoute exact path="/signup" component={SignUpFormContainer} />
 
-        <AuthRoute exact path="/signin" component={SignInFormContainer} />
-        <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+          <ProtectedRoute path="/profile/edit" component={EditProfileContainer} />
+          <ProtectedRoute path="/profile/history" component={HistoryContainer} />
+          <ProtectedRoute path="/profile" component={ProfileContainer} />
 
-        <ProtectedRoute path="/profile/edit" component={EditProfileContainer} />
-        <ProtectedRoute path="/profile/history" component={HistoryContainer} />
-        <ProtectedRoute path="/profile" component={ProfileContainer} />
+          <Route exact path="/host/:hostId" component={HostShowContainer} />
 
-        <Route exact path="/host/:hostId" component={HostShowContainer} />
+          {/* Host only routes, for creating meetups */}
+          <HostRoute exact path="/meetups/new" component={NewMeetUpContainer} />
+          <HostRoute exact path="/meetups/:meetupId/edit" component={EditMeetUpContainer} />
 
-        {/* Host only routes, for creating meetups */}
-        <HostRoute exact path="/meetups/new" component={NewMeetUpContainer} />
-        <HostRoute exact path="/meetups/:meetupId/edit" component={EditMeetUpContainer} />
-
-        <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} />
-        <Route exact path="/meetups" component={MeetUpIndexContainer} />
+          <Route exact path="/meetups/:meetupId" component={MeetUpShowContainer} />
+          <Route exact path="/meetups" component={MeetUpIndexContainer} />
 
 
-        
-        <Route to="/oops" component={BadPage} />
-    </Switch>
+          
+          <Route to="/oops" component={BadPage} />
+      </Switch>
+    </div>
     <Footer />
   </div>
 );

@@ -13,21 +13,19 @@
  *= require_tree .
  *= require_self
  */
-    div {
-        border: 1px solid black;
-        /* display: inline; */
-    }
 
-    label {
-        /* border: 5px solid blue; */
-    }
-
-    @import 'profile.scss';
-    @import 'meetup.scss';
-    @import 'header-footer.scss';
     @import 'basic-pages.scss';
-    @import 'signinup.scss';
+    @import 'Calendar.css';
+    @import 'header-footer.scss';
+    @import 'host_show.scss';
+    @import 'meetup_changes.scss';
+    @import 'meetup_index.scss';
     @import 'meetup_pres.scss';
+    @import 'meetup_show.scss';
+    @import 'profile_changes.scss';
+    @import 'profile_history.scss';
+    @import 'reset.scss';
+    @import 'signin.scss';
 
 
 

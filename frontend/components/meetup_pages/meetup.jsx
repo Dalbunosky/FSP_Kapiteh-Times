@@ -233,7 +233,7 @@ class MeetupShow extends React.Component {
             return(
                 <div className="meetup-left">
                     <ul className="meetup-guests">
-                      <a href={`#/host/${host.id}`}><div>HOST FACE</div></a>
+                      <a href={`#/host/${host.id}`}><div className="host-pic-full">HOST PICTURE</div></a>
                         <h3>The Host: {host.name}</h3>
                         <p>Home region: {host.home_city}</p>
                         <p>Contact:</p>

@@ -129,70 +129,63 @@ class NewMeetup extends React.Component {
           {this.renderErrors()}
           <div className="new-meetup-left">
             <div className="where">
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">Name of Venue:*</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.location[2]}
                   onChange={this.updateLocation(2)}
-                  className="signinup-input"
                 />
               </label>
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">Metropolitan Area <br/> (Not the exact city/suburb where the venue is, <br/> but the name of the greater area):*<br/> Example: Pasadena vs Los Angeles</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.metro_area}
                   onChange={this.update("metro_area")}
-                  className="signinup-input"
                 />
               </label>
 
               <br/>
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">Address:*</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.location[3]}
                   onChange={this.updateLocation(3)}
-                  className="signinup-input"
                 />
               </label>
 
               <br/>
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">City:*</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.location[4]}
                   onChange={this.updateLocation(4)}
-                  className="signinup-input"
                 />
               </label>
 
               <br/>
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">Zip Code:*</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.location[5]}
                   onChange={this.updateLocation(5)}
-                  className="signinup-input"
                 />
               </label>
 
               <br/>
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">State/Province:*</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.location[6]}
                   onChange={this.updateLocation(6)}
-                  className="signinup-input"
                 />
               </label>
 
               <br/>
-              <label>
+              <label className="data-entry">
                 <p className="signinup-title">Country:*</p>
-                <input type="text"
+                <input className="text-input" type="text"
                   value={this.state.location[7]}
                   onChange={this.updateLocation(7)}
-                  className="signinup-input"
                 />
               </label>
             </div>
@@ -202,7 +195,7 @@ class NewMeetup extends React.Component {
               <hr></hr>
               <Calendar onChange={this.onDateChange()} />
 
-              <label>
+              <label className="data-entry">
                 <input type="time" onChange={this.onTimeChange()} />
               </label>
             </div>
@@ -210,7 +203,7 @@ class NewMeetup extends React.Component {
 
 
           <div className="new-meetup-right">
-            <div className="picture">
+            <div className="host-pic-full">
 
             {/* <div className="button-holder">
               <h3>Image preview </h3>
@@ -229,14 +222,14 @@ class NewMeetup extends React.Component {
               <hr></hr>
               <div className="preview">{preview}</div> */}
             </div>
-            <label>
+            <label className="data-entry">
               <p className="signinup-title">What topics do you want to talk about?</p>
               <textarea rows="4" cols="50" 
                 value={this.state.topic}
                 onChange={this.update('topic')}/>   
             </label>
             <br/>
-            <label>
+            <label className="data-entry">
               <p className="signinup-title">Capacity:*</p>
               <input type="number"
                 value={this.state.capacity}

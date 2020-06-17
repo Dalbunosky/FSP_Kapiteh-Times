@@ -55,7 +55,7 @@ class SignInForm extends React.Component {
 
 	demoHost(e) {
     e.preventDefault();
-    const credentials = {email: "DemoHost@fake.com", password: "`1234567"};
+    const credentials = {email: "DemoHost@fake.com", password: "````````"};
     const user = Object.assign({}, credentials);
     this.props.processForm(user);
   };
@@ -87,33 +87,30 @@ class SignInForm extends React.Component {
 
           <div className="signinup-form">
 
-            <br/>
-            <label>
+            <label className="data-entry">
               <p className="signinup-title">Email:</p>
-              <input type="text"
+              <input className="text-input" type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
-                className="signinup-input"
               />
             </label>
 
-            <br/>
-            <label>
+            {/* <br/><br/> */}
+            <label className="data-entry">
               <p className="signinup-title">Password:</p>
-              <input type={toggleInputType(this.state.pwDisplay)}
+              <input className="text-input" type={toggleInputType(this.state.pwDisplay)}
                 value={this.state.password}
                 onChange={this.update('password')}
-                className="signinup-input"
               />
-              <button className="togglePW" onClick={this.pwShowHide}>{this.state.pwDisplay}</button>
+              <button className="session-submit" onClick={this.pwShowHide}>{this.state.pwDisplay}</button>
             </label>
-            <br/>
+            {/* <br/> */}
             <div className="demo-signins">
-              <button className="nav-link-item" onClick={this.demoUser}>Demo User</button>
-              <button className="nav-link-item" onClick={this.demoHost}>Demo Host</button>
-              <button className="nav-link-item" onClick={this.demoAdmin}>Demo Admin</button>
+              <button className="session-submit" onClick={this.demoUser}>Demo User</button>
+              <button className="session-submit" onClick={this.demoHost}>Demo Host</button>
+              <button className="session-submit" onClick={this.demoAdmin}>Demo Admin</button>
             </div>
-            <input className="session-submit" type="submit" value="Sign In!" />
+            <input className="session-submit button" type="submit" value="Sign In!" />
 
           </div>
         </form>
