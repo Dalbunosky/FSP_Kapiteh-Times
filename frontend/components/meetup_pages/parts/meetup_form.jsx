@@ -125,127 +125,129 @@ class NewMeetup extends React.Component {
     return (
       <div className="new-meetup">
         <h3>New Meetup!</h3>
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit} className="new-meetup-details">
           {this.renderErrors()}
-          <div className="new-meetup-left">
-            <div className="where">
-              <label className="data-entry">
-                <p className="signinup-title">Name of Venue:*</p>
-                <input className="text-input" type="text"
-                  value={this.state.location[2]}
-                  onChange={this.updateLocation(2)}
-                />
-              </label>
-              <label className="data-entry">
-                <p className="signinup-title">Metropolitan Area <br/> (Not the exact city/suburb where the venue is, <br/> but the name of the greater area):*<br/> Example: Pasadena vs Los Angeles</p>
-                <input className="text-input" type="text"
-                  value={this.state.metro_area}
-                  onChange={this.update("metro_area")}
-                />
-              </label>
+          <div className="new-meetup-changes">
+            <div className="new-meetup-left">
+              <div className="where">
+                <label className="data-entry">
+                  <p className="signinup-title">Name of Venue:*</p>
+                  <input className="text-input" type="text"
+                    value={this.state.location[2]}
+                    onChange={this.updateLocation(2)}
+                  />
+                </label>
+                <label className="data-entry">
+                  <p className="signinup-title">Metropolitan Area <br/> (Not the exact city/suburb where the venue is, <br/> but the name of the greater area):*<br/> Example: Pasadena vs Los Angeles</p>
+                  <input className="text-input" type="text"
+                    value={this.state.metro_area}
+                    onChange={this.update("metro_area")}
+                  />
+                </label>
 
-              <br/>
-              <label className="data-entry">
-                <p className="signinup-title">Address:*</p>
-                <input className="text-input" type="text"
-                  value={this.state.location[3]}
-                  onChange={this.updateLocation(3)}
-                />
-              </label>
+                <br/>
+                <label className="data-entry">
+                  <p className="signinup-title">Address:*</p>
+                  <input className="text-input" type="text"
+                    value={this.state.location[3]}
+                    onChange={this.updateLocation(3)}
+                  />
+                </label>
 
-              <br/>
-              <label className="data-entry">
-                <p className="signinup-title">City:*</p>
-                <input className="text-input" type="text"
-                  value={this.state.location[4]}
-                  onChange={this.updateLocation(4)}
-                />
-              </label>
+                <br/>
+                <label className="data-entry">
+                  <p className="signinup-title">City:*</p>
+                  <input className="text-input" type="text"
+                    value={this.state.location[4]}
+                    onChange={this.updateLocation(4)}
+                  />
+                </label>
 
-              <br/>
-              <label className="data-entry">
-                <p className="signinup-title">Zip Code:*</p>
-                <input className="text-input" type="text"
-                  value={this.state.location[5]}
-                  onChange={this.updateLocation(5)}
-                />
-              </label>
+                <br/>
+                <label className="data-entry">
+                  <p className="signinup-title">Zip Code:*</p>
+                  <input className="text-input" type="text"
+                    value={this.state.location[5]}
+                    onChange={this.updateLocation(5)}
+                  />
+                </label>
 
-              <br/>
-              <label className="data-entry">
-                <p className="signinup-title">State/Province:*</p>
-                <input className="text-input" type="text"
-                  value={this.state.location[6]}
-                  onChange={this.updateLocation(6)}
-                />
-              </label>
+                <br/>
+                <label className="data-entry">
+                  <p className="signinup-title">State/Province:*</p>
+                  <input className="text-input" type="text"
+                    value={this.state.location[6]}
+                    onChange={this.updateLocation(6)}
+                  />
+                </label>
 
-              <br/>
-              <label className="data-entry">
-                <p className="signinup-title">Country:*</p>
-                <input className="text-input" type="text"
-                  value={this.state.location[7]}
-                  onChange={this.updateLocation(7)}
-                />
-              </label>
+                <br/>
+                <label className="data-entry">
+                  <p className="signinup-title">Country:*</p>
+                  <input className="text-input" type="text"
+                    value={this.state.location[7]}
+                    onChange={this.updateLocation(7)}
+                  />
+                </label>
+              </div>
+              <div className="when">
+              {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
+                <p className="final-form-header"><strong>When should we meet?</strong></p>
+                <hr></hr>
+                <label className="data-entry">
+                  <input type="time" className="time" onChange={this.onTimeChange()} />
+                </label>
+                <Calendar onChange={this.onDateChange()} />
+
+              </div>
             </div>
-            <div className="when">
-            {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
-              <p className="final-form-header">When should we meet?</p>
-              <hr></hr>
-              <Calendar onChange={this.onDateChange()} />
 
+            <div className="new-meetup-right">
+              <div className="host-pic-full">
+
+              {/* <div className="button-holder">
+                <h3>Image preview </h3>
+                {preview}
+                <h3 className="button-holder">Add a Picture</h3>
+                <input type="file" className="new-bench-button"
+                  onChange={this.handleFile.bind(this)}/>
+              </div> */}
+
+              {/* EDIT PROFILE PICTURE. NULL FALSE */}
+                {/* <label className="fancy">
+                  Choose a file
+                  <input type="file" className="inputfile" onChange={handlePhoto} />
+                </label>
+                <h3>Image Preview</h3>
+                <hr></hr>
+                <div className="preview">{preview}</div> */}
+              </div>
               <label className="data-entry">
-                <input type="time" onChange={this.onTimeChange()} />
+                <p className="signinup-title">What topics do you want to talk about?</p>
+                <textarea rows="4" cols="50" 
+                  value={this.state.topic}
+                  onChange={this.update('topic')}/>   
               </label>
-            </div>
-          </div>
-
-
-          <div className="new-meetup-right">
-            <div className="host-pic-full">
-
-            {/* <div className="button-holder">
-              <h3>Image preview </h3>
-              {preview}
-              <h3 className="button-holder">Add a Picture</h3>
-              <input type="file" className="new-bench-button"
-                onChange={this.handleFile.bind(this)}/>
-            </div> */}
-
-            {/* EDIT PROFILE PICTURE. NULL FALSE */}
-              {/* <label className="fancy">
-                Choose a file
-                <input type="file" className="inputfile" onChange={handlePhoto} />
+              <br/>
+              <label className="data-entry">
+                <p className="signinup-title">Capacity:*</p>
+                <input type="number"
+                  value={this.state.capacity}
+                  onChange={this.update('capacity')}
+                  className="signinup-input"
+                />
               </label>
-              <h3>Image Preview</h3>
-              <hr></hr>
-              <div className="preview">{preview}</div> */}
+
+              {/* datetime-local is not widely used and isn't supported in Firefox */}
+              {/* <input
+                className="create-meetup-form-input-field"
+                onChange={this.update('starttime')}
+                type="datetime-local"
+                value={this.state.starttime}
+              /> */}
+
             </div>
-            <label className="data-entry">
-              <p className="signinup-title">What topics do you want to talk about?</p>
-              <textarea rows="4" cols="50" 
-                value={this.state.topic}
-                onChange={this.update('topic')}/>   
-            </label>
-            <br/>
-            <label className="data-entry">
-              <p className="signinup-title">Capacity:*</p>
-              <input type="number"
-                value={this.state.capacity}
-                onChange={this.update('capacity')}
-                className="signinup-input"
-              />
-            </label>
-
-            {/* datetime-local is not widely used and isn't supported in Firefox */}
-            {/* <input
-              className="create-meetup-form-input-field"
-              onChange={this.update('starttime')}
-              type="datetime-local"
-              value={this.state.starttime}
-            /> */}
-
           </div>
           <input className="session-submit" type="submit" value="Create Meetup!" />
         </form>

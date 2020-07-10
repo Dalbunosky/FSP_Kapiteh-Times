@@ -5,7 +5,7 @@ import React from 'react';
 // What process you would do
 // Button: Email
 export default () => (
-    <div className="home">
+    <div className="basic-page">
         <div className='welcome'>
             <h1>WELCOME!!!!!!!!</h1>
         </div>
