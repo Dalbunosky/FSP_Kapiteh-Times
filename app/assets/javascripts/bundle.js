@@ -7139,8 +7139,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var About = function About() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "about"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
+    className: "basic-page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "padding-30"
+  }, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "padding-30"
+  }, "Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "padding-30"
+  }, "Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (About); // /hosting
@@ -7174,7 +7180,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "home"
+    className: "basic-page"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "welcome"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME!!!!!!!!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -7297,8 +7303,22 @@ var Hosting = /*#__PURE__*/function (_React$Component) {
       };
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "about"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hosting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Why host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Apply to host!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Application Process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Responsibilities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start Here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Look up hosting button process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "So, you still want to host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Yes? Well, then, ", applyOrSignUp(this.props.session)), this.renderErrors());
+        className: "basic-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "padding-30"
+      }, "Hosting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "padding-30"
+      }, "Why host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "padding-30"
+      }, "Apply to host!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "padding-30"
+      }, "The Application Process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "padding-30"
+      }, "The Responsibilities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "padding-30"
+      }, "Start Here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Look up hosting button process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "padding-30"
+      }, "So, you still want to host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Yes? Well, then, ", applyOrSignUp(this.props.session)), this.renderErrors());
     } // );
 
   }]);
@@ -7374,10 +7394,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var BadPage = function BadPage() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bad-page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Oh boy....."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This doesn't look good. Looks like you found a bug in my website... Tell me, how did you get here? You can do so here", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "basic-page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "padding-30"
+  }, "Oh boy....."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "padding-30"
+  }, "This doesn't look good. Looks like you found a bug on my website...", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Tell me, how did you get here?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "You can do so here when my email is set up")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "padding-30",
     href: "/"
-  }, "Let's take you back home")));
+  }, "Let's take you back home"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BadPage);
@@ -7720,12 +7745,12 @@ var AllMeetups = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetup_index"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "meetup-index-header"
+        className: "meetup-index-header padding-20"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "show-header"
       }, "SOLID FRIENDSHIPS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "show-header"
-      }, "They're here to stay."), hostCreateMeetup), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "They're here to stay."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), hostCreateMeetup), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetups"
       }, this.meetupsNearUser(homeCityMeetups, homebase), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "meetups"
@@ -8036,13 +8061,16 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
           width: "200px",
           src: this.state.photoUrl
         }) : null;
-        console.log(this.props);
+        var hostImage = this.props.host.img_url;
+        var hostPic = hostImage && hostImage != "" ? hostImage : window.staticImages.defaultPic;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "meetup_changes"
+          className: "new-meetup"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Edit Meetup!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleSubmit,
           className: "new-meetup-details"
         }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-meetup-changes"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "new-meetup-left"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "where"
@@ -8113,22 +8141,29 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
           className: "when"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "final-form-header"
-        }, "When should we meet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Meetup is currently set for ", this.state.starttime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          onChange: this.onDateChange()
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "When should we meet?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Meetup is currently set for ", this.state.starttime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "data-entry"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "time",
+          className: "time",
           onChange: this.onTimeChange()
-        })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          onChange: this.onDateChange()
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "new-meetup-right"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "host-pic-full"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: hostPic,
+          alt: "Host Picture"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#/profile/edit"
+        }, "Edit profile picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "data-entry"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "signinup-title"
         }, "What topics do you want to talk about?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          className: "text-input",
           rows: "4",
           cols: "50",
           value: this.state.topic,
@@ -8138,14 +8173,14 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "signinup-title"
         }, "Capacity:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "text-input",
           type: "number",
           value: this.state.capacity,
-          onChange: this.update('capacity'),
-          className: "signinup-input"
-        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "session-submit",
+          onChange: this.update('capacity')
+        })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "meetup-submit button",
           type: "submit",
-          value: "Edit Meetup!"
+          value: "Save Changes!"
         })));
       } else if (this.props.meetup && this.props.meetup.host_id != this.props.session.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -8380,19 +8415,26 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(MeetupShow);
 
   function MeetupShow(props) {
+    var _this;
+
     _classCallCheck(this, MeetupShow);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      klass: "noshow"
+    };
+    _this.confirmCancel = _this.confirmCancel.bind(_assertThisInitialized(_this));
+    return _this;
   } ////////////////////////////////////////////////////////////////////////
 
 
   _createClass(MeetupShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this = this;
+      var _this2 = this;
 
       this.props.fetchMeetup(this.props.meetupId).then(function (meetup) {
-        _this.props.fetchHost(_this.props.meetup.host_id);
+        _this2.props.fetchHost(_this2.props.meetup.host_id);
       });
     }
   }, {
@@ -8403,48 +8445,48 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick() {
-      var _this2 = this;
-
-      return function (e) {
-        e.preventDefault();
-
-        _this2.props.history.push("/users/".concat(props.meetup.host_id));
-      };
-    }
-  }, {
-    key: "handleAttend",
-    value: function handleAttend(e) {
       var _this3 = this;
 
       return function (e) {
         e.preventDefault();
 
-        _this3.props.joinMeetup(_this3.props.meetupId); // .then(() => this.props.history.push('/profile'));
+        _this3.props.history.push("/users/".concat(props.meetup.host_id));
+      };
+    }
+  }, {
+    key: "handleAttend",
+    value: function handleAttend(e) {
+      var _this4 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this4.props.joinMeetup(_this4.props.meetupId); // .then(() => this.props.history.push('/profile'));
 
       };
     }
   }, {
     key: "handleUnattend",
     value: function handleUnattend(e) {
-      var _this4 = this;
+      var _this5 = this;
 
       return function (e) {
         e.preventDefault();
 
-        _this4.props.leaveMeetup(_this4.props.meetupId); // .then(() => this.props.history.push('/profile'));
+        _this5.props.leaveMeetup(_this5.props.meetupId); // .then(() => this.props.history.push('/profile'));
 
       };
     }
   }, {
     key: "handleEdit",
     value: function handleEdit(e) {
-      var _this5 = this;
+      var _this6 = this;
 
       var meetupId = this.props.meetup.id;
       return function (e) {
         e.preventDefault();
 
-        _this5.props.history.push("/meetups/".concat(_this5.props.meetup.id, "/edit")); // this.props.editMeetup(this.props.meetupId)
+        _this6.props.history.push("/meetups/".concat(_this6.props.meetup.id, "/edit")); // this.props.editMeetup(this.props.meetupId)
         // .then(() => this.props.history.push(`/meetups/edit/${this.props.meetupId}`));
 
       };
@@ -8452,19 +8494,36 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleCancelMeetup",
     value: function handleCancelMeetup(e) {
-      var _this6 = this;
+      var _this7 = this;
 
-      return function (e) {
-        e.preventDefault();
+      // debugger;
+      if (this.props.meetup && this.props.session.id === this.props.meetup.host_id) {
+        return function (e) {
+          e.preventDefault();
 
-        _this6.props.cancelMeetup(_this6.props.meetupId).then(function () {
-          return _this6.props.history.push('/meetups');
-        });
-      };
+          _this7.props.cancelMeetup(_this7.props.meetupId).then(function () {
+            return _this7.props.history.push('/meetups');
+          });
+        };
+      }
     }
   }, {
-    key: "fetchHostOrGuests",
+    key: "confirmCancel",
+    value: function confirmCancel(e) {
+      e.preventDefault();
+      this.setState({
+        klass: this.state.klass === "noshow" ? "confirmation" : "noshow"
+      });
+    } // toggleClass(){
+    //   e.preventDefault();
+    //   this.setState({
+    //     klass: ((this.state.klass==="noshow") ? "confirmation" : "noshow")
+    //   });
+    // }
     ////////////////////////////////////////////////////////////////////////
+
+  }, {
+    key: "fetchHostOrGuests",
     value: function fetchHostOrGuests() {
       // Probably not needed
       // If logged_in
@@ -8487,41 +8546,41 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
         // You are the host
         if (meetup.host_id === currentUser.id) {
           meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: "meetup-button blue"
+            className: "green"
           }, "YOU'RE HOSTING THIS MEETUP");
           meetupEditButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "meetup-edit-button meetup-button orange",
+            className: "meetup-edit-button button orange",
             onClick: this.handleEdit(meetup.id)
           }, "EDIT MEETUP");
           meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "meetup-button red",
-            onClick: this.handleCancelMeetup(meetup.id)
+            className: "button red",
+            onClick: this.confirmCancel
           }, "CANCEL THIS MEETUP"); // meetupEditButton =
           // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
         } // You've joined
         else if (meetup.guest_ids.includes(currentUser.id)) {
             // else if (meetup.guests.includes(currentUser)) {
             meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-              className: "meetup-button green"
+              className: "green"
             }, "YOU JOINED THIS MEETUP");
             meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-              className: "meetup-button red",
+              className: "button red",
               onClick: this.handleUnattend(meetup.id)
             }, "CANCEL YOUR SPOT");
           } // Meetup full, you haven't joined
           else if (meetup.guests.length >= meetup.capacity) {
               meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-                className: "meetup-button green"
+                className: "button green"
               }, "MEETUP IS FULL"); // // FUTURE UPGRADE TO WAITLIST
-              // <button className="meetup-button green">
+              // <button className="button green">
               //   YOU JOINED THIS MEETUP
               // </button>;
             } // You haven't joined, there's space
             else {
                 meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-                  className: "meetup-button red",
+                  className: "button red",
                   onClick: this.handleAttend(meetup.id)
-                }, "JOIN THIS MEETUP!"); // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
+                }, "JOIN THIS MEETUP!"); // <a className="button orange" onClick={handleAttend(props.meetup.id)}>
                 //   CHECKOUT THIS MEETUP
                 // </a>;
               }
@@ -8530,24 +8589,36 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
           // There is space
           if (meetup.guests.length < meetup.capacity) {
             meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-              className: "meetup-button sign-in-to-schedule",
+              className: "button sign-in-to-schedule",
               to: "/signin"
             }, "Sign in to join");
             meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-              className: "meetup-button sign-in-to-schedule",
+              className: "button sign-in-to-schedule",
               to: "/signup"
             }, "Sign up to join");
           } // Meetup is full
           else {
               meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-                className: "meetup-button orange"
+                className: "button orange"
               }, "Meetup is full");
             }
         }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "meetup-actions"
+        className: "meetup-action"
       }, meetupJoinLink, meetupCancelButton, meetupEditButton);
+    }
+  }, {
+    key: "ggMapLink",
+    value: function ggMapLink() {
+      var url = "https://www.google.com/maps/place/";
+      var location = this.props.meetup.location;
+      var strAddress = "";
+      location[3].split("").forEach(function (letter) {
+        strAddress += letter === " " ? "+" : letter;
+      });
+      url = url + "".concat(strAddress, ",+").concat(location[4], ",+").concat(location[5], "+").concat(location[6], "/");
+      return url;
     }
   }, {
     key: "displayMeetup",
@@ -8560,14 +8631,20 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
         var date = "".concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoDOW"](starttime.getDay()), ", ").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoMonth"](starttime.getMonth()), " ").concat(starttime.getDate(), ", ").concat(starttime.getFullYear());
         var time = "".concat(hour[0], ":").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["formatMinute"](starttime.getMinutes()), " ").concat(hour[1]);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-show"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "meetup-left"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "meetup-details"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Venue:  ", meetup.location[2]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Address:", meetup.location[3], " ", meetup.location[4], " ", meetup.location[5], ",", meetup.location[6]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Date:                        ", date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Time:   ", time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Space:  ", meetup.guests.length, "/", meetup.capacity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Topics and Icebreakers: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), meetup.topic))), this.infoHostOrGuests(), this.meetupActions());
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Venue:  "), meetup.location[2]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Address:"), meetup.location[3], " ", meetup.location[4], " ", meetup.location[5], ",", meetup.location[6]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Date:                        "), date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Time:   "), time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Space:  "), meetup.guests.length, "/", meetup.capacity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Topics and Icebreakers: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), meetup.topic)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: this.ggMapLink()
+        }, "Location on map (Google)")), this.infoHostOrGuests()), this.meetupActions());
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "meetup-left"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We regret to inform you that... THIS MEETUP DOES NOT EXIST!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "meetup-show padding-20"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "font-40"
+        }, "We regret to inform you that... ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "THIS MEETUP DOES NOT EXIST!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: "#/meetups"
         }, "Go back to meetups")));
       }
@@ -8580,39 +8657,52 @@ var MeetupShow = /*#__PURE__*/function (_React$Component) {
       var host = this.props.users[meetup.host_id]; // If you are logged in and the host, show the guests
 
       if (currentUser && currentUser.id === meetup.host_id) {
+        console.log(meetup.guests);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "meetup-left"
+          className: "meetup-right"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "meetup-guests"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Guests:"), meetup.guests.map(function (guest, i) {
-          if (guest.phone) /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: "guest-".concat(i)
-          }, "Guest: ", guest.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " Phone: ", guest.phone);else /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: "guest-".concat(i)
-          }, "Guest: ", guest.name);
+          if (guest.phone) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "guest-".concat(i + 1)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Guest: "), guest.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "- Phone: "), guest.phone);else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "guest-".concat(1 + i)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Guest: "), guest.name);
         })));
       } // Else, show the host
       else {
+          var hostPic = meetup.hostImage && meetup.hostImage != "" ? meetup.hostImage : window.staticImages.defaultPic;
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "meetup-left"
+            className: "meetup-right"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
             className: "meetup-guests"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            href: "#/host/".concat(host.id)
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "host-pic-full"
-          }, "HOST PICTURE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Host: ", host.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Home region: ", host.home_city), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Contact:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Phone number: ", host.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email: ", host.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, host.name, "'s Life Story: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), host.story)));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            href: "#/host/".concat(host.id)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            src: hostPic,
+            alt: "Host Picture"
+          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The Host: ", host.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Home region: "), host.home_city), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Contact:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Phone number: "), host.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Email: "), host.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, host.name, "'s Life Story: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), host.story)));
         }
     } ////////////////////////////////////////////////////////////////////////
 
   }, {
     key: "render",
     value: function render() {
-      // console.log(this.props.meetup);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "nav-link-item",
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "meetup"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "padding-20"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/meetups"
-      }, "Return to MeetUps Menu"), this.displayMeetup());
+      }, "Return to MeetUps Menu")), this.displayMeetup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.state.klass
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Are you sure you want to cancel this meetup?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.confirmCancel
+      }, "No! I clicked on accident!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleCancelMeetup()
+      }, "Yes.")));
     }
   }]);
 
@@ -8902,12 +8992,16 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         src: this.state.photoUrl
       }) : null; // console.log(this.props);
 
+      var hostImage = this.props.host.img_url;
+      var hostPic = hostImage && hostImage != "" ? hostImage : window.staticImages.defaultPic;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "meetup_changes"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New Meetup!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "new-meetup"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create Meetup!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "new-meetup-details"
       }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "new-meetup-changes"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "where"
@@ -8978,22 +9072,29 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         className: "when"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "final-form-header"
-      }, "When should we meet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Meetup is currently set for ", this.state.starttime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        onChange: this.onDateChange()
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, "When should we meet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Meetup is currently set for ", this.state.starttime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "data-entry"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
+        className: "time",
         onChange: this.onTimeChange()
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        onChange: this.onDateChange()
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "host-pic-full"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: hostPic,
+        alt: "Host Picture"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/profile/edit"
+      }, "Edit profile picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "data-entry"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "What topics do you want to talk about?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "text-input",
         rows: "4",
         cols: "50",
         value: this.state.topic,
@@ -9003,12 +9104,12 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "signinup-title"
       }, "Capacity:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "text-input",
         type: "number",
         value: this.state.capacity,
-        onChange: this.update('capacity'),
-        className: "signinup-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-submit",
+        onChange: this.update('capacity')
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "meetup-submit button",
         type: "submit",
         value: "Create Meetup!"
       })));
@@ -9212,6 +9313,7 @@ var SingleMeetup = /*#__PURE__*/function (_React$Component) {
       var meetup = this.props.meetup;
       var guests = meetup.guest_ids;
       var host = meetup.hostName;
+      var hostImage = meetup.hostImage;
       var venue = meetup.location[2];
       var address1 = "".concat(meetup.location[3]);
       var address2 = "".concat(meetup.location[4], " ").concat(meetup.location[6], ",").concat(meetup.location[5]);
@@ -9220,7 +9322,7 @@ var SingleMeetup = /*#__PURE__*/function (_React$Component) {
       // const month = convertFunctions.convertIntoMonth(starttime.getMonth());
 
       var hour = _util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoAMPM"](starttime.getHours());
-      var date = "".concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoDOW"](starttime.getDay()), ", ").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoMonth"](starttime.getMonth()), " ").concat(starttime.getDate(), ", ").concat(starttime.getFullYear());
+      var date = ["".concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoDOW"](starttime.getDay())), "".concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["convertIntoMonth"](starttime.getMonth()), " ").concat(starttime.getDate(), ", ").concat(starttime.getFullYear())];
       var time = "".concat(hour[0], ":").concat(_util_convertor_util__WEBPACK_IMPORTED_MODULE_2__["formatMinute"](starttime.getMinutes()), " ").concat(hour[1]); /////////////////////////////////////////////////////////////////
 
       var meetupJoinLink = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -9233,36 +9335,37 @@ var SingleMeetup = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.meetup.host_id === currentUser) {
         meetupNote = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "meetup-button blue"
-        }, "YOU'RE HOSTING THIS MEETUP");
+          className: "green margin-10"
+        }, "YOU'RE THE HOST");
         meetupEditButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "meetup-edit-button meetup-button orange",
+          className: "meetup-edit-button button orange",
           onClick: this.handleEdit(meetup.id)
         }, "EDIT MEETUP");
         meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "meetup-button red",
+          className: "button red",
           onClick: this.handleCancelMeetup(meetup.id)
         }, "CANCEL THIS MEETUP"); // meetupEditButton =
         // <Link to={`/hosting/${meetup.id}`}>Edit This Meetup</Link>;
       } // You've joined
       else if (guests.includes(currentUser)) {
           meetupNote = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: "meetup-button green"
+            className: "green margin-10"
           }, "YOU JOINED THIS MEETUP");
           meetupCancelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "meetup-button red",
+            className: "button red",
             onClick: this.handleUnattend(meetup.id)
           }, "CANCEL YOUR SPOT");
         } // Meetup full, you haven't joined
         else if (this.props.meetup.guests.length >= this.props.meetup.capacity) {
             meetupNote = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-              className: "meetup-button green"
+              className: "red margin-10"
             }, "MEETUP IS FULL"); // // FUTURE UPGRADE TO WAITLIST
-            // <button className="meetup-button green">
+            // <button className="button green">
             //   YOU JOINED THIS MEETUP
             // </button>;
-          } /////////////////////////////////
+          }
 
+      var hostPic = hostImage && hostImage != "" ? hostImage : window.staticImages.defaultPic; /////////////////////////////////
 
       return (
         /*#__PURE__*/
@@ -9271,9 +9374,12 @@ var SingleMeetup = /*#__PURE__*/function (_React$Component) {
           className: "meetup-index-item"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "meetup-details"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Venue:"), "  ", venue), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Address:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), address1, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), address2), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "  ", date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Time:"), "   ", time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Space:"), "  ", guests.length, "/", meetup.capacity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Venue:"), "  ", venue), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Address:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), address1, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), address2), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Date:"), "  ", date[0], /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), date[1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Time:"), "   ", time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Space:"), "  ", guests.length, "/", meetup.capacity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "host-pic-thumb"
-        }, "Host Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: hostPic,
+          alt: "Host Picture"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "meetup-actions"
         }, meetupJoinLink, meetupNote, meetupEditButton, meetupCancelButton))
       );
@@ -9951,6 +10057,7 @@ var History = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       // console.log(this.props);
+      var selfPic = this.props.currentUser.img_url && this.props.currentUser.img_url != "" ? this.props.currentUser.img_url : window.staticImages.defaultPic;
       var meetups = Array.from(this.props.meetups);
       var joined = [];
       var hosting = [];
@@ -9970,8 +10077,16 @@ var History = /*#__PURE__*/function (_React$Component) {
         className: "profile-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Past meetups"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/profile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-bar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Past meetups"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "host-pic-thumb right-end"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: selfPic,
+        alt: "Profile Picture"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/profile",
+        className: "margin-10 ilb"
       }, "Your upcoming meetups")), this.joinedMeetups(joined), this.hostOnlyMeetups(hosting)));
     }
   }]);
@@ -10103,11 +10218,17 @@ var HostShow = /*#__PURE__*/function (_React$Component) {
             hosting.push(meetup);
           }
         });
+        var hostPic = host.img_url && host.img_url != "" ? host.img_url : window.staticImages.defaultPic;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "hostfile"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "padding-20"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "host-pic-full"
-        }, "Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, name, "'s story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, host.story), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Host Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, name, "'s upcoming meetups:"), hosting.map(function (meetup) {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: hostPic,
+          alt: "Host Picture"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, name, "'s story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), host.story), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Host Contact:"), " ", host.phone)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, name, "'s upcoming meetups:"), hosting.map(function (meetup) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
             key: meetup.id,
             meetup: meetup,
@@ -10118,7 +10239,7 @@ var HostShow = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, name, "'s reviews"));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "hostfile"
+          className: "hostfile padding-20"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This host doesn't exist"));
       }
     } ////////////////////////////////////////////////////////////////////////
@@ -10127,7 +10248,41 @@ var HostShow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // console.log(this.props.meetup);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.displayHost());
+      if (this.props.host && this.props.host.host_status) {
+        //After fetching host and ensuring host status
+        var host = this.props.host;
+        var name = host.name;
+        var meetups = Array.from(this.props.meetups);
+        var hosting = [];
+        meetups.forEach(function (meetup) {
+          if (meetup.host_id === host.id) {
+            hosting.push(meetup);
+          }
+        });
+        var hostPic = host.img_url && host.img_url != "" ? host.img_url : window.staticImages.defaultPic;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "hostfile"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "padding-20"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "host-pic-full"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: hostPic,
+          alt: "Host Picture"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, name, "'s story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), host.story), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Host Contact:"), " ", host.phone)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, name, "'s upcoming meetups:"), hosting.map(function (meetup) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_meetup_pres_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: meetup.id,
+            meetup: meetup,
+            host: meetup.host_id,
+            timing: "future",
+            type: "checkout"
+          });
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, name, "'s reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No reviews yet"));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "hostfile"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This host doesn't exist"));
+      }
     }
   }]);
 
@@ -10291,11 +10446,14 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
           var host = this.props.users[this.props.meetup.host_id];
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "meetup-right"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "host-pic-thumb margin-10"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
             href: "#/host/".concat(host.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "host-pic-thumb"
-          }, "Host picture")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Host: "), host.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Phone: "), host.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Email: "), host.email));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            src: window.staticImages.defaultPic,
+            alt: "Host Picture"
+          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Host: "), host.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Phone: "), host.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Email: "), host.email));
         }
       } else if (type === "host") {
         // If you are hosting a meetup, you want to see who the guests are, and (eventually) remove them
@@ -10336,9 +10494,7 @@ var MeetUpCell = /*#__PURE__*/function (_React$Component) {
             href: "#/meetups/".concat(this.props.meetup.id)
           }, "Checkout Meetup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             onClick: this.editMeetup
-          }, "Edit Meetup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            onClick: this.cancelMeetup
-          }, "Cancel Meetup"));
+          }, "Edit Meetup"));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "meetup-options"
@@ -10659,7 +10815,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       var hostOnlyLink = function hostOnlyLink(bool) {
         if (bool) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            href: "#/meetups/new"
+            href: "#/meetups/new",
+            className: "margin-10 ilb"
           }, "Let's create and host a new Meetup");
         }
       };
@@ -10674,6 +10831,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           joined.push(meetup);
         }
       });
+      var selfPic = this.props.currentUser.img_url && this.props.currentUser.img_url != "" ? this.props.currentUser.img_url : window.staticImages.defaultPic;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-history"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_profile_pres__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -10684,13 +10842,18 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "flexbox-between"
+        className: "profile-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming meetups"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "host-pic-thumb right-end"
-      }, "Picture")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/profile/history"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: selfPic,
+        alt: "Profile Picture"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/profile/history",
+        className: "margin-10 ilb"
       }, "Your past meetups"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/meetups"
+        href: "#/meetups",
+        className: "margin-10 ilb"
       }, "Sign Up for future MeetUps!"), hostOnlyLink(this.props.currentUser.host_status)), this.joinedMeetups(joined), this.hostOnlyMeetups(hosting)));
     }
   }]);

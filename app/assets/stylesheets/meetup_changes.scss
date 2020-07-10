@@ -1,0 +1,50 @@
+.new-meetup{
+    width: 80%;
+    // display: flex;
+    // flex-direction: 
+}
+
+
+.new-meetup-changes{
+    display: flex;
+}
+
+.new-meetup-left, .new-meetup-right{
+    width: 50%;
+}
+
+.where input, .new-meetup-right input, .new-meetup-right textarea{
+    width: 95%;
+}
+
+.when {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    p{
+        padding: 5px;
+    }
+}
+
+.time{
+    border: #a75000 1px solid;
+    padding: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+    font-size: 30px;
+    margin: 10px;
+    transform: translate(-20%,0);
+    // width: 200px;
+}
+
+// .meetup-submit{
+//     padding: 10px;
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     p{
+//         padding-left: 5px;
+//         padding-right: 10px;
+//     }
+// }

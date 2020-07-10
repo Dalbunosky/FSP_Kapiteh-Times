@@ -1,7 +1,7 @@
 # Details to show at meetup index page
 json.array!(@meetups) do |meetup|
     json.partial! 'api/meetups/meetup', meetup: meetup
-    json.hostName meetup.host.name
+    # json.hostName meetup.host.name
     #  json.photoUrl url_for(meetup.photo)
       
 end 

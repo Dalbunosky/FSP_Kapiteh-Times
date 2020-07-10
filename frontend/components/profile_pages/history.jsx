@@ -78,7 +78,7 @@ class History extends React.Component {
 
   render() {
     // console.log(this.props);
-
+    const selfPic = (this.props.currentUser.img_url && this.props.currentUser.img_url != "" ?  this.props.currentUser.img_url : window.staticImages.defaultPic)
     const meetups = Array.from(this.props.meetups);
     let joined = [];
     let hosting = [];
@@ -99,8 +99,11 @@ class History extends React.Component {
 
         <div className="profile-right">
           <div className="profile-title">
-            <h1>Past meetups</h1>
-            <a href="#/profile">Your upcoming meetups</a>
+            <div className="profile-bar">
+              <h1>Past meetups</h1>
+              <div className="host-pic-thumb right-end"><img src={selfPic} alt="Profile Picture"/></div>
+            </div>
+            <a href="#/profile" className="margin-10 ilb">Your upcoming meetups</a>
           </div>
 
           {this.joinedMeetups(joined)}

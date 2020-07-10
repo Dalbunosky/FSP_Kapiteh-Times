@@ -40,28 +40,3 @@
     justify-content: center;
     padding-bottom: 20px;
 }
-
-.noshow{
-    display: none;
-}
-
-.confirmation{
-    width: 500px;
-    height: 200px;
-    border-radius: 20px;
-    padding: 20px;
-
-    position: fixed;
-    align-self: center;
-    top: 50%;
-    // left: 50%;
-    transform: translate(0, -50%);
-
-    z-index: 20;
-    background: white;
-
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: center;
-}

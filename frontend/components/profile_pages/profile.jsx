@@ -83,7 +83,7 @@ class Profile extends React.Component {
   render() {
     const hostOnlyLink = bool => {
       if (bool){return(
-        <a href="#/meetups/new">Let's create and host a new Meetup</a>
+        <a href="#/meetups/new" className="margin-10 ilb">Let's create and host a new Meetup</a>
       )}
     }
     const meetups = Array.from(this.props.meetups);
@@ -96,7 +96,7 @@ class Profile extends React.Component {
         joined.push(meetup);
       }
     })
-
+    const selfPic = (this.props.currentUser.img_url && this.props.currentUser.img_url != "" ?  this.props.currentUser.img_url : window.staticImages.defaultPic)
     return (
       <div className="profile-history">
 
@@ -106,12 +106,12 @@ class Profile extends React.Component {
         {/* </div> */}
         <div className="profile-right">
           <div className="profile-title">
-            <div className="flexbox-between">
+            <div className="profile-bar">
               <h1>Upcoming meetups</h1>
-              <div className="host-pic-thumb right-end">Picture</div>
+              <div className="host-pic-thumb right-end"><img src={selfPic} alt="Profile Picture"/></div>
             </div>
-            <a href="#/profile/history">Your past meetups</a>
-            <a href="#/meetups">Sign Up for future MeetUps!</a>
+            <a href="#/profile/history" className="margin-10 ilb">Your past meetups</a>
+            <a href="#/meetups" className="margin-10 ilb">Sign Up for future MeetUps!</a>
             {hostOnlyLink(this.props.currentUser.host_status)}
           </div>
 

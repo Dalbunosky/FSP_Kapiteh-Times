@@ -10,6 +10,10 @@ class MeetupShow extends React.Component {
     constructor(props){
         super(props)
 
+        this.state ={
+          klass: "noshow"
+        }
+        this.confirmCancel = this.confirmCancel.bind(this);
     }
 ////////////////////////////////////////////////////////////////////////
     componentDidMount() {
@@ -55,12 +59,29 @@ class MeetupShow extends React.Component {
     };
   
     handleCancelMeetup(e){
-      return(e) => {
-        e.preventDefault();
-        this.props.cancelMeetup(this.props.meetupId)
-        .then(() => this.props.history.push('/meetups'));
-      };
+      // debugger;
+      if(this.props.meetup && this.props.session.id === this.props.meetup.host_id){
+        return(e) => {
+          e.preventDefault();
+          this.props.cancelMeetup(this.props.meetupId)
+          .then(() => this.props.history.push('/meetups'));
+        };
+      }
     };
+
+    confirmCancel(e){
+      e.preventDefault();
+      this.setState({
+        klass: ((this.state.klass==="noshow") ? "confirmation" : "noshow")
+      });
+    }
+
+    // toggleClass(){
+    //   e.preventDefault();
+    //   this.setState({
+    //     klass: ((this.state.klass==="noshow") ? "confirmation" : "noshow")
+    //   });
+    // }
 
   ////////////////////////////////////////////////////////////////////////
     fetchHostOrGuests(){
@@ -87,17 +108,17 @@ class MeetupShow extends React.Component {
           // You are the host
           if (meetup.host_id === currentUser.id) {
             meetupJoinLink =
-            <p className="meetup-button blue">
+            <p className="green">
                 YOU'RE HOSTING THIS MEETUP
             </p>;
       
             meetupEditButton =
-            <button className="meetup-edit-button meetup-button orange" onClick={this.handleEdit(meetup.id)}>
+            <button className="meetup-edit-button button orange" onClick={this.handleEdit(meetup.id)}>
                 EDIT MEETUP
             </button>;
       
             meetupCancelButton =
-            <button className="meetup-button red" onClick={this.handleCancelMeetup(meetup.id)}>
+            <button className="button red" onClick={this.confirmCancel}>
               CANCEL THIS MEETUP
             </button>;
             // meetupEditButton =
@@ -107,23 +128,23 @@ class MeetupShow extends React.Component {
           else if (meetup.guest_ids.includes(currentUser.id)) {
           // else if (meetup.guests.includes(currentUser)) {
             meetupJoinLink =
-            <p className="meetup-button green">
+            <p className="green">
               YOU JOINED THIS MEETUP
             </p>;
       
             meetupCancelButton =
-            <button className="meetup-button red" onClick={this.handleUnattend(meetup.id)}>
+            <button className="button red" onClick={this.handleUnattend(meetup.id)}>
               CANCEL YOUR SPOT
             </button>;
           } 
           // Meetup full, you haven't joined
           else if (meetup.guests.length >= meetup.capacity) {
             meetupJoinLink =
-            <p className="meetup-button green">
+            <p className="button green">
               MEETUP IS FULL
             </p>;
             // // FUTURE UPGRADE TO WAITLIST
-            // <button className="meetup-button green">
+            // <button className="button green">
             //   YOU JOINED THIS MEETUP
             // </button>;
           } 
@@ -131,10 +152,10 @@ class MeetupShow extends React.Component {
           // You haven't joined, there's space
           else {
             meetupJoinLink =
-            <button className="meetup-button red" onClick={this.handleAttend(meetup.id)}>
+            <button className="button red" onClick={this.handleAttend(meetup.id)}>
               JOIN THIS MEETUP!
             </button>;
-            // <a className="meetup-button orange" onClick={handleAttend(props.meetup.id)}>
+            // <a className="button orange" onClick={handleAttend(props.meetup.id)}>
             //   CHECKOUT THIS MEETUP
             // </a>;
           }
@@ -144,29 +165,38 @@ class MeetupShow extends React.Component {
             // There is space
             if(meetup.guests.length < meetup.capacity){
               meetupJoinLink =
-              <Link className="meetup-button sign-in-to-schedule" to="/signin">
+              <Link className="button sign-in-to-schedule" to="/signin">
               Sign in to join
               </Link>;
       
               meetupCancelButton =
-              <Link className="meetup-button sign-in-to-schedule" to="/signup">
+              <Link className="button sign-in-to-schedule" to="/signup">
               Sign up to join
               </Link>;
             }
             // Meetup is full
             else{
               meetupJoinLink =
-              <p className="meetup-button orange">Meetup is full</p>
+              <p className="button orange">Meetup is full</p>
             }
             
         }
         return(
-            <div className="meetup-actions">
+            <div className="meetup-action">
                 {meetupJoinLink}
                 {meetupCancelButton}
                 {meetupEditButton}
             </div>
         )
+    }
+
+    ggMapLink(){
+      let url = "https://www.google.com/maps/place/";
+      const location = this.props.meetup.location;
+      let strAddress = "";
+      location[3].split("").forEach(letter => {strAddress += (letter === " " ? "+" : letter)})
+      url = url + `${strAddress},+${location[4]},+${location[5]}+${location[6]}/`
+      return url
     }
 
     displayMeetup(){
@@ -179,29 +209,33 @@ class MeetupShow extends React.Component {
                 const time = `${hour[0]}:${convertFunctions.formatMinute(starttime.getMinutes())} ${hour[1]}`;
             return(
                 <div>
-                    <div className="meetup-left">
-                        <ul className="meetup-details">
-                            <li>Venue:  {meetup.location[2]}</li>
-                            <li>Address:{meetup.location[3]} {meetup.location[4]} {meetup.location[5]},{meetup.location[6]}</li>
-                            <li>Date:                        {date}</li>
-                            <li>Time:   {time}</li>
-                            {/* <li>End:    </li> */}
-                            <li>Space:  {meetup.guests.length}/{meetup.capacity}</li>
-                            <li>Topics and Icebreakers: <br/>{meetup.topic}</li>
-                        </ul>
+                    <div className="meetup-show">
+                      <div className="meetup-left">
+                          <ul className="meetup-details">
+                              <li><strong>Venue:  </strong>{meetup.location[2]}</li>
+                              <li><strong>Address:</strong>{meetup.location[3]} {meetup.location[4]} {meetup.location[5]},{meetup.location[6]}</li>
+                              <li><strong>Date:                        </strong>{date}</li>
+                              <li><strong>Time:   </strong>{time}</li>
+                              {/* <li>End:    </li> */}
+                              <li><strong>Space:  </strong>{meetup.guests.length}/{meetup.capacity}</li>
+                              <li><strong>Topics and Icebreakers: </strong><br/>{meetup.topic}</li>
+                          </ul>
+                          {/* <a href={"https://www.google.com/maps/place/1165+Gilman+Ave,+San+Francisco,+CA+94124/"}>Google Maps</a> */}
+                          <a href={this.ggMapLink()}>Location on map (Google)</a>
+                      </div>
+                      {this.infoHostOrGuests()}
                     </div>
-                    {this.infoHostOrGuests()}
                     {this.meetupActions()}
                 </div>
             )
         }
         else{
           return(
-            <div>
-                <div className="meetup-left">
-                    <p>We regret to inform you that... THIS MEETUP DOES NOT EXIST!</p>
-                    <a href="#/meetups">Go back to meetups</a>
-                </div>
+            <div className="meetup-show padding-20">
+                    <p className="font-40">We regret to inform you that... <br/><strong>THIS MEETUP DOES NOT EXIST!</strong><br/><br/>
+                      <a href="#/meetups">Go back to meetups</a>
+                    </p>
+                    
             </div>
           )
         }
@@ -213,35 +247,38 @@ class MeetupShow extends React.Component {
         const host = this.props.users[meetup.host_id];
         // If you are logged in and the host, show the guests
         if(currentUser && currentUser.id === meetup.host_id){
+          console.log(meetup.guests);
             return(
-                <div className="meetup-left">
+                <div className="meetup-right">
                     <ul className="meetup-guests">
                         <h3>Guests:</h3>
                         {meetup.guests.map((guest, i) => {
                             if (guest.phone)
-                                (<li key={`guest-${i}`}>Guest: {guest.name} <br/> Phone: {guest.phone}</li>)
+                                return(<li key={`guest-${i+1}`}><strong>Guest: </strong>{guest.name} <br/> <strong>- Phone: </strong>{guest.phone}</li>)
                             else 
-                                (<li key={`guest-${i}`}>Guest: {guest.name}</li>)
+                                return(<li key={`guest-${1+i}`}><strong>Guest: </strong>{guest.name}</li>)
                         })}
                     </ul>
-
                 </div>      
             )
         }
         // Else, show the host
         else{
+            const hostPic = (meetup.hostImage && meetup.hostImage != "" ?  meetup.hostImage : window.staticImages.defaultPic)
             return(
-                <div className="meetup-left">
+                <div className="meetup-right">
                     <ul className="meetup-guests">
-                      <a href={`#/host/${host.id}`}><div className="host-pic-full">HOST PICTURE</div></a>
+                      <div className="host-pic-full"><a href={`#/host/${host.id}`}>
+                        <img src={hostPic} alt="Host Picture"/>
+                      </a></div>
                         <h3>The Host: {host.name}</h3>
-                        <p>Home region: {host.home_city}</p>
-                        <p>Contact:</p>
+                        <p><strong>Home region: </strong>{host.home_city}</p>
+                        <p><strong>Contact:</strong></p>
                         <ul>
-                          <p>Phone number: {host.phone}</p>
-                          <p>Email: {host.email}</p>
+                          <p><strong>Phone number: </strong>{host.phone}</p>
+                          <p><strong>Email: </strong>{host.email}</p>
                         </ul>
-                        <p>{host.name}'s Life Story: <br/>{host.story}</p>
+                        <p><strong>{host.name}'s Life Story: </strong><br/>{host.story}</p>
                     </ul>
 
                 </div>      
@@ -251,13 +288,21 @@ class MeetupShow extends React.Component {
 
 ////////////////////////////////////////////////////////////////////////
     render() {
-        // console.log(this.props.meetup);
-
         return (
-            <div>
-                <a className="nav-link-item" href="#/meetups">Return to MeetUps Menu</a>
+            <div className="meetup">
+                <div className="padding-20">
+                  <a href="#/meetups">Return to MeetUps Menu</a>
+                </div>
                 {this.displayMeetup()}
+
+              <div className={this.state.klass}>
+                <p>Are you sure you want to cancel this meetup?</p>
+                <button onClick={this.confirmCancel}>No! I clicked on accident!</button>
+                <button onClick={this.handleCancelMeetup()}>Yes.</button>
+              </div>
             </div>
+
+
         )
     }  
 }

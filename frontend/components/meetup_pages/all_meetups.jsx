@@ -84,9 +84,10 @@ class AllMeetups extends React.Component {
         console.log(homeCityMeetups);
         return (
             <div className="meetup_index">
-                <div className="meetup-index-header">
+                <div className="meetup-index-header padding-20">
                     <p className="show-header">SOLID FRIENDSHIPS</p>
                     <p className="show-header">They're here to stay.</p>
+                    <br/>
                     {hostCreateMeetup}
                 </div>
                 <div className="meetups">

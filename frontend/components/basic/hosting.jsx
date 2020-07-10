@@ -55,24 +55,24 @@ class Hosting extends React.Component {
             }
         }
         return(
-            <div className="about">
-                <h1>Hosting</h1>
-                <h3>Why host?</h3>
+            <div className="basic-page">
+                <h1 className="padding-30">Hosting</h1>
+                <h3 className="padding-30">Why host?</h3>
                 <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
 
-                <h3>Apply to host!</h3>
+                <h3 className="padding-30">Apply to host!</h3>
                 <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
 
-                <h3>The Application Process</h3>
+                <h3 className="padding-30">The Application Process</h3>
                 <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
 
-                <h3>The Responsibilities</h3>
+                <h3 className="padding-30">The Responsibilities</h3>
                 <p>tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg</p>
 
-                <h3>Start Here</h3>
+                <h3 className="padding-30">Start Here</h3>
                 <p>Look up hosting button process</p>
 
-                <h3>So, you still want to host?</h3>
+                <h3 className="padding-30">So, you still want to host?</h3>
                 <p>Yes? Well, then, {applyOrSignUp(this.props.session)}</p>
                 {this.renderErrors()}
 
