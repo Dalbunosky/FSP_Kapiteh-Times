@@ -15,16 +15,3 @@ const About = () => (
 );
 
 export default About;
-// /hosting
-// Hosting
-// Explain the redirect in main
-// What process you would do
-// Button: Email
-
-
-// /terms
-// Plain Text terms of service
-
-
-// /privacy
-// Plain text privacy information

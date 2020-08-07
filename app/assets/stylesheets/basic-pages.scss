@@ -1,13 +1,99 @@
 .basic-page{
-    height: 100%;
-    padding: 20px;
+    // height: 100%;
+    // padding: 20px;
     // display: flex;
+    // display: block;
+    // h3{
+    //     color:rgb(255, 136, 0);
+    // }
 }
+.welcome{
+    width: 100%;
+    // max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 318.5px;
+    overflow: hidden;
+    img{
+        filter: sepia(20%);
+        min-width: 100%;
+        // min-height: 100%;
+        position: relative;
+        // max-height: 500px;
+    }
+    span{
+        position: absolute;
+        font-size: 50px;
+        font-weight: 500;
+        color: white;
+        text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+    }
+}
+
+.main-one{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    .process{
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        h3{
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+    }
+}
+
+.main-two{
+    margin-left: 200px;
+    margin-right: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .reason{
+        display: flex;
+        .reason-image{
+            width: 40%;
+        }
+        .reason-text{
+            width: 60%;
+        }
+        // img{
+        //     max-height: 300px;
+        //     max-width: 300px;
+        // }
+        // h3{
+        // }
+        // p{
+        // }
+    }
+}
+
 
 .legalText{
     font-family: "canada-type-gibson", "Gibson", "Helvetica Neue", sans-serif;
     font-size: 18px;
     line-height: 1.625;
+    color: black;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+    p{
+        padding-top: 20px;
+    }
 }
 
 .padding-30{

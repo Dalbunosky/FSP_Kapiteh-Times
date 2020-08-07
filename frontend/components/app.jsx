@@ -38,7 +38,7 @@ import Home from './basic/home';
 import About from './basic/about';
 import HostingContainer from './basic/hosting_container';
 import Terms from './basic/terms';
-import Privacy from './basic/privacy';
+import Disclaimer from './basic/disclaimer';
 import BadPage from './basic/oops';
 
 // app.use(passport.initialize());
@@ -60,8 +60,8 @@ const App = () => (
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/hosting" component={HostingContainer} />
-          <Route exact path="/terms" component={Terms} />
-          <Route exact path="/privacy" component={Privacy} />
+          {/* <Route exact path="/terms" component={Terms} /> */}
+          <Route exact path="/disclaimer" component={Disclaimer} />
 
           <AuthRoute exact path="/signin" component={SignInFormContainer} />
           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
