@@ -31,14 +31,18 @@ export const Footer = () => (
     <footer>
         <div className="footer">
             <div className="footer-links">
-            <a className="white bold" href="#/about">About</a>
-            <a className="white bold" href="#/hosting">Hosting</a>
-            <a className="white bold" href="#/meetups">Meetups</a>
-            <a className="white bold" target="_blank" href="https://dalbunosky.wordpress.com" alt="My Portfolio Page">Portfolio</a>
-            <a className="white bold" target="_blank" href="https://github.com/Dalbunosky/FSP_ChaiMeetsChurros" alt="My Github Page">Github</a>
-            <br/>
-            <a className="white bold" href="#/terms">Terms of Service</a>
-            <a className="white bold" href="#/privacy">Privacy Policy</a>
+                <a className="white bold" href="#/about">About</a>
+                <a className="white bold" href="#/hosting">Hosting</a>
+                <a className="white bold" href="#/meetups">Meetups</a>
+                <a className="white bold" target="_blank" href="https://dalbunosky.wordpress.com" alt="My Portfolio Page">Portfolio</a>
+                <a className="white bold" target="_blank" href="https://github.com/Dalbunosky/FSP_ChaiMeetsChurros" alt="My Github Page">Github</a>
+                {/* <br/> */}
+                {/* <a className="white bold" href="#/terms">Terms of Service</a> */}
+                <a className="white bold" href="#/disclaimer">Disclaimer</a>
+                <div className="footer-buttons">
+                    <img href="https://github.com/Dalbunosky/FSP_Kapiteh-Times/" src={window.staticImages.github}/>
+                    <img href="https://www.linkedin.com/in/chi-yung-lee-9ab28539/" src={window.staticImages.linkedin}/>
+                </div>
             </div>
 
             <div className="footer-speech">

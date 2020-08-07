@@ -7008,7 +7008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _basic_about__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./basic/about */ "./frontend/components/basic/about.jsx");
 /* harmony import */ var _basic_hosting_container__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./basic/hosting_container */ "./frontend/components/basic/hosting_container.js");
 /* harmony import */ var _basic_terms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./basic/terms */ "./frontend/components/basic/terms.jsx");
-/* harmony import */ var _basic_privacy__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./basic/privacy */ "./frontend/components/basic/privacy.jsx");
+/* harmony import */ var _basic_disclaimer__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./basic/disclaimer */ "./frontend/components/basic/disclaimer.jsx");
 /* harmony import */ var _basic_oops__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./basic/oops */ "./frontend/components/basic/oops.jsx");
 // const express = require("express");
 // import express from 'express';
@@ -7068,12 +7068,8 @@ var App = function App() {
     component: _basic_hosting_container__WEBPACK_IMPORTED_MODULE_17__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
-    path: "/terms",
-    component: _basic_terms__WEBPACK_IMPORTED_MODULE_18__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    exact: true,
-    path: "/privacy",
-    component: _basic_privacy__WEBPACK_IMPORTED_MODULE_19__["default"]
+    path: "/disclaimer",
+    component: _basic_disclaimer__WEBPACK_IMPORTED_MODULE_19__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_13__["AuthRoute"], {
     exact: true,
     path: "/signin",
@@ -7149,15 +7145,33 @@ var About = function About() {
   }, "Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (About); // /hosting
-// Hosting
-// Explain the redirect in main
-// What process you would do
-// Button: Email
-// /terms
-// Plain Text terms of service
-// /privacy
-// Plain text privacy information
+/* harmony default export */ __webpack_exports__["default"] = (About);
+
+/***/ }),
+
+/***/ "./frontend/components/basic/disclaimer.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/basic/disclaimer.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // /Disclaimer
+// Plain text disclaimer information
+
+var Disclaimer = function Disclaimer() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "legalText"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Disclaimer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Last updated July 11, 2020"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Thank you for trying out Kapiteh Times (\"website\"). This website is a personal full-stack project used to practice my software development skills by building a meet-up website that is inspired and functions along the lines of the website Tea With Strangers. "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "However, as you play around with this website, PLEASE DO NOT USE ANY REAL PERSONAL INFORMATION. I don't have the ability or knowledge to monitor all activities and prevent theft, fraud, or any other misuse of said information on the website, and am not responsible for any mishaps you encounter. I am not responsible for lost/stolen information."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Also, please do not use this website for actual meetups. The database is periodically wiped and refreshed, and you will lose your plans."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a personal project with some help from peers. It is purely a practice in coding and does not generate any revenue."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you are impressed by my coding skills and would like to contact me or have a need for my skills, feel free to contact me on ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: ""
+  }, "LinkedIn"), "."));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Disclaimer);
 
 /***/ }),
 
@@ -7183,13 +7197,39 @@ __webpack_require__.r(__webpack_exports__);
     className: "basic-page"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "welcome"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME!!!!!!!!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.staticImages.groupChat
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Coffee or Tea?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "main-one"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "process"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Who"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Where"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "reasons"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "reason3"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "commit"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "What"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Just because")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Arrive for a drink and some chat"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Join the host and other hosts.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "process"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Enjoy some big-talk"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Get passionate and talk your heart out about anything.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "process"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "See what happens"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Make friends. See it from the other POV. Or not. Doesn't matter."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "main-two"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "So why are people doing it?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "reason"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.staticImages.reason1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "It\u2019s weird. "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Everyone at tea time is stepping a little out of their comfort zone. This makes it so much easier to actually learn something unexpected about the people around you. Because open minds are a prerequisite around here. "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "reason"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "We won't meet otherwise."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "In all likelihood, our paths won\u2019t cross for any reason. So often, we only meet people through work, school, or friends of friends. And even then, it\u2019s questionable. So basically, we manufacture serendipity.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.staticImages.reason2
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "reason"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.staticImages.reason3
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Hands are meant to high five! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "And your eyes are made\u2026for eye contact! Real humans are so much cooler than their tweets or Instagram pictures. Tea time has real humans! #nofilter!")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "main-three"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.staticImages.appeal
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("blockquote", null, "\"A leaf fluttered in through the window this morning, as if supported by the rays of the sun, a bird settled on the fire escape, joy in the task of coffee, joy accompanied me as I walked\" ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "~ Anais Nin")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "main-four"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.staticImages.appeal
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Coffee or Tea? ")));
 });
 
 /***/ }),
@@ -7308,13 +7348,13 @@ var Hosting = /*#__PURE__*/function (_React$Component) {
         className: "padding-30"
       }, "Hosting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
-      }, "Why host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, "Why host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Well, why not? Being a host lets you plan meetups at your convinience, and you get to meet as few or many people as you like. The meetup is yours."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Perhaps you are a social person, but yet not where you want to be. Maybe you want to be more daring, charismatic, a better talker, organizer. This is a good opportunity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
-      }, "Apply to host!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, "The Responsibilities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "You will have to arrive at your meetup ahead of time."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "You will need to lead the conversation whenever needed.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
-      }, "The Application Process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, "The Requirements"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "You need to have a profile picture. That way, guests will know who the host is."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "You will need to have contact info on file, in case guests have an issue looking for the meetup."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "You will need to have a story explaining your life, hobbies, etc for a humanizing effect, so that guests will feel more comfortable.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
-      }, "The Responsibilities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "tredfbnbjhytrefdbvnytrdfvbnytrfvnrfvbnyt654erfdh654rfdghg"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, "Apply to host!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Normally, the admin for the site would approve hosts manually, but given that this is just a project and the site runs unmanned, you can become a host, albeit, a non-functioning one, when you fulfill the requirements and click below."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
       }, "Start Here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Look up hosting button process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
@@ -7406,30 +7446,6 @@ var BadPage = function BadPage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BadPage);
-
-/***/ }),
-
-/***/ "./frontend/components/basic/privacy.jsx":
-/*!***********************************************!*\
-  !*** ./frontend/components/basic/privacy.jsx ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // /privacy
-// Plain text privacy information
-
-var Privacy = function Privacy() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "legalText"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Privacy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Privacy Policy lhdgsfdcsvghfgsfdbncghdstafdbvnchytrfdbnvhjhtgrdfcv bmjgygtdfcbn"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Privacy);
 
 /***/ }),
 
@@ -9534,13 +9550,18 @@ var Footer = function Footer() {
     target: "_blank",
     href: "https://github.com/Dalbunosky/FSP_ChaiMeetsChurros",
     alt: "My Github Page"
-  }, "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "white bold",
-    href: "#/terms"
-  }, "Terms of Service"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "white bold",
-    href: "#/privacy"
-  }, "Privacy Policy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    href: "#/disclaimer"
+  }, "Disclaimer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-buttons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    href: "https://github.com/Dalbunosky/FSP_Kapiteh-Times/",
+    src: window.staticImages.github
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    href: "https://www.linkedin.com/in/chi-yung-lee-9ab28539/",
+    src: window.staticImages.linkedin
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-speech"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "white"

@@ -11,13 +11,23 @@
 
 <script id="bootstrap-current-user" type="text/javascript">
   window.staticImages = {
-    coffeeBeans: "<%= asset_path("coffee_beans.png") %>",
-    aboutBanner: "<%= asset_path("about-banner-photo.jpg") %>",
-    hostingBanner: "<%= asset_path("gourmet-coffee-franchise.jpg") %>",
     defaultPic: "<%=asset_path("blank-user.png")  %>",
-    splashBanner: "<%= asset_path("splash-page.png") %>",
-    coffeeFaces: "<%= asset_path("coffee-faces.jpg") %>"
+    groupChat: "<%= asset_path("group-chat.jpeg") %>",
+
+    reason1: "<%= asset_path("subway-scene.png") %>",
+    reason2: "<%= asset_path("cold-street.jpg") %>",
+    reason3: "<%= asset_path("coffee-talk.png") %>",
+    appeal: "<%=asset_path("girl-smiles.jpeg") %>",
+
+    github: "<%= asset_path("github-logo.png") %>",
+    linkedin: "<%= asset_path("linkedin.webp") %>",
+
+    leftCoffee: "<%=asset_path("coffee-and-beans.png") %>",
+    rightCoffee: "<%=asset_path("gourmet-coffee-franchise.jpg") %>",
+    coffeeMill: "<%= asset_path("coffee-mill.jpg") %>",
+    coffeeBanner: "<%= asset_path("about-banner-photo.jpg") %>",
   }
+
 
   <% if logged_in? %>
   	window.currentUser = <%= render("api/users/user.json.jbuilder",
