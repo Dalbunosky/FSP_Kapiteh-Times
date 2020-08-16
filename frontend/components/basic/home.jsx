@@ -28,7 +28,7 @@ export default () => (
         </div>
 
         <div className='main-two'>
-            <p>So why are people doing it?</p>
+            <h4>So why are people doing it?</h4>
             <div className="reason">
                 <div className="reason-image"><img src={window.staticImages.reason1}/></div>
                 <div className="reason-text">
@@ -53,21 +53,34 @@ export default () => (
             {/* <p>So talk to people, face to face, in real life, in front of you.</p> */}
         </div>
 
-        <div className="main-three">
-            <div><img src={window.staticImages.appeal}/></div>
-            <span>
-                <blockquote>
-                    "A leaf fluttered in through the window this morning, as if supported
-                    by the rays of the sun, a bird settled on the fire escape, joy in the
-                    task of coffee, joy accompanied me as I walked" <strong>~ Anais Nin</strong>
-                </blockquote>
-            </span>
+        <div className='main-three'>
+            <h4>There's no such thing as a stranger.</h4>
+            <img src={window.staticImages.appeal}/>
+            <div className="proclaim">
+                <p>You'd never think of yourself as a stranger. But everyone else does. You know your story. Your embarrassments. Your joy. Your idiocyncrasies — the thing that make you, you. But they don't.</p>
+                <p>And everyone has these — whether or not we know what they are. Everyone around you is a person, loaded with stories that you can't even begin to fathom. They're different from yours, but the fact that we all have them is what brings us together.</p>
+                <p>In a stranger's story, we might discover parts of our own. And in seeing where a stranger is coming from, we might realize they're actually not so strange. But we don't discover much just by thinking about it. So let's find out.</p>
+                <p>Yes, I copied this from the TWS website. This is a mock website w/ no revenue. I have other priorities and will get back to this later.</p>
+            </div>
         </div>
 
         <div className='main-four'>
-            <img src={window.staticImages.appeal}/>
-            <span>Coffee or Tea? </span>
-            {/* <span>Coffee or Tea? </span> */}
+            {/* <img src={window.staticImages.appeal}/> */}
+            <p>So, can I get you a</p>
+            <button>Coffee or Tea?</button>
+        </div>
+
+        <div className="main-five">
+                <div className="review">
+                    "This website impressed me with its functions and abilities. I enjoyed
+                    scheduling mock meetings with my friends for an upcoming dinner. It's 
+                    hard to imagine this having been built by a single person." <strong>~ Jane Doe</strong>
+                </div>
+                <div className="review">
+                    "I didn't realize this was a mock website, but having played with all
+                    functions I can find, I couldn't think of another feature I wouldn't
+                    have added myself... yet." <strong>~ John Snow</strong>
+                </div>
         </div>
 
     </div>
