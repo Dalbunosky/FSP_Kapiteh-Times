@@ -18,17 +18,34 @@ const About = () => (
             <h3>It's good to feel at home.</h3>
 
             <p>
-                Kapiteh Times is a community organization that's all about making our cities feel more like neighborhoods by breaking the barriers between strangers.
+                Kapiteh Times is a mock project that simulates the website Tea With Strangers, 
+                a community organization that's all about making our cities feel more like 
+                neighborhoods by breaking barriers between strangers.
             </p>
 
             <p>
-                Why? Because neighborhoods create a sense of belonging. Neighborhoods let us be ourselves. Neighborhoods make us feel like someone has our back.
+                The website theoretically allows different people to host and/or join meetups 
+                where strangers get to meet and have a chat about their topic of choice. 
+                To use the service, each member would need to sign up first with their name, 
+                an email address to contact and sign in with, and their home region. 
+                Each meetup is started by a host who can determine the location, time, 
+                and size of the meetup. The host would need to have more information as 
+                they are who lost guests contact. Both account and meetup information can 
+                be edited until the meetup is in the past.
             </p>
-            <h4>What does this have at all to do with sitting with strangers for conversations?</h4>
+            <h4>What does this have at all to do with Kapiteh Times being a mock project?</h4>
 
             <p>
-                There are two massive hurdles that often stop us from smiling at each other on the street, taking our headphones out on the bus, or just generally treating others with a huge amount of empathy, understanding, and awesome.
+                Given that my skills and time are not capable of monitoring and fixing issues 
+                with the website in real time, if at all, please do not actually use this website 
+                for meetups. Treat it for what it is, a mock up, a personal project intended only 
+                for practice and fun.
             </p>
+            <p>
+                The website is an ongoing project with improvements being made whenever changes are 
+                necessary or new ideas come to mind and corresponding features are added.
+            </p>
+            
             <ol>
                 <li>
                     We have our own lives to lead, and empathizing with others is hard when we're stuck in our own heads.
@@ -50,11 +67,9 @@ const About = () => (
             <h3>Who is behind all of this?</h3>
 
             <p>
-                Hi, I'm Chi Yung Lee, and I created Kapiteh Times. If you'd like to have a chat, you can contact me through LinkedIn, and email when that function arrives. 
-                If you tell me a story, I'm 10x more likely to reply really fast. Otherwise, forgive me if I take a few days.
-            </p>
-            <p>
-                This website would not exist if it weren't for an incredible team of developers in the TWS community who generously give their genius to making this possible. Get to know them here. If you want to help us, check out our public GitHub repo and our Maker's Blog. Then, email us and let's build a smaller world together.
+                Hi, I'm Chi Yung Lee, and I created Kapiteh Times. If you'd like to have a chat, 
+                you can contact me through LinkedIn, and email when that function arrives. I'm 
+                open to new opportunities.
             </p>
         </div>
 
