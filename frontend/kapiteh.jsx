@@ -5,11 +5,7 @@ import ReactDOM from 'react-dom';
 //Components
 import Root from './components/root';
 import configureStore from './store/store';
-// import { login, logout } from './actions/session_actions';
-// import { SOMETHING } from './actions/session_actions';
 
-// Don't know how the code below works, as window.currentUser is not displaying right, I think.
-// Can I get the currentUserId directly from session_actions?
 document.addEventListener("DOMContentLoaded", () => {
   let store;
   if (window.currentUser) {
