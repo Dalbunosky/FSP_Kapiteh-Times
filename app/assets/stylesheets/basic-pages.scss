@@ -43,9 +43,18 @@
 .about{
     margin-left: 100px;
     margin-right: 100px;
+    overflow: hidden;
     p, h3, ol, h4{
         padding: 10px;
         box-sizing: border-box;
+    }
+    img{
+        filter: sepia(60%);
+        margin: 10px;
+        float: right;
+        // clear: right;
+        max-width: 250px;
+        max-height: 250px;
     }
 
 }
@@ -176,4 +185,15 @@
 
 .padding-30{
     padding: 30px;
+}
+
+.profile{
+    margin: 10px;
+    float: right;
+    // clear: right;
+    max-width: 200px;
+    max-height: 200px;
+    img{
+        filter: sepia(60%);
+    }
 }

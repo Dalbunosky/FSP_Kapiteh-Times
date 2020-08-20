@@ -62,11 +62,11 @@ const About = () => (
                 </blockquote>
             </p>
                 
-
+            <img src={window.staticImages.profilePic} />
             <h3>Who is behind all of this?</h3>
             <p>
                 Hi, I'm Chi Yung Lee, and I created Kapiteh Times. If you'd like to have a chat or 
-                think those site is missing improvements, you can contact me through LinkedIn. I'm 
+                think this site needs an improvement you had thought of, you can contact me through LinkedIn. I'm 
                 open to new opportunities as well.
             </p>
         </div>
