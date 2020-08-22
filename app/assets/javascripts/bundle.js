@@ -7368,9 +7368,13 @@ var Hosting = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "basic-page"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "padding-30"
-      }, "Hosting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "welcome"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.staticImages.groupChat
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Become a Host!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
       }, "Why host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Well, why not? Being a host lets you plan meetups at your convinience, and you get to meet as few or many people as you like. The meetup is yours."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Perhaps you are a social person, but yet not where you want to be. Maybe you want to be more daring, charismatic, a better talker, organizer. This is a good opportunity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
@@ -7382,7 +7386,7 @@ var Hosting = /*#__PURE__*/function (_React$Component) {
         className: "padding-30"
       }, "Start Here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Look up hosting button process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "padding-30"
-      }, "So, you still want to host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Yes? Well, then, ", applyOrSignUp(this.props.session)), this.renderErrors());
+      }, "So, you still want to host?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Yes? Well, then, ", applyOrSignUp(this.props.session)), this.renderErrors()));
     } // );
 
   }]);
@@ -7458,7 +7462,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var BadPage = function BadPage() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "basic-page"
+    className: "about",
+    id: "badPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "padding-30"
   }, "Oh boy....."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {

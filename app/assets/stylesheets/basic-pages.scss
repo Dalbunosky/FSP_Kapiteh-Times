@@ -197,3 +197,12 @@
         filter: sepia(60%);
     }
 }
+
+#badPage{
+    width: 100%;
+    // background-image: url('');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.12;
+}
