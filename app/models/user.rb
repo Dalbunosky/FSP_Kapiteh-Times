@@ -24,7 +24,7 @@ class User < ApplicationRecord
     source: :meetup
 
     # has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "blank-user.png"
-    # has_one_attached :image, default_url: "blank-user.png"
+    has_one_attached :profile_pic #, default_url: "blank-user.png"
 
 
     def host_requirements
