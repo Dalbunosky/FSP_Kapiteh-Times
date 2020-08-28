@@ -169,7 +169,7 @@ class EditProfile extends React.Component {
                   </label>
                 </div>
                 <div className="right">
-                  <p>A picture of yourself.<br/>Optional, until you become a host.</p>
+                  <p>A picture of yourself.<br/>Optional, unless you are a host.</p>
 
                   <label for="file-upload" className="button">Select File</label>
                   <input id="file-upload" type="file" onChange={this.updateFile()} />
