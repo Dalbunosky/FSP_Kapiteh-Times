@@ -1,9 +1,9 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
-    puts @user
-    puts @user.name
-    puts @user.img_url
+    # puts @user
+    # puts @user.name
+    # puts @user.image_url
     if @user.save
       login(@user)
       render "/api/users/show"

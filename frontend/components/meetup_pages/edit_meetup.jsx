@@ -19,7 +19,7 @@ class EditMeetup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     // Bind later when function actually gets called
-    // this.handlePhoto = this.handlePhoto.bind(this);
+    // this.handleFile = this.handleFile.bind(this);
   }
   // componentDidMount() {
   //   this.props.fetchMeetup(this.props.meetupId)
@@ -98,6 +98,11 @@ class EditMeetup extends React.Component {
     }
   }
 
+  // In handleSubmit
+  // if (this.state.photoFile) {
+  //   formData.append('bench[photo]', this.state.photoFile);
+  // }
+
   // For time only handling
   onTimeChange() {
     let date = this.state.starttime.split(" ");
@@ -132,29 +137,12 @@ class EditMeetup extends React.Component {
     // }
   }
 
-  handlePhoto(e) {
-    const file = e.currentTarget.files[0];
-    console.log(e.currentTarget.files);
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.setState({photoFile: file, photoUrl: fileReader.result});
-    };
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  }
-
-  // In handleSubmit
-  // if (this.state.photoFile) {
-  //   formData.append('bench[photo]', this.state.photoFile);
-  // }
-
   // RENDER
 
   render() {
     if(this.props.meetup && this.props.meetup.host_id === this.props.session.id){ // Allows only the actual host to edit meetup, not any hosts
       const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
-      const hostImage = this.props.host.img_url;
+      const hostImage = this.props.host.image_url;
       const hostPic = (hostImage && hostImage != "" ?  hostImage : window.staticImages.defaultPic)
       return (
         <div className="new-meetup">
@@ -257,7 +245,7 @@ class EditMeetup extends React.Component {
                 {/* EDIT PROFILE PICTURE. NULL FALSE */}
                   {/* <label className="fancy">
                     Choose a file
-                    <input type="file" className="inputfile" onChange={handlePhoto} />
+                    <input type="file" className="inputfile" onChange={handleFile} />
                   </label>
                   <h3>Image Preview</h3>
                   <hr></hr>
@@ -407,7 +395,7 @@ class EditMeetup extends React.Component {
     //         {/* EDIT PROFILE PICTURE. NULL FALSE */}
     //           {/* <label className="fancy">
     //             Choose a file
-    //             <input type="file" className="inputfile" onChange={handlePhoto} />
+    //             <input type="file" className="inputfile" onChange={handleFile} />
     //           </label>
     //           <h3>Image Preview</h3>
     //           <hr></hr>

@@ -7925,7 +7925,7 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
       capacity: 0
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // Bind later when function actually gets called
-    // this.handlePhoto = this.handlePhoto.bind(this);
+    // this.handleFile = this.handleFile.bind(this);
 
     return _this;
   } // componentDidMount() {
@@ -8026,7 +8026,11 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
       if (file) {
         fileReader.readAsDataURL(file);
       }
-    } // For time only handling
+    } // In handleSubmit
+    // if (this.state.photoFile) {
+    //   formData.append('bench[photo]', this.state.photoFile);
+    // }
+    // For time only handling
 
   }, {
     key: "onTimeChange",
@@ -8070,31 +8074,7 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
       return "".concat(datetime.getFullYear(), "-").concat(datetime.getMonth(), "-").concat(datetime.getDate(), " ").concat(datetime.getHours(), ":").concat(datetime.getMinutes()); // } else {
       //   return datetime;
       // }
-    }
-  }, {
-    key: "handlePhoto",
-    value: function handlePhoto(e) {
-      var _this8 = this;
-
-      var file = e.currentTarget.files[0];
-      console.log(e.currentTarget.files);
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        _this8.setState({
-          photoFile: file,
-          photoUrl: fileReader.result
-        });
-      };
-
-      if (file) {
-        fileReader.readAsDataURL(file);
-      }
-    } // In handleSubmit
-    // if (this.state.photoFile) {
-    //   formData.append('bench[photo]', this.state.photoFile);
-    // }
-    // RENDER
+    } // RENDER
 
   }, {
     key: "render",
@@ -8106,7 +8086,7 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
           width: "200px",
           src: this.state.photoUrl
         }) : null;
-        var hostImage = this.props.host.img_url;
+        var hostImage = this.props.host.image_url;
         var hostPic = hostImage && hostImage != "" ? hostImage : window.staticImages.defaultPic;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "new-meetup"
@@ -8323,7 +8303,7 @@ var EditMeetup = /*#__PURE__*/function (_React$Component) {
       //         {/* EDIT PROFILE PICTURE. NULL FALSE */}
       //           {/* <label className="fancy">
       //             Choose a file
-      //             <input type="file" className="inputfile" onChange={handlePhoto} />
+      //             <input type="file" className="inputfile" onChange={handleFile} />
       //           </label>
       //           <h3>Image Preview</h3>
       //           <hr></hr>
@@ -9037,7 +9017,7 @@ var NewMeetup = /*#__PURE__*/function (_React$Component) {
         src: this.state.photoUrl
       }) : null; // console.log(this.props);
 
-      var hostImage = this.props.host.img_url;
+      var hostImage = this.props.host.image_url;
       var hostPic = hostImage && hostImage != "" ? hostImage : window.staticImages.defaultPic;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-meetup"
@@ -9864,7 +9844,7 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('story')
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "A picture of yourself.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Optional, until you become a host."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "A picture of yourself.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Optional, unless you are a host."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         "for": "file-upload",
         className: "button"
       }, "Select File"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -10107,7 +10087,7 @@ var History = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       // console.log(this.props);
-      var selfPic = this.props.currentUser.img_url && this.props.currentUser.img_url != "" ? this.props.currentUser.img_url : window.staticImages.defaultPic;
+      var selfPic = this.props.currentUser.image_url && this.props.currentUser.image_url != "" ? this.props.currentUser.image_url : window.staticImages.defaultPic;
       var meetups = Array.from(this.props.meetups);
       var joined = [];
       var hosting = [];
@@ -10268,7 +10248,7 @@ var HostShow = /*#__PURE__*/function (_React$Component) {
             hosting.push(meetup);
           }
         });
-        var hostPic = host.img_url && host.img_url != "" ? host.img_url : window.staticImages.defaultPic;
+        var hostPic = host.image_url && host.image_url != "" ? host.image_url : window.staticImages.defaultPic;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "hostfile"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -10309,7 +10289,7 @@ var HostShow = /*#__PURE__*/function (_React$Component) {
             hosting.push(meetup);
           }
         });
-        var hostPic = host.img_url && host.img_url != "" ? host.img_url : window.staticImages.defaultPic;
+        var hostPic = host.image_url && host.image_url != "" ? host.image_url : window.staticImages.defaultPic;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "hostfile"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -10881,7 +10861,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           joined.push(meetup);
         }
       });
-      var selfPic = this.props.currentUser.img_url && this.props.currentUser.img_url != "" ? this.props.currentUser.img_url : window.staticImages.defaultPic;
+      console.log("imageURL", this.props.currentUser);
+      var selfPic = this.props.currentUser.image_url ? this.props.currentUser.image_url : window.staticImages.defaultPic;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-history"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_parts_profile_pres__WEBPACK_IMPORTED_MODULE_1__["default"], {

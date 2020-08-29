@@ -96,7 +96,8 @@ class Profile extends React.Component {
         joined.push(meetup);
       }
     })
-    const selfPic = (this.props.currentUser.img_url && this.props.currentUser.img_url != "" ?  this.props.currentUser.img_url : window.staticImages.defaultPic)
+    console.log("imageURL", this.props.currentUser);
+    const selfPic = (this.props.currentUser.image_url ?  this.props.currentUser.image_url : window.staticImages.defaultPic)
     return (
       <div className="profile-history">
 

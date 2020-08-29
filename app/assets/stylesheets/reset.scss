@@ -119,10 +119,12 @@ a:hover, button:hover, .button:hover{
 }
 
 .host-pic-full{
+	display: flex;
 	height: 300px;
 	width: 300px;
 }
 .host-pic-thumb{
+	display: flex;
 	height: 100px;
 	width: 100px;
 }
@@ -157,6 +159,7 @@ a:hover, button:hover, .button:hover{
 }
 
 img{
+	object-fit: scale-down;
 	max-height: 100%;
 	max-width: 100%
 }
