@@ -7,6 +7,7 @@ class EditProfile extends React.Component {
         super(props);
         // console.log(this.props)
         this.state = {
+            errors: this.props.errors,
             id: this.props.currentUser.id,
             name: this.props.currentUser.name,
             email: this.props.currentUser.email,
@@ -59,8 +60,33 @@ class EditProfile extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    // const user = Object.assign({}, this.state);
+    // this.props.processForm(user);
+
+
+    // id: this.props.currentUser.id,
+    // name: this.props.currentUser.name,
+    // email: this.props.currentUser.email,
+    // phone: this.props.currentUser.phone,
+    // story: this.props.currentUser.story,
+    // home_city: this.props.currentUser.home_city,
+    // email_subscription: this.props.currentUser.email_subscription,
+    // host_status: this.props.currentUser.host_status,
+
+    const user = new FormData();
+    if (this.state.photoFile) {
+      user.append('user[profile_pic]', this.state.photoFile);
+    }
+    user.append('user[name]', this.state.name);
+    user.append('user[password]', this.state.password);
+    user.append('user[email]', this.state.email);
+    user.append('user[phone]', this.state.phone);
+    user.append('user[story]', this.state.story);
+    user.append('user[home_city]', this.state.home_city);
+    user.append('user[email_subscription]', this.state.email_subscription);
+    user.append('user[host_status]', this.state.host_status);
+    this.props.processForm(user)
+    .then(() => this.setState({errors: ["Changes saved!"]}), () => {});
 
   }
 
