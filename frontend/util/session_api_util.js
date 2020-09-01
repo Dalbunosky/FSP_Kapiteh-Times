@@ -2,7 +2,9 @@ export const signup = user => (
   $.ajax({
     method: 'POST',
     url: '/api/users', 
-    data: { user }
+    data: { user },
+    contentType: false,
+    processData: false
   })
 );
 
@@ -12,7 +14,9 @@ export const editUser = user => {
   $.ajax({
     method: 'PATCH',
     url: `/api/users/${user.id}`, 
-    data: { user }
+    data: { user },
+    contentType: false,
+    processData: false
   })
 );}
 
