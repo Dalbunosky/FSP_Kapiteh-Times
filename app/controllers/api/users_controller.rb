@@ -14,7 +14,9 @@ class Api::UsersController < ApplicationController
 
 
   def update # Update user, available to hosts only
+
     @user = User.find(params[:id])
+    puts @user
     if @user.update_attributes(user_params)
         render 'api/users/show'
     else
@@ -67,7 +69,9 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
+# debugger
     params.require(:user).permit(:name, :email, :password, :host_status, :home_city, :phone, :story, :email_subscription, :profile_pic)
+debugger
   end
 end
   
