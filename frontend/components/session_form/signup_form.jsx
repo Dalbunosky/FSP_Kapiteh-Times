@@ -40,15 +40,27 @@ class SignUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-      const user = {
-        name: this.state.name,
-        email: this.state.email,
-        phone: this.state.phone,
-        password: this.state.password,
-        home_city: this.state.home_city,
-        story: this.state.story
-      };
-      this.props.processForm(user);
+      // const user = {
+      //   name: this.state.name,
+      //   email: this.state.email,
+      //   phone: this.state.phone,
+      //   password: this.state.password,
+      //   home_city: this.state.home_city,
+      //   story: this.state.story
+      // };
+      // this.props.processForm(user);
+
+      const user = new FormData();
+      if (this.state.photoFile) {
+        user.append('user[profile_pic]', this.state.photoFile);
+      }
+      user.append('user[name]', this.state.name);
+      user.append('user[password]', this.state.password);
+      user.append('user[email]', this.state.email);
+      user.append('user[phone]', this.state.phone);
+      user.append('user[story]', this.state.story);
+      user.append('user[home_city]', this.state.home_city);
+      this.props.processForm(user)
   }
 
   renderErrors() {
