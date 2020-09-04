@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ProfileBar = props =>{
-    // console.log(props)
     let currentUserStat = Object.values(props)[0]
 
     const yepNope = bool => {
@@ -16,11 +15,15 @@ const ProfileBar = props =>{
     const editLink = type => {
         return((type === "edit") ? "" : <a className="blue bold editLink" href="#/profile/edit">Edit Profile</a>)
     }
+    console.log("props", currentUserStat)
+    console.log(currentUserStat.image_url)
+    const selfPic = (currentUserStat.image_url && currentUserStat.image_url != "" ?  currentUserStat.image_url : window.staticImages.defaultPic)
     
     return(
         <div className="sidebar">
             <h3>Hey,<br/>{currentUserStat.name}!</h3>
             {/* PROFILE PICTURE HERE IF PRESENT */}
+            <div className="profile-pic"><img src={selfPic} alt="Profile Picture"/></div>
             <div>
                 <p className="title bold">Name</p>
                 <p className="detail">{contractStory(currentUserStat.name)}</p>

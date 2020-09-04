@@ -119,7 +119,7 @@ class NewMeetup extends React.Component {
   render() {
     const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
     // console.log(this.props);
-    const hostImage = this.props.host.img_url;
+    const hostImage = this.props.host.image_url;
     const hostPic = (hostImage && hostImage != "" ?  hostImage : window.staticImages.defaultPic)
     return (
       <div className="new-meetup">

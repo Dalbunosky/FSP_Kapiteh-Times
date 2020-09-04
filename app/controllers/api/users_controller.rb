@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     puts @user
     puts @user.name
-    puts @user.img_url
+    puts @user.image_url
     if @user.save
       login(@user)
       render "/api/users/show"
@@ -14,14 +14,30 @@ class Api::UsersController < ApplicationController
 
 
   def update # Update user, available to hosts only
-
     @user = User.find(params[:id])
-    puts @user
     if @user.update_attributes(user_params)
         render 'api/users/show'
     else
         render json: @user.errors.full_messages, status: 422
     end
+  end
+
+
+  def update # Update user, available to hosts only
+    # puts params
+    # puts Parameters
+    puts "123"
+    @user = User.find(params[:id])
+    puts "234"
+    puts @user
+    puts "345"
+    puts params
+    if @user.update_attributes(user_params)
+        render 'api/users/show'
+    else
+        render json: @user.errors.full_messages, status: 422
+    end
+    puts "456"
   end
 
   def index
@@ -69,9 +85,8 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-# debugger
+    # params.require(:user).permit(:id, :name, :email, :password, :host_status, :home_city, :phone, :story, :email_subscription, :profile_pic)
     params.require(:user).permit(:name, :email, :password, :host_status, :home_city, :phone, :story, :email_subscription, :profile_pic)
-debugger
   end
 end
   

@@ -17,7 +17,8 @@ class EditProfile extends React.Component {
             email_subscription: this.props.currentUser.email_subscription,
             host_status: this.props.currentUser.host_status,
             fileName: "",
-            klass: "noshow"
+            klass: "noshow",
+            success: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,6 +34,7 @@ class EditProfile extends React.Component {
 
   componentWillUnmount() {
     this.props.clearErrors();
+    this.setState({success: false});
   }
 
   confirmCancel(e){
@@ -59,45 +61,25 @@ class EditProfile extends React.Component {
   };
 
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     // const user = Object.assign({}, this.state);
     // this.props.processForm(user);
-    
-    const newUser = {};
-    newUser.id = this.state.id;
-    newUser.name = this.state.name;
-    newUser.password = this.state.password;
-    newUser.email = this.state.email;
-    newUser.phone = this.state.phone;
-    newUser.story = this.state.story;
-    newUser.home_city = this.state.home_city;
-    newUser.email_subscription = this.state.email_subscription;
-    newUser.host_status = this.state.host_status;
-    if (this.state.imageFile) {
-      newUser.imageFile = this.state.imageFile;
-    }
-    this.props.processForm(newUser)
 
-    // let formData = new FormData();
-    // formData.append('user[id]', this.state.id);
-    // formData.append('user[name]', this.state.name);
-    // formData.append('user[password]', this.state.password);
-    // formData.append('user[email]', this.state.email);
-    // formData.append('user[phone]', this.state.phone);
-    // formData.append('user[story]', this.state.story);
-    // formData.append('user[home_city]', this.state.home_city);
-    // formData.append('user[email_subscription]', this.state.email_subscription);
-    // formData.append('user[host_status]', this.state.host_status);
-    // if (this.state.imageFile) {
-    //   formData.append('user[profile_pic]', this.state.imageFile);
-    // }
-    //   // console.log("state submit", formData);
-    // // for (let key of formData.entries()) {
-    // //   console.log(key[0] + ', ' + key[1]);
-    // // }
-    // this.props.processForm(formData)
-    // // .then(() => this.setState({errors: ["Changes saved!"]}), () => {});
+    let formData = new FormData();
+    formData.append('user[id]', this.state.id);
+    formData.append('user[name]', this.state.name);
+    formData.append('user[email]', this.state.email);
+    formData.append('user[phone]', this.state.phone);
+    formData.append('user[story]', this.state.story);
+    formData.append('user[home_city]', this.state.home_city);
+    formData.append('user[email_subscription]', this.state.email_subscription);
+    formData.append('user[host_status]', this.state.host_status);
+    if (this.state.imageFile) {
+      formData.append('user[profile_pic]', this.state.imageFile);
+    }
+    this.props.processForm(formData)
+    .then(() => this.setState({success: true}), () => this.setState({success: false}));
 
   }
 
@@ -133,9 +115,9 @@ class EditProfile extends React.Component {
 // RENDERS
 
   renderErrors() {return(
-    <ul>
+    <ul className="red">
       {this.props.errors.map((error, i) => (
-        <li key={`error-${i}`}>{error}</li>
+        <li key={`error-${i}`}><strong>{error}!</strong></li>
       ))}
     </ul>
   )}
@@ -145,6 +127,7 @@ class EditProfile extends React.Component {
     let klass = "noshow";
     const yepNope = bool => ( bool ? "Yep!" : "Nope!");
     const amIHost = bool => ( bool ? <a href="#/meetups/new" className="button">Yep! Let's host!</a> : <a href="#/hosting" className="button">Not Yet! But I want to be!</a>);
+    const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Save successful!</strong></p> : "");
 
     return (
       <div className="edit-profile">
@@ -154,7 +137,7 @@ class EditProfile extends React.Component {
             <div className="profile-title">
               <h1>Edit Account Details</h1>
             </div>
-            {this.renderErrors()}
+            {/* {this.renderErrors()} */}
             <form onSubmit={this.handleSubmit} className="full-profile">
               <div className="profile-details">
                 <div className="left">
@@ -210,6 +193,8 @@ class EditProfile extends React.Component {
                   <input id="file-upload" type="file" onChange={this.updateFile()} />
                   <p className="cutoff">{this.state.fileName}</p>
                   <img className="preview" src={this.state.imageURL} />
+
+                  {this.renderErrors()}
                 </div>
               </div>
               <div className="change-password">
@@ -239,6 +224,7 @@ class EditProfile extends React.Component {
                   </label> */}
               </div>
               <input className="session-submit button" type="submit" value="Submit Changes" />
+              {saveSuccess(this.state.success)}
             </form>
             <div className="sub-host">
               <label className="data-entry">

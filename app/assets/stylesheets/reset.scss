@@ -41,9 +41,9 @@ time, mark, audio, video, button, input {
 	background-color: #F3ECCE;
 }
 
-nav, div {
-	border: 1px solid black;
-}
+// nav, div {
+// 	// border: 1px solid black;
+// }
 
 .signinup-title {
 	// border: 1px solid green;
@@ -121,10 +121,24 @@ a:hover, button:hover, .button:hover{
 .host-pic-full{
 	height: 300px;
 	width: 300px;
+	display: flex;
+	img{
+		object-fit: scale-down;
+	}
 }
 .host-pic-thumb{
 	height: 100px;
 	width: 100px;
+	display: flex;
+	img{
+		object-fit: scale-down;
+	}
+}
+.profile-pic{
+	box-sizing: border-box;
+	padding: 10px;
+	width: 100%;
+	
 }
 
 .profile-title{

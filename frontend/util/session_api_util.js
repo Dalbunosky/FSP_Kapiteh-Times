@@ -2,19 +2,23 @@ export const signup = user => (
   $.ajax({
     method: 'POST',
     url: '/api/users', 
-    data: { user },
+    data: user,
     contentType: false,
     processData: false
   })
 );
 
 export const editUser = user => {
-  // console.log(user);
+  // console.log("user ajax", user.entries().length);
+  // for (let key of user.entries()) {
+  //   console.log(key[0] + ', ' + key[1]);
+  // }
+  // debugger;
   return(
   $.ajax({
     method: 'PATCH',
-    url: `/api/users/${user.id}`, 
-    data: { user },
+    url: `/api/users/${user.get("user[id]")}`, 
+    data: user,
     contentType: false,
     processData: false
   })
