@@ -34,7 +34,7 @@ class HostShow extends React.Component {
                     hosting.push(meetup);
                 }
             })           
-            const hostPic = (host.img_url && host.img_url != "" ?  host.img_url : window.staticImages.defaultPic)
+            const hostPic = (host.image_url && host.image_url != "" ?  host.image_url : window.staticImages.defaultPic)
             return(
                 <div className="hostfile">
                     <div className="padding-20">
@@ -77,7 +77,7 @@ class HostShow extends React.Component {
                     hosting.push(meetup);
                 }
             })           
-            const hostPic = (host.img_url && host.img_url != "" ?  host.img_url : window.staticImages.defaultPic)
+            const hostPic = (host.image_url && host.image_url != "" ?  host.image_url : window.staticImages.defaultPic)
             return(
                 <div className="hostfile">
                     <div className="padding-20">

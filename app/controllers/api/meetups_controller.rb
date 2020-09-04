@@ -67,6 +67,8 @@ class Api::MeetupsController < ApplicationController
 
     def update # Update meetup, available to hosts only
         @meetup = Meetup.find(params[:id])
+        puts "123"
+        puts params
         if @meetup.update_attributes(meetup_params)
 
             # redirect_to meetup_url(@meetup)

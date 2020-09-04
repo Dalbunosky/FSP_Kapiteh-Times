@@ -48,8 +48,10 @@ class Profile extends React.Component {
         return(
           <div id="upcoming-hosting-meetups" className="profile-meetup-box">
             <h3>Meetups you are going to Host</h3>
-            <p>Wait... You don't have any upcoming MeetUps to host... yet!</p>
-            <a href="#/meetups/new">Create New Meetup</a>
+            <p className="padding-20">Wait... You don't have any upcoming MeetUps to host... yet!
+              <br/>
+              <a href="#/meetups/new">Create New Meetup</a>
+            </p>
           </div>
       )
     }
@@ -73,8 +75,10 @@ class Profile extends React.Component {
       return(
         <div id="upcoming-hosting-meetups" className="profile-meetup-box">
           <h3>Meetups you are attending</h3>
-          <p>Wait... You don't have any MeetUps coming up... yet!</p>
-          <a href="#/meetups">Join a Meetup!</a>
+          <p className="padding-20">Wait... You don't have any MeetUps coming up... yet!
+            <br/>
+            <a href="#/meetups">Join a Meetup!</a>
+          </p>
         </div>
       )
     }
@@ -96,7 +100,7 @@ class Profile extends React.Component {
         joined.push(meetup);
       }
     })
-    const selfPic = (this.props.currentUser.img_url && this.props.currentUser.img_url != "" ?  this.props.currentUser.img_url : window.staticImages.defaultPic)
+    const selfPic = (this.props.currentUser.image_url && this.props.currentUser.image_url != "" ?  this.props.currentUser.image_url : window.staticImages.defaultPic)
     return (
       <div className="profile-history">
 
