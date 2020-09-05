@@ -23,7 +23,6 @@ class User < ApplicationRecord
     through: :tickets,
     source: :meetup
 
-    # has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "blank-user.png"
     has_one_attached :profile_pic #, default_url: "blank-user.png"
 
 
@@ -36,14 +35,21 @@ class User < ApplicationRecord
         if self.story == ""
           errors[:story] << "can't be blank when you are a host."
         end
+    #   unless self.profile_pic.attached?
+    #     errors[:photo] << "must be on your profile when you are a host."
+    #   end
       end
     end
 
     # def ensure_photo
-    #   unless self.photo.attached?
+    #   unless self.profile_pic.attached?
     #     errors[:photo] << "must be on your profile when you are a host."
     #   end
     # end
+
+    def is_password?(password)
+      BCrypt::Password.new(self.password_digest).is_password?(password)
+    end
 
     def self.find_by_credentials(email, password)
       user = User.find_by(email: email)
@@ -56,10 +62,6 @@ class User < ApplicationRecord
       self.password_digest = BCrypt::Password.create(password)
     end
   
-    def is_password?(password)
-      BCrypt::Password.new(self.password_digest).is_password?(password)
-    end
-  
     def reset_session_token!
       generate_unique_session_token
       save!
@@ -67,10 +69,6 @@ class User < ApplicationRecord
     end
   
     private
-  
-    def ensure_session_token
-      generate_unique_session_token unless self.session_token
-    end
   
     def new_session_token
       SecureRandom.urlsafe_base64
@@ -82,6 +80,10 @@ class User < ApplicationRecord
         self.session_token = new_session_token
       end
       self.session_token
+    end
+  
+    def ensure_session_token
+      generate_unique_session_token unless self.session_token
     end
   
   end
