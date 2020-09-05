@@ -1,9 +1,6 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
-    puts @user
-    puts @user.name
-    puts @user.image_url
     if @user.save
       login(@user)
       render "/api/users/show"
@@ -24,20 +21,12 @@ class Api::UsersController < ApplicationController
 
 
   def update # Update user, available to hosts only
-    # puts params
-    # puts Parameters
-    puts "123"
     @user = User.find(params[:id])
-    puts "234"
-    puts @user
-    puts "345"
-    puts params
     if @user.update_attributes(user_params)
         render 'api/users/show'
     else
         render json: @user.errors.full_messages, status: 422
     end
-    puts "456"
   end
 
   def index
@@ -49,11 +38,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # puts "HERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE"
     if @user
-      # puts "FOUND"
-      # puts params.class
-      # puts params.class
         render 'api/users/show'
     else
         render json: @user.errors.full_messages, status: 422
