@@ -63,11 +63,10 @@ class SignUpForm extends React.Component {
       this.props.processForm(user)
   }
 
-  renderErrors() {
-    return(
-    <ul>
+  renderErrors() {return(
+    <ul className="red">
       {this.props.errors.map((error, i) => (
-        <li key={`error-${i}`}>{error}</li>
+        <li key={`error-${i}`}><strong>{error}!</strong></li>
       ))}
     </ul>
   )}
@@ -84,7 +83,7 @@ class SignUpForm extends React.Component {
       const reader = new FileReader();
       const file = e.currentTarget.files[0];
       reader.onloadend = () =>
-        this.setState({ imageURL: reader.result, imageFile: file });
+        this.setState({ imageURL: reader.result, imageFile: file, fileName: file.name });
   
       if (file) {
         reader.readAsDataURL(file);
@@ -94,19 +93,26 @@ class SignUpForm extends React.Component {
     }
   }
 
+  deleteFile(){
+    return e => {
+      this.setState({ imageURL: "", imageFile: null, fileName: "" });
+    }
+  }
+
   render() {
-    console.log(this.state);
+    console.log("this.state", this.state);
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {
-      if(pw1 === pw2 && pw1 != ""){ return(<input className="session-submit button" type="submit" value="Sign Up!" />)}
+      if(pw1 === pw2 && pw1 != ""){ return(<div><input className="session-submit button" type="submit" value="Sign Up!" /></div>)}
       else { return(<h3 className="signinup-form-container">You can't submit unless your passwords match!</h3>)}};
+    const deletePic = () => this.state.imageURL ? <button onClick={this.deleteFile()}>Remove Picture</button> : "";
     return (
       <div className="profile-changes">
         <h3>Welcome to Kapiteh Times!</h3>
         <br/>
         Please Sign Up below or <Link to="/signin">Sign In if you have an account with us already!</Link>
-        {this.renderErrors()}
+        {/* {this.renderErrors()} */}
         <form onSubmit={this.handleSubmit} className="full-profile">
           <div className="profile-details">
             <div className="left">
@@ -174,12 +180,18 @@ class SignUpForm extends React.Component {
               </label>
             </div>
             <div className="right">
-              <p>A picture of yourself.<br/>Optional, unless you are a host.</p>
-              <label for="file-upload" className="button">Select File</label>
+              <p>A picture of yourself.<br/>Optional, until you become a host.</p>
+              <label for="file-upload" className="button">Select Picture</label>
               <input id="file-upload" type="file" onChange={this.updateFile()} />
               <p className="cutoff">{this.state.fileName}</p>
               <img className="preview" src={this.state.imageURL} />
+              {deletePic()}
+
               <p>Because how else would people know it's you?</p>
+              <br/>
+              <br/>
+
+              {this.renderErrors()}
             </div>
             {confirmPasswordButton(this.state.password, this.state.password2)}
             {/* <input className="session-submit" type="submit" value="Sign Up!" /> */}
