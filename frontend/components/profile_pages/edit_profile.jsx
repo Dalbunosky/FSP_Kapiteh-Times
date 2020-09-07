@@ -112,6 +112,12 @@ class EditProfile extends React.Component {
     }
   }
 
+  deleteFile(){
+    return e => {
+        this.setState({ imageURL: "", imageFile: null, fileName: "" });
+    }
+  }
+
 // RENDERS
 
   renderErrors() {return(
@@ -124,10 +130,12 @@ class EditProfile extends React.Component {
 
 
   render() {
+    console.log("this.state", this.state);
     let klass = "noshow";
     const yepNope = bool => ( bool ? "Yep!" : "Nope!");
     const amIHost = bool => ( bool ? <a href="#/meetups/new" className="button">Yep! Let's host!</a> : <a href="#/hosting" className="button">Not Yet! But I want to be!</a>);
     const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Save successful!</strong></p> : "");
+    const deletePic = () => this.state.imageURL ? <button onClick={this.deleteFile()}>Remove Picture</button> : "";
 
     return (
       <div className="edit-profile">
@@ -187,12 +195,13 @@ class EditProfile extends React.Component {
                   </label>
                 </div>
                 <div className="right">
-                  <p>A picture of yourself.<br/>Optional, unless you are a host.</p>
+                  <p>A picture of yourself.<br/>Optional, until you become a host.</p>
 
                   <label for="file-upload" className="button">Select File</label>
                   <input id="file-upload" type="file" onChange={this.updateFile()} />
                   <p className="cutoff">{this.state.fileName}</p>
                   <img className="preview" src={this.state.imageURL} />
+                  {deletePic()}
 
                   {this.renderErrors()}
                 </div>

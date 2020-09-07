@@ -49,7 +49,7 @@ class Hosting extends React.Component {
                 }
                 else{
                     return(
-                        <p><a onClick={this.becomeHost}>Make Me A Host!</a></p>
+                        <p><a className="button" onClick={this.becomeHost}>Make Me A Host!</a></p>
                     )
                 }
             }

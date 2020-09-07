@@ -15,8 +15,6 @@ const ProfileBar = props =>{
     const editLink = type => {
         return((type === "edit") ? "" : <a className="blue bold editLink" href="#/profile/edit">Edit Profile</a>)
     }
-    console.log("props", currentUserStat)
-    console.log(currentUserStat.image_url)
     const selfPic = (currentUserStat.image_url && currentUserStat.image_url != "" ?  currentUserStat.image_url : window.staticImages.defaultPic)
     
     return(
