@@ -13,6 +13,10 @@ class AllMeetups extends React.Component {
     constructor(props){
         super(props)
 
+        this.state = {
+            filter: ""
+        }
+        this.matches = this.matches.bind(this);
     }
 
 // Probably need this because otherwise meetups prop is null
@@ -66,12 +70,52 @@ class AllMeetups extends React.Component {
 
     }
 
+    updateSearch(e) {
+        const name = e.currentTarget.innerText;
+        this.setState({filter: name});
+    }
+
+    update(field) {
+        return e => this.setState({
+            [field]: e.target.value
+        });
+    }
+
+    matches(regionList) {
+        console.log("region", regionList[0])
+        const matches = [];
+        if (this.state.filter.length === 0) {
+          return regionList;
+        }
+        regionList.forEach(region => {
+            if(region.name){
+                const sub = region.name.slice(0, this.state.filter.length);
+                if (sub.toLowerCase() === this.state.filter.toLowerCase()) {
+                    matches.push(region);
+                }
+            }
+        });
+    
+        if (matches.length === 0) {
+         return <p>Looks like no one is hosting a meetup in your region at this time</p>
+        //  matches.push('Looks like no one is hosting a meetup in your region at this time');
+        }
+
+
+        // {matches.map (metro =>
+        //     <MeetupCityRow metro={metro} key={matches.indexOf(metro)} currentUser={currentUserId}/>
+        // )}
+    
+        return matches;
+    }
+
     render() {
+        // console.log(this.state.filter);
         const currentUser = this.props.currentUser;
         const currentUserId = this.props.currentUserId;
         const metroArr0 = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
 
-        console.log(metroArr0);
+        // console.log(metroArr0);
         let homebase = "";
         let homeCityMeetups = "";
         if(currentUser){homebase = currentUser.home_city;}
@@ -80,8 +124,9 @@ class AllMeetups extends React.Component {
         if((metroArr.length > 0) && (homebase === metroArr[0].name)){homeCityMeetups = metroArr.shift()}
         const hostCreateMeetup = ((currentUserId && currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
         
-        console.log(metroArr);
-        console.log(homeCityMeetups);
+        console.log("all other cities", metroArr);
+        const filteredArr = this.matches(metroArr);
+
         return (
             <div className="meetup_index">
                 <div className="meetup-index-header padding-20">
@@ -94,8 +139,16 @@ class AllMeetups extends React.Component {
                     {this.meetupsNearUser(homeCityMeetups, homebase)}
                     <div className="meetups">
                         {this.meetupLabel()}
-                        {metroArr.map (metro =>
-                            <MeetupCityRow metro={metro} key={metroArr.indexOf(metro)} currentUser={currentUserId}/>
+
+                        <input className="text-input" type="text"
+                            value={this.state.filter}
+                            onChange={this.update('filter')}
+                            placeholder='Search regions...'
+                        />
+
+                        {/* {this.matches(metroArr)} */}
+                        {filteredArr.map (metro =>
+                            <MeetupCityRow metro={metro} key={filteredArr.indexOf(metro)} currentUser={currentUserId}/>
                         )}
 
                         {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
