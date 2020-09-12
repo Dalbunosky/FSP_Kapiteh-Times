@@ -1,4 +1,11 @@
 Git process
+-----------------------------------------------------------------------
+Starting new project on github:
+
+git init
+
+git remote add origin https://github.com/Dalbunosky/OfferDown
+
 
 To start work:
     (Make sure you're on your branch)
