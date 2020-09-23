@@ -100,7 +100,7 @@ class SignUpForm extends React.Component {
   }
 
   render() {
-    console.log("this.state", this.state);
+    // console.log("this.state", this.state);
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {

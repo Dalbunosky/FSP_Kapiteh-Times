@@ -57,7 +57,6 @@ class NewMeetup extends React.Component {
   // INPUT/SUBMIT
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.starttime);
     const meetup = Object.assign({}, this.state);
     meetup.starttime = new Date(this.state.starttime).valueOf()/1000;
     
@@ -99,7 +98,6 @@ class NewMeetup extends React.Component {
 
   handlePhoto(e) {
     const file = e.currentTarget.files[0];
-    console.log(e.currentTarget.files);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({photoFile: file, photoUrl: fileReader.result});

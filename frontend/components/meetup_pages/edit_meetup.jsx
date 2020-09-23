@@ -7,7 +7,6 @@ import * as convertFunctions from '../../util/convertor_util';
 class EditMeetup extends React.Component {
   constructor(props){
     super(props)
-    console.log(props);
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
       starttime: "yyyy-mm-dd hh:mm",
@@ -112,7 +111,6 @@ class EditMeetup extends React.Component {
   // For date to string
   onDateChange() {
     // if(this.props.meetup){
-      console.log(this.state.starttime);
       const time = this.state.starttime.split(" ");
       return e => {
         let timestring = e.toDateString().split(" ");
@@ -134,7 +132,6 @@ class EditMeetup extends React.Component {
 
   handlePhoto(e) {
     const file = e.currentTarget.files[0];
-    console.log(e.currentTarget.files);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({photoFile: file, photoUrl: fileReader.result});

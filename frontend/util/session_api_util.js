@@ -13,7 +13,6 @@ export const editUser = user => {
   // for (let key of user.entries()) {
   //   console.log(key[0] + ', ' + key[1]);
   // }
-  // debugger;
   return(
   $.ajax({
     method: 'PATCH',

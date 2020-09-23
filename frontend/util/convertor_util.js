@@ -170,7 +170,9 @@ export const quickSortCities = (cityArr, home = null) =>{
             else{right.push(cityArr.shift())}
         }
     }
-    return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
+    const res = [...quickSortCities(left), pivot, ...quickSortCities(right)];
+    return ((!!foundHome.length) ? res.unshift(foundHome) : res);
+    // return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 }
 

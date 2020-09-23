@@ -1,10 +1,10 @@
 
 Future upgrades could include:
-- Photo function for members
-- Filtering by City
-- Email
+DONE - Photo function for members
+DONE - Filtering by City
 - Review of host
 - Wait List
+- Email
 - Google Map API for meetups
 - Meetup duration/end time
 - Messaging system so that guests and hosts can contact each other

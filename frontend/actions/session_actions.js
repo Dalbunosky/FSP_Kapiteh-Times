@@ -40,15 +40,13 @@ export const fetchUser = id => dispatch => (
 )
 
 // Sign Up, Sign In, Sign out
-export const signup = user => dispatch => {
-  console.log(user);
-  return(
+export const signup = user => dispatch => (
   SessAPIUtil.signup(user).then(user => (
     dispatch(receiveCurrentUser(user))
   ), err => (
     dispatch(receiveUserErrors(err.responseJSON))
   ))
-)};
+);
 
 export const signin = user => dispatch => (
   SessAPIUtil.signin(user).then(user => (
