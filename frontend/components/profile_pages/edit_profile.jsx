@@ -130,7 +130,6 @@ class EditProfile extends React.Component {
 
 
   render() {
-    console.log("this.state", this.state);
     let klass = "noshow";
     const yepNope = bool => ( bool ? "Yep!" : "Nope!");
     const amIHost = bool => ( bool ? <a href="#/meetups/new" className="button">Yep! Let's host!</a> : <a href="#/hosting" className="button">Not Yet! But I want to be!</a>);

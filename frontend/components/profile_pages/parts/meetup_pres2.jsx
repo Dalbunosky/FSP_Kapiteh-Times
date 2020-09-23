@@ -26,7 +26,6 @@ class MeetUpCell extends React.Component {
     
     leaveMeetupButton(e){
         e.preventDefault();
-        console.log("leaving Meetup")
         dispatch(leaveMeetup(this.props.meetup.id));
     }
 
@@ -34,18 +33,15 @@ class MeetUpCell extends React.Component {
 
     editMeetupButton(e){
         e.preventDefault();
-        console.log("editting Meetup")
         // leaveMeetup(this.props.meetup.id);
         // this.props.push()
     }
     cancelMeetupButton(e){
         e.preventDefault();
-        console.log("canceling Meetup")
         cancelMeetup(this.props.meetup.id);
     }
     removeGuestButton(e){
         e.preventDefault();
-        console.log("kicking guest off")
     }
 
     uniqueOps(type){

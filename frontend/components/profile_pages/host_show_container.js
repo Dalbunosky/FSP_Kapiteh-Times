@@ -7,8 +7,7 @@ import HostShow from './host_show';
 
 
 const mapSTP = (state, ownProps) => {
-    console.log(state);
-
+    // console.log(state);
     return {
         // currentUser: state.users[state.session.id],
         hostId: ownProps.match.params.hostId,

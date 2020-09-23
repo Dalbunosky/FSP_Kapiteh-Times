@@ -82,7 +82,6 @@ class AllMeetups extends React.Component {
     }
 
     matches(regionList) {
-        console.log("region", regionList[0])
         const matches = [];
         if (this.state.filter.length === 0) {
           return regionList;
@@ -96,37 +95,24 @@ class AllMeetups extends React.Component {
             }
         });
     
-        if (matches.length === 0) {
-         return <p>Looks like no one is hosting a meetup in your region at this time</p>
-        //  matches.push('Looks like no one is hosting a meetup in your region at this time');
-        }
-
-
-        // {matches.map (metro =>
-        //     <MeetupCityRow metro={metro} key={matches.indexOf(metro)} currentUser={currentUserId}/>
-        // )}
-    
         return matches;
     }
 
     render() {
-        // console.log(this.state.filter);
         const currentUser = this.props.currentUser;
         const currentUserId = this.props.currentUserId;
         const metroArr0 = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
 
-        // console.log(metroArr0);
-        let homebase = "";
+        let homebase = ((currentUser) ? currentUser.home_city : "");
         let homeCityMeetups = "";
-        if(currentUser){homebase = currentUser.home_city;}
         const metroArr = convertFunctions.quickSortCities(metroArr0, homebase);
+
+        const filteredArr = this.matches(metroArr);
+        const noCityFound = ( !!filteredArr.length ? "" : <p>Sorry, buddy, no one is hosting a meetup in your prospective region.</p>); 
 
         if((metroArr.length > 0) && (homebase === metroArr[0].name)){homeCityMeetups = metroArr.shift()}
         const hostCreateMeetup = ((currentUserId && currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
         
-        console.log("all other cities", metroArr);
-        const filteredArr = this.matches(metroArr);
-
         return (
             <div className="meetup_index">
                 <div className="meetup-index-header padding-20">
@@ -144,16 +130,12 @@ class AllMeetups extends React.Component {
                             value={this.state.filter}
                             onChange={this.update('filter')}
                             placeholder='Search regions...'
+                            style={{margin: "5px"}}
                         />
-
-                        {/* {this.matches(metroArr)} */}
                         {filteredArr.map (metro =>
                             <MeetupCityRow metro={metro} key={filteredArr.indexOf(metro)} currentUser={currentUserId}/>
                         )}
-
-                        {/* FUTURE: ALLOW FOR SEARCHING BY CITY */}
-                        {/* Meetups */}
-                        {/* <MeetupCityRow city={city} meetups={meetups}> */}
+                        {noCityFound}
                     </div>
                 </div>
             </div>

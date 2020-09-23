@@ -59,7 +59,6 @@ class MeetupShow extends React.Component {
     };
   
     handleCancelMeetup(e){
-      // debugger;
       if(this.props.meetup && this.props.session.id === this.props.meetup.host_id){
         return(e) => {
           e.preventDefault();
@@ -247,7 +246,6 @@ class MeetupShow extends React.Component {
         const host = this.props.users[meetup.host_id];
         // If you are logged in and the host, show the guests
         if(currentUser && currentUser.id === meetup.host_id){
-          console.log(meetup.guests);
             return(
                 <div className="meetup-right">
                     <ul className="meetup-guests">

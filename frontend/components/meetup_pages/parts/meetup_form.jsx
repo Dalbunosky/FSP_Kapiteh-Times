@@ -102,7 +102,6 @@ class NewMeetup extends React.Component {
 
   handlePhoto(e) {
     const file = e.currentTarget.files[0];
-    console.log(e.currentTarget.files);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({photoFile: file, photoUrl: fileReader.result});
