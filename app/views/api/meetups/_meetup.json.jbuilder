@@ -1,5 +1,13 @@
 json.extract! meetup, :id, :location, :starttime, :metro_area, :capacity, :host_id, :topic, :guests, :guest_ids
 json.hostName meetup.host.name
+
+# json.image_url "PICTURE"
+
+if meetup.host.profile_pic.attached?
+    json.image_url url_for(meetup.host.profile_pic)
+    # json.image_url "PICTURE"
+end
+# json.hostImage meetup.host.profile_pic
 # json.image_url url_for(meetup.host.profile_pic)
 # json.host_thumb asset_path(meetup.host.image_url(:thumb))
 
