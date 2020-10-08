@@ -36,7 +36,7 @@ class AllMeetups extends React.Component {
       }
     }
 
-    meetupsNearUser(homeCityCell,homebase){
+    meetupsNearUser(homeCityCell){
         if(this.props.currentUser){
             if(homeCityCell){
                 return(
@@ -100,17 +100,19 @@ class AllMeetups extends React.Component {
 
     render() {
         const currentUser = this.props.currentUser;
-        const currentUserId = this.props.currentUserId;
-        const metroArr0 = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
-
         let homebase = ((currentUser) ? currentUser.home_city : "");
+        const currentUserId = this.props.currentUserId;
         let homeCityMeetups = "";
-        const metroArr = convertFunctions.quickSortCities(metroArr0, homebase);
 
-        const filteredArr = this.matches(metroArr);
+        const metroArr = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
+        // console.log("UNSORT", metroArr[2]);
+        const sortedArr = convertFunctions.quickSortCities(metroArr, homebase);
+        console.log("SORTED", sortedArr);
+        if((sortedArr.length > 0) && (homebase === sortedArr[sortedArr.length - 1].name)){homeCityMeetups = sortedArr.pop()}
+        console.log("SHIFTED", sortedArr);
+        const filteredArr = this.matches(sortedArr);
+        
         const noCityFound = ( !!filteredArr.length ? "" : <p>Sorry, buddy, no one is hosting a meetup in your prospective region.</p>); 
-
-        if((metroArr.length > 0) && (homebase === metroArr[0].name)){homeCityMeetups = metroArr.shift()}
         const hostCreateMeetup = ((currentUserId && currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
         
         return (
@@ -122,7 +124,7 @@ class AllMeetups extends React.Component {
                     {hostCreateMeetup}
                 </div>
                 <div className="meetups">
-                    {this.meetupsNearUser(homeCityMeetups, homebase)}
+                    {this.meetupsNearUser(homeCityMeetups)}
                     <div className="meetups">
                         {this.meetupLabel()}
 

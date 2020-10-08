@@ -22,8 +22,13 @@ class Hosting extends React.Component {
 
     becomeHost(e) {
         e.preventDefault();
-        const user = Object.assign({}, this.props.currentUser);
-        user.host_status = true;
+        // const user = Object.assign({}, this.props.currentUser);
+        // user.host_status = true;
+        console.log(this.props);
+        let user = new FormData();
+        user.append('user[id]', this.props.currentUser.id);
+        user.append('user[host_status]', true);
+
         this.props.processForm(user);
     };
 

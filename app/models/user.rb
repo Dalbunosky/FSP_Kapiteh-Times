@@ -35,9 +35,9 @@ class User < ApplicationRecord
         if self.story == ""
           errors[:story] << "can't be blank when you are a host."
         end
-    #   unless self.profile_pic.attached?
-    #     errors[:photo] << "must be on your profile when you are a host."
-    #   end
+        unless self.profile_pic.attached?
+          errors[:you] << "must have a profile picture when you are a host."
+        end
       end
     end
 
