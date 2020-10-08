@@ -71,12 +71,11 @@ class SingleMeetup extends React.Component{
 
 
   render(){
-    console.log("MEETUP PROPS", this.props.meetup);
     const currentUser = this.props.currentUser;
     const meetup = this.props.meetup;
     const guests = meetup.guest_ids;
     const host = meetup.hostName;
-    const hostImage = "" //meetup.hostImage;
+    const hostImage = meetup.hostImage;
     const venue = meetup.location[2];
     const address1 = `${meetup.location[3]}`;
     const address2 = `${meetup.location[4]} ${meetup.location[6]},${meetup.location[5]}`;

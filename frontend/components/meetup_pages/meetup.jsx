@@ -252,9 +252,9 @@ class MeetupShow extends React.Component {
                         <h3>Guests:</h3>
                         {meetup.guests.map((guest, i) => {
                             if (guest.phone)
-                                return(<li key={`guest-${i+1}`}><strong>Guest: </strong>{guest.name} <br/> <strong>- Phone: </strong>{guest.phone}</li>)
+                                return(<li key={`guest-${i+1}`}>{guest.name} <br/> - {guest.phone}</li>)
                             else 
-                                return(<li key={`guest-${1+i}`}><strong>Guest: </strong>{guest.name}</li>)
+                                return(<li key={`guest-${1+i}`}>{guest.name}</li>)
                         })}
                     </ul>
                 </div>      
@@ -263,6 +263,7 @@ class MeetupShow extends React.Component {
         // Else, show the host
         else{
             const hostPic = (meetup.hostImage && meetup.hostImage != "" ?  meetup.hostImage : window.staticImages.defaultPic)
+            console.log(meetup.hostImage);
             return(
                 <div className="meetup-right">
                     <ul className="meetup-guests">

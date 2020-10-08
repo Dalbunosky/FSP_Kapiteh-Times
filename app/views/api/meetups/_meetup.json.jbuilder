@@ -4,12 +4,8 @@ json.hostName meetup.host.name
 # json.image_url "PICTURE"
 
 if meetup.host.profile_pic.attached?
-    json.image_url url_for(meetup.host.profile_pic)
-    # json.image_url "PICTURE"
+    json.hostImage url_for(meetup.host.profile_pic)
 end
-# json.hostImage meetup.host.profile_pic
-# json.image_url url_for(meetup.host.profile_pic)
-# json.host_thumb asset_path(meetup.host.image_url(:thumb))
 
 # json.extract! meetup, :id, :date, :address, :host_id, :city_id, :guest_ids
 # json.host_name meetup.host.username

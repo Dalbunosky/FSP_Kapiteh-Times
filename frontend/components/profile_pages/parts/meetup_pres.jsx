@@ -60,7 +60,7 @@ class MeetUpCell extends React.Component {
                 return(
                     <div className="meetup-right">
                         <div className="host-pic-thumb margin-10"><a href={`#/host/${host.id}`}>
-                            <img src={window.staticImages.defaultPic} alt="Host Picture"/>
+                            <img src={host.image_url} alt="Host Picture"/>
                         </a></div>
                         <p><b>Host: </b>{host.name}</p>
                         <p><b>Phone: </b>{host.phone}</p>
