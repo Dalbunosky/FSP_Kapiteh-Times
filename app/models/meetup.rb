@@ -61,7 +61,7 @@ class Meetup < ApplicationRecord
     def location_filled
       self.location.map do |address_line|
         if (address_line == nil) || (address_line == "")
-          errors.add(:location, "is not filled in")
+          errors.add(:location, "information is incomplete")
           break
         end
       end

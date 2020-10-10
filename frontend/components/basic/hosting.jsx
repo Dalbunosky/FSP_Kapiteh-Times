@@ -24,7 +24,6 @@ class Hosting extends React.Component {
         e.preventDefault();
         // const user = Object.assign({}, this.props.currentUser);
         // user.host_status = true;
-        console.log(this.props);
         let user = new FormData();
         user.append('user[id]', this.props.currentUser.id);
         user.append('user[host_status]', true);
@@ -33,9 +32,9 @@ class Hosting extends React.Component {
     };
 
     renderErrors() {return(
-        <ul>
+        <ul className="red">
             {this.props.errors.map((error, i) => (
-                <li key={`error-${i}`}>{error}</li>
+                <li key={`error-${i}`}><strong>{error}!</strong></li>
             ))}
         </ul>
     )}

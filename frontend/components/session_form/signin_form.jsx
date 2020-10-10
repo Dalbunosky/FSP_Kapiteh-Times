@@ -39,9 +39,10 @@ class SignInForm extends React.Component {
   }
 
   renderErrors() {return(
-    <ul>
+    <ul className="red">
+      <br/>
       {this.props.errors.map((error, i) => (
-        <li key={`error-${i}`}>{error}</li>
+        <li key={`error-${i}`}><strong>{error}</strong></li>
       ))}
     </ul>
   )}

@@ -67,9 +67,9 @@ class EditMeetup extends React.Component {
 
   // ERRORS
   renderErrors() {return(
-    <ul>
+    <ul className="red">
       {this.props.errors.map((error, i) => (
-        <li key={`error-${i}`}>{error}</li>
+        <li key={`error-${i}`}><strong>{error}!</strong></li>
       ))}
     </ul>
   )}
