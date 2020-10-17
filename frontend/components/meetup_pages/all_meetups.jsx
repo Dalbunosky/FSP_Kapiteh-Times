@@ -105,11 +105,8 @@ class AllMeetups extends React.Component {
         let homeCityMeetups = "";
 
         const metroArr = convertFunctions.orgMeetupsIntoMetroes(Array.from(this.props.meetups));
-        // console.log("UNSORT", metroArr[2]);
         const sortedArr = convertFunctions.quickSortCities(metroArr, homebase);
-        console.log("SORTED", sortedArr);
         if((sortedArr.length > 0) && (homebase === sortedArr[sortedArr.length - 1].name)){homeCityMeetups = sortedArr.pop()}
-        console.log("SHIFTED", sortedArr);
         const filteredArr = this.matches(sortedArr);
         
         const noCityFound = ( !!filteredArr.length ? "" : <p>Sorry, buddy, no one is hosting a meetup in your prospective region.</p>); 

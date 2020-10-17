@@ -120,7 +120,6 @@ class NewMeetup extends React.Component {
 
   render() {
     const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
-    // console.log(this.props);
     return (
       <div className="new-meetup">
         <h3>New Meetup!</h3>

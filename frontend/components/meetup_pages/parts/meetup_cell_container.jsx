@@ -4,8 +4,6 @@ import { fetchMeetup, joinMeetup, leaveMeetup, cancelMeetup } from '../../../act
 import { withRouter } from 'react-router-dom';
 
 const mapSTP = (state, ownProps) => {
-    // console.log(state);
-    // console.log(ownProps.history);
     return {    // That's it? For joining?
         state,
         history: ownProps.history

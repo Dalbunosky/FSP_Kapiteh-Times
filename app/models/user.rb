@@ -30,13 +30,13 @@ class User < ApplicationRecord
       # user = User.find_by(email: email)
       if self.host_status == true
         unless self.phone
-          errors[:phone] << "number can't be blank when you are a host."
+          errors[:phone] << "number can't be blank when you are a host"
         end
         if self.story == ""
-          errors[:story] << "can't be blank when you are a host."
+          errors[:story] << "can't be blank when you are a host"
         end
         unless self.profile_pic.attached?
-          errors[:you] << "must have a profile picture when you are a host."
+          errors[:you] << "must have a profile picture when you are a host"
         end
       end
     end

@@ -1,15 +1,9 @@
 import React from 'react';
-// /hosting
-// Hosting
-// Explain the redirect in main
-// What process you would do
-// Button: Email
 export default () => (
     <div className="basic-page">
         <div className="welcome">
             <img src={window.staticImages.groupChat}/>
-            <span>Coffee or Tea?</span>
-            {/* <span>Coffee or Tea? </span> */}
+            <span><p className="large">Everyone has an interesting story</p><br/><p className="small">Come find out over a drink and a conversation.</p></span>
         </div>
 
         <div className="main-one">
@@ -66,8 +60,10 @@ export default () => (
 
         <div className='main-four'>
             {/* <img src={window.staticImages.appeal}/> */}
-            <p>So, can I get you a</p>
-            <button>Coffee or Tea?</button>
+            <p>So, are you up for a</p>
+
+            <a className="button" href="#/meetups">Coffee or Tea?</a>
+            {/* <button>Coffee or Tea?</button> */}
         </div>
 
         <div className="main-five">
