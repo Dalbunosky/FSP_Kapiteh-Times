@@ -11,8 +11,6 @@ export const MEETUP_CANCELLED = 'MEETUP_CANCELLED';
 // export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 export const receiveMeetups = meetups => {
-  // console.log("JUST RECEIVED");
-  // console.log(meetups);
   return({
   type: RECEIVE_MEETUPS,
   meetups,

@@ -8,7 +8,6 @@ import Hosting from './hosting';
 
 
 const mapSTP = (state) => {
-    // console.log(state);
     return {
         session: state.session.id,
         currentUser: state.users[state.session.id],

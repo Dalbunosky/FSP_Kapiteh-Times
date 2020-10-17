@@ -4,8 +4,6 @@ import { fetchUser } from '../../actions/session_actions';
 import AllMeetups from './all_meetups';
 
 const mapSTP = (state) => {
-    // console.log("STAAAAAAAAAAAAAAAAATE");
-    // console.log(state);
     return({
     meetups: state.meetups,
     currentUserId: state.session.id,
