@@ -135,39 +135,39 @@ export const quickSortCities = (cityArr, home = null) =>{
     let compareLength;
     let left = [];
     let right = [];
-    let shifted;
+    let popped;
     if(cityArr.length < 2) return cityArr;
 
-    if (cityArr[0].name === home){ foundHome = cityArr.shift() }
-    let pivot = cityArr.shift();
+    if (cityArr[cityArr.length-1].name === home){ foundHome = cityArr.pop() }
+    let pivot = cityArr.pop();
 
     const pivotMetro = pivot.name.toUpperCase()
     while(cityArr.length > 0){
-        if (cityArr[0].name === home){ 
-            foundHome = cityArr.shift();
+        if (cityArr[cityArr.length-1].name === home){ 
+            foundHome = cityArr.pop();
             continue;
         }
-        comparedMetro = cityArr[0].name.toUpperCase();
+        comparedMetro = cityArr[cityArr.length-1].name.toUpperCase();
         compareLength = Math.min(comparedMetro.length, pivotMetro.length);
-        shifted = false;
+        popped = false;
 
         // Now comparing city names
         for(let i=0; i< compareLength; i++){
             if(alphabet.indexOf(comparedMetro[i]) < alphabet.indexOf(pivotMetro[i])){
-                left.push(cityArr.shift());
-                shifted = true;
+                left.push(cityArr.pop());
+                popped = true;
                 break;
             }
             else if(alphabet.indexOf(comparedMetro[i]) > alphabet.indexOf(pivotMetro[i])){
-                right.push(cityArr.shift());
-                shifted = true;
+                right.push(cityArr.pop());
+                popped = true;
                 break;
             }
         }
         // One city has the entire name of another city. Compare by length of name.
-        if(shifted === false){
-            if(comparedMetro.length < pivotMetro.length){left.push(cityArr.shift())}
-            else{right.push(cityArr.shift())}
+        if(popped === false){
+            if(comparedMetro.length < pivotMetro.length){left.push(cityArr.pop())}
+            else{right.push(cityArr.pop())}
         }
     }
     const res = [...quickSortCities(left), pivot, ...quickSortCities(right)];
@@ -219,7 +219,7 @@ export const quickSortCities1 = (cityArr, home = null) =>{
             else{right.push(cityArr.shift())}
         }
     }
-    const res = [...quickSortCities(left), pivot, ...quickSortCities(right)];
+    const res = [...quickSortCities1(left), pivot, ...quickSortCities1(right)];
     return ((!!foundHome.length) ? res.unshift(foundHome) : res);
     // return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));

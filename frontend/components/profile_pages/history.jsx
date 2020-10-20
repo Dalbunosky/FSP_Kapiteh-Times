@@ -19,6 +19,11 @@ class History extends React.Component {
     this.props.fetchMeetups(this.props.currentUser.id);
   }
 
+  componentWillUnmount(){
+    this.props.clearErrors();
+    this.props.clearMessage();
+  }
+
   hostOnly(){
     return(this.props.currentUser.host_status ? <p> past hosted meetups</p> : "")
   

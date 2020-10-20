@@ -17,8 +17,10 @@ class HostShow extends React.Component {
         this.props.fetchHost(this.props.hostId);
         this.props.fetchMeetups(this.props.hostId);
     }
+
     componentWillUnmount(){
-      // this.props.clearErrors();
+      this.props.clearErrors();
+      this.props.clearMessage();
     }
   
 ////////////////////////////////////////////////////////////////////////

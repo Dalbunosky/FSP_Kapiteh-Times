@@ -5,6 +5,7 @@ import session from './session_reducer';
 import errors from './errors_reducer';
 import users from './main_content/users_reducer';
 import meetups from './main_content/meetups_reducer';
+import message from './message_reducer';
 // import reviews from './reviews_reducer';
 // import ui from './ui_reducer';
 // import filters from './filters_reducer';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   meetups,
   users,
   session,
+  message,
   errors
 });
 

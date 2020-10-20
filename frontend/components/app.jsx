@@ -31,7 +31,7 @@ import EditMeetUpContainer from './meetup_pages/edit_meetup_container';
 import { AuthRoute, ProtectedRoute, HostRoute, AdminRoute } from '../util/route_util';
 
 //Header, footer
-import { Header, Footer } from './molding.jsx';
+import { Header, Footer } from './moulding.jsx';
 
 // Non-changing pages
 import Home from './basic/home';

@@ -22,6 +22,7 @@ class MeetupShow extends React.Component {
     }
     componentWillUnmount(){
       // this.props.clearErrors();
+      this.props.clearMessage();
     }
   
 ////////////////////////////////////////////////////////////////////////

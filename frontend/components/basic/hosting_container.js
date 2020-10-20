@@ -4,6 +4,7 @@ import React from 'react';
 
 // import sessionReducer from '../../reducers/session_reducer'
 import { receiveCurrentUser, editUser, clearSessionErrors } from '../../actions/session_actions';
+import { clearMessage } from '../../actions/message_actions';
 import Hosting from './hosting';
 
 
@@ -19,7 +20,8 @@ const mapDTP = dispatch => {
     return {
         receiveCurrentUser: () => dispatch(receiveCurrentUser()),
         processForm: (user) => dispatch(editUser(user)),
-        clearErrors: () => dispatch(clearSessionErrors())
+        clearErrors: () => dispatch(clearSessionErrors()),
+        clearMessage: () => dispatch(clearMessage())
     };
 };
 

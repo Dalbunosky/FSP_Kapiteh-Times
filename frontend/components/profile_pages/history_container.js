@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { fetchHistoryMeetups } from '../../actions/meetup_actions';
+import { clearMessage } from '../../actions/message_actions';
 import History from './history';
 
 
@@ -19,7 +20,8 @@ const mapSTP = (state) => {
 
 const mapDTP = dispatch => {
     return {
-        fetchMeetups: id => dispatch(fetchHistoryMeetups(id))
+        fetchMeetups: id => dispatch(fetchHistoryMeetups(id)),
+        clearMessage: () => dispatch(clearMessage())
     };
 };
 

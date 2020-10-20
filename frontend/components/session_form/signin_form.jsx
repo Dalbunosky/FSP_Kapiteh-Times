@@ -21,8 +21,9 @@ class SignInForm extends React.Component {
     this.props.clearErrors();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(){
     this.props.clearErrors();
+    // this.props.clearMessage();
   }
 
   update(field) {
@@ -35,7 +36,14 @@ class SignInForm extends React.Component {
     e.preventDefault();
     const credentials = {email: this.state.email, password: this.state.password};
     const user = Object.assign({}, credentials);
-    this.props.processForm(user);
+    this.props.processForm(user)
+    .then(
+      () => this.props.history.push(`/meetups`)
+      .then(
+        () => this.props.receiveMessage("Welcome back!")
+        .then(console.log(this.props))
+      ), () => {}
+    );
   }
 
   renderErrors() {return(

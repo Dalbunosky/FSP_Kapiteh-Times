@@ -16,7 +16,7 @@
 
     @import 'basic-pages.scss';
     @import 'Calendar.css';
-    @import 'header-footer.scss';
+    @import 'header_footer.scss';
     @import 'host_show.scss';
     @import 'meetup_changes.scss';
     @import 'meetup_index.scss';
