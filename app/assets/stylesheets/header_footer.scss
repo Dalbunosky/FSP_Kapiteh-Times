@@ -29,12 +29,13 @@ header div {
 .message-bar {
     background-color: rgba(247, 191, 77, 0.87);
     width: 100%;
-    border: red, 1px, solid;
+    justify-content: center;
+
     p{
-        color: wheat;
+        color: red;
         font-weight: bold;
-        font-size: 18px;
-        margin: 5px;
+        font-size: 20px;
+        margin: 10px;
     }
 }
 

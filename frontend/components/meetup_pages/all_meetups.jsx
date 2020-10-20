@@ -36,6 +36,10 @@ class AllMeetups extends React.Component {
       }
     }
 
+    componentWillUnmount(){
+      this.props.clearMessage();
+    }
+
     meetupsNearUser(homeCityCell){
         if(this.props.currentUser){
             if(homeCityCell){

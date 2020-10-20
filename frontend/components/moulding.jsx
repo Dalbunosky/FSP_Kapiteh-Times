@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import GreetingContainer from './greeting/greeting_container';
-import MessagesContainer from './greeting/messages_container';
+import MessageContainer from './greeting/message_container';
 
 export const Header = () => (
     <header>
-        <div>
+        <div className="header">
             <Link to="/" className="header-link">
             {/* <h1>Logo</h1> */}
             <h1>Kapiteh Times</h1>
@@ -21,9 +21,7 @@ export const Header = () => (
             <GreetingContainer />
             {/* </nav> */}
         </div>
-        {/* <div className="msg-bar">
-            <MessagesContainer />
-        </div> */}
+        <MessageContainer />
     </header>
 );
 

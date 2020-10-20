@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { fetchProfileMeetups } from '../../actions/meetup_actions';
+import { clearMessage } from '../../actions/message_actions';
 // import { Link } from 'react-router-dom';
 
 // import sessionReducer from '../../reducers/session_reducer'
@@ -21,11 +22,12 @@ const mapSTP = (state) => {
 
 const mapDTP = dispatch => {
     return {
-        fetchMeetups: id => dispatch(fetchProfileMeetups(id))
+        fetchMeetups: id => dispatch(fetchProfileMeetups(id)),
         // fetchUser: () => dispatch(fetchUser()),
         // removeGuest: id => dispatch(removeGuest(id)),
         // removeMeetup: id => dispatch(removeMeetup(id))
-        // processForm: (user) => dispatch(signin(user)),
+        // processForm: (user) => dispatch(signin(user)),,
+        clearMessage: () => dispatch(clearMessage())
     };
 };
 

@@ -28,8 +28,9 @@ class SignUpForm extends React.Component {
     this.props.clearErrors();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(){
     this.props.clearErrors();
+    this.props.clearMessage();
   }
 
   update(field) {
@@ -61,6 +62,12 @@ class SignUpForm extends React.Component {
       user.append('user[story]', this.state.story);
       user.append('user[home_city]', this.state.home_city);
       this.props.processForm(user)
+      .then(
+        () => this.props.history.push(`/profile`)
+        .then(
+          () => this.props.receiveMessage("Welcome to Kapiteh Times! Your account has been successfully created!")
+        ), () => {}
+      )
   }
 
   renderErrors() {return(

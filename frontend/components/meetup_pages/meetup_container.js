@@ -4,6 +4,7 @@ import { fetchMeetup, editMeetup, cancelMeetup, joinMeetup, leaveMeetup } from '
 import { fetchHost } from '../../actions/user_actions';
 import { fetchUser } from '../../actions/session_actions';
 // import { createGuest } from '../../actions/guest_actions';
+import { clearMessage } from '../../actions/message_actions';
 
 const mapSTP = (state, ownprops) => {
   return({
@@ -29,6 +30,9 @@ const mapDTP = (dispatch) => ({
   // join/leave(guests) meetup
     joinMeetup: (meetupId) => dispatch(joinMeetup(meetupId)),
     leaveMeetup: (meetupId) => dispatch(leaveMeetup(meetupId)),
+
+  // Clear message board on the top
+    clearMessage: () => dispatch(clearMessage())
 })
 
 export default connect(mapSTP, mapDTP)(MeetupShow);

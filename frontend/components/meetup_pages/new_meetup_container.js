@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import NewMeetup from "./new_meetup";
 import { createMeetup, clearMeetupErrors } from "../../actions/meetup_actions";
+import { clearMessage } from '../../actions/message_actions';
 
 const mapSTP = (state) => {
   return({
@@ -14,7 +15,8 @@ const mapSTP = (state) => {
 const mapDTP = dispatch => ({
   // functions needed:
   processForm: meetup => dispatch(createMeetup(meetup)),
-  clearErrors: () => dispatch(clearMeetupErrors())
+  clearErrors: () => dispatch(clearMeetupErrors()),
+  clearMessage: () => dispatch(clearMessage())
 })
 
 export default connect(mapSTP, mapDTP)(NewMeetup);

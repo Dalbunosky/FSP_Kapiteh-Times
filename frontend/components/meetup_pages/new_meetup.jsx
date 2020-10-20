@@ -29,6 +29,7 @@ class NewMeetup extends React.Component {
 
   componentWillUnmount(){
     this.props.clearErrors();
+    this.props.clearMessage();
   }
 
   update(field) {

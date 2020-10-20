@@ -29,6 +29,11 @@ class Profile extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    // this.props.clearErrors();
+    this.props.clearMessage();
+  }
+
   hostOnlyMeetups(hosting){
     if (this.props.currentUser.host_status){
       if(hosting.length > 0){

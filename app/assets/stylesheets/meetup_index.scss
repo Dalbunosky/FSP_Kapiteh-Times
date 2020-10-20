@@ -36,10 +36,12 @@
                 display: block;
             }
             .host-pic-thumb{
-                // margin-top: 10px;
                 height: 300px;
                 width: 300px;
                 font-size: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             .meetup-actions{
                 display: flex;

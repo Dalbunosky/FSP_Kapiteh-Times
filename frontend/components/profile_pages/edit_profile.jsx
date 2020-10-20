@@ -32,7 +32,8 @@ class EditProfile extends React.Component {
     this.props.clearErrors();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(){
+    this.props.clearMessage();
     this.props.clearErrors();
     this.setState({success: false});
   }
@@ -85,7 +86,13 @@ class EditProfile extends React.Component {
 
   handleCloseAcct(e) {
     e.preventDefault();
-    this.props.closeAccount();
+    this.props.closeAccount()
+    .then(
+      () => this.props.history.push(`/`)
+      .then(
+        () => this.props.receiveMessage("Thank you for trying Kapiteh Times!")
+      ), () => {}
+    );
   }
 
   update(field) {

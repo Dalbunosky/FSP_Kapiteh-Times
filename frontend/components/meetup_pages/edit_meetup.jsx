@@ -48,6 +48,7 @@ class EditMeetup extends React.Component {
 
 
   componentWillUnmount(){
+    this.props.clearMessage();
     this.props.clearErrors();
   }
 
