@@ -3,8 +3,9 @@ import Message from './message';
 import { clearMessage } from "../../actions/message_actions";
 
 const mapSTP = (state) => {
+
     return {
-        message: state.message
+        user: state.users[state.session.id]
     };
 };
 

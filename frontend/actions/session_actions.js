@@ -8,14 +8,18 @@ export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 export const CLOSE_USER_ACCOUNT = "CLOSE_USER_ACCOUNT";
 
 
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = currentUser => {
+  console.log("RECEIVED", currentUser);
+  return({
   type: RECEIVE_CURRENT_USER,
   currentUser
-});
+});}
 
-export const signoutCurrentUser = () => ({
+export const signoutCurrentUser = (message) => {
+  console.log("RECEIVED", message);
+  return({
   type: SIGNOUT_CURRENT_USER,
-});
+});}
 
 export const receiveUserErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -58,7 +62,7 @@ export const signin = user => dispatch => (
 
 export const signout = () => dispatch => (
   SessAPIUtil.signout().then(user => (
-    dispatch(signoutCurrentUser())
+    dispatch(signoutCurrentUser(user))
   ))
 );
 

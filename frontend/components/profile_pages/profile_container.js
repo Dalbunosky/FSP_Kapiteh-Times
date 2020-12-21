@@ -10,7 +10,7 @@ import Profile from './profile';
 
 
 const mapSTP = (state) => {
-    // console.log(state.users);
+    // console.log("STATE", state.users[state.session.id].message);
     // console.log(state.session);
     return {
         currentUser: state.users[state.session.id],
