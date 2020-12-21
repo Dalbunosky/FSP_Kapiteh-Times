@@ -38,10 +38,11 @@ class SignInForm extends React.Component {
     const user = Object.assign({}, credentials);
     this.props.processForm(user)
     .then(
-      () => this.props.history.push(`/meetups`)
+      // () => this.props.history.push(`/meetups`)
+      console.log("HIIIIIIII", this.props)
       .then(
         () => this.props.receiveMessage("Welcome back!")
-        .then(console.log(this.props))
+        // .then(console.log(this.props))
       ), () => {}
     );
   }
