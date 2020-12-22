@@ -90,7 +90,7 @@ class Api::MeetupsController < ApplicationController
 
 
     def join
-      @ticket = Ticket.new(meetup_id: params[:id], user_id: current_user.id)
+      @ticket = Ticket.new(meetup_id: params[:id], user_id: current_user.id, waitlisted: false)
       if @ticket.save
         @meetup = @ticket.meetup
         render "/api/meetups/show"
@@ -98,12 +98,26 @@ class Api::MeetupsController < ApplicationController
         render json: @ticket.errors.full_messages, status: 422
       end
     end
+
+    def waitlist
+        @ticket = Ticket.new(meetup_id: params[:id], user_id: current_user.id, waitlisted: true)
+        if @ticket.save
+            @meetup = @ticket.meetup
+            render "/api/meetups/show"
+        else
+            render json: @ticket.errors.full_messages, status: 422
+        end
+    end
   
     def leave
       @ticket = Ticket.find_by(meetup_id: params[:id], user_id: current_user.id)
       if @ticket
         Ticket.destroy(@ticket.id)
         @meetup = @ticket.meetup    # Why need this?
+        
+# If there is waitlist, change oldest waitlist ticket to active
+# Send message to affected user
+
         render "api/meetups/show"
       else
         render json: @ticket.errors.full_messages, status: 422

@@ -15,7 +15,7 @@ class NewMeetup extends React.Component {
       topic: "",
       guests: [],
       capacity: 0,
-      
+      waitlist: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -235,6 +235,15 @@ class NewMeetup extends React.Component {
                   type="number"
                   value={this.state.capacity}
                   onChange={this.update('capacity')}
+                />
+              </label>
+              <br/>
+              <label className="data-entry">
+                <p className="signinup-title">Waitlist Limit:*</p>
+                <input className="text-input"
+                  type="number"
+                  value={this.state.waitlist}
+                  onChange={this.update('waitlist')}
                 />
               </label>
 

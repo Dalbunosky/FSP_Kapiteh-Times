@@ -41,6 +41,14 @@ class MeetupShow extends React.Component {
       };
     };
   
+    handleWaitlist(e){
+      return(e) => {
+        e.preventDefault();
+        this.props.joinWaitlist(this.props.meetupId)
+        // .then(() => this.props.history.push('/profile'));
+      };
+    };
+  
     handleUnattend(e){
       return(e) => {
         e.preventDefault();
@@ -113,7 +121,7 @@ class MeetupShow extends React.Component {
             </p>;
       
             meetupEditButton =
-            <button className="meetup-edit-button button orange" onClick={this.handleEdit(meetup.id)}>
+            <button className="meetup-edit-button button" onClick={this.handleEdit(meetup.id)}>
                 EDIT MEETUP
             </button>;
       
@@ -125,7 +133,7 @@ class MeetupShow extends React.Component {
             // <Link to={`/hosting/${props.meetup.id}`}>Edit This Meetup</Link>;
           } 
           // You've joined
-          else if (meetup.guest_ids.includes(currentUser.id)) {
+          else if (meetup.active_guests.includes(currentUser.id)) {
           // else if (meetup.guests.includes(currentUser)) {
             meetupJoinLink =
             <p className="green">
@@ -140,13 +148,14 @@ class MeetupShow extends React.Component {
           // Meetup full, you haven't joined
           else if (meetup.guests.length >= meetup.capacity) {
             meetupJoinLink =
-            <p className="button green">
-              MEETUP IS FULL
-            </p>;
-            // // FUTURE UPGRADE TO WAITLIST
-            // <button className="button green">
-            //   YOU JOINED THIS MEETUP
-            // </button>;
+            <p className="red">MEETUP IS FULL</p>;
+            if(meetup.waitlist > meetup.waitlisted_guests.length){
+              meetupCancelButton =
+              <p className="button" onClick={this.handleWaitlist(meetup.id)}>JOIN WAITLIST</p>
+            } else {
+              meetupCancelButton =
+              <p className="red">SORRY, WAITLIST IS FULL TOO</p>;
+            }
           } 
       
           // You haven't joined, there's space
@@ -177,7 +186,7 @@ class MeetupShow extends React.Component {
             // Meetup is full
             else{
               meetupJoinLink =
-              <p className="button orange">Meetup is full</p>
+              <p className="red">MEETUP IS FULL</p>;
             }
             
         }
@@ -217,7 +226,8 @@ class MeetupShow extends React.Component {
                               <li><strong>Date:                        </strong>{date}</li>
                               <li><strong>Time:   </strong>{time}</li>
                               {/* <li>End:    </li> */}
-                              <li><strong>Space:  </strong>{meetup.guests.length}/{meetup.capacity}</li>
+                              <li><strong>Space:  </strong>{meetup.active_guests.length}/{meetup.capacity}</li>
+                              <li><strong>Waitlist:  </strong>{meetup.waitlisted_guests.length}/{meetup.waitlist}</li>
                               <li><strong>Topics and Icebreakers: </strong><br/>{meetup.topic}</li>
                           </ul>
                           {/* <a href={"https://www.google.com/maps/place/1165+Gilman+Ave,+San+Francisco,+CA+94124/"}>Google Maps</a> */}

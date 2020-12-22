@@ -47,11 +47,19 @@ export const fetchMeetup = id => (
 );
 
 
-// Joining and leaving meetup
+// Joining, waitlisting, and leaving meetup
 export const joinMeetup = meetupId => ( 
   $.ajax({
     method: 'POST',
     url: `/api/meetups/${meetupId}/join`,
+    id: meetupId
+  })
+);
+
+export const joinWaitlist = meetupId => ( 
+  $.ajax({
+    method: 'POST',
+    url: `/api/meetups/${meetupId}/waitlist`,
     id: meetupId
   })
 );

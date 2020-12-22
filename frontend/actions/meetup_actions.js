@@ -128,6 +128,15 @@ export const joinMeetup = meetupId => dispatch => (
   ))
 );
 
+// Join waitlist
+export const joinWaitlist = meetupId => dispatch => (
+  APIUtil.joinWaitlist(meetupId).then(meetup => (
+    dispatch(receiveMeetup(meetup))
+  ), err => (
+    dispatch(receiveMeetupErrors(err.responseJSON))
+  ))
+);
+
 // Leave meetup
 export const leaveMeetup = meetupId => dispatch => {
   return(

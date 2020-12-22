@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :meetups do   
       # Yes, I can just create a line for tickets to join/leave, but this is good practice
       post :join, :on => :member
+      post :waitlist, :on => :member
       delete :leave, :on => :member
       get :profile, :on => :member   #For profile page meetups
       get :history, :on => :member  #For history page meetups
