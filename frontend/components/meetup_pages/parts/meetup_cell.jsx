@@ -73,7 +73,8 @@ class SingleMeetup extends React.Component{
   render(){
     const currentUser = this.props.currentUser;
     const meetup = this.props.meetup;
-    const guests = meetup.guest_ids;
+    const active_guests = meetup.active_guests;
+    const waitlisted_guests = meetup.waitlisted_guests;
     const host = meetup.hostName;
     const hostImage = meetup.hostImage;
     const venue = meetup.location[2];
@@ -101,7 +102,7 @@ class SingleMeetup extends React.Component{
       </p>;
 
       meetupEditButton =
-      <button className="meetup-edit-button button orange" onClick={this.handleEdit(meetup.id)}>
+      <button className="meetup-edit-button button" onClick={this.handleEdit(meetup.id)}>
           EDIT MEETUP
       </button>;
 
@@ -113,7 +114,7 @@ class SingleMeetup extends React.Component{
       // <Link to={`/hosting/${meetup.id}`}>Edit This Meetup</Link>;
     } 
     // You've joined
-    else if (guests.includes(currentUser)) {
+    else if (active_guests.includes(currentUser)) {
       meetupNote =
       <p className="green margin-10">
         YOU JOINED THIS MEETUP
@@ -124,8 +125,20 @@ class SingleMeetup extends React.Component{
         CANCEL YOUR SPOT
       </button>;
     } 
+    // You've joined
+    else if (waitlisted_guests.includes(currentUser)) {
+      meetupNote =
+      <p className="green margin-10">
+        YOU'RE ON THE WAITLIST
+      </p>;
+
+      meetupCancelButton =
+      <button className="button red" onClick={this.handleUnattend(meetup.id)}>
+        CANCEL YOUR SPOT
+      </button>;
+    } 
     // Meetup full, you haven't joined
-    else if (this.props.meetup.guests.length >= this.props.meetup.capacity) {
+    else if (active_guests.length >= this.props.meetup.capacity) {
       meetupNote =
       <p className="red margin-10">
         MEETUP IS FULL
@@ -146,7 +159,7 @@ class SingleMeetup extends React.Component{
           <p><b>Date:</b>  {date[0]}<br/>{date[1]}</p>
           <p><b>Time:</b>   {time}</p>
           {/* <p>End:</b>    </p> */}
-          <p><b>Space:</b>  {guests.length}/{meetup.capacity}</p>
+          <p><b>Space:</b>  {active_guests.length}/{meetup.capacity}</p>
         </div>
 
         {/* {meetupRightItem(currentUser)} */}
