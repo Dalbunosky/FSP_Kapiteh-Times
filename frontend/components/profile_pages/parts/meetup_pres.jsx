@@ -82,7 +82,7 @@ class MeetUpCell extends React.Component {
                 <div className="meetup-right">
                     <h3>Guests</h3>
                     {this.props.meetup.guests.map(guest =>(
-                        <p>{guest.name} <b>Phone: </b>{guest.phone}</p>
+                        <p key={guest.id}>{guest.name} <b>Phone: </b>{guest.phone}</p>
                         //fetch each guest
                         // return(
                         // <div className="guest-details">

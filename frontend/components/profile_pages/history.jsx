@@ -20,7 +20,7 @@ class History extends React.Component {
   }
 
   componentWillUnmount(){
-    this.props.clearErrors();
+    // this.props.clearErrors();
     this.props.clearMessage();
   }
 

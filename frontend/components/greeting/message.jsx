@@ -10,7 +10,7 @@ const Message = (props) => {
         }
     }, [])
     // let state = Object.entries(props.state);
-    const message = props.user ? props.user.message : null;
+    const message = props.message;
 
     const displayMessage = () => (
         <div className="message-bar">
@@ -19,7 +19,7 @@ const Message = (props) => {
         </div>
     );
     // MESSAGE WON'T GO THROUGH BACKEND, BUT WILL BE UPDATED IN STORE USING REDUCERS CALLED VIA ACTIONS
-    return message ? displayMessage() : "";
+    return (message ? displayMessage() : "");
     // return displayMessage();
 };
 

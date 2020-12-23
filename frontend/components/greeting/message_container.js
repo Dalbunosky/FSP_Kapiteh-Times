@@ -5,7 +5,8 @@ import { clearMessage } from "../../actions/message_actions";
 const mapSTP = (state) => {
 
     return {
-        user: state.users[state.session.id]
+        user: state.users[state.session.id],
+        message: state.message
     };
 };
 

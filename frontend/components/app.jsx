@@ -1,7 +1,7 @@
 // const express = require("express");
 // import express from 'express';
 // const app = express();
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import {
   Route,
@@ -27,12 +27,6 @@ import MeetUpShowContainer from './meetup_pages/meetup_container'; // Shows deta
 import NewMeetUpContainer from './meetup_pages/new_meetup_container';
 import EditMeetUpContainer from './meetup_pages/edit_meetup_container';
 
-
-import { AuthRoute, ProtectedRoute, HostRoute, AdminRoute } from '../util/route_util';
-
-//Header, footer
-import { Header, Footer } from './moulding.jsx';
-
 // Non-changing pages
 import Home from './basic/home';
 import About from './basic/about';
@@ -40,6 +34,14 @@ import HostingContainer from './basic/hosting_container';
 import Terms from './basic/terms';
 import Disclaimer from './basic/disclaimer';
 import BadPage from './basic/oops';
+
+
+//Header, footer
+import { Header, Footer } from './moulding.jsx';
+
+import { AuthRoute, ProtectedRoute, HostRoute, AdminRoute } from '../util/route_util';
+
+import { clearMessage } from '../actions/message_actions';
 
 // app.use(passport.initialize());
 // require("./config/passport")(passport);
@@ -52,10 +54,17 @@ import BadPage from './basic/oops';
 // const users = require("./routes/api/users");
 // const rooms = require("./routes/api/rooms");
 
-const App = () => (
+const App = () => {
+  // useEffect(() => {
+  //       return () => {
+  //           clearMessage()
+  //       }
+  // }, [])
+  return(
   <div id="whole-page">
     <Header />
     <div id="main_content">
+
       <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
@@ -86,6 +95,6 @@ const App = () => (
     </div>
     <Footer />
   </div>
-);
+)};
 
 export default App;
