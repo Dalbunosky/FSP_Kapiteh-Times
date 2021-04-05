@@ -31,3 +31,7 @@ To submit work:
     git push origin ______  <-- your branch's name
 
     on github page Create pull request ADD REVIEWER on top right
+
+Servers:
+    Front: npm run webpack
+    End: rails s -p 3000
