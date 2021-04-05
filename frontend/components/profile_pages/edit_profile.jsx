@@ -17,7 +17,7 @@ class EditProfile extends React.Component {
             email_subscription: this.props.currentUser.email_subscription,
             host_status: this.props.currentUser.host_status,
             fileName: "",
-            klass: "noshow",
+            modal_display: "noshow",
             success: false
         };
 
@@ -40,10 +40,10 @@ class EditProfile extends React.Component {
 
   confirmCancel(e){
     e.preventDefault();
-    // this.setState({ klass: "HFGDFGF" });
+    // this.setState({ modal_display: "HFGDFGF" });
     // return e => 
     this.setState({
-      klass: ((this.state.klass==="noshow") ? "confirmation" : "noshow")
+      modal_display: ((this.state.modal_display==="noshow") ? "yesshow" : "noshow")
     });
   }
 
@@ -137,7 +137,7 @@ class EditProfile extends React.Component {
 
 
   render() {
-    let klass = "noshow";
+    // let modal_display = "noshow";
     const yepNope = bool => ( bool ? "Yep!" : "Nope!");
     const amIHost = bool => ( bool ? <a href="#/meetups/new" className="button">Yep! Let's host!</a> : <a href="#/hosting" className="button">Not Yet! But I want to be!</a>);
     const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Save successful!</strong></p> : "");
@@ -201,7 +201,7 @@ class EditProfile extends React.Component {
                   </label>
                 </div>
                 <div className="right">
-                  <p>A picture of yourself.<br/>Optional, until you become a host.</p>
+                  <p className="signinup-title">A picture of yourself.<br/>Optional, until you become a host.</p>
 
                   <label for="file-upload" className="button">Select File</label>
                   <input id="file-upload" type="file" onChange={this.updateFile()} />
@@ -257,11 +257,13 @@ class EditProfile extends React.Component {
                 <p>You don't want to have an account anymore?</p>
                 <button onClick={this.confirmCancel} >Thank you for trying Kapiteh Times!</button>
               </label>
-
-              <div className={this.state.klass}>
-                <p>Are you sure you want to cancel the account?</p>
-                <button onClick={this.confirmCancel}>No! I clicked on accident!</button>
-                <button onClick={this.handleCloseAcct}>Yes.</button>
+              <div className={this.state.modal_display}>
+                <div className="modal-screen"></div>
+                <div className="modal-confirmation">
+                  <p>Are you sure you want to cancel the account?</p>
+                  <button onClick={this.confirmCancel}>No! I clicked on accident!</button>
+                  <button onClick={this.handleCloseAcct}>Yes.</button>
+                </div>
               </div>
 
               {/* <button onClick={this.kingYourself} >{yepNope(this.props.currentUser.host_status)}</button> */}
