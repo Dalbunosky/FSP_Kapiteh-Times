@@ -20,14 +20,14 @@ class Api::UsersController < ApplicationController
   end
 
 
-  def update # Update user, available to hosts only
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-        render 'api/users/show'
-    else
-        render json: @user.errors.full_messages, status: 422
-    end
-  end
+  # def update # Update user, available to hosts only
+  #   @user = User.find(params[:id])
+  #   if @user.update_attributes(user_params)
+  #       render 'api/users/show'
+  #   else
+  #       render json: @user.errors.full_messages, status: 422
+  #   end
+  # end
 
   def index
     @user = current_user

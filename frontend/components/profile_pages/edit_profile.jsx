@@ -241,22 +241,32 @@ class EditProfile extends React.Component {
               <input className="session-submit button" type="submit" value="Submit Changes" />
               {saveSuccess(this.state.success)}
             </form>
-            <div className="sub-host">
-              <label className="data-entry">
+
+            <div className="profile-settings">
+              {/* <label className="data-entry"> */}
+                <h3 className="signinup-title">Need to change password?</h3>
+                <p>Please have your current password ready.</p>
+                <a className="button" href="#/password-change">Change Password</a>
+              {/* </label> */}
+
+              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Am I a host?</h3>
                 <p>If you want to host your own meetup</p>
                 {amIHost(this.state.host_status)}
-              </label>
-              <label className="data-entry">
+              {/* </label> */}
+
+              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Email Subscription:</h3>
                 <p>Your email subscription is used to contact you when needed, in cases such as...</p>
                 <button onClick={this.toggleEmailSub} >{yepNope(this.props.currentUser.email_subscription)}</button>
-              </label>
-              <label className="data-entry">
+              {/* </label> */}
+
+              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Delete Account</h3>
                 <p>You don't want to have an account anymore?</p>
                 <button onClick={this.confirmCancel} >Thank you for trying Kapiteh Times!</button>
-              </label>
+              {/* </label> */}
+
               <div className={this.state.modal_display}>
                 <div className="modal-screen"></div>
                 <div className="modal-confirmation">
