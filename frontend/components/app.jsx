@@ -20,6 +20,7 @@ import ProfileContainer from './profile_pages/profile_container';
 import EditProfileContainer from './profile_pages/edit_profile_container';
 import HistoryContainer from './profile_pages/history_container';
 import HostShowContainer from './profile_pages/host_show_container';
+import EditPasswordContainer from './profile_pages/edit_password_container';
 
 // Meetup pages
 import MeetUpIndexContainer from './meetup_pages/all_meetups_container'; // Shows index of all meetups
@@ -75,6 +76,7 @@ const App = () => {
           <AuthRoute exact path="/signin" component={SignInFormContainer} />
           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
 
+          <ProtectedRoute path="/password-change" component={EditPasswordContainer} />
           <ProtectedRoute path="/profile/edit" component={EditProfileContainer} />
           <ProtectedRoute path="/profile/history" component={HistoryContainer} />
           <ProtectedRoute path="/profile" component={ProfileContainer} />

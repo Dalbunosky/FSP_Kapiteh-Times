@@ -110,10 +110,12 @@ class SignUpForm extends React.Component {
     // console.log("this.state", this.state);
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
+    const deletePic = () => this.state.imageURL ? <button onClick={this.deleteFile()}>Remove Picture</button> : "";
     const confirmPasswordButton = (pw1, pw2) => {
       if(pw1 === pw2 && pw1 != ""){ return(<div><input className="session-submit button" type="submit" value="Sign Up!" /></div>)}
-      else { return(<h3 className="signinup-form-container">You can't submit unless your passwords match!</h3>)}};
-    const deletePic = () => this.state.imageURL ? <button onClick={this.deleteFile()}>Remove Picture</button> : "";
+      else if(pw1 != pw2){return(<p className="signinup-form-container red">You can't submit unless your passwords match!</p>)}
+      else{return(<p className="signinup-form-container red">You can't register without a password!</p>)}}
+
     return (
       <div className="profile-changes">
         <h3>Welcome to Kapiteh Times!</h3>
@@ -151,6 +153,7 @@ class SignUpForm extends React.Component {
 
               <label className="data-entry">
                 <p className="signinup-title">Password:*</p>
+                <p style={{fontSize: "12px"}}>(at least 8 characters long)</p>
                 <input className="text-input" type={toggleInputType(this.state.pwDisplay)}
                   value={this.state.password}
                   onChange={this.update('password')}
