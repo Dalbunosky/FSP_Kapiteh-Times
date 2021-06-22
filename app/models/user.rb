@@ -46,6 +46,9 @@ class User < ApplicationRecord
     #     errors[:photo] << "must be on your profile when you are a host."
     #   end
     # end
+  
+###############################################
+# Password 
 
     def is_password?(password)
       BCrypt::Password.new(self.password_digest).is_password?(password)
@@ -61,7 +64,15 @@ class User < ApplicationRecord
       @password = password
       self.password_digest = BCrypt::Password.create(password)
     end
+
+    def self.find_by_id(id, password)
+      user = User.find_by(id: id)
+      return nil unless user
+      user.is_password?(old_password) ? user : nil
+    end
   
+###############################################
+# Session 
     def reset_session_token!
       generate_unique_session_token
       save!
