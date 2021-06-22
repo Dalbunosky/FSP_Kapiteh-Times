@@ -12,11 +12,10 @@ Rails.application.routes.draw do
       resources :meetups, only: :index # This would fetch all meetups the host is hosting
     end
 
-    resources :users, only: [:create, :index, :show, :update, :destroy] 
-    # do
-    #   get :profile, :on => :member   #For profile page meetups
-    #   get :history, :on => :member  #For history page meetups
-    # end
+    resources :users do #, only: [:create, :index, :show, :update, :destroy] 
+    # # do
+      patch :password   #For changing password
+    end
 
     resource :session, only: [:create, :destroy] #sign-in, sign-out
     resources :tickets, only: [:create, :destroy] #join and leave meetup. Currently not used.
