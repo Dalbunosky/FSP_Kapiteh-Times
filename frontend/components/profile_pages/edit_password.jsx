@@ -39,11 +39,6 @@ class EditPassword extends React.Component {
     formData.append('user[id]', this.state.id);
     formData.append('user[name]', this.state.name);
     formData.append('user[email]', this.state.email);
-    formData.append('user[phone]', this.state.phone);
-    formData.append('user[story]', this.state.story);
-    formData.append('user[home_city]', this.state.home_city);
-    formData.append('user[email_subscription]', this.state.email_subscription);
-    formData.append('user[host_status]', this.state.host_status);
     if (this.state.imageFile) {
       formData.append('user[profile_pic]', this.state.imageFile);
     }
@@ -51,6 +46,21 @@ class EditPassword extends React.Component {
     .then(() => this.setState({success: true}), () => this.setState({success: false}));
 
   }
+
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   const credentials = {old_password: this.state.oldPassword, new_password: this.state.newPassword};
+  //   const passwords = Object.assign({}, credentials);
+  //   this.props.processForm(passwords)
+  //   .then(
+  //     // () => this.props.history.push(`/meetups`)
+  //     console.log("HIIIIIIII", this.props)
+  //     .then(
+  //       () => this.props.receiveMessage("Welcome back!")
+  //       // .then(console.log(this.props))
+  //     ), () => {}
+  //   );
+  // }
 
   update(field) {
     return e => this.setState({
@@ -79,7 +89,7 @@ class EditPassword extends React.Component {
   render() {
     const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Password successfully changed!</strong></p> : "");
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
-    const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
+    // const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {
       if(pw1 === pw2 && pw1 != ""){ return(<div><input className="session-submit button" type="submit" value="Sign Up!" /></div>)}
       else if(pw1 != pw2){return(<p className="signinup-form-container red">You can't submit unless your new passwords match!</p>)}
@@ -133,38 +143,6 @@ class EditPassword extends React.Component {
               {saveSuccess(this.state.success)}
             </form>
             {this.renderErrors()}
-
-
-            <form onSubmit={this.handleSubmit} className="full-profile">
-              <div className="change-password">
-                  {/* <label className="data-entry">
-                  <p className="signinup-title">Please type in old password to confirm</p>
-                  <input type="password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                      className="signinup-input"
-                  />
-                  </label>
-                  <label className="data-entry">
-                  <p className="signinup-title">Please type in new password</p>
-                  <input type="password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                      className="signinup-input"
-                  />
-                  </label>
-                  <label className="data-entry">
-                  <p className="signinup-title">Please type in new password again</p>
-                  <input type="password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                      className="signinup-input"
-                  />
-                  </label> */}
-              </div>
-              <input className="session-submit button" type="submit" value="Submit Changes" />
-              {saveSuccess(this.state.success)}
-            </form>
         </div>
       </div>
     );

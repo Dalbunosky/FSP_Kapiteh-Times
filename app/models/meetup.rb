@@ -54,7 +54,7 @@ class Meetup < ApplicationRecord
     
     def date_must_be_in_the_future
       if self.starttime <= Time.now.to_i
-        errors.add(:starttime, "needs to be in the future")
+        errors.add("The meetup needs to be in the future")
       end
     end
 
