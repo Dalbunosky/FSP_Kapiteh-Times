@@ -71,7 +71,7 @@ const About = ({clearMessage}) => {
                         place for you to have fun turning the wheels and pressing the buttons.
                 </p>
                     
-                <img src={window.staticImages.profilePic} />
+                {/* <img src={window.staticImages.profilePic} /> */}
                 <h3>Who is behind all of this?</h3>
                 <p>
                     Hi, I'm Chi Yung Lee, and I created Kapiteh Times. If you'd like to have a chat or 
