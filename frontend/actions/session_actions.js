@@ -6,20 +6,24 @@ export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 export const CLOSE_USER_ACCOUNT = "CLOSE_USER_ACCOUNT";
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 
 export const receiveCurrentUser = currentUser => {
-  console.log("RECEIVED", currentUser);
   return({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });}
 
 export const signoutCurrentUser = (message) => {
-  console.log("RECEIVED", message);
   return({
   type: SIGNOUT_CURRENT_USER,
 });}
+
+export const passwordChanged = msg => ({
+  type: CHANGE_PASSWORD,
+  msg
+});
 
 export const receiveUserErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -74,6 +78,24 @@ export const editUser = user => dispatch => (
     dispatch(receiveUserErrors(err.responseJSON))
   ))
 );
+
+// Change Account Password
+export const changePassword = passwords => dispatch => (
+  SessAPIUtil.changePassword(passwords).then(msg => (
+    dispatch(passwordChanged(msg))
+  ), err => (
+    dispatch(receiveUserErrors(err.responseJSON))
+  ))
+);
+
+// // Change Account Password
+// export const changePassword = passwords => dispatch => (
+//   SessAPIUtil.changePassword(passwords).then(success => (
+//     dispatch(receiveUserErrors(success))
+//   ), err => (
+//     dispatch(receiveUserErrors(err.responseJSON))
+//   ))
+// );
 
 export const closeAcct = () => dispatch => (
   SessAPIUtil.closeAcct().then(user => (

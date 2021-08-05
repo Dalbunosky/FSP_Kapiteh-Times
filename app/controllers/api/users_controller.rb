@@ -19,19 +19,13 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def password
-    p "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
-    p params
-    @user = User.find(params[:id])
-    # @user = User.find_by_id(
-    #   params[:user][:id],
-    #   params[:user][:old_password]
-    # )
-
-    if @user && #old_password matches
+  def password  
+    @user = User.find_by_id(params[:id], params[:password])
+    if @user
       # Assign new password
-      p self
-      password=()
+      @user.password=(params[:new_password])
+      @user.save
+      render json: ["Password successfully changed."]
     else
       render json: ["Old password entered is incorrect"], status: 401
     end

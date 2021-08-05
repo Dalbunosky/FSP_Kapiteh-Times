@@ -5,8 +5,9 @@ import ProfileBar from './parts/profile_pres';
 class EditPassword extends React.Component {
     constructor(props) {
         super(props);
-        // console.log(this.props)
+        // console.log(this.props.currentUser)
         this.state = {
+            // id: this.props.currentUser.id,
             errors: this.props.errors,
             oldPassword: "",
             newPassword: "",
@@ -29,38 +30,38 @@ class EditPassword extends React.Component {
     this.setState({success: false});
   }
 
-  handleSubmit(e) {
-    // e.preventDefault();
-
-    // const user = Object.assign({}, this.state);
-    // this.props.processForm(user);
-
-    let formData = new FormData();
-    formData.append('user[id]', this.state.id);
-    formData.append('user[name]', this.state.name);
-    formData.append('user[email]', this.state.email);
-    if (this.state.imageFile) {
-      formData.append('user[profile_pic]', this.state.imageFile);
-    }
-    this.props.processForm(formData)
-    .then(() => this.setState({success: true}), () => this.setState({success: false}));
-
-  }
-
   // handleSubmit(e) {
-  //   e.preventDefault();
-  //   const credentials = {old_password: this.state.oldPassword, new_password: this.state.newPassword};
-  //   const passwords = Object.assign({}, credentials);
-  //   this.props.processForm(passwords)
-  //   .then(
-  //     // () => this.props.history.push(`/meetups`)
-  //     console.log("HIIIIIIII", this.props)
-  //     .then(
-  //       () => this.props.receiveMessage("Welcome back!")
-  //       // .then(console.log(this.props))
-  //     ), () => {}
-  //   );
+  //   // e.preventDefault();
+
+  //   // const user = Object.assign({}, this.state);
+  //   // this.props.processForm(user);
+
+  //   let formData = new FormData();
+  //   formData.append('user[id]', this.state.id);
+  //   formData.append('user[name]', this.state.name);
+  //   formData.append('user[email]', this.state.email);
+  //   if (this.state.imageFile) {
+  //     formData.append('user[profile_pic]', this.state.imageFile);
+  //   }
+  //   this.props.processForm(formData)
+  //   .then(() => this.setState({success: true}), () => this.setState({success: false}));
+
   // }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const credentials = {
+      id: this.props.currentUser.id, 
+      email: this.props.currentUser.email,
+      password: this.state.oldPassword, 
+      new_password: this.state.newPassword
+    };
+    const passwords = Object.assign({}, credentials);
+
+    // console.log(passwords);
+    this.props.processForm(passwords)
+    .then(() => this.setState({success: true}), () => this.setState({success: false}));
+  }
 
   update(field) {
     return e => this.setState({
@@ -91,9 +92,11 @@ class EditPassword extends React.Component {
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     // const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
     const confirmPasswordButton = (pw1, pw2) => {
-      if(pw1 === pw2 && pw1 != ""){ return(<div><input className="session-submit button" type="submit" value="Sign Up!" /></div>)}
+      if(pw1 === pw2 && pw1.length > 7){ return(<div><input className="session-submit button" type="submit" value="Change Password" /></div>)}
+      else if(pw1 === ""){return(<p className="signinup-form-container red">You can't submit without a new password!</p>)}
       else if(pw1 != pw2){return(<p className="signinup-form-container red">You can't submit unless your new passwords match!</p>)}
-      else{return(<p className="signinup-form-container red">You can't submit without a password!</p>)}}
+      else{return(<p className="signinup-form-container red">Your new password needs to be longer!</p>)}
+    }
 
     return (
       <div className="edit-profile">
@@ -140,7 +143,6 @@ class EditPassword extends React.Component {
                     {confirmPasswordButton(this.state.newPassword, this.state.confirmPassword)}
                     {saveSuccess(this.state.success)}
                 </div>
-              {saveSuccess(this.state.success)}
             </form>
             {this.renderErrors()}
         </div>

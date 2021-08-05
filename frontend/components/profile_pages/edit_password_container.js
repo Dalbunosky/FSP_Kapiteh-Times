@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { clearSessionErrors } from '../../actions/session_actions';
+import { clearSessionErrors, changePassword  } from '../../actions/session_actions';
 import { receiveMessage, clearMessage } from '../../actions/message_actions';
 import EditPassword from './edit_password';
 
@@ -13,6 +13,7 @@ const mapSTP = (state) => ({
 
 const mapDTP = dispatch => {
     return {
+        processForm: (passwords) => dispatch(changePassword(passwords)),
         receiveMessage: (message) => dispatch(receiveMessage(message)),
         clearErrors: () => dispatch(clearSessionErrors()),
         clearMessage: () => dispatch(clearMessage())

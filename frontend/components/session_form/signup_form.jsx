@@ -171,7 +171,7 @@ class SignUpForm extends React.Component {
                 />
               </label>
 
-              <p>{confirmPasswordWarning(this.state.password, this.state.password2)}</p>
+              <p className="red">{confirmPasswordWarning(this.state.password, this.state.password2)}</p>
 
               <label className="data-entry">
                 <p className="signinup-title">Where are you now? Which metropolitan area/region? <br/> Not the exact suburb, but the main city/region you are associated with*</p>

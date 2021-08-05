@@ -23,6 +23,15 @@ export const editUser = user => {
   })
 );}
 
+export const changePassword = passwords => {
+  return(
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/users/${passwords.id}/password`, 
+    data: passwords
+  })
+);}
+
 export const closeAcct = userid => (
   $.ajax({
     method: 'DELETE',

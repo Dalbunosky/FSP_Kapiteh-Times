@@ -59,16 +59,16 @@ class User < ApplicationRecord
       return nil unless user
       user.is_password?(password) ? user : nil
     end
-  
-    def password=(password)
-      @password = password
-      self.password_digest = BCrypt::Password.create(password)
-    end
 
     def self.find_by_id(id, password)
       user = User.find_by(id: id)
       return nil unless user
-      user.is_password?(old_password) ? user : nil
+      user.is_password?(password) ? user : nil
+    end
+  
+    def password=(password)
+      @password = password
+      self.password_digest = BCrypt::Password.create(password)
     end
   
 ###############################################
