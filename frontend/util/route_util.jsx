@@ -17,7 +17,9 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => {
 };
 
 // Take to login if not logged in
-const Protected = ({ component: Component, path, loggedIn, exact }) => (
+const Protected = ({ component: Component, path, loggedIn, exact }) => { 
+  console.log(component);
+  return(
   <Route path={path} exact={exact} render={(props) => (
      loggedIn ? (
       <Component {...props} />
@@ -26,6 +28,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
     )
   )} />
 );
+}
 
 // Host only routes, CHANGE LATER TO HOST ONLY
 const Hosted = ({ component: Component, path, isHost, exact }) => (

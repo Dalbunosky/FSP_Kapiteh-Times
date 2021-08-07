@@ -18,7 +18,8 @@ import { RECEIVE_MESSAGE, CLEAR_MESSAGE } from '../actions/message_actions';
         return(action.meetup.message ? action.meetup.message : "");
       case MEETUP_CANCELLED:
         return "Meetup successfully cancelled!";
-
+      case SUSTAIN_MESSAGE:
+        return state;
       case CLEAR_MESSAGE:
         return "";
       default:
