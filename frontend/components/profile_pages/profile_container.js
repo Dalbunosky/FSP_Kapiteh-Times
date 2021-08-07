@@ -11,7 +11,7 @@ import Profile from './profile';
 
 const mapSTP = (state) => {
     // console.log("STATE", state.users[state.session.id].message);
-    // console.log(state.session);
+    console.log(state);
     return {
         currentUser: state.users[state.session.id],
         meetups: state.meetups,

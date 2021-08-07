@@ -33,9 +33,11 @@ class EditProfile extends React.Component {
   }
 
   componentWillUnmount(){
-    this.props.clearMessage();
     this.props.clearErrors();
     this.setState({success: false});
+    if(!!this.props.session){
+      this.props.clearMessage();
+    }
   }
 
   confirmCancel(e){

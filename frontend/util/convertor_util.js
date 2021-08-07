@@ -129,7 +129,11 @@ export const quickSortMeetups = (meetupArr = []) =>{
 }
 
 export const quickSortCities = (cityArr, home = null) =>{
-    const alphabet = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    const alphabet = {" ": 0, "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, 
+        "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17,
+        "R": 18, "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26
+    }
+    
     let foundHome = [];
     let comparedMetro;
     let compareLength;
@@ -153,12 +157,12 @@ export const quickSortCities = (cityArr, home = null) =>{
 
         // Now comparing city names
         for(let i=0; i< compareLength; i++){
-            if(alphabet.indexOf(comparedMetro[i]) < alphabet.indexOf(pivotMetro[i])){
+            if(alphabet[comparedMetro[i]] < alphabet[pivotMetro[i]]){
                 left.push(cityArr.pop());
                 popped = true;
                 break;
             }
-            else if(alphabet.indexOf(comparedMetro[i]) > alphabet.indexOf(pivotMetro[i])){
+            else if(alphabet[comparedMetro[i]] > alphabet[pivotMetro[i]]){
                 right.push(cityArr.pop());
                 popped = true;
                 break;
@@ -166,13 +170,18 @@ export const quickSortCities = (cityArr, home = null) =>{
         }
         // One city has the entire name of another city. Compare by length of name.
         if(popped === false){
-            if(comparedMetro.length < pivotMetro.length){left.push(cityArr.pop())}
-            else{right.push(cityArr.pop())}
+            if(comparedMetro.length < pivotMetro.length){
+                left.push(cityArr.pop())
+            }
+            else{
+                right.push(cityArr.pop())
+            }
         }
     }
     const res = [...quickSortCities(left), pivot, ...quickSortCities(right)];
     if(!!foundHome) res.push(foundHome);
-    return res;
+
+    return res.filter(el => !!el.name);
     // return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
     // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 }

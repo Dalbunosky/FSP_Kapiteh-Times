@@ -2,7 +2,7 @@ import { RECEIVE_CURRENT_USER, SIGNOUT_CURRENT_USER, CLOSE_USER_ACCOUNT, CHANGE_
 import { RECEIVE_MEETUP, MEETUP_CANCELLED } from '../actions/meetup_actions';
 import { RECEIVE_MESSAGE, CLEAR_MESSAGE } from '../actions/message_actions';
 
-  export default (state = [], action) => {
+  export default (state = '', action) => {
     Object.freeze(state);
     switch (action.type) {
       case RECEIVE_CURRENT_USER:
@@ -18,7 +18,6 @@ import { RECEIVE_MESSAGE, CLEAR_MESSAGE } from '../actions/message_actions';
         return(action.meetup.message ? action.meetup.message : "");
       case MEETUP_CANCELLED:
         return "Meetup successfully cancelled!";
-
       case CLEAR_MESSAGE:
         return "";
       default:

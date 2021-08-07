@@ -6,11 +6,13 @@ import { signin, clearSessionErrors } from '../../actions/session_actions';
 import { clearMessage, receiveMessage } from '../../actions/message_actions';
 import SignInForm from './signin_form';
 
-const mapSTP = ({errors}) => {
+const mapSTP = (state) => {
+  console.log(state);
   return {
     // errors: errors.session,
     // errors: session,
-    errors
+    message: state.message,
+    errors: state.errors
   };
 };
 

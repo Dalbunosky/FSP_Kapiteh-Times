@@ -22,10 +22,16 @@ class Api::UsersController < ApplicationController
   def password  
     @user = User.find_by_id(params[:id], params[:password])
     if @user
-      # Assign new password
-      @user.password=(params[:new_password])
-      @user.save
-      render json: ["Password successfully changed."]
+      # User entered correct password, check new password's length
+      if params[:new_password].length >= 8
+        # Password is long enough. Assign new password
+        @user.password=(params[:new_password])
+        @user.save
+        render json: ["Password successfully changed."]
+      else
+        # Password too short. Reject
+        render json: ["New password is too short"], status: 401
+      end
     else
       render json: ["Old password entered is incorrect"], status: 401
     end
