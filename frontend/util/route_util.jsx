@@ -17,18 +17,15 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => {
 };
 
 // Take to login if not logged in
-const Protected = ({ component: Component, path, loggedIn, exact }) => { 
-  console.log(component);
-  return(
+const Protected = ({ component: Component, path, loggedIn, exact }) => (
   <Route path={path} exact={exact} render={(props) => (
      loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to="/signin" />
+      <Redirect to="/signin"/>
     )
   )} />
 );
-}
 
 // Host only routes, CHANGE LATER TO HOST ONLY
 const Hosted = ({ component: Component, path, isHost, exact }) => (

@@ -5,6 +5,7 @@ import AllMeetups from './all_meetups';
 import { clearMessage } from '../../actions/message_actions';
 
 const mapSTP = (state) => {
+    // console.log(state.meetups);
     return({
     meetups: state.meetups,
     currentUserId: state.session.id,

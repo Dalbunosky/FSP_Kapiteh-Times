@@ -113,7 +113,7 @@ class AllMeetups extends React.Component {
         if((sortedArr.length > 0) && (homebase === sortedArr[sortedArr.length - 1].name)){homeCityMeetups = sortedArr.pop()}
         const filteredArr = this.matches(sortedArr);
         
-        const noCityFound = ( !!filteredArr.length ? "" : <p>Sorry, buddy, no one is hosting a meetup in your prospective region.</p>); 
+        const noCityFound = ( !!filteredArr.length ? "" : <p className="red">Sorry, buddy, no one is hosting a meetup in your prospective region.</p>); 
         const hostCreateMeetup = ((currentUserId && currentUser.host_status === true)? <a href="#/meetups/new">Let's create and host a new Meetup</a> : "")
         
         return (

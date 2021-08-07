@@ -25,28 +25,15 @@ class EditPassword extends React.Component {
   }
 
   componentWillUnmount(){
-    this.props.clearMessage();
     this.props.clearErrors();
     this.setState({success: false});
+    if(!!this.props.session){
+      this.props.clearMessage();
+    }
+    if(this.props.message === "Password change successful. You will be logged off. Please re-login with new password." && this.state.success){
+      this.props.signout();
+    }
   }
-
-  // handleSubmit(e) {
-  //   // e.preventDefault();
-
-  //   // const user = Object.assign({}, this.state);
-  //   // this.props.processForm(user);
-
-  //   let formData = new FormData();
-  //   formData.append('user[id]', this.state.id);
-  //   formData.append('user[name]', this.state.name);
-  //   formData.append('user[email]', this.state.email);
-  //   if (this.state.imageFile) {
-  //     formData.append('user[profile_pic]', this.state.imageFile);
-  //   }
-  //   this.props.processForm(formData)
-  //   .then(() => this.setState({success: true}), () => this.setState({success: false}));
-
-  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -88,6 +75,8 @@ class EditPassword extends React.Component {
 
 
   render() {
+    console.log(this.props.message);
+    console.log(this.state.success);
     const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Password successfully changed!</strong></p> : "");
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     // const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");
