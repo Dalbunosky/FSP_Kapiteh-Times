@@ -30,6 +30,10 @@ Each user will have access to a profile page where said user's upcoming meetups 
 
 On the meetups page, there is a search bar that allows users to search for nearby meetups by name of metro area. Metro area is the metropolitan region you are in, such as Los Angeles, vs city, which could be Culver City. By using metro areas, you would be able to find more available meetups as cities in a regions don't act independently and are very close by.
 
+### Password change
+
+Users have the ability to change their profile details, including their account's password
+
 # Future Features
 
 - Event messages on top of page.

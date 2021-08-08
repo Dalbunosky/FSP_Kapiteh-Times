@@ -9,8 +9,7 @@ class NewMeetup extends React.Component {
     super(props)
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      starttime: "",
-      endtime: "",
+      starttime: "yyyy-mm-dd hh:mm",
       // starttime: [null, null, null, null, null, null],     // [DOW, year, month, day, hour, minute]
       metro_area: this.props.host.home_city,
       topic: "",
@@ -237,6 +236,7 @@ class NewMeetup extends React.Component {
                   onChange={this.update('waitlist')}
                 />
               </label>
+
               {/* datetime-local is not widely used and isn't supported in Firefox */}
               {/* <input
                 className="create-meetup-form-input-field"
@@ -244,8 +244,8 @@ class NewMeetup extends React.Component {
                 type="datetime-local"
                 value={this.state.starttime}
               /> */}
-            </div>
 
+            </div>
             <div className="new-meetup-bottom">
               <div className="when">
               {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
@@ -260,11 +260,12 @@ class NewMeetup extends React.Component {
               <div className="when">
               {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
                 <p className="final-form-header">Until when?</p>
-                <p>Meetup is set to end at {this.state.endtime}</p>
+                <p>Meetup is currently set for {this.state.starttime}</p>
                 <label className="data-entry">
                   <input type="time" className="time" onChange={this.onTimeChange()} />
                 </label>
                 <Calendar onChange={this.onDateChange()} />
+
               </div>
 
             </div>
