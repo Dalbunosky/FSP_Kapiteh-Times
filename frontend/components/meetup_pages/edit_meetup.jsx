@@ -9,7 +9,8 @@ class EditMeetup extends React.Component {
     super(props)
     this.state = {
       location: [181, 181, null, null, null, null, null, null], // [lat, lng, name of venue, address, city, state/province, zip, country]
-      starttime: "yyyy-mm-dd hh:mm",
+      starttime: "",
+      endtime: "",
       metro_area: this.props.host.home_city,
       topic: "",
       guests: [],
@@ -42,8 +43,13 @@ class EditMeetup extends React.Component {
         metro_area: this.props.meetup.metro_area,
         topic: this.props.meetup.topic,
         guests: this.props.meetup.guests,
-        capacity: this.props.meetup.capacity,
+        capacity: this.props.meetup.capacity
       })
+      if(this.props.meetup.endtime){
+        this.setState({
+          endtime: this.changeTimetoString(this.props.meetup.endtime)
+        })
+      }
     }
   }
 
@@ -100,26 +106,35 @@ class EditMeetup extends React.Component {
   }
 
   // For time only handling
-  onTimeChange() {
-    let date = this.state.starttime.split(" ");
+  onTimeChange(time, bool) {
+    let date = time.split(" ");
     return e => {
       const timestring = e.target.value.split(":");
       const time = `${timestring[0]}:${timestring[1]}`
 
+      if(bool){
       this.setState({ starttime: [date[0], time].join(" ") })
+      }
+      else{
+        this.setState({ endtime: [date[0], time].join(" ") })
+      }
     }
   }
   
   // For date to string
-  onDateChange() {
-    // if(this.props.meetup){
-      const time = this.state.starttime.split(" ");
-      return e => {
-        let timestring = e.toDateString().split(" ");
-        const date = `${timestring[3]}-${convertFunctions.convertMonthtoInt(timestring[1])}-${timestring[2]}`
+  onDateChange(date, bool) {
+    const time = date.split(" ");
+    return e => {
+      let timestring = e.toDateString().split(" ");
+      const date = `${timestring[3]}-${convertFunctions.convertMonthtoInt(timestring[1])}-${timestring[2]}`
+
+      if(bool){
         this.setState({ starttime: [date, time[1]].join(" ") })
       }
-    // }
+      else{
+        this.setState({ endtime: [date, time[1]].join(" ") })
+      }
+    }
   }
 
   changeTimetoString(datetime){
@@ -230,16 +245,6 @@ class EditMeetup extends React.Component {
                     />
                   </label>
                 </div>
-                <div className="when">
-                {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
-                  <p className="final-form-header"><strong>When should we meet?</strong></p>
-                  <p>Meetup is currently set for {this.state.starttime}</p>
-                  <label className="data-entry">
-                    <input type="time" className="time" onChange={this.onTimeChange()} />
-                  </label>
-                  <Calendar onChange={this.onDateChange()} />
-    
-                </div>
               </div>
     
               <div className="new-meetup-right">
@@ -297,6 +302,27 @@ class EditMeetup extends React.Component {
                   value={this.state.starttime}
                 /> */}
     
+              </div>
+              <div className="new-meetup-bottom">
+                <div className="when">
+                {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
+                  <p className="final-form-header">When will the meetup start?</p>
+                  <p>Meetup is currently set for {this.state.starttime}</p>
+                  <label className="data-entry">
+                    <input type="time" className="time" onChange={this.onTimeChange(this.state.starttime, true)} />
+                  </label>
+                  <Calendar onChange={this.onDateChange(this.state.starttime, true)} />
+
+                </div>
+                <div className="when">
+                {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
+                  <p className="final-form-header">Until when?</p>
+                  <p>Meetup is set to end at {this.state.endtime}</p>
+                  <label className="data-entry">
+                    <input type="time" className="time" onChange={this.onTimeChange(this.state.endtime, false)} />
+                  </label>
+                  <Calendar onChange={this.onDateChange(this.state.endtime, false)} />
+                </div>
               </div>
             </div>
             <input className="meetup-submit button" type="submit" value="Save Changes!" />

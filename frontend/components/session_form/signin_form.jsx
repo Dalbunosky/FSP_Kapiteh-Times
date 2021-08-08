@@ -23,7 +23,7 @@ class SignInForm extends React.Component {
 
   componentWillUnmount(){
     this.props.clearErrors();
-    this.props.clearMessage();
+    // this.props.clearMessage();
   }
 
   update(field) {

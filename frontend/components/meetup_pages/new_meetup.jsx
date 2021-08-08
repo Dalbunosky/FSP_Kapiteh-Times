@@ -78,23 +78,34 @@ class NewMeetup extends React.Component {
   }
 
   // For time only handling
-  onTimeChange() {
-    let date = this.state.starttime.split(" ");
+  onTimeChange(time, bool) {
+    let date = time.split(" ");
     return e => {
       const timestring = e.target.value.split(":");
       const time = `${timestring[0]}:${timestring[1]}`
 
+      if(bool){
       this.setState({ starttime: [date[0], time].join(" ") })
+      }
+      else{
+        this.setState({ endtime: [date[0], time].join(" ") })
+      }
     }
   }
   
   // For date to string
-  onDateChange() {
-    const time = this.state.starttime.split(" ");
+  onDateChange(date, bool) {
+    const time = date.split(" ");
     return e => {
       let timestring = e.toDateString().split(" ");
       const date = `${timestring[3]}-${convertFunctions.convertMonthtoInt(timestring[1])}-${timestring[2]}`
-      this.setState({ starttime: [date, time[1]].join(" ") })
+
+      if(bool){
+        this.setState({ starttime: [date, time[1]].join(" ") })
+      }
+      else{
+        this.setState({ endtime: [date, time[1]].join(" ") })
+      }
     }
   }
 
@@ -252,9 +263,9 @@ class NewMeetup extends React.Component {
                 <p className="final-form-header">When will the meetup start?</p>
                 <p>Meetup is currently set for {this.state.starttime}</p>
                 <label className="data-entry">
-                  <input type="time" className="time" onChange={this.onTimeChange()} />
+                  <input type="time" className="time" onChange={this.onTimeChange(this.state.starttime, true)} />
                 </label>
-                <Calendar onChange={this.onDateChange()} />
+                <Calendar onChange={this.onDateChange(this.state.starttime, true)} />
 
               </div>
               <div className="when">
@@ -262,11 +273,10 @@ class NewMeetup extends React.Component {
                 <p className="final-form-header">Until when?</p>
                 <p>Meetup is set to end at {this.state.endtime}</p>
                 <label className="data-entry">
-                  <input type="time" className="time" onChange={this.onTimeChange()} />
+                  <input type="time" className="time" onChange={this.onTimeChange(this.state.endtime, false)} />
                 </label>
-                <Calendar onChange={this.onDateChange()} />
+                <Calendar onChange={this.onDateChange(this.state.endtime, false)} />
               </div>
-
             </div>
           
           </div>

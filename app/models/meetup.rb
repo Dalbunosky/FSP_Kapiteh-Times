@@ -12,7 +12,7 @@
 
 class Meetup < ApplicationRecord
     validates :location, :starttime, :capacity, :topic, :host_id, :metro_area, presence: true
-    validate :has_capacity, :location_filled, :date_must_be_in_the_future
+    validate :has_capacity, :location_filled, :date_must_be_in_the_future, :end_comes_after_start
   
     belongs_to :host,
       primary_key: :id,
@@ -55,6 +55,14 @@ class Meetup < ApplicationRecord
     def date_must_be_in_the_future
       if self.starttime <= Time.now.to_i
         errors.add("The meetup needs to be in the future")
+      end
+    end
+
+    def end_comes_after_start
+      if !!self.endtime
+        if self.endtime.to_i < self.starttime.to_i
+          errors.add("Meetup end time is before start time")
+        end
       end
     end
 
