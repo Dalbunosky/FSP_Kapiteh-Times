@@ -88,7 +88,7 @@ class EditMeetup extends React.Component {
 
     const meetup = Object.assign({}, this.state);
     meetup.starttime = new Date(this.state.starttime).valueOf()/1000;
-    meetup.endtime = new Date(this.state.endtime).valueOf()/1000;
+    if(this.state.endtime){meetup.endtime = new Date(this.state.endtime).valueOf()/1000};
     meetup.id = this.props.meetup.id;
     
     this.props.processForm(meetup)
