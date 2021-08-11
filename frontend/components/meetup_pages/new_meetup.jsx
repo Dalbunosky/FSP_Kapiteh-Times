@@ -61,6 +61,7 @@ class NewMeetup extends React.Component {
     e.preventDefault();
     const meetup = Object.assign({}, this.state);
     meetup.starttime = new Date(this.state.starttime).valueOf()/1000;
+    meetup.endtime = new Date(this.state.endtime).valueOf()/1000;
     
     this.props.processForm(meetup)
     .then(() => this.props.history.push(`/profile`));
