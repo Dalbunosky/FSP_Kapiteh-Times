@@ -20,11 +20,11 @@ Hosts are members who are allowed to create and host meetups. To become a host, 
 
 ### Meetup information and options
 
-Each meetup will have the venue name, address, a picture of the host, as well as the appropriate information depending on the user. The user will also have different options pertaining to a meetup depending on whether said user is logged in, the host, the attendee, and whether the meetup is full.
+Each meetup will have the venue name, address, a picture of the host, as well as the appropriate information depending on the user. The user will also have different options pertaining to a meetup depending on whether said user is logged in, the host, the attendee, and whether the meetup is full. The meetup can be set up with or without an end time.
 
 ### Profile feature
 
-Each user will have access to a profile page where said user's upcoming meetups are listed. To see previous meetups, there is a history page, and to change any personal information as shown on the left of the profile page, there is a page to edit said information.
+Each user will have access to a profile page where said user's upcoming meetups are listed. To see previous meetups, there is a history page, and to change any personal information as shown on the left of the profile page, there is a page to edit said  details, including their account's password. Closing of user account is possible, though what to do with said user's details in past meetups have not been determined.
 
 ### Search by metro area
 
@@ -34,17 +34,13 @@ On the meetups page, there is a search bar that allows users to search for nearb
 
 A message bar in the header will extend and display any relevant messages such as recognition of logging in or password change, then disappear.
 
-### Password change
-
-Users have the ability to change their profile details, including their account's password.
-
 # Future Features
 
 - Removal of profile pictures for regular users
 - Review of host
 - Wait List
 - Google Map API for meetups
-- Meetup duration/end time, crash monitoring
+- Meetup crash monitoring
 - User preferences for things like 12/24 or mm/dd/yyyy display
 - Email (If this can be done at all)
 - Messaging system so that guests and hosts can contact each other
