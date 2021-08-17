@@ -128,7 +128,68 @@ export const quickSortMeetups = (meetupArr = []) =>{
     return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
 }
 
-export const quickSortCities = (cityArr, home = null) =>{
+export const quickSortCities = (cityArray, base = null) =>{
+    const alphabet = {" ": 0, "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, 
+        "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17,
+        "R": 18, "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26
+    }
+
+    const subSortCities = (cityArr, home) =>{
+        let foundHome = [];
+        let comparedMetro;
+        let compareLength;
+        let left = [];
+        let right = [];
+        let popped;
+        if(cityArr.length < 2) return cityArr;
+
+        if (cityArr[cityArr.length-1].name === home){ foundHome = cityArr.pop() }
+        let pivot = cityArr.pop();
+
+        const pivotMetro = pivot.name.toUpperCase()
+        while(cityArr.length > 0){
+            if (cityArr[cityArr.length-1].name === home){ 
+                foundHome = cityArr.pop();
+                continue;
+            }
+            comparedMetro = cityArr[cityArr.length-1].name.toUpperCase();
+            compareLength = Math.min(comparedMetro.length, pivotMetro.length);
+            popped = false;
+
+            // Now comparing city names
+            for(let i=0; i< compareLength; i++){
+                if(alphabet[comparedMetro[i]] < alphabet[pivotMetro[i]]){
+                    left.push(cityArr.pop());
+                    popped = true;
+                    break;
+                }
+                else if(alphabet[comparedMetro[i]] > alphabet[pivotMetro[i]]){
+                    right.push(cityArr.pop());
+                    popped = true;
+                    break;
+                }
+            }
+            // One city has the entire name of another city. Compare by length of name.
+            if(popped === false){
+                if(comparedMetro.length < pivotMetro.length){
+                    left.push(cityArr.pop())
+                }
+                else{
+                    right.push(cityArr.pop())
+                }
+            }
+        }
+        const res = [...quickSortCities(left), pivot, ...quickSortCities(right)];
+        if(!!foundHome) res.push(foundHome);
+
+        return res.filter(el => !!el.name);
+        // return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
+        // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
+    }
+    return subSortCities(cityArray, base);
+}
+
+export const quickSortCities2 = (cityArr, home = null) =>{
     const alphabet = {" ": 0, "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, 
         "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17,
         "R": 18, "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26

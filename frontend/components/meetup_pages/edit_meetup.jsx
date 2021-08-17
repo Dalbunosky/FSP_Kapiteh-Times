@@ -1,5 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
+import DatePicker from 'react-datepicker';
 import * as convertFunctions from '../../util/convertor_util';
 // import Calendar from 'react-calendar/dist/entry.nostyle';
 // import { Link } from 'react-router-dom';
@@ -73,6 +74,13 @@ class EditMeetup extends React.Component {
     }
   }
 
+  removeEndTime() {
+    return e => this.setState({
+      endtime: ""
+      // Reset calendar, time
+    });
+  }
+
   // ERRORS
   renderErrors() {return(
     <ul className="red">
@@ -108,6 +116,7 @@ class EditMeetup extends React.Component {
 
   // For time only handling
   onTimeChange(time, bool) {
+    console.log(time);
     let date = time.split(" ");
     return e => {
       const timestring = e.target.value.split(":");
@@ -120,6 +129,11 @@ class EditMeetup extends React.Component {
         this.setState({ endtime: [date[0], time].join(" ") })
       }
     }
+  }
+
+  // For time only handling
+  onTimeChangeA(time, bool) {
+    console.log(time);
   }
   
   // For date to string
@@ -137,6 +151,11 @@ class EditMeetup extends React.Component {
       }
     }
   }
+
+  handleChangeDate = (starttime, event) => {
+    // this.setState({  starttime });
+    console.log(starttime);
+  };
 
   changeTimetoString(datetime){
     // 2020-5-07 01:09
@@ -313,6 +332,8 @@ class EditMeetup extends React.Component {
                     <input type="time" className="time" onChange={this.onTimeChange(this.state.starttime, true)} />
                   </label>
                   <Calendar onChange={this.onDateChange(this.state.starttime, true)} />
+                  <DatePicker selected={this.state.date} onChange={this.handleChangeDate} />
+
 
                 </div>
                 <div className="when">
@@ -323,6 +344,7 @@ class EditMeetup extends React.Component {
                     <input type="time" className="time" onChange={this.onTimeChange(this.state.endtime, false)} />
                   </label>
                   <Calendar onChange={this.onDateChange(this.state.endtime, false)} />
+                  <button onClick={this.removeEndTime()}>Remove end time</button>
                 </div>
               </div>
             </div>

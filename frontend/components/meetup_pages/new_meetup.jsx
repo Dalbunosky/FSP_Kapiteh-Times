@@ -47,6 +47,13 @@ class NewMeetup extends React.Component {
     }
   }
 
+  removeEndTime() {
+    return e => this.setState({
+      endtime: ""
+      // Reset calendar, time
+    });
+  }
+
   // ERRORS
   renderErrors() {return(
     <ul className="red">
@@ -120,11 +127,6 @@ class NewMeetup extends React.Component {
       fileReader.readAsDataURL(file);
     }
   }
-
-  // In handleSubmit
-  // if (this.state.photoFile) {
-  //   formData.append('bench[photo]', this.state.photoFile);
-  // }
 
   // RENDER
 
@@ -266,7 +268,7 @@ class NewMeetup extends React.Component {
                 <label className="data-entry">
                   <input type="time" className="time" onChange={this.onTimeChange(this.state.starttime, true)} />
                 </label>
-                <Calendar onChange={this.onDateChange(this.state.starttime, true)} />
+                <Calendar className="calendar" onChange={this.onDateChange(this.state.starttime, true)} />
 
               </div>
               <div className="when">
@@ -276,7 +278,8 @@ class NewMeetup extends React.Component {
                 <label className="data-entry">
                   <input type="time" className="time" onChange={this.onTimeChange(this.state.endtime, false)} />
                 </label>
-                <Calendar onChange={this.onDateChange(this.state.endtime, false)} />
+                <Calendar className="calendar" onChange={this.onDateChange(this.state.endtime, false)} />
+                <button onClick={this.removeEndTime()}>Remove end time</button>
               </div>
             </div>
           

@@ -54,14 +54,16 @@ class Meetup < ApplicationRecord
     
     def date_must_be_in_the_future
       if self.starttime <= Time.now.to_i
-        errors.add("The meetup needs to be in the future")
+        # errors.add("The meetup needs to be in the future")
+        errors.add(:meetup, "needs to be in the future")
       end
     end
 
     def end_comes_after_start
       if !!self.endtime
         if self.endtime.to_i < self.starttime.to_i
-          errors.add("Meetup end time is before start time")
+          # errors.add("Meetup end time is before start time")
+          errors.add(:meetup, "end time is before start time")
         end
       end
     end
