@@ -4,6 +4,8 @@ import {fetchHost, receiveHost} from './user_actions';
 
 export const RECEIVE_MEETUPS = 'RECEIVE_MEETUPS';
 export const RECEIVE_MEETUP = 'RECEIVE_MEETUP';
+export const MEETUP_CREATED = 'MEETUP_CREATED';
+export const MEETUP_UPDATED = 'MEETUP_UPDATED';
 export const MEETUP_HAS_ERRORS = "MEETUP_HAS_ERRORS";
 export const CLEAR_MEETUP_ERRORS = 'CLEAR_MEETUP_ERRORS';
 export const MEETUP_CANCELLED = 'MEETUP_CANCELLED';
@@ -18,6 +20,16 @@ export const receiveMeetups = meetups => {
 
 export const receiveMeetup = meetup => ({
   type: RECEIVE_MEETUP,
+  meetup
+});
+
+export const meetupCreated = meetup => ({
+  type: MEETUP_CREATED,
+  meetup
+});
+
+export const meetupUpdated = meetup => ({
+  type: MEETUP_UPDATED,
   meetup
 });
 
@@ -90,7 +102,7 @@ export const fetchMeetup = id => dispatch => (
 // Creates meetup
 export const createMeetup = meetup => dispatch => (
   APIUtil.createMeetup(meetup).then(meetup => (
-    dispatch(receiveMeetup(meetup))
+    dispatch(meetupCreated(meetup))
   ), err => (
     dispatch(receiveMeetupErrors(err.responseJSON))
   ))
@@ -99,7 +111,7 @@ export const createMeetup = meetup => dispatch => (
 // Edits meetup
 export const editMeetup = meetup => dispatch => (
   APIUtil.editMeetup(meetup).then(meetup => (
-    dispatch(receiveMeetup(meetup))
+    dispatch(meetupUpdated(meetup))
   ), err => (
     dispatch(receiveMeetupErrors(err.responseJSON))
   ))

@@ -190,6 +190,8 @@ class EditMeetup extends React.Component {
       const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
       const hostImage = this.props.host.image_url;
       const hostPic = (hostImage && hostImage != "" ?  hostImage : window.staticImages.defaultPic)
+      const currStartTime = (this.state.starttime ? this.state.starttime : "(Not set yet)")
+      const currEndTime = (this.state.endtime ? this.state.starttime : "(Not set yet)")
       return (
         <div className="new-meetup">
           <h3>Edit Meetup!</h3>
@@ -270,22 +272,6 @@ class EditMeetup extends React.Component {
               <div className="new-meetup-right">
                 <div className="host-pic-full">
                   <img src={hostPic} alt="Host Picture"/>
-                {/* <div className="button-holder">
-                  <h3>Image preview </h3>
-                  {preview}
-                  <h3 className="button-holder">Add a Picture</h3>
-                  <input type="file" className="new-bench-button"
-                    onChange={this.handleFile.bind(this)}/>
-                </div> */}
-    
-                {/* EDIT PROFILE PICTURE. NULL FALSE */}
-                  {/* <label className="fancy">
-                    Choose a file
-                    <input type="file" className="inputfile" onChange={handlePhoto} />
-                  </label>
-                  <h3>Image Preview</h3>
-                  <hr></hr>
-                  <div className="preview">{preview}</div> */}
                 </div>
                 <a href="#/profile/edit">Edit profile picture</a>
                 <label className="data-entry">
@@ -326,20 +312,20 @@ class EditMeetup extends React.Component {
               <div className="new-meetup-bottom">
                 <div className="when">
                 {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
-                  <p className="final-form-header">When will the meetup start?</p>
-                  <p>Meetup is currently set for {this.state.starttime}</p>
+                  <p>Meetup is currently set for</p>
+                  <p className="time">{currStartTime}</p>
                   <label className="data-entry">
                     <input type="time" className="time" onChange={this.onTimeChange(this.state.starttime, true)} />
                   </label>
                   <Calendar onChange={this.onDateChange(this.state.starttime, true)} />
-                  <DatePicker selected={this.state.date} onChange={this.handleChangeDate} />
+                  {/* <DatePicker selected={this.state.date} onChange={this.handleChangeDate} /> */}
 
 
                 </div>
                 <div className="when">
                 {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
-                  <p className="final-form-header">Until when?</p>
-                  <p>Meetup is set to end at {this.state.endtime}</p>
+                  <p>Meetup is currently set to end at</p>
+                  <p className="time">{currEndTime}</p>
                   <label className="data-entry">
                     <input type="time" className="time" onChange={this.onTimeChange(this.state.endtime, false)} />
                   </label>
