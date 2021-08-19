@@ -51,12 +51,15 @@ time, mark, audio, video, button, input {
 	margin-bottom: 5px;
 }
 
+input, textarea{
+	border: 1px solid #a0a096;
+	border-radius: 4px;
+}
+
 .text-input{
 	font-size: 20px;
 	width: 500px;
 	padding: 3px;
-	border-radius: 2px;
-	border: 1px solid gray;
 }
 
 html{

@@ -37,6 +37,5 @@ Servers:
     End: rails s -p 3000
 
 
-Reformat Date
 Remove profile picture
 Put on heroku

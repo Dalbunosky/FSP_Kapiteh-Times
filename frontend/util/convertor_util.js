@@ -160,11 +160,13 @@ export const quickSortCities = (cityArray, base = null) =>{
             for(let i=0; i< compareLength; i++){
                 if(alphabet[comparedMetro[i]] < alphabet[pivotMetro[i]]){
                     left.push(cityArr.pop());
+                    // console.log(left);
                     popped = true;
                     break;
                 }
                 else if(alphabet[comparedMetro[i]] > alphabet[pivotMetro[i]]){
                     right.push(cityArr.pop());
+                    // console.log(right);
                     popped = true;
                     break;
                 }
@@ -173,9 +175,11 @@ export const quickSortCities = (cityArray, base = null) =>{
             if(popped === false){
                 if(comparedMetro.length < pivotMetro.length){
                     left.push(cityArr.pop())
+                    // console.log(left);
                 }
                 else{
                     right.push(cityArr.pop())
+                    // console.log(right);
                 }
             }
         }
@@ -183,6 +187,7 @@ export const quickSortCities = (cityArray, base = null) =>{
         if(!!foundHome) res.push(foundHome);
 
         return res.filter(el => !!el.name);
+        // return res;
         // return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
         // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
     }

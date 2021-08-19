@@ -42,15 +42,19 @@
     }
 }
 
-.time{
-    border: #a75000 1px solid;
+input[type="time"]{
     padding: 10px;
     padding-left: 20%;
     padding-right: 20%;
     font-size: 30px;
     margin: 10px;
     transform: translate(-20%,0);
-    // width: 200px;
+}
+
+.time{
+    font-weight: bold;
+    color: rgb(255, 136, 0);
+    font-size: 25px;
 }
 
 .calendar{
@@ -159,6 +163,64 @@
             text-align: center;
             margin: 0.166rem;
         }
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .new-meetup{
+      width: 90%
+    }
+    input[type="time"]{
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .new-meetup{
+      width: 80%;
+    }
+
+    .new-meetup-changes{
+        display: block;
+        width: 100%;
+    }
+    
+    .new-meetup-left{
+        width: 100%;
+        float: none;
+    }
+    
+    .new-meetup-right{
+        width: 100%;
+        float: none;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .new-meetup-bottom{
+        width: 100%;
+        float: none;
+        display: block;
+        margin-top: 20px;
+        // justify-content: space-evenly;
+    }
+    .when{
+        padding: 0;
+    }
+    input[type="time"]{
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .new-meetup{
+      padding: 10px;
+    }
+    input[type="time"]{
+        font-size: 25px;
     }
 }
 

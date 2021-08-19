@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER, SIGNOUT_CURRENT_USER, CLOSE_USER_ACCOUNT, CHANGE_PASSWORD } from '../actions/session_actions';
-import { RECEIVE_MEETUP, MEETUP_CANCELLED } from '../actions/meetup_actions';
+import { RECEIVE_MEETUP, MEETUP_CANCELLED, MEETUP_CREATED, MEETUP_UPDATED } from '../actions/meetup_actions';
 import { RECEIVE_MESSAGE, CLEAR_MESSAGE } from '../actions/message_actions';
 
   export default (state = '', action) => {
@@ -15,7 +15,11 @@ import { RECEIVE_MESSAGE, CLEAR_MESSAGE } from '../actions/message_actions';
         return "Password change successful. You will be logged off. Please re-login with new password.";
 
       case RECEIVE_MEETUP:
-        return(action.meetup.message ? action.meetup.message : "");
+        return (action.meetup.message ? action.meetup.message : "");
+      case MEETUP_CREATED:
+        return "Meetup successfully created! Please check meetup details!";
+      case MEETUP_UPDATED:
+        return "Meetup successfully updated! Please check meetup details!";
       case MEETUP_CANCELLED:
         return "Meetup successfully cancelled!";
       case CLEAR_MESSAGE:

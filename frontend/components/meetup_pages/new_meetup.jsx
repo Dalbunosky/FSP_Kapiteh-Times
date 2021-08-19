@@ -134,6 +134,8 @@ class NewMeetup extends React.Component {
     const preview = this.state.photoUrl ? <img height="200px" width="200px" src={this.state.photoUrl} /> : null
     const hostImage = this.props.host.image_url;
     const hostPic = (hostImage && hostImage != "" ?  hostImage : window.staticImages.defaultPic)
+    const currStartTime = (this.state.starttime ? this.state.starttime : "(Not set yet)")
+    const currEndTime = (this.state.endtime ? this.state.starttime : "(Not set yet)")
     return (
       <div className="new-meetup">
         <h3>Create Meetup!</h3>
@@ -263,8 +265,8 @@ class NewMeetup extends React.Component {
             <div className="new-meetup-bottom">
               <div className="when">
               {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
-                <p className="final-form-header">When will the meetup start?</p>
-                <p>Meetup is currently set for {this.state.starttime}</p>
+                <p>Meetup is currently set for</p>
+                <p className="time">{currStartTime}</p>
                 <label className="data-entry">
                   <input type="time" className="time" onChange={this.onTimeChange(this.state.starttime, true)} />
                 </label>
@@ -273,8 +275,8 @@ class NewMeetup extends React.Component {
               </div>
               <div className="when">
               {/* YEAR, MONTH, DAY, DOW, HOUR, MINUTE */}
-                <p className="final-form-header">Until when?</p>
-                <p>Meetup is set to end at {this.state.endtime}</p>
+                <p>Meetup is currently set to end at</p>
+                <p className="time">{currEndTime}</p>
                 <label className="data-entry">
                   <input type="time" className="time" onChange={this.onTimeChange(this.state.endtime, false)} />
                 </label>
