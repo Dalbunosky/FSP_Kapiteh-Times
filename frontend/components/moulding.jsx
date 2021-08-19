@@ -18,6 +18,8 @@ export const Header = () => (
                 <a className="nav-link-item" href="#/hosting">Hosting</a>
                 <p>   </p>
                 <a className="nav-link-item" href="#/about">About</a> */}
+                {/* {const greetingDisplay = ()} */}
+            <button className="nav-button">Test</button>
             <GreetingContainer />
             {/* </nav> */}
         </div>

@@ -135,7 +135,7 @@ export const quickSortCities = (cityArray, base = null) =>{
     }
 
     const subSortCities = (cityArr, home) =>{
-        let foundHome = [];
+        let foundHome;
         let comparedMetro;
         let compareLength;
         let left = [];
@@ -175,19 +175,17 @@ export const quickSortCities = (cityArray, base = null) =>{
             if(popped === false){
                 if(comparedMetro.length < pivotMetro.length){
                     left.push(cityArr.pop())
-                    // console.log(left);
                 }
                 else{
                     right.push(cityArr.pop())
-                    // console.log(right);
                 }
             }
         }
         const res = [...quickSortCities(left), pivot, ...quickSortCities(right)];
         if(!!foundHome) res.push(foundHome);
 
-        return res.filter(el => !!el.name);
-        // return res;
+        // return res.filter(el => !!el.name);
+        return res;
         // return([foundHome, ...quickSortCities(left), pivot, ...quickSortCities(right)]);
         // return (quickSortMeetups(left).concat([pivot],quickSortMeetups(right)));
     }
