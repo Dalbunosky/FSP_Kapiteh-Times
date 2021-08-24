@@ -30,6 +30,8 @@
 
     profilePic: "<%= asset_path("profile_pic5.jpg") %>",
     spillTeh: "<%= asset_path("spilled-coffee.jpg") %>",
+
+    menuIcon: "<%= asset_path("menu-icon.png") %>"
   }
 
 
@@ -37,6 +39,11 @@
   	window.currentUser = <%= render("api/users/user.json.jbuilder",
   		user: current_user).html_safe %>
   <% end %>
+
+
+
 </script>
 
-<main id="origin">Kapiteh Times View</main>
+<main id="origin">
+Kapiteh Times View
+</main>
