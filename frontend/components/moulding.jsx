@@ -4,24 +4,29 @@ import { Link } from 'react-router-dom';
 import GreetingContainer from './greeting/greeting_container';
 import MessageContainer from './greeting/message_container';
 
+
+// Give button an onclick function. Put function in util?
+const navToggle = function(e){
+    e.preventDefault();
+    let navMenu = document.getElementsByClassName("nav-list");
+    if(window.getComputedStyle(navMenu[0]).getPropertyValue("display") === "none"){
+        // navMenu[0].style.animation = "drop 1s linear";
+        navMenu[0].style.display = "flex";
+    }
+    else{
+        // navMenu[0].style.animation = "rise 1s linear";
+        navMenu[0].style.display = "none";
+    }
+}
+
 export const Header = () => (
     <header>
         <div className="header">
             <Link to="/" className="header-link">
-            {/* <h1>Logo</h1> */}
             <h1>Kapiteh Times</h1>
             </Link>
-
-            {/* <nav className="nav-list"> */}
-                {/* <a className="nav-link-item" href="#/meetups">MeetUps</a>
-                <p>   </p>
-                <a className="nav-link-item" href="#/hosting">Hosting</a>
-                <p>   </p>
-                <a className="nav-link-item" href="#/about">About</a> */}
-                {/* {const greetingDisplay = ()} */}
-            <button className="nav-button">Test</button>
+            <button id="nav-button" onClick={navToggle}><img src={window.staticImages.menuIcon}/></button>
             <GreetingContainer />
-            {/* </nav> */}
         </div>
         <MessageContainer />
     </header>
