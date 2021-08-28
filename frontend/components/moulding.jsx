@@ -45,8 +45,8 @@ export const Footer = () => (
                 {/* <a className="white bold" href="#/terms">Terms of Service</a> */}
                 <a className="white bold" href="#/disclaimer">Disclaimer</a>
                 <div className="footer-buttons">
-                    <img href="https://github.com/Dalbunosky/FSP_Kapiteh-Times/" src={window.staticImages.github}/>
-                    <img href="https://www.linkedin.com/in/chi-yung-lee-9ab28539/" src={window.staticImages.linkedin}/>
+                    <a href="https://github.com/Dalbunosky/FSP_Kapiteh-Times/"><img src={window.staticImages.github}/></a>
+                    <a href="https://www.linkedin.com/in/chi-yung-lee-9ab28539/"><img src={window.staticImages.linkedin}/></a>
                 </div>
             </div>
 
