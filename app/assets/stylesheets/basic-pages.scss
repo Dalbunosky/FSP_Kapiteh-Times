@@ -1,5 +1,9 @@
 .basic-page{
     width: 100%;
+    display: flex;
+    // justify-content: ;
+    flex-direction: column;
+    align-items: center;
     // height: 100%;
     // padding: 20px;
     // display: flex;
@@ -11,7 +15,6 @@
     h4{
         text-align: center;
         margin: 10px;
-        // width: 100%;
         font-size: 25px;
     }
 }
@@ -21,7 +24,7 @@
     justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    height: 318.5px;
+    max-height: 318.5px;
     overflow: hidden;
     img{
         filter: sepia(20%);
@@ -143,6 +146,7 @@
 
 .main-four{
     margin-top: 30px;
+    width: 100vw;
     background-color:rgba(247,191,77,0.87);
     // height: 200px;
     display: flex;
@@ -216,4 +220,20 @@
     background-attachment: fixed;
     background-size: cover;
     // opacity: 0.12;
+}
+
+@media only screen and (max-width: 900px) {
+    .about, .main-two, .main-three{
+        margin-left: auto;
+        margin-right: auto;
+        width: 77.777%;
+    }
+    .basic-page{
+        h3{
+
+        }
+        h4{
+
+        }
+    }
 }
