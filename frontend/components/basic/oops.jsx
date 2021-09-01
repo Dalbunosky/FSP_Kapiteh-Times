@@ -12,13 +12,14 @@ const BadPage = ({clearMessage}) => {
     return(
         <div className="about" id="badPage">
             <h1 className="padding-30">Oh boy.....</h1>
-            <p className="padding-30">This doesn't look good. Looks like you found a bug on my website...
+            <p>This doesn't look good. Looks like you found a bug on my website...
                 <br/>Tell me, how did you get here?
                 <br/>
                 <a>You can do so here when my email is set up</a>
+                <br/>
+                <br/>
+                <a href="/">Let's take you back home</a>
             </p>
-                
-            <a className="padding-30" href="/">Let's take you back home</a>
         </div>
     );
 }
