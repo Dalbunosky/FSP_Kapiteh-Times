@@ -32,9 +32,9 @@ const Disclaimer = ({clearMessage}) => {
                 is periodically wiped and refreshed, and you will lose your plans.</p>
             <p>This is a personal project with some help from peers. It is purely 
                 a practice in coding and does not generate any revenue.</p>
-            <p>If you are impressed by my coding skills and would like 
-                to contact me or have a need for my skills, feel free 
-                to contact me on <a href="">LinkedIn</a>.</p>
+            <p>If you have a need or opportunity and believe that I would be a good fit, 
+                please feel free to contact me on <a href="https://www.linkedin.com/in/chi-yung-lee-9ab28539/">LinkedIn</a>.
+                </p>
         </div>
     )
 }

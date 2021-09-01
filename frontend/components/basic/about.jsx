@@ -16,8 +16,10 @@ const About = ({clearMessage}) => {
             <div className="welcome">
                 <img src={window.staticImages.table}/>
                 <span>
-                    About Kapiteh Times <br/>
-                    <p style={{fontsize: "10px"}}><br/>The mock project that could've bought people together.</p>
+                    {/* <p style={{fontsize: "10px"}}><br/>The mock project that could've bought people together.</p> */}
+                    <p className="large">About Kapiteh Times</p>
+                    <br/>
+                    <p className="small">The mock project that could've bought people together.</p>
                 </span>
             </div>
 

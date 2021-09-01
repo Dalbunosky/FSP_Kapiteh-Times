@@ -99,24 +99,13 @@
     justify-content: center;
     flex-direction: column;
     .reason{
-        display: flex;
         .reason-image{
             width: 40%;
+            padding: 5px;
         }
-        .reason-text{
-            width: 60%;
-            p{
-                padding: 10px;
-            }
+        p{
+            padding: 10px;
         }
-        // img{
-        //     max-height: 300px;
-        //     max-width: 300px;
-        // }
-        // h3{
-        // }
-        // p{
-        // }
     }
 }
 
@@ -146,7 +135,8 @@
 
 .main-four{
     margin-top: 30px;
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
     background-color:rgba(247,191,77,0.87);
     // height: 200px;
     display: flex;
@@ -154,6 +144,9 @@
     flex-direction: column;
     align-items: center;
     padding: 5px;
+    .stay34{
+        font-size: 34px;
+    }
     p, button, a{
         // position: absolute;
         // font-weight: 500;
@@ -213,27 +206,96 @@
     }
 }
 
-#badPage{
-    width: 100%;
-    // background-image: url('');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    // opacity: 0.12;
-}
-
 @media only screen and (max-width: 900px) {
     .about, .main-two, .main-three{
         margin-left: auto;
         margin-right: auto;
         width: 77.777%;
     }
-    .basic-page{
-        h3{
+    // .main-two .reason .reason-image{
+    //     width: 40%
+    // }
+    .main-three{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            width: auto;
+        }
+        .proclaim{
+            width: 100%;
+        }
+    }
+}
 
+@media only screen and (max-width: 800px) {
+    .welcome span{
+        .large{
+            font-size: 40px;
+        }
+        .small{
+            font-size: 20px;
+        }
+    }
+    .basic-page{
+        h1{
+            
+        }
+        h3{
+            font-size: 30px;
         }
         h4{
+            font-size: 22px;
+        }
+        p{
+            font-size: 18px;
+        }
+    }
+    .legalText{
+        padding-left:18.75%;
+        padding-right: 18.75%;
+    }
+}
 
+@media only screen and (max-width: 650px) {
+    .about, .main-two, .main-three{
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+    .main-one{
+        flex-direction: column;
+        align-items: center;
+        .process{
+            width: 100%;
+        }
+    }
+    .main-two .reason .reason-image{
+        width: 60%;
+    }
+    .main-five{
+        flex-direction: column;
+        align-items: center;
+        .review{
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+        }
+    }
+    .legalText{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .reason{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .reason-image{
+            float: none;
+            width: 75%;
         }
     }
 }

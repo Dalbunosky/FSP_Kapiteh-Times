@@ -13,7 +13,11 @@ const Home = ({clearMessage}) => {
         <div className="basic-page">
             <div className="welcome">
                 <img src={window.staticImages.groupChat}/>
-                <span><p className="large">Everyone has an interesting story</p><br/><p className="small">Come find out over a drink and a conversation.</p></span>
+                <span>
+                    <p className="large">Everyone has an interesting story</p>
+                    <br/>
+                    <p className="small">Come find out over a drink and a conversation.</p>
+                </span>
             </div>
 
             <div className="main-one">
@@ -34,25 +38,29 @@ const Home = ({clearMessage}) => {
             <div className='main-two'>
                 <h4>So why are people doing it?</h4>
                 <div className="reason">
-                    <div className="reason-image"><img src={window.staticImages.reason1}/></div>
-                    <div className="reason-text">
+                    {/* <div className="reason-image"><img src={window.staticImages.reason1}/></div> */}
+                    {/* <div className="reason-text"> */}
+                        <img className="reason-image" style={{float: 'left', marginRight: '10px'}} src={window.staticImages.reason1}/>
                         <h3>It’s weird. </h3>
                         <p>Everyone at tea time is stepping a little out of their comfort zone. This makes it so much easier to actually learn something unexpected about the people around you. Because open minds are a prerequisite around here. </p>
-                    </div>
+                    {/* </div> */}
                 </div>
                 <div className="reason">
-                    <div className="reason-text">
+                    {/* <div className="reason-text"> */}
+                        <img className="reason-image" style={{float: 'right', marginLeft: '10px'}} src={window.staticImages.reason2}/>
                         <h3>We won't meet otherwise.</h3>
                         <p>In all likelihood, our paths won’t cross for any reason. So often, we only meet people through work, school, or friends of friends. And even then, it’s questionable. So basically, we manufacture serendipity.</p>
-                    </div>
-                    <div className="reason-image"><img src={window.staticImages.reason2}/></div>
+                    {/* </div> */}
+                    {/* <div className="reason-image"><img src={window.staticImages.reason2}/></div> */}
                 </div>
                 <div className="reason">
-                    <div className="reason-image"><img src={window.staticImages.reason3}/></div>
-                    <div className="reason-text">
+                    {/* <div className="reason-image"><img className="reason-image" style={{float: 'right'}} src={window.staticImages.reason3}/></div> */}
+                    {/* <div className="reason-text"> */}
+                        
+                        <img className="reason-image" style={{float: 'left', marginRight: '10px'}} src={window.staticImages.reason3}/>
                         <h3>Hands are meant to high five! </h3>
                         <p>And your eyes are made…for eye contact! Real humans are so much cooler than their tweets or Instagram pictures. Tea time has real humans! #nofilter!</p>
-                    </div>
+                    {/* </div> */}
                 </div>
                 {/* <p>So talk to people, face to face, in real life, in front of you.</p> */}
             </div>
@@ -70,7 +78,7 @@ const Home = ({clearMessage}) => {
 
             <div className='main-four'>
                 {/* <img src={window.staticImages.appeal}/> */}
-                <p>So, are you up for a</p>
+                <p className="stay34" style={{fontsize: "34px"}}>So, are you up for a</p>
 
                 <a className="button" href="#/meetups">Coffee or Tea?</a>
                 {/* <button>Coffee or Tea?</button> */}
