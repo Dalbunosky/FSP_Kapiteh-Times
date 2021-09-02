@@ -106,18 +106,18 @@ class MeetUpCell extends React.Component {
         if(timing === "future"){
             if(type === "join"){return(
                 <div className="meetup-options">
-                <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
-                    <button onClick={this.leaveMeetup}>Leave Meetup</button>
+                <a className="button" href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
+                    <button onClick={this.leaveMeetup}>Leave<br/>Meetup</button>
                 </div>
             )} else if(type === "host"){return(
                 <div className="meetup-options">
-                    <a href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
-                    <button onClick={this.editMeetup}>Edit Meetup</button>
+                    <a className="button" href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
+                    <button onClick={this.editMeetup}>Edit<br/>Meetup</button>
                     {/* <button onClick={this.cancelMeetup}>Cancel Meetup</button> */}
                 </div>
             )} else{return(
                 <div className="meetup-options">
-                    <a className="blue" href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
+                    <a className="button" href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
                 </div>
             )}
         }
