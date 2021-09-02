@@ -169,7 +169,7 @@ class SingleMeetup extends React.Component{
           <p>{meetup.topic}</p>
         </div> */}
 
-        <div className="host-pic-thumb">
+        <div className="host-pic-full">
           <img src={hostPic} alt="Host Picture"/>
         </div>
 

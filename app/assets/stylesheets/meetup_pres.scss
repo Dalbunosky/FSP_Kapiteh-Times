@@ -8,3 +8,30 @@
 .meetup-right{
     width: 50%
 }
+
+@media only screen and (max-width: 900px) {
+    .meetup-show{
+        .meetup-left{
+            min-width: 300px;
+        }
+        .meetup-right{
+            min-width: 300px;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .meetup-show{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        .meetup-left{
+            width: 80%;
+        }
+        .meetup-right{
+            width: 80%;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    }
+}

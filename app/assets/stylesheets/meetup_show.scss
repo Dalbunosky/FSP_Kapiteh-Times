@@ -1,6 +1,7 @@
 .meetup-show{
     display: flex;
     // align-items: ;
+    width: 100%;
 }
 
 .meetup-left{
@@ -8,8 +9,8 @@
 }
 
 .meetup-right{
-    min-width: 400px;
-
+    // min-width: 400px;
+    border: 1px blue solid;
 }
 
 .meetup-action{
@@ -20,5 +21,13 @@
     p{
         padding-left: 5px;
         padding-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .meetup-action{
+        // padding: 10px;
+        flex-direction: column;
+        // align-items: center;
     }
 }
