@@ -11,3 +11,11 @@
     // align-content: space-around;
     // justify-content: center;
 }
+
+@media only screen and (max-width: 650px) {
+    .hostfile{
+        .meetup-index-item{
+            display: block;
+        }
+    }
+}
