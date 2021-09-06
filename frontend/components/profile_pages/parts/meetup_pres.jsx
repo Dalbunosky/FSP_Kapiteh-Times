@@ -107,12 +107,12 @@ class MeetUpCell extends React.Component {
             if(type === "join"){return(
                 <div className="meetup-options">
                 <a className="button" href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
-                    <button onClick={this.leaveMeetup}>Leave<br/>Meetup</button>
+                    <button onClick={this.leaveMeetup}>Leave Meetup</button>
                 </div>
             )} else if(type === "host"){return(
                 <div className="meetup-options">
                     <a className="button" href={`#/meetups/${this.props.meetup.id}`}>Checkout Meetup</a>
-                    <button onClick={this.editMeetup}>Edit<br/>Meetup</button>
+                    <button onClick={this.editMeetup}>Edit Meetup</button>
                     {/* <button onClick={this.cancelMeetup}>Cancel Meetup</button> */}
                 </div>
             )} else{return(

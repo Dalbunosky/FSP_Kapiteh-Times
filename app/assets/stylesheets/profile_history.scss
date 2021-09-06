@@ -34,17 +34,15 @@
 //////////////////////////////////////////////////////////
 // meetup pres
 .meetup-index-item{
+    background-color: rgba(247, 191, 77, 0.2);
+    margin-bottom: 5px;
     display:inline-flex;
     width: 100%;
     justify-content: space-between;
 }
-.meetup-left{
-    // width: 50%;
+.meetup-left, .meetup-right{
     box-sizing: border-box;
     padding: 10px;
-}
-.meetup-right{
-    // width: 50%;
 }
 .meetup-options{
     display: flex;
@@ -83,4 +81,58 @@
 	margin-top: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .profile-meetup-box{
+        .meetup-index-item{
+            flex-wrap: wrap;
+            .meetup-left{
+                min-width: 200px;
+                width: 50%;
+            }
+            .meetup-right{
+                width: 49%;
+            }
+            .meetup-options{
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+                flex-direction:row;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .profile-history{
+        h1{
+            font-size: 40px;
+            margin: 0;
+        }
+        h3{
+            font-size: 28px;
+        }
+        p, li, b{
+            font-size: 16px;
+        }
+    }
+
+    .profile-meetup-box{
+        .meetup-index-item{
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            .meetup-left, .meetup-right{
+                width: 100%;
+                min-width: 0;
+            }
+        }
+    }
+    .profile-bar{
+        .host-pic-thumb{
+            display: none;
+        }
+    }
 }
