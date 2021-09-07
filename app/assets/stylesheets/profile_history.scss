@@ -21,7 +21,7 @@
 }
 
 
-.profile-history {
+.profile-history, .edit-profile {
     width: 100%;
     display: inline-flex;
     justify-content: right;
@@ -67,20 +67,17 @@
 }
 
 /* Profile edit, bottom */
-.profile-settings label {
-
-}
-
-.profile-settings label h3 {
-    /* float: left */
+.profile-settings{
+    margin: 5px;
 }
 
 .profile-bar{
 	display: flex;
 	justify-content: space-between;
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin: 10px;
+	// margin-top: 10px;
+	// margin-left: 10px;
+	// margin-right: 10px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -106,7 +103,7 @@
 }
 
 @media only screen and (max-width: 650px) {
-    .profile-history{
+    .profile-history, .edit-profile{
         h1{
             font-size: 40px;
             margin: 0;
