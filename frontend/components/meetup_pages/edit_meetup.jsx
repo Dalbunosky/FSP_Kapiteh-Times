@@ -191,7 +191,7 @@ class EditMeetup extends React.Component {
       const hostImage = this.props.host.image_url;
       const hostPic = (hostImage && hostImage != "" ?  hostImage : window.staticImages.defaultPic)
       const currStartTime = (this.state.starttime ? this.state.starttime : "(Not set yet)")
-      const currEndTime = (this.state.endtime ? this.state.starttime : "(Not set yet)")
+      const currEndTime = (this.state.endtime ? this.state.endtime : "(Not set yet)")
       return (
         <div className="new-meetup">
           <h3>Edit Meetup!</h3>
