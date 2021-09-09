@@ -193,9 +193,13 @@ class SignUpForm extends React.Component {
               <p className="signinup-title">A picture of yourself.<br/>Optional, until you become a host.</p>
               <label for="file-upload" className="button">Select Picture</label>
               <input id="file-upload" type="file" onChange={this.updateFile()} />
-              <p className="cutoff">{this.state.fileName}</p>
-              <img className="preview" src={this.state.imageURL} />
               {deletePic()}
+              <div className="preview">
+                <p>{this.state.fileName}</p>
+                <img src={this.state.imageURL} />
+              </div>
+              {/* <p className="cutoff">{this.state.fileName}</p>
+              <img className="preview" src={this.state.imageURL} /> */}
 
               <p className="signinup-title">Because how else would people know it's you?</p>
               <br/>
@@ -203,9 +207,9 @@ class SignUpForm extends React.Component {
 
               {this.renderErrors()}
             </div>
-            {confirmPasswordButton(this.state.password, this.state.password2)}
-            {/* <input className="session-submit" type="submit" value="Sign Up!" /> */}
           </div>
+          {confirmPasswordButton(this.state.password, this.state.password2)}
+          {/* <input className="session-submit" type="submit" value="Sign Up!" /> */}
         </form>
       </div>
     );

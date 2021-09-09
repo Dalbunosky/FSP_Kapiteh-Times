@@ -9,14 +9,15 @@ class EditProfile extends React.Component {
         this.state = {
             errors: this.props.errors,
             id: this.props.currentUser.id,
-            name: this.props.currentUser.name,
-            email: this.props.currentUser.email,
-            phone: this.props.currentUser.phone,
-            story: this.props.currentUser.story,
-            home_city: this.props.currentUser.home_city,
+            name: this.props.currentUser.name || "",
+            email: this.props.currentUser.email || "",
+            phone: this.props.currentUser.phone || "",
+            story: this.props.currentUser.story || "",
+            home_city: this.props.currentUser.home_city || "",
             email_subscription: this.props.currentUser.email_subscription,
             host_status: this.props.currentUser.host_status,
             fileName: "",
+            picHeight: 0,
             modal_display: "noshow",
             success: false
         };
@@ -30,6 +31,7 @@ class EditProfile extends React.Component {
 
   componentDidMount(){
     this.props.clearErrors();
+    this.setState({ picHeight: document.getElementsByClassName("preview")[0].offsetHeight });
   }
 
   componentWillUnmount(){
@@ -42,7 +44,6 @@ class EditProfile extends React.Component {
 
   confirmCancel(e){
     e.preventDefault();
-    // this.setState({ modal_display: "HFGDFGF" });
     // return e => 
     this.setState({
       modal_display: ((this.state.modal_display==="noshow") ? "yesshow" : "noshow")
@@ -107,23 +108,20 @@ class EditProfile extends React.Component {
     return e => {
       const reader = new FileReader();
       const file = e.currentTarget.files[0];
+
       reader.onloadend = () =>
-        this.setState({ imageURL: reader.result, imageFile: file, fileName: file.name });
-  
+        this.setState({ imageURL: reader.result, imageFile: file, fileName: file.name, picHeight: 380 });
       if (file) {
         reader.readAsDataURL(file);
       } else {
-        this.setState({ imageURL: "", imageFile: null });
+        this.setState({ imageURL: "", imageFile: null, picHeight: 0 });
       }
-      // console.log(`file: ${file}`)
-      // console.log(`file.name: ${file.name}`)
-      // console.log(`file.name: ${this.state.fileName}`)
     }
   }
 
   deleteFile(){
     return e => {
-        this.setState({ imageURL: "", imageFile: null, fileName: "" });
+        this.setState({ imageURL: "", imageFile: null, fileName: "", picHeight: 0 });
     }
   }
 
@@ -144,16 +142,21 @@ class EditProfile extends React.Component {
     const amIHost = bool => ( bool ? <a href="#/meetups/new" className="button">Yep! Let's host!</a> : <a href="#/hosting" className="button">Not Yet! But I want to be!</a>);
     const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Save successful!</strong></p> : "");
     const deletePic = () => this.state.imageURL ? <button onClick={this.deleteFile()}>Remove Picture</button> : "";
-
+    const selfPic = (this.props.currentUser.image_url && this.props.currentUser.image_url != "" ?  this.props.currentUser.image_url : window.staticImages.defaultPic)
     return (
       <div className="edit-profile">
         <ProfileBar props={this.props.currentUser}  type="edit"/>
-        <div className="profile-changes">
+        <div className="profile-changes" id="edit-profile">
           <div className="profile-right">
+
             <div className="profile-title">
-              <h1>Edit Account Details</h1>
+              <div className="profile-bar">
+                <h1>Edit Account Details</h1>
+                <div className="host-pic-thumb right-end"><img src={selfPic} alt="Profile Picture"/></div>
+              </div>
+              <a href="#/profile" className="margin-10 ilb">Back to profile</a>
             </div>
-            {/* {this.renderErrors()} */}
+            
             <form onSubmit={this.handleSubmit} className="full-profile">
               <div className="profile-details">
                 <div className="left">
@@ -202,72 +205,44 @@ class EditProfile extends React.Component {
                     />   
                   </label>
                 </div>
-                <div className="right">
+                <div className="right"> 
                   <p className="signinup-title">A picture of yourself.<br/>Optional, until you become a host.</p>
 
                   <label for="file-upload" className="button">Select File</label>
+                  {/* <input id="file-upload" type="file" onChange={this.updateFile()} /> */}
                   <input id="file-upload" type="file" onChange={this.updateFile()} />
-                  <p className="cutoff">{this.state.fileName}</p>
-                  <img className="preview" src={this.state.imageURL} />
                   {deletePic()}
+                  <div className="preview">
+                    <p>{this.state.fileName}</p>
+                    <img src={this.state.imageURL} />
+                  </div>
+                  <div className="placeholder" style={{height: `${this.state.picHeight}px`}}></div>
 
                   {this.renderErrors()}
                 </div>
               </div>
-              <div className="change-password">
-                  {/* <label className="data-entry">
-                  <p className="signinup-title">Please type in old password to confirm</p>
-                  <input type="password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                      className="signinup-input"
-                  />
-                  </label>
-                  <label className="data-entry">
-                  <p className="signinup-title">Please type in new password</p>
-                  <input type="password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                      className="signinup-input"
-                  />
-                  </label>
-                  <label className="data-entry">
-                  <p className="signinup-title">Please type in new password again</p>
-                  <input type="password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                      className="signinup-input"
-                  />
-                  </label> */}
-              </div>
-              <input className="session-submit button" type="submit" value="Submit Changes" />
+              <input 
+                className="session-submit button" type="submit" value="Submit Changes" 
+                style={{position: "relative", left: "5px"}}/>
               {saveSuccess(this.state.success)}
             </form>
 
             <div className="profile-settings">
-              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Need to change password?</h3>
                 <p>Please have your current password ready.</p>
                 <a className="button" href="#/password-change">Change Password</a>
-              {/* </label> */}
 
-              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Am I a host?</h3>
                 <p>If you want to host your own meetup</p>
                 {amIHost(this.state.host_status)}
-              {/* </label> */}
 
-              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Email Subscription:</h3>
                 <p>Your email subscription is used to contact you when needed, in cases such as...</p>
                 <button onClick={this.toggleEmailSub} >{yepNope(this.props.currentUser.email_subscription)}</button>
-              {/* </label> */}
 
-              {/* <label className="data-entry"> */}
                 <h3 className="signinup-title">Delete Account</h3>
                 <p>You don't want to have an account anymore?</p>
                 <button onClick={this.confirmCancel} >Thank you for trying Kapiteh Times!</button>
-              {/* </label> */}
 
               <div className={this.state.modal_display}>
                 <div className="modal-screen"></div>

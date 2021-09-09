@@ -86,12 +86,20 @@ class EditPassword extends React.Component {
       else if(pw1 != pw2){return(<p className="signinup-form-container red">You can't submit unless your new passwords match!</p>)}
       else{return(<p className="signinup-form-container red">Your new password needs to be longer!</p>)}
     }
-
+    const selfPic = (this.props.currentUser.image_url && this.props.currentUser.image_url != "" ?  this.props.currentUser.image_url : window.staticImages.defaultPic)
+    
     return (
       <div className="edit-profile">
         <ProfileBar props={this.props.currentUser}  type="edit"/>
-        <div className="password-changes">
-            <h1>Edit Account Details</h1>
+        <div className="profile-right">
+
+            <div className="profile-title">
+              <div className="profile-bar">
+                <h1>Change Password</h1>
+                <div className="host-pic-thumb right-end"><img src={selfPic} alt="Profile Picture"/></div>
+              </div>
+              <a href="#/profile" className="margin-10 ilb">Back to profile</a>
+            </div>
             {/* {this.renderErrors()} */}
             <form onSubmit={this.handleSubmit} className="full-profile">
                 <div className="profile-details">
