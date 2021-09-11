@@ -274,7 +274,6 @@ class MeetupShow extends React.Component {
         // Else, show the host
         else{
             const hostPic = (meetup.hostImage && meetup.hostImage != "" ?  meetup.hostImage : window.staticImages.defaultPic)
-            console.log(meetup.hostImage);
             return(
                 <div className="meetup-right">
                     <ul className="meetup-guests">

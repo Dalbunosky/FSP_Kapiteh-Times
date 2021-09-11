@@ -45,7 +45,6 @@ class EditPassword extends React.Component {
     };
     const passwords = Object.assign({}, credentials);
 
-    // console.log(passwords);
     this.props.processForm(passwords)
     .then(() => this.setState({success: true}), () => this.setState({success: false}));
   }
@@ -75,8 +74,6 @@ class EditPassword extends React.Component {
 
 
   render() {
-    console.log(this.props.message);
-    console.log(this.state.success);
     const saveSuccess = bool => ( bool ? <p className="red" style={{display: "inline"}}><strong>Password successfully changed!</strong></p> : "");
     const toggleInputType = toggleText => ( toggleText === "Show" ? "password" : "text");
     // const confirmPasswordWarning = (pw1, pw2) => ( pw1 != pw2 ? "Password must match!" : "");

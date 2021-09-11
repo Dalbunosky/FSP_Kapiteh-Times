@@ -68,7 +68,6 @@ class HostShow extends React.Component {
 
 ////////////////////////////////////////////////////////////////////////
     render() {
-        // console.log(this.props.meetup);
         if(this.props.host && this.props.host.host_status){ //After fetching host and ensuring host status
             const host = this.props.host;
             const name = host.name;

@@ -116,7 +116,6 @@ class EditMeetup extends React.Component {
 
   // For time only handling
   onTimeChange(time, bool) {
-    console.log(time);
     let date = time.split(" ");
     return e => {
       const timestring = e.target.value.split(":");
@@ -131,10 +130,15 @@ class EditMeetup extends React.Component {
     }
   }
 
-  // For time only handling
-  onTimeChangeA(time, bool) {
-    console.log(time);
-  }
+  // // For testing
+  // onTimeChangeA(time, bool) {
+  //   console.log(time);
+  // }
+
+  // handleChangeDateA = (starttime, event) => {
+  //   // this.setState({  starttime });
+  //   console.log(starttime);
+  // };
   
   // For date to string
   onDateChange(date, bool) {
@@ -151,11 +155,6 @@ class EditMeetup extends React.Component {
       }
     }
   }
-
-  handleChangeDate = (starttime, event) => {
-    // this.setState({  starttime });
-    console.log(starttime);
-  };
 
   changeTimetoString(datetime){
     // 2020-5-07 01:09

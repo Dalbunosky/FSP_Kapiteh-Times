@@ -7,7 +7,7 @@ import { fetchUser } from '../../actions/session_actions';
 import { clearMessage } from '../../actions/message_actions';
 
 const mapSTP = (state, ownprops) => {
-  console.log(state.meetups[ownprops.match.params.meetupId]);
+  // console.log(state.meetups[ownprops.match.params.meetupId]);
   return({
     meetup: state.meetups[ownprops.match.params.meetupId],
     session: state.session,

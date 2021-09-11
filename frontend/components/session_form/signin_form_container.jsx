@@ -7,7 +7,7 @@ import { clearMessage, receiveMessage } from '../../actions/message_actions';
 import SignInForm from './signin_form';
 
 const mapSTP = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     // errors: errors.session,
     // errors: session,
