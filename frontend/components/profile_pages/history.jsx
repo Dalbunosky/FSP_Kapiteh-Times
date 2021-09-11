@@ -84,7 +84,6 @@ class History extends React.Component {
   }}
 
   render() {
-    // console.log(this.props);
     const selfPic = (this.props.currentUser.image_url && this.props.currentUser.image_url != "" ?  this.props.currentUser.image_url : window.staticImages.defaultPic)
     const meetups = Array.from(this.props.meetups);
     let joined = [];
